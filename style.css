@@ -249,6 +249,37 @@ button:hover {
   right: 10px;
 }
 
+/* Video Section Styles */
+#video.full-page {
+  height: 100vh;
+  background-color: #111111;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#video h2 {
+  font-family: 'Bodoni72', serif;
+  font-size: 2.4rem;
+  color: #813838;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.video-container {
+  width: 80%;
+  max-width: 800px;
+  text-align: center;
+}
+
+.video-container video {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
 /* About Me Section */
 #about {
   height: 100vh;
