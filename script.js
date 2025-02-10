@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // Dots Functionality for Hero Section (Page 1)
+  // Dots Functionality for Hero Section
   const dotsContainer = document.getElementById("dots-container");
   const dotsCount = 2000;
   const interactionDistance = 100;
@@ -92,26 +92,33 @@ document.addEventListener("DOMContentLoaded", () => {
   createDots();
   animate();
 
-  // Carousel Functionality for Portfolio Section (Page 3)
+  // Carousel Functionality for Portfolio Section
   const carousel = document.querySelector(".carousel-images");
   const carouselItems = document.querySelectorAll(".carousel-item");
   let currentIndex = 0;
 
   function showSlide(index) {
     const totalSlides = carouselItems.length;
-    currentIndex = (index + totalSlides) % totalSlides; // Wrap around slides
-    const offset = -currentIndex * 100; // Calculate offset in percentage
+    currentIndex = (index + totalSlides) % totalSlides;
+    const offset = -currentIndex * 100;
     carousel.style.transform = `translateX(${offset}%)`;
   }
 
   document.querySelector(".arrow-left").addEventListener("click", () => {
-    showSlide(currentIndex - 1); // Show previous slide
+    showSlide(currentIndex - 1);
   });
 
   document.querySelector(".arrow-right").addEventListener("click", () => {
-    showSlide(currentIndex + 1); // Show next slide
+    showSlide(currentIndex + 1);
   });
 
-  // Initialize first slide
   showSlide(0);
+
+  // Hamburger Menu Toggle
+  const menuToggle = document.getElementById("menu-toggle");
+  const menu = document.getElementById("menu");
+
+  menuToggle.addEventListener("click", () => {
+    menu.classList.toggle("active");
+  });
 });
