@@ -92,32 +92,34 @@ document.addEventListener("DOMContentLoaded", () => {
   createDots();
   animate();
 
-  // Contact Form Submission Handling
-  document.getElementById("contact-form").addEventListener("submit", function (event) {
-    event.preventDefault(); // Prevent the default form submission
 
-    const form = event.target;
-    const formData = new FormData(form);
+// Contact Form Submission Handling
+document.getElementById("contact-form").addEventListener("submit", function (event) {
+  event.preventDefault(); // Prevent the default form submission
 
-    fetch(form.action, {
-      method: "POST",
-      body: formData,
-      headers: {
-        Accept: "application/json",
-      },
-    })
-      .then((response) => {
-        if (response.ok) {
-          alert("Thank you for your message! I'll get back to you soon.");
-          form.reset(); // Clear the form
-        } else {
-          alert("Oops! Something went wrong. Please try again.");
-        }
-      })
-      .catch((error) => {
+  const form = event.target;
+  const formData = new FormData(form);
+
+  fetch(form.action, {
+    method: "POST",
+    body: formData,
+    headers: {
+      Accept: "application/json",
+    },
+  })
+    .then((response) => {
+      if (response.ok) {
+        alert("Thank you for your message! I'll get back to you soon.");
+        form.reset(); // Clear the form
+      } else {
         alert("Oops! Something went wrong. Please try again.");
-      });
-  });
+      }
+    })
+    .catch((error) => {
+      alert("Oops! Something went wrong. Please try again.");
+    });
+});
+
 
   // Carousel Functionality for Portfolio Section (Page 3)
   const carousel = document.querySelector(".carousel-images");
@@ -141,19 +143,4 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Initialize first slide
   showSlide(0);
-
-  // Like Button Functionality
-  const likeButton = document.getElementById("like-button");
-  const likeCount = document.getElementById("like-count");
-
-  // Load like count from local storage
-  let likes = localStorage.getItem("likes") || 0;
-  likeCount.textContent = likes;
-
-  // Handle like button click
-  likeButton.addEventListener("click", () => {
-    likes++;
-    likeCount.textContent = likes;
-    localStorage.setItem("likes", likes); // Save to local storage
-  });
 });
