@@ -361,7 +361,7 @@ button:hover {
 /* Contact Section */
 #contact h2 {
   font-family: 'Bodoni72', serif;  /* Set the font to Bodoni72 */
-  font-size: 3rem;  /* Adjust the font size */
+  font-size: 2.5rem;  /* Adjust the font size */
   color: #813838;  /* Change the text color */
   text-align: center;  /* Center the heading text */
   margin-bottom: 30px;  /* Add space below the heading */
@@ -429,6 +429,36 @@ footer {
 .linkedin-logo {
   width: 40px; /* Adjust size as needed */
   height: auto;
+}
+
+/* Like Button Styles */
+.like-container {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+#like-button {
+  background-color: #1a1515;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+#like-button:hover {
+  background-color: #310606;
+  transform: scale(1.05);
+}
+
+#like-count {
+  font-size: 1.2rem;
+  color: #813838;
+  font-weight: bold;
 }
 
 footer {
