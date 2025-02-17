@@ -407,6 +407,30 @@ button:hover {
   background-color: #555;
 }
 
+/* Footer LinkedIn Button */
+footer {
+  text-align: center;
+  padding: 20px;
+  background-color: #111;
+  color: white;
+  position: relative;
+}
+
+.linkedin-button {
+  display: inline-block;
+  margin-top: 10px;
+  transition: transform 0.3s ease;
+}
+
+.linkedin-button:hover {
+  transform: scale(1.1);
+}
+
+.linkedin-logo {
+  width: 40px; /* Adjust size as needed */
+  height: auto;
+}
+
 footer {
   text-align: center;
   padding: 20px;
