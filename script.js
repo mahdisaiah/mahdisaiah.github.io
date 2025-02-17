@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
+  // Dots Animation Logic
   const dotsContainer = document.getElementById("dots-container");
   const dotsCount = 2000;
   const interactionDistance = 100;
@@ -116,31 +117,32 @@ document.addEventListener("DOMContentLoaded", () => {
   // Start the creepy effect loop
   setTimeout(activateCreepyEffect, 30000); // Initial delay of 30 seconds
 
-// Contact Form Submission Handling
-document.getElementById("contact-form").addEventListener("submit", function (event) {
-  event.preventDefault(); // Prevent the default form submission
+  // Contact Form Submission Handling
+  const contactForm = document.getElementById("contact-form");
+  if (contactForm) {
+    contactForm.addEventListener("submit", function (event) {
+      event.preventDefault(); // Prevent the default form submission
 
-  const form = event.target;
-  const formData = new FormData(form);
+      const formData = new FormData(contactForm);
 
-  fetch(form.action, {
-    method: "POST",
-    body: formData,
-    headers: {
-      Accept: "application/json",
-    },
-  })
-    .then((response) => {
-      if (response.ok) {
-        alert("Thank you for your message! I'll get back to you soon.");
-        form.reset(); // Clear the form
-      } else {
-        alert("Oops! Something went wrong. Please try again.");
-      }
-    })
-    .catch((error) => {
-      alert("Oops! Something went wrong. Please try again.");
+      fetch(contactForm.action, {
+        method: "POST",
+        body: formData,
+        headers: {
+          Accept: "application/json",
+        },
+      })
+        .then((response) => {
+          if (response.ok) {
+            alert("Thank you for your message! I'll get back to you soon.");
+            contactForm.reset(); // Clear the form
+          } else {
+            alert("Oops! Something went wrong. Please try again.");
+          }
+        })
+        .catch((error) => {
+          alert("Oops! Something went wrong. Please try again.");
+        });
     });
-});
-
+  }
 });
