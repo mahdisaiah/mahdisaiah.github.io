@@ -131,26 +131,16 @@ button:hover {
   align-items: center;
 }
 
-/* Skills Section */
 #skills h2 {
-  font-family: 'Bodoni72', serif;  /* Set the font to Bodoni72 */
-  font-size: 2.4rem;  /* Adjust the font size */
-  color: #813838;  /* Change the text color */
-  text-align: center;  /* Center the heading text */
-  margin-bottom: 30px;  /* Space below the heading */
-}
-
-/* Change color for the "Game Development" text */
-.skill-item h3 {
-  color: #a5a5a5;  /* Change this color code to your preferred color */
+  font-family: 'Bodoni72', serif;
+  font-size: 2.4rem;
+  color: #813838;
+  text-align: center;
+  margin-bottom: 30px;
 }
 
 .skills-container {
   text-align: center;
-}
-/* Change text color for the list of tools in the "3D Modeling & Animation" section */
-.skill-item p {
-  color: #ffffff;  /* Change to the color code you prefer */
 }
 
 .skills-grid {
@@ -172,6 +162,14 @@ button:hover {
   transform: scale(1.05);
 }
 
+.skill-item h3 {
+  color: #a5a5a5;
+}
+
+.skill-item p {
+  color: #ffffff;
+}
+
 /* Portfolio Section */
 #portfolio {
   height: 100vh;
@@ -182,15 +180,13 @@ button:hover {
   align-items: center;
 }
 
-/* Portfolio Section */
 #portfolio h2 {
-  font-family: 'Bodoni72', serif;  /* Set the font to Bodoni72 */
-  font-size: 2.4rem;  /* Adjust the font size */
-  color: #813838;  /* Change the text color */
-  text-align: center;  /* Center the heading text */
-  margin-bottom: 30px;  /* Add space below the heading */
+  font-family: 'Bodoni72', serif;
+  font-size: 2.4rem;
+  color: #813838;
+  text-align: center;
+  margin-bottom: 30px;
 }
-
 
 .carousel {
   display: flex;
@@ -249,8 +245,8 @@ button:hover {
   right: 10px;
 }
 
-/* Video Section Styles */
-#video.full-page {
+/* Video Section */
+#video.full-page, #video-two.full-page {
   height: 100vh;
   background-color: #111111;
   display: flex;
@@ -259,7 +255,7 @@ button:hover {
   align-items: center;
 }
 
-#video h2 {
+#video h2, #video-two h2 {
   font-family: 'Bodoni72', serif;
   font-size: 2.4rem;
   color: #813838;
@@ -291,18 +287,12 @@ button:hover {
   padding-top: 40px;
 }
 
-/* About Me Section */
 #about h2 {
-  font-family: 'Bodoni72', serif;  /* Set the font to Bodoni72 */
-  font-size: 3rem;  /* Adjust the font size */
-  color: #813838;  /* Change the text color */
-  text-align: center;  /* Center the heading text */
-  margin-bottom: 30px;  /* Add space below the heading */
-}
-
-
-#about .about-header h2 {
-  font-size: 2.5rem;
+  font-family: 'Bodoni72', serif;
+  font-size: 3rem;
+  color: #813838;
+  text-align: center;
+  margin-bottom: 30px;
 }
 
 .about-container {
@@ -312,14 +302,6 @@ button:hover {
   justify-content: center;
   align-items: center;
 }
-
-/* Apply Bodoni 72 Oldstyle font to the text */
-#about .about-text p {
-  font-family: 'Bodoni72Oldstyle', serif;
-  font-size: 1.2rem;  /* Adjust font size as needed */
-  color: #813838;  /* Optional: Change text color if needed */
-}
-
 
 .about-image {
   flex: 1;
@@ -339,13 +321,12 @@ button:hover {
   text-align: left;
 }
 
-/* About Section Text */
 #about .about-text p {
-  color: #D3D3D3;  /* Change the text color */
-  font-size: 1.2rem; /* Optional: change font size */
-  line-height: 1.5; /* Optional: change line height for better readability */
+  font-family: 'Bodoni72', serif;
+  font-size: 1.2rem;
+  color: #D3D3D3;
+  line-height: 1.5;
 }
-
 
 /* Contact Section */
 #contact {
@@ -358,23 +339,12 @@ button:hover {
   padding-top: 40px;
 }
 
-/* Contact Section */
 #contact h2 {
-  font-family: 'Bodoni72', serif;  /* Set the font to Bodoni72 */
-  font-size: 2.5rem;  /* Adjust the font size */
-  color: #813838;  /* Change the text color */
-  text-align: center;  /* Center the heading text */
-  margin-bottom: 30px;  /* Add space below the heading */
-}
-
-
-.contact-header {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-.contact-header h2 {
+  font-family: 'Bodoni72', serif;
   font-size: 2.5rem;
+  color: #813838;
+  text-align: center;
+  margin-bottom: 30px;
 }
 
 .contact-form {
@@ -407,13 +377,12 @@ button:hover {
   background-color: #555;
 }
 
-/* Footer LinkedIn Button */
+/* Footer */
 footer {
   text-align: center;
   padding: 20px;
   background-color: #111;
   color: white;
-  position: relative;
 }
 
 .linkedin-button {
@@ -427,11 +396,10 @@ footer {
 }
 
 .linkedin-logo {
-  width: 40px; /* Adjust size as needed */
+  width: 40px;
   height: auto;
 }
 
-/* Like Button Styles */
 .like-container {
   margin-top: 20px;
   display: flex;
@@ -461,9 +429,21 @@ footer {
   font-weight: bold;
 }
 
-footer {
-  text-align: center;
-  padding: 20px;
-  background-color: #111;
-  color: white;
+/* Responsive Design */
+@media (max-width: 768px) {
+  .skills-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .carousel {
+    width: 100%;
+  }
+
+  .about-container {
+    flex-direction: column;
+  }
+
+  .contact-form {
+    width: 80%;
+  }
 }
