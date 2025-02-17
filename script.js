@@ -143,4 +143,19 @@ document.getElementById("contact-form").addEventListener("submit", function (eve
 
   // Initialize first slide
   showSlide(0);
+
+   // Like Button Functionality
+   const likeButton = document.getElementById("like-button");
+   const likeCount = document.getElementById("like-count");
+ 
+   // Load like count from local storage
+   let likes = localStorage.getItem("likes") || 0;
+   likeCount.textContent = likes;
+ 
+   // Handle like button click
+   likeButton.addEventListener("click", () => {
+     likes++;
+     likeCount.textContent = likes;
+     localStorage.setItem("likes", likes); // Save to local storage
+   });
 });
