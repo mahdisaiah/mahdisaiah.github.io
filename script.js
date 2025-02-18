@@ -117,6 +117,69 @@ document.addEventListener("DOMContentLoaded", () => {
   // Start the creepy effect loop
   setTimeout(activateCreepyEffect, 30000); // Initial delay of 30 seconds
 
+  // Carousel Logic
+  const carousel = document.querySelector(".carousel");
+  const carouselImages = document.querySelector(".carousel-images");
+  const carouselItems = document.querySelectorAll(".carousel-item");
+  const arrowLeft = document.querySelector(".arrow-left");
+  const arrowRight = document.querySelector(".arrow-right");
+
+  let currentIndex = 0;
+  let autoPlayInterval;
+
+  // Function to show the current slide
+  function showSlide(index) {
+    const offset = -index * 100; // Calculate the offset based on the index
+    carouselImages.style.transform = `translateX(${offset}%)`; // Move the carousel
+  }
+
+  // Function to move to the next slide
+  function nextSlide() {
+    currentIndex = (currentIndex + 1) % carouselItems.length;
+    showSlide(currentIndex);
+  }
+
+  // Function to move to the previous slide
+  function prevSlide() {
+    currentIndex = (currentIndex - 1 + carouselItems.length) % carouselItems.length;
+    showSlide(currentIndex);
+  }
+
+  // Function to start auto-play
+  function startAutoPlay() {
+    autoPlayInterval = setInterval(nextSlide, 10000); // Change slide every 10 seconds
+  }
+
+  // Function to stop auto-play
+  function stopAutoPlay() {
+    clearInterval(autoPlayInterval);
+  }
+
+  // Event listeners for arrow buttons
+  arrowLeft.addEventListener("click", () => {
+    prevSlide();
+    stopAutoPlay(); // Stop auto-play when user interacts
+    startAutoPlay(); // Restart auto-play after a delay
+  });
+
+  arrowRight.addEventListener("click", () => {
+    nextSlide();
+    stopAutoPlay(); // Stop auto-play when user interacts
+    startAutoPlay(); // Restart auto-play after a delay
+  });
+
+  // Pause auto-play on hover
+  carousel.addEventListener("mouseenter", stopAutoPlay);
+
+  // Resume auto-play on mouse leave
+  carousel.addEventListener("mouseleave", startAutoPlay);
+
+  // Show the first slide initially
+  showSlide(currentIndex);
+
+  // Start auto-play initially
+  startAutoPlay();
+
   // Contact Form Submission Handling
   const contactForm = document.getElementById("contact-form");
   if (contactForm) {
