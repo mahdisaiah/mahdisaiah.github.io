@@ -1,123 +1,137 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // Dots Animation Logic
-  const dotsContainer = document.getElementById("dots-container");
-  const dotsCount = 2000;
-  const interactionDistance = 100;
-  const maxVelocity = 2;
+  // Three.js Particle System for Hero Section
+  function initHeroCanvas() {
+    const canvas = document.getElementById('hero-canvas');
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer({ canvas, alpha: true });
+    renderer.setSize(window.innerWidth, window.innerHeight);
 
-  let dots = [];
-  let isCreepyEffectActive = false;
-  let creepyEffectTimeout;
-
-  // Function to create dots
-  function createDots() {
-    for (let i = 0; i < dotsCount; i++) {
-      const dot = document.createElement("div");
-      dot.classList.add("dot");
-
-      const x = Math.random() * window.innerWidth;
-      const y = Math.random() * window.innerHeight;
-      const vx = (Math.random() - 0.5) * maxVelocity;
-      const vy = (Math.random() - 0.5) * maxVelocity;
-      const size = Math.random() * 4 + 1; // Random size for depth
-      const z = Math.random(); // Simulate depth (0 = far, 1 = close)
-
-      dots.push({ element: dot, x, y, vx, vy, size, z });
-
-      dot.style.width = `${size}px`;
-      dot.style.height = `${size}px`;
-      dot.style.left = `${x}px`;
-      dot.style.top = `${y}px`;
-
-      dotsContainer.appendChild(dot);
+    // Create particle system with custom shader
+    const particlesGeometry = new THREE.BufferGeometry();
+    const particlesCount = 3000;
+    const posArray = new Float32Array(particlesCount * 3);
+    const sizes = new Float32Array(particlesCount);
+    for (let i = 0; i < particlesCount; i++) {
+      posArray[i * 3] = (Math.random() - 0.5) * 800;
+      posArray[i * 3 + 1] = (Math.random() - 0.5) * 800;
+      posArray[i * 3 + 2] = (Math.random() - 0.5) * 800;
+      sizes[i] = Math.random() * 5 + 2;
     }
-  }
+    particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+    particlesGeometry.setAttribute('size', new THREE.BufferAttribute(sizes, 1));
 
-  // Function to update dots' positions
-  function updateDots() {
-    const now = Date.now();
-    const pulseIntensity = Math.sin(now * 0.002) * 0.5 + 1; // Pulsing effect
-
-    dots.forEach((dot) => {
-      // Simulate depth: closer dots move faster, farther dots move slower
-      const depthFactor = dot.z * 2; // Adjust speed based on depth
-      dot.x += dot.vx * depthFactor;
-      dot.y += dot.vy * depthFactor;
-
-      // Bounce off walls
-      if (dot.x <= 0 || dot.x >= window.innerWidth) dot.vx *= -1;
-      if (dot.y <= 0 || dot.y >= window.innerHeight) dot.vy *= -1;
-
-      // Pulsing effect for creepy vibe
-      dot.element.style.transform = `scale(${pulseIntensity * dot.z})`;
-
-      // Update dot position on screen
-      dot.element.style.left = `${dot.x}px`;
-      dot.element.style.top = `${dot.y}px`;
-    });
-
-    // Occasionally cluster dots randomly for a creepy effect
-    if (isCreepyEffectActive) {
-      const clusterCenterX = Math.random() * window.innerWidth;
-      const clusterCenterY = Math.random() * window.innerHeight;
-
-      dots.forEach((dot) => {
-        const dx = clusterCenterX - dot.x;
-        const dy = clusterCenterY - dot.y;
-        const distance = Math.sqrt(dx * dx + dy * dy);
-
-        if (distance < 300) {
-          // Move dots towards the cluster center
-          dot.x += dx * 0.02;
-          dot.y += dy * 0.02;
-        }
-      });
-    }
-
-    requestAnimationFrame(updateDots);
-  }
-
-  // Function to activate creepy effect
-  function activateCreepyEffect() {
-    isCreepyEffectActive = true;
-
-    // Deactivate after 5 seconds
-    creepyEffectTimeout = setTimeout(() => {
-      isCreepyEffectActive = false;
-
-      // Schedule the next creepy effect
-      setTimeout(activateCreepyEffect, 30000); // 30 seconds
-    }, 5000); // 5 seconds
-  }
-
-  // Mouse interaction
-  document.addEventListener("mousemove", (event) => {
-    const { clientX, clientY } = event;
-
-    dots.forEach((dot) => {
-      const dx = clientX - dot.x;
-      const dy = clientY - dot.y;
-      const distance = Math.sqrt(dx * dx + dy * dy);
-
-      if (distance < interactionDistance) {
-        const angle = Math.atan2(dy, dx);
-        const force = (interactionDistance - distance) / interactionDistance;
-
-        // Push dots away from the mouse
-        dot.vx -= Math.cos(angle) * force * 0.5;
-        dot.vy -= Math.sin(angle) * force * 0.5;
+    const vertexShader = `
+      attribute float size;
+      varying vec3 vPosition;
+      void main() {
+        vPosition = position;
+        gl_PointSize = size;
+        gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
       }
+    `;
+    const fragmentShader = `
+      varying vec3 vPosition;
+      void main() {
+        float dist = length(gl_PointCoord - vec2(0.5));
+        if (dist > 0.5) discard;
+        gl_FragColor = vec4(0.2, 0.2, 0.2, 0.8 - dist * 0.5); // #333333
+      }
+    `;
+    const particlesMaterial = new THREE.ShaderMaterial({
+      vertexShader,
+      fragmentShader,
+      transparent: true,
+      blending: THREE.AdditiveBlending,
     });
-  });
+    const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
+    scene.add(particlesMesh);
 
-  // Start the animation
-  createDots();
-  updateDots();
+    camera.position.z = 400;
 
-  // Start the creepy effect loop
-  setTimeout(activateCreepyEffect, 30000); // Initial delay of 30 seconds
+    // Mouse interaction
+    let mouseX = 0, mouseY = 0;
+    document.addEventListener('mousemove', (event) => {
+      mouseX = (event.clientX / window.innerWidth) * 2 - 1;
+      mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
+    });
 
-  // Carousel Logic
+    // Animation
+    function animate() {
+      requestAnimationFrame(animate);
+      const time = Date.now() * 0.0001;
+      particlesMesh.rotation.y += 0.001;
+      particlesMesh.rotation.x += 0.0005;
+      camera.position.x += Math.sin(time) * 10;
+      camera.position.y += Math.cos(time) * 10;
+      camera.position.x += (mouseX * 100 - camera.position.x) * 0.05;
+      camera.position.y += (-mouseY * 100 - camera.position.y) * 0.05;
+      camera.lookAt(scene.position);
+      renderer.render(scene, camera);
+    }
+    animate();
+
+    // Resize handling
+    window.addEventListener('resize', () => {
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+    });
+  }
+
+  // Text Animation
+  function initTextAnimation() {
+    gsap.from(".hero-title", {
+      opacity: 0,
+      y: 50,
+      duration: 1.5,
+      ease: "power3.out",
+    });
+    gsap.from(".hero-subtitle", {
+      opacity: 0,
+      y: 50,
+      duration: 1.5,
+      delay: 0.3,
+      ease: "power3.out",
+    });
+
+    const heroContent = document.querySelector('.hero-content');
+    heroContent.addEventListener('mousemove', (e) => {
+      const rect = heroContent.getBoundingClientRect();
+      const x = e.clientX - rect.left - rect.width / 2;
+      const y = e.clientY - rect.top - rect.height / 2;
+      gsap.to(".hero-title", {
+        x: x * 0.1,
+        y: y * 0.1,
+        rotationX: y * 0.02,
+        rotationY: -x * 0.02,
+        duration: 0.5,
+      });
+      gsap.to(".hero-subtitle", {
+        x: x * 0.05,
+        y: y * 0.05,
+        rotationX: y * 0.01,
+        rotationY: -x * 0.01,
+        duration: 0.5,
+      });
+    });
+
+    heroContent.addEventListener('mouseleave', () => {
+      gsap.to(".hero-title, .hero-subtitle", {
+        x: 0,
+        y: 0,
+        rotationX: 0,
+        rotationY: 0,
+        duration: 0.5,
+      });
+    });
+  }
+
+  // Initialize Hero Section
+  initHeroCanvas();
+  initTextAnimation();
+
+  // Portfolio Carousel Logic
   const carousel = document.querySelector(".carousel");
   const carouselImages = document.querySelector(".carousel-images");
   const carouselItems = document.querySelectorAll(".carousel-item");
@@ -127,67 +141,104 @@ document.addEventListener("DOMContentLoaded", () => {
   let currentIndex = 0;
   let autoPlayInterval;
 
-  // Function to show the current slide
   function showSlide(index) {
-    const offset = -index * 100; // Calculate the offset based on the index
-    carouselImages.style.transform = `translateX(${offset}%)`; // Move the carousel
+    const offset = -index * 100;
+    carouselImages.style.transform = `translateX(${offset}%)`;
   }
 
-  // Function to move to the next slide
   function nextSlide() {
     currentIndex = (currentIndex + 1) % carouselItems.length;
     showSlide(currentIndex);
   }
 
-  // Function to move to the previous slide
   function prevSlide() {
     currentIndex = (currentIndex - 1 + carouselItems.length) % carouselItems.length;
     showSlide(currentIndex);
   }
 
-  // Function to start auto-play
   function startAutoPlay() {
-    autoPlayInterval = setInterval(nextSlide, 10000); // Change slide every 10 seconds
+    autoPlayInterval = setInterval(nextSlide, 10000);
   }
 
-  // Function to stop auto-play
   function stopAutoPlay() {
     clearInterval(autoPlayInterval);
   }
 
-  // Event listeners for arrow buttons
   arrowLeft.addEventListener("click", () => {
     prevSlide();
-    stopAutoPlay(); // Stop auto-play when user interacts
-    startAutoPlay(); // Restart auto-play after a delay
+    stopAutoPlay();
+    startAutoPlay();
   });
 
   arrowRight.addEventListener("click", () => {
     nextSlide();
-    stopAutoPlay(); // Stop auto-play when user interacts
-    startAutoPlay(); // Restart auto-play after a delay
+    stopAutoPlay();
+    startAutoPlay();
   });
 
-  // Pause auto-play on hover
   carousel.addEventListener("mouseenter", stopAutoPlay);
-
-  // Resume auto-play on mouse leave
   carousel.addEventListener("mouseleave", startAutoPlay);
 
-  // Show the first slide initially
   showSlide(currentIndex);
-
-  // Start auto-play initially
   startAutoPlay();
+
+  // Video Carousel Logic
+  const videoCarousel = document.querySelector(".video-carousel");
+  const videoCarouselImages = document.querySelector(".video-carousel-images");
+  const videoCarouselItems = document.querySelectorAll(".video-carousel-item");
+  const videoArrowLeft = document.querySelector(".video-arrow-left");
+  const videoArrowRight = document.querySelector(".video-arrow-right");
+
+  let videoCurrentIndex = 0;
+  let videoAutoPlayInterval;
+
+  function showVideoSlide(index) {
+    const offset = -index * 100;
+    videoCarouselImages.style.transform = `translateX(${offset}%)`;
+  }
+
+  function nextVideoSlide() {
+    videoCurrentIndex = (videoCurrentIndex + 1) % videoCarouselItems.length;
+    showVideoSlide(videoCurrentIndex);
+  }
+
+  function prevVideoSlide() {
+    videoCurrentIndex = (videoCurrentIndex - 1 + videoCarouselItems.length) % videoCarouselItems.length;
+    showVideoSlide(videoCurrentIndex);
+  }
+
+  function startVideoAutoPlay() {
+    videoAutoPlayInterval = setInterval(nextVideoSlide, 15000);
+  }
+
+  function stopVideoAutoPlay() {
+    clearInterval(videoAutoPlayInterval);
+  }
+
+  videoArrowLeft.addEventListener("click", () => {
+    prevVideoSlide();
+    stopVideoAutoPlay();
+    startVideoAutoPlay();
+  });
+
+  videoArrowRight.addEventListener("click", () => {
+    nextVideoSlide();
+    stopVideoAutoPlay();
+    startVideoAutoPlay();
+  });
+
+  videoCarousel.addEventListener("mouseenter", stopVideoAutoPlay);
+  videoCarousel.addEventListener("mouseleave", startVideoAutoPlay);
+
+  showVideoSlide(videoCurrentIndex);
+  startVideoAutoPlay();
 
   // Contact Form Submission Handling
   const contactForm = document.getElementById("contact-form");
   if (contactForm) {
     contactForm.addEventListener("submit", function (event) {
-      event.preventDefault(); // Prevent the default form submission
-
+      event.preventDefault();
       const formData = new FormData(contactForm);
-
       fetch(contactForm.action, {
         method: "POST",
         body: formData,
@@ -198,7 +249,7 @@ document.addEventListener("DOMContentLoaded", () => {
         .then((response) => {
           if (response.ok) {
             alert("Thank you for your message! I'll get back to you soon.");
-            contactForm.reset(); // Clear the form
+            contactForm.reset();
           } else {
             alert("Oops! Something went wrong. Please try again.");
           }
