@@ -127,6 +127,15 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  // Hamburger Menu Toggle
+  const hamburger = document.querySelector('.hamburger');
+  const navLinks = document.querySelector('.nav-links');
+  hamburger.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
+    hamburger.querySelector('i').classList.toggle('fa-bars');
+    hamburger.querySelector('i').classList.toggle('fa-times');
+  });
+
   // Initialize Hero Section
   initHeroCanvas();
   initTextAnimation();
@@ -227,7 +236,7 @@ document.addEventListener("DOMContentLoaded", () => {
     startVideoAutoPlay();
   });
 
-  videoCarousel.addEventListener("mouseenter", stopVideoAutoPlay);
+  videoCarousel.addEventListener("mouseenter", stopAutoPlay);
   videoCarousel.addEventListener("mouseleave", startVideoAutoPlay);
 
   showVideoSlide(videoCurrentIndex);
