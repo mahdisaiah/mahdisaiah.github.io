@@ -93,6 +93,14 @@ button:hover {
   color: #000000;
 }
 
+.hamburger {
+  display: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 10px;
+  color: white;
+}
+
 /* Hero Section */
 #hero {
   height: 100vh;
@@ -451,4 +459,208 @@ footer {
 .linkedin-logo {
   width: 40px;
   height: auto;
+}
+
+/* Mobile Styles */
+@media screen and (max-width: 768px) {
+  /* Navigation Bar */
+  .hamburger {
+    display: block;
+    position: absolute;
+    left: 10px;
+    top: 10px;
+  }
+
+  #navbar ul.nav-links {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 50px;
+    left: 0;
+    width: 100%;
+    background-color: #81383880;
+    padding: 10px 0;
+  }
+
+  #navbar ul.nav-links.active {
+    display: flex;
+  }
+
+  #navbar ul li {
+    margin: 10px 0;
+    text-align: center;
+  }
+
+  #navbar ul li a {
+    font-size: 1.2rem;
+  }
+
+  /* Hero Section */
+  #hero h1 {
+    font-size: 2rem;
+  }
+
+  #hero p {
+    font-size: 0.9rem;
+    margin-top: -10px;
+    top: -5px;
+  }
+
+  #hero {
+    height: 80vh;
+  }
+
+  /* Skills Section */
+  #skills.full-page {
+    height: auto;
+    padding: 20px 0;
+  }
+
+  #skills h2 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+  }
+
+  .skills-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    max-width: 90%;
+  }
+
+  .skill-item {
+    padding: 15px;
+  }
+
+  .skill-item h3 {
+    font-size: 1.2rem;
+  }
+
+  .skill-item p {
+    font-size: 0.9rem;
+  }
+
+  /* Portfolio Section */
+  #portfolio {
+    height: auto;
+    padding: 20px 0;
+  }
+
+  #portfolio h2 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+  }
+
+  .carousel {
+    width: 90%;
+    height: 50vh;
+  }
+
+  .arrow-button {
+    font-size: 1.5rem;
+    padding: 5px;
+  }
+
+  /* Video Carousel Section */
+  #video.full-page {
+    height: auto;
+    padding: 20px 0;
+  }
+
+  #video h2 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+  }
+
+  .video-carousel {
+    width: 90%;
+    height: 40vh;
+    max-width: 600px;
+  }
+
+  .video-carousel-item video {
+    height: 100%;
+    object-fit: contain;
+  }
+
+  /* About Me Section */
+  #about {
+    height: auto;
+    padding: 20px 0;
+  }
+
+  #about h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+
+  .about-container {
+    flex-direction: column;
+    width: 90%;
+    height: auto;
+  }
+
+  .about-image {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .about-image img {
+    width: 100%;
+  }
+
+  .about-text {
+    padding-left: 0;
+    text-align: center;
+  }
+
+  #about .about-text p {
+    font-size: 1rem;
+  }
+
+  /* Contact Section */
+  #contact {
+    height: auto;
+    padding: 20px 0;
+  }
+
+  #contact h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+
+  .contact-form {
+    width: 90%;
+  }
+
+  .contact-form input, .contact-form textarea {
+    padding: 8px;
+    margin: 8px 0;
+  }
+
+  .contact-form textarea {
+    height: 150px;
+  }
+
+  .contact-form button {
+    padding: 8px 16px;
+    font-size: 0.9rem;
+  }
+
+  .cv-button {
+    padding: 8px 16px;
+    font-size: 0.9rem;
+  }
+
+  /* Footer */
+  footer {
+    padding: 15px;
+  }
+
+  footer p {
+    font-size: 0.9rem;
+  }
+
+  .linkedin-logo {
+    width: 30px;
+  }
 }
