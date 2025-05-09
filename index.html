@@ -3,11 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Portfolio</title>
+  <title>SAIAH MAHDI</title>
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+  <link rel="icon" href="images/favicon-black.png" type="image/png">
 </head>
 <body>
   <!-- Navigation Bar -->
@@ -20,6 +22,7 @@
       <li><a href="#skills">SKILLS</a></li>
       <li><a href="#portfolio">PORTFOLIO</a></li>
       <li><a href="#video">VIDEOS</a></li>
+      <li><a href="#model-viewer">3D MODEL</a></li>
       <li><a href="#about">ABOUT ME</a></li>
       <li><a href="#contact">CONTACT</a></li>
     </ul>
@@ -118,7 +121,46 @@
     </div>
   </section>
 
-  <!-- About Me Section (Page 5) -->
+  <!-- 3D Model Viewer Section (Page 5) -->
+  <section id="model-viewer" class="full-page">
+    <h2>3D MODEL VIEWER</h2>
+    <div class="model-container">
+      <model-viewer
+        id="modelViewer"
+        src="models/your-model.glb"
+        ios-src="models/your-model.usdz"
+        alt="3D Model"
+        auto-rotate
+        camera-controls
+        ar
+        ar-modes="webxr scene-viewer quick-look"
+        ar-scale="auto"
+        shadow-intensity="1"
+        exposure="1"
+        interaction-prompt="when-focused"
+        camera-orbit="0deg 75deg auto"
+        environment-image="neutral"
+        class="model-viewer"
+      ></model-viewer>
+      <div class="control-panel">
+        <button onclick="ModelController.toggleRotate()" class="model-btn">Toggle Rotate</button>
+        <button onclick="ModelController.toggleAR()" class="model-btn">AR Mode</button>
+        <button onclick="ModelController.resetView()" class="model-btn">Reset View</button>
+        <input
+          type="range"
+          min="0"
+          max="2"
+          step="0.1"
+          value="1"
+          oninput="ModelController.setExposure(this.value)"
+          class="exposure-slider"
+          title="Exposure"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- About Me Section (Page 6) -->
   <section id="about" class="full-page">
     <div class="about-header">
       <h2>ABOUT ME</h2>
@@ -157,6 +199,25 @@
       </div>
     </div>
   </section>
+
+  <!-- Chatbot Widget -->
+  <div id="chatbot" class="chatbot-container">
+    <div class="chatbot-toggle">
+      <i class="fas fa-comment"></i>
+    </div>
+    <div class="chatbot-window">
+      <div class="chatbot-header">
+        <h3>Ask Mahdi's Assistant</h3>
+        <i class="fas fa-times chatbot-close"></i>
+      </div>
+      <div class="chatbot-messages" id="chatbot-messages">
+      </div>
+      <div class="chatbot-input">
+        <input type="text" id="chatbot-input" placeholder="Type your question...">
+        <button id="chatbot-send"><i class="fas fa-paper-plane"></i></button>
+      </div>
+    </div>
+  </div>
 
   <!-- Footer -->
   <footer>
