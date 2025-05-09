@@ -317,6 +317,104 @@ button:hover {
   right: 10px;
 }
 
+/* 3D Model Viewer Section */
+#model-viewer.full-page {
+  height: 100vh;
+  background-color: #111111;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#model-viewer h2 {
+  font-family: 'Bodoni72', serif;
+  font-size: 2.4rem;
+  color: #581414;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.model-container {
+  width: 80%;
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+model-viewer {
+  width: 100%;
+  height: 60vh;
+  background: #222222;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease;
+}
+
+model-viewer:hover {
+  transform: translateY(-4px);
+}
+
+.control-panel {
+  margin-top: 20px;
+  display: flex;
+  gap: 10px;
+  background: #222222;
+  border-radius: 10px;
+  padding: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.model-btn {
+  background: #333333;
+  color: #ffffff;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.model-btn:hover {
+  background: #555555;
+  transform: scale(1.05);
+}
+
+.exposure-slider {
+  background: #333333;
+  border: 1px solid #555555;
+  border-radius: 5px;
+  padding: 5px;
+  width: 100px;
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.exposure-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  background: #ffffff;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.exposure-slider::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  background: #ffffff;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.exposure-slider:hover {
+  border-color: #777777;
+}
+
 /* About Me Section */
 #about {
   height: 100vh;
@@ -352,7 +450,7 @@ button:hover {
 }
 
 .about-image img {
-  width: 90%;
+  width: 80%;
   height: auto;
 }
 
@@ -459,6 +557,152 @@ footer {
 .linkedin-logo {
   width: 40px;
   height: auto;
+}
+
+/* Chatbot Styles */
+.chatbot-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+}
+
+.chatbot-toggle {
+  background-color: #581414;
+  color: white;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.chatbot-toggle:hover {
+  background-color: #813838;
+  transform: scale(1.1);
+}
+
+.chatbot-window {
+  display: none;
+  width: 300px;
+  height: 400px;
+  background-color: #222222;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  flex-direction: column;
+  overflow: hidden;
+  margin-top: 10px;
+}
+
+.chatbot-window.active {
+  display: flex;
+}
+
+.chatbot-header {
+  background-color: #333333;
+  color: white;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'Bodoni72', serif;
+}
+
+.chatbot-header h3 {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.chatbot-close {
+  cursor: pointer;
+  font-size: 1.2rem;
+}
+
+.chatbot-messages {
+  flex: 1;
+  padding: 10px;
+  overflow-y: auto;
+  background-color: #111111;
+}
+
+.message {
+  margin: 10px 0;
+  padding: 8px 12px;
+  border-radius: 8px;
+  max-width: 80%;
+  font-size: 0.9rem;
+}
+
+.bot-message {
+  background-color: #581414;
+  color: white;
+  margin-right: 10px;
+}
+
+.user-message {
+  background-color: #555555;
+  color: white;
+  margin-left: auto;
+  margin-right: 10px;
+}
+
+.chatbot-input {
+  display: flex;
+  padding: 10px;
+  background-color: #222222;
+  border-top: 1px solid #333333;
+}
+
+.chatbot-input input {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #555555;
+  border-radius: 5px;
+  background-color: #333333;
+  color: white;
+  font-size: 0.9rem;
+}
+
+.chatbot-input input:focus {
+  outline: none;
+  border-color: #813838;
+}
+
+.chatbot-input button {
+  background-color: #581414;
+  color: white;
+  border: none;
+  padding: 8px;
+  margin-left: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.chatbot-input button:hover {
+  background-color: #813838;
+}
+
+.question-button {
+  display: inline-block;
+  background-color: #333333;
+  color: white;
+  padding: 6px 12px;
+  margin: 5px 5px 0 0;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  text-decoration: none;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.question-button:hover {
+  background-color: #555555;
+  transform: scale(1.05);
 }
 
 /* Mobile Styles */
@@ -582,6 +826,42 @@ footer {
     object-fit: contain;
   }
 
+  /* 3D Model Viewer Section */
+  #model-viewer.full-page {
+    height: auto;
+    padding: 20px 0;
+  }
+
+  #model-viewer h2 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+  }
+
+  .model-container {
+    width: 90%;
+    max-width: 600px;
+  }
+
+  model-viewer {
+    height: 40vh;
+  }
+
+  .control-panel {
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 10px;
+  }
+
+  .model-btn {
+    padding: 6px 12px;
+    font-size: 0.9rem;
+  }
+
+  .exposure-slider {
+    width: 80px;
+  }
+
   /* About Me Section */
   #about {
     height: auto;
@@ -605,7 +885,7 @@ footer {
   }
 
   .about-image img {
-    width: 100%;
+    width: 80%;
   }
 
   .about-text {
@@ -649,6 +929,40 @@ footer {
   .cv-button {
     padding: 8px 16px;
     font-size: 0.9rem;
+  }
+
+  /* Chatbot Mobile Styles */
+  .chatbot-container {
+    bottom: 10px;
+    right: 10px;
+  }
+
+  .chatbot-window {
+    width: 280px;
+    height: 350px;
+  }
+
+  .chatbot-header h3 {
+    font-size: 1rem;
+  }
+
+  .message {
+    font-size: 0.8rem;
+    padding: 6px 10px;
+  }
+
+  .chatbot-input input {
+    font-size: 0.8rem;
+    padding: 6px;
+  }
+
+  .chatbot-input button {
+    padding: 6px;
+  }
+
+  .question-button {
+    font-size: 0.7rem;
+    padding: 5px 10px;
   }
 
   /* Footer */
