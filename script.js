@@ -129,42 +129,156 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Model Controller for <model-viewer>
   const ModelController = (() => {
+    // Reference to the model-viewer element
     const viewer = document.getElementById('modelViewer');
 
-    // State management
+    // Check if viewer exists to prevent errors
+    if (!viewer) {
+      console.error('Model Viewer element with ID "modelViewer" not found.');
+      return {
+        toggleRotate: () => console.warn('Model Viewer not initialized.'),
+        toggleAR: () => console.warn('Model Viewer not initialized.'),
+        resetView: () => console.warn('Model Viewer not initialized.'),
+        setExposure: () => console.warn('Model Viewer not initialized.'),
+        setZoom: () => console.warn('Model Viewer not initialized.'),
+        setShadowIntensity: () => console.warn('Model Viewer not initialized.'),
+        setOrbit: () => console.warn('Model Viewer not initialized.')
+      };
+    }
+
+    // State management with extended properties
     const state = {
       isRotating: true,
-      exposure: 1,
+      exposure: 1.0,
+      shadowIntensity: 1.0,
+      environmentIntensity: 1.0,
+      fieldOfView: 45, // in degrees
+      orbit: { theta: 0, phi: 75, radius: 'auto' }, // Camera orbit angles
+      animationFrameId: null
     };
 
-    // Update state
+    // Update state with validation
     const updateState = (newState) => {
       Object.assign(state, newState);
+      applyState();
     };
 
+    // Apply state changes to the viewer with smooth transitions
+    const applyState = () => {
+      viewer.autoRotate = state.isRotating;
+      viewer.exposure = state.exposure;
+      viewer.shadowIntensity = state.shadowIntensity;
+      viewer.environmentImageIntensity = state.environmentIntensity;
+      viewer.fieldOfView = `${state.fieldOfView}deg`;
+      viewer.cameraOrbit = `${state.orbit.theta}deg ${state.orbit.phi}deg ${state.orbit.radius}`;
+    };
+
+    // Smooth interpolation for exposure and shadow intensity
+    const smoothUpdate = (targetKey, targetValue, duration = 500) => {
+      const startValue = state[targetKey];
+      const startTime = performance.now();
+
+      const animate = (currentTime) => {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const easedProgress = 1 - Math.pow(1 - progress, 3); // Ease-out cubic
+        const newValue = startValue + (targetValue - startValue) * easedProgress;
+
+        updateState({ [targetKey]: newValue });
+
+        if (progress < 1) {
+          state.animationFrameId = requestAnimationFrame(animate);
+        } else {
+          cancelAnimationFrame(state.animationFrameId);
+        }
+      };
+
+      cancelAnimationFrame(state.animationFrameId);
+      state.animationFrameId = requestAnimationFrame(animate);
+    };
+
+    // Initialize viewer with default settings
+    const initViewer = () => {
+      viewer.setAttribute('ar-modes', 'webxr scene-viewer quick-look');
+      viewer.setAttribute('environment-image', 'neutral'); // Neutral HDR environment
+      viewer.setAttribute('shadow-intensity', state.shadowIntensity);
+      viewer.setAttribute('exposure', state.exposure);
+      viewer.setAttribute('auto-rotate-delay', '0');
+      applyState();
+
+      // Log initialization
+      console.log('Model Viewer initialized with default settings.');
+    };
+
+    // Initialize immediately if viewer exists
+    initViewer();
+
     return {
+      // Toggle auto-rotation with smooth start/stop
       toggleRotate: () => {
         updateState({ isRotating: !state.isRotating });
-        viewer.autoRotate = state.isRotating;
+        console.log(`Auto-rotation ${state.isRotating ? 'enabled' : 'disabled'}.`);
       },
+
+      // Toggle AR mode with device compatibility check
       toggleAR: () => {
         if (viewer.canActivateAR) {
           viewer.activateAR();
+          console.log('AR mode activated.');
         } else {
-          alert("AR is not supported on this device or browser. Please try on a compatible device (e.g., Android with WebXR or iOS with Quick Look).");
+          alert('AR is not supported on this device or browser. Please try on a compatible device (e.g., Android with WebXR or iOS with Quick Look).');
+          console.warn('AR mode not supported.');
         }
       },
+
+      // Reset view to default with smooth transition
       resetView: () => {
-        viewer.cameraOrbit = '0deg 75deg auto';
-        viewer.cameraTarget = 'auto auto auto';
-        viewer.fieldOfView = 'auto';
+        smoothUpdate('fieldOfView', 45, 500);
+        updateState({
+          orbit: { theta: 0, phi: 75, radius: 'auto' },
+          cameraTarget: 'auto auto auto'
+        });
+        console.log('View reset to default.');
       },
+
+      // Set exposure with smooth transition (0.1 to 2.0 range)
       setExposure: (value) => {
-        const exposureValue = parseFloat(value);
-        updateState({ exposure: exposureValue });
-        viewer.exposure = exposureValue;
+        const exposureValue = Math.max(0.1, Math.min(2.0, parseFloat(value)));
+        smoothUpdate('exposure', exposureValue);
         console.log(`Exposure set to: ${exposureValue}`);
       },
+
+      // Set zoom level via field of view (10 to 90 degrees)
+      setZoom: (value) => {
+        const fovValue = Math.max(10, Math.min(90, parseFloat(value)));
+        smoothUpdate('fieldOfView', fovValue);
+        console.log(`Field of view set to: ${fovValue}deg`);
+      },
+
+      // Set shadow intensity (0 to 1 range)
+      setShadowIntensity: (value) => {
+        const shadowValue = Math.max(0, Math.min(1, parseFloat(value)));
+        smoothUpdate('shadowIntensity', shadowValue);
+        console.log(`Shadow intensity set to: ${shadowValue}`);
+      },
+
+      // Set environment map intensity (0 to 2 range)
+      setEnvironmentIntensity: (value) => {
+        const envValue = Math.max(0, Math.min(2, parseFloat(value)));
+        smoothUpdate('environmentIntensity', envValue);
+        console.log(`Environment intensity set to: ${envValue}`);
+      },
+
+      // Set camera orbit angles (theta: azimuth, phi: elevation)
+      setOrbit: (theta, phi, radius = 'auto') => {
+        updateState({
+          orbit: { theta: parseFloat(theta), phi: parseFloat(phi), radius }
+        });
+        console.log(`Camera orbit set to: ${theta}deg, ${phi}deg, ${radius}`);
+      },
+
+      // Get current state for debugging or UI sync
+      getState: () => ({ ...state })
     };
   })();
 
