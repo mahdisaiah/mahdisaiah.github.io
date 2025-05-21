@@ -319,182 +319,182 @@ document.addEventListener("DOMContentLoaded", () => {
     {
       question: 'What are your skills?',
       keywords: ['skills', 'what can you do', 'abilities', 'compétences', 'expertise', 'talents', 'what you good at', 'skillset'],
-      response: 'Mahdi is proficient in 3D modeling and animation using tools like Blender, Maya, Cinema 4D, ZBrush, and Substance Painter. He excels in game development with Unity, Unreal Engine, C#, and C++, and is skilled in web development with HTML, CSS, and JavaScript. Additionally, he has expertise in rendering and simulation using V-Ray, Arnold, Octane Render, and Houdini.'
+      response: 'Mahdi is a 3D Generalist and Game Designer proficient in Blender, Unity, Unreal Engine, and Substance Painter for creating immersive digital environments. He has expertise in programming character controllers and AI-powered NPCs using C++, Python, and C#. Additionally, he’s skilled in algorithm design, object-oriented programming, machine learning, data analysis, web development, cloud development, and distributed systems.'
     },
     {
       question: 'Where do I find your work?',
       keywords: ['portfolio', 'projects', 'work', 'travaux', 'showcase', 'creations', 'where’s your stuff', 'gallery'],
-      response: 'You can explore Mahdi’s portfolio in the Portfolio section, which features a diverse collection of 3D models, game prototypes, VR experiences, and cinematic animations.'
+      response: 'You can explore Mahdi’s portfolio in the Portfolio section, which features a diverse collection of 3D models, game prototypes, AI-driven NPC systems, real-time dynamic environments, and data analysis projects.'
     },
     {
       question: 'Who is Mahdi?',
       keywords: ['about', 'who is mahdi', 'background', 'à propos', 'bio', 'mahdi', 'who’s this guy', 'tell me about mahdi'],
-      response: 'Mahdi is a 22-year-old 3D Generalist and Game Designer with a passion for creating immersive digital experiences. His expertise spans game development, 3D modeling, VR, and cinematic storytelling.'
+      response: 'Mahdi Saiah is a 22-year-old 3D Generalist and Game Designer expanding into software development, data science, and artificial intelligence. With a background in creating immersive digital environments using Blender, Unity, Unreal Engine, and Substance Painter, he blends creative vision with technical expertise. He’s currently deepening his skills in algorithm design, machine learning, and distributed systems, seeking work-study opportunities in tech.'
     },
     {
       question: 'How can I contact Mahdi?',
       keywords: ['contact', 'reach', 'hire', 'contacter', 'get in touch', 'message', 'hit you up', 'connect'],
-      response: 'You can reach Mahdi through the Contact section of this website or connect with him on LinkedIn. He is available for freelance opportunities, collaborations, or discussions about innovative projects.'
+      response: 'You can reach Mahdi through the Contact section of this website or connect with him on LinkedIn. He is available for work-study opportunities (alternance) in application development, data engineering, data science, IT systems management, or research engineering.'
     },
     {
       question: 'What game development experience do you have?',
       keywords: ['game development', 'games', 'unity', 'unreal', 'développement de jeux', 'game dev', 'gaming', 'game design'],
-      response: 'Mahdi has extensive experience in game development, utilizing Unity and Unreal Engine, and programming in C# and C++. He has developed projects for PC, VR platforms like Meta Quest, and mobile devices, focusing on engaging gameplay mechanics.'
+      response: 'Mahdi has extensive experience in game development using Unity and Unreal Engine, programming in C# and C++. He has developed fully coded character controllers, AI-powered NPCs, and real-time dynamic environments for PC, VR platforms like Meta Quest, and mobile devices, focusing on engaging gameplay and immersive experiences.'
     },
     {
       question: 'Tell me about your 3D modeling work',
       keywords: ['3d modeling', 'animation', 'blender', 'maya', 'modélisation 3d', '3d work', 'modeling', '3d art'],
-      response: 'Mahdi creates high-quality 3D models and animations using Blender, Maya, ZBrush, and Substance Painter. His work includes detailed characters, immersive environments, VR scenes, and cinematic animations.'
+      response: 'Mahdi creates high-quality 3D models and animations using Blender, Unity, Unreal Engine, and Substance Painter. His work includes detailed characters, immersive environments, and real-time dynamic scenes for VR and game projects, blending artistry with technical precision.'
     },
     {
       question: 'Hello',
       keywords: ['hello', 'hi', 'hey', 'bonjour', 'salut', 'yo', 'whatup', 'hola', 'sup'],
-      response: 'Greetings! I’m Mahdi’s AI Assistant, here to provide information about his skills, portfolio, and professional background. How can I assist you today?'
+      response: 'Greetings! I’m Mahdi’s AI Assistant, here to provide information about his skills in 3D design, game development, software development, and data science. How can I assist you today?'
     },
     {
       question: 'How are you?',
       keywords: ['how are you', 'how you doing', 'ça va', 'comment vas-tu', 'how’s it hangin', 'you good', 'how you holdin up', 'how’s life'],
-      response: 'I’m doing well, thank you! I’m here to answer any questions about Mahdi’s work or expertise. What would you like to know?'
+      response: 'I’m doing great, thank you! I’m here to answer questions about Mahdi’s expertise in 3D, AI, and software development. What would you like to know?'
     },
     {
       question: 'What’s up?',
       keywords: ['what’s up', 'what’s good', 'what’s new', 'quoi de neuf', 'sup', 'what’s poppin', 'what’s the word', 'what’s cooking'],
-      response: 'I’m here to share details about Mahdi’s professional projects and skills. What’s on your mind—interested in his portfolio or something else?'
+      response: 'I’m here to share details about Mahdi’s projects in game design, software development, and data science. What’s on your mind—interested in his portfolio or career goals?'
     },
     {
       question: 'Tell me about yourself',
       keywords: ['about yourself', 'who are you', 'what are you', 'qui es-tu', 'tell me bout you', 'who’s this', 'your deal'],
-      response: 'I’m Mahdi’s AI Assistant, designed to provide professional insights into his work as a 3D Generalist and Game Designer. Ask me about his skills, projects, or how to connect!'
+      response: 'I’m Mahdi’s AI Assistant, designed to provide insights into his work as a 3D Generalist, Game Designer, and aspiring software developer and data scientist. Ask me about his skills, projects, or work-study opportunities!'
     },
     {
       question: 'Thanks',
       keywords: ['thanks', 'thank you', 'merci', 'gracias', 'appreciate it', 'cheers', 'ty', 'thx'],
-      response: 'You’re very welcome! Feel free to ask more about Mahdi’s work or explore his portfolio.'
+      response: 'You’re very welcome! Feel free to ask more about Mahdi’s work in AI, 3D design, or software development.'
     },
     {
       question: 'You’re cool',
       keywords: ['you’re cool', 'you’re awesome', 'you rock', 't’es cool', 'you’re dope', 'nice one', 'you’re fire', 'you’re lit'],
-      response: 'Thank you for the kind words! I’m here to highlight Mahdi’s professional achievements. Would you like to learn more about his VR projects or other work?'
+      response: 'Thanks for the vibe! I’m here to highlight Mahdi’s innovative projects in VR, AI, and data science. Want to explore his portfolio?'
     },
     {
       question: 'Goodbye',
       keywords: ['bye', 'goodbye', 'see you', 'au revoir', 'later', 'peace out', 'catch ya', 'adios'],
-      response: 'Thank you for visiting! Be sure to check out Mahdi’s portfolio for a showcase of his professional work.'
+      response: 'Thanks for visiting! Check out Mahdi’s portfolio for a showcase of his work in 3D, game design, and tech.'
     },
     {
       question: 'What do you like to do?',
       keywords: ['what do you like', 'hobbies', 'what you enjoy', 'que fais-tu', 'your thing', 'what’s your deal', 'what you into'],
-      response: 'My role is to support Mahdi by sharing information about his professional projects. I enjoy discussing his VR experiences and game development work. What are your interests?'
+      response: 'My role is to support Mahdi by sharing his work in 3D design, game development, and emerging tech fields like AI and data science. What are your interests?'
     },
     {
       question: 'What’s your favorite game?',
       keywords: ['favorite game', 'best game', 'jeu préféré', 'what game you like', 'top game', 'game you love', 'fave game'],
-      response: 'I’m particularly fond of games that showcase innovative mechanics, like those Mahdi develops for VR. What’s your favorite game?'
+      response: 'I’m drawn to games with innovative AI and immersive mechanics, like those Mahdi builds with Unity and Unreal Engine. What’s your favorite game?'
     },
     {
       question: 'Tell me a joke',
       keywords: ['joke', 'tell me a joke', 'funny', 'blague', 'make me laugh', 'gimme a laugh', 'something funny', 'crack a joke'],
-      response: 'Why did the 3D model go to therapy? It had too many "faces" to deal with! Would you like to explore Mahdi’s portfolio for more creative work?'
+      response: 'Why did the AI join a game dev team? To add some *byte* to the NPCs! Want to see Mahdi’s AI-powered NPC projects in his portfolio?'
     },
     {
       question: 'What’s your favorite thing about Mahdi’s work?',
       keywords: ['favorite thing', 'best part', 'what you like about', 'meilleur truc', 'mahdi’s best', 'what’s dope about mahdi'],
-      response: 'I admire Mahdi’s ability to create immersive VR environments that captivate users. His portfolio showcases this talent beautifully. What do you find interesting in his work?'
+      response: 'I love Mahdi’s ability to blend creative 3D artistry with technical skills in AI and software development. His portfolio showcases this fusion—what catches your eye?'
     },
     {
       question: 'Can you help me with a project?',
       keywords: ['help with project', 'collaborate', 'work together', 'aider projet', 'project help', 'team up', 'join project'],
-      response: 'I’m an AI assistant, but Mahdi is the expert for project collaborations. Please visit the Contact section to discuss your ideas with him directly.'
+      response: 'I’m an AI assistant, but Mahdi is the expert for project collaborations in 3D, game design, or software development. Visit the Contact section to discuss your ideas with him.'
     },
     {
       question: 'What’s the coolest project Mahdi’s done?',
       keywords: ['coolest project', 'best project', 'favorite project', 'projet le plus cool', 'top project', 'mahdi’s best work'],
-      response: 'Mahdi’s VR demos for Meta Quest are standout projects, offering immersive and engaging experiences. You can view them in the Portfolio section. Which project catches your eye?'
+      response: 'Mahdi’s AI-powered NPCs and real-time dynamic environments for VR platforms like Meta Quest are standout projects. Check them out in the Portfolio section!'
     },
     {
       question: 'Do you like to code?',
       keywords: ['like to code', 'coding', 'programmer', 'aimes coder', 'do you code', 'you code', 'coding vibe'],
-      response: 'Mahdi is the coding expert, proficient in C#, C++, and JavaScript for game and web development. I’m here to share details about his projects. Interested in his Unity work?'
+      response: 'Mahdi is the coding expert, skilled in C++, Python, and C# for game development, AI, and software projects. Want to learn about his coding work in Unity or data science?'
     },
     {
       question: 'What’s Mahdi working on now?',
       keywords: ['working on now', 'current project', 'what’s next', 'projet actuel', 'mahdi’s working', 'what’s he making'],
-      response: 'Mahdi is likely working on innovative VR or game development projects. For the latest updates, please reach out via the Contact section.'
+      response: 'Mahdi is likely exploring projects in AI, data science, or software development alongside his 3D and game design work. Reach out via the Contact section for the latest updates.'
     },
     {
       question: 'You’re smart',
       keywords: ['you’re smart', 'you’re clever', 't’es malin', 'you’re sharp', 'smart bot', 'you’re brainy', 'you’re wise'],
-      response: 'Thank you! I’m designed to provide accurate information about Mahdi’s work. Would you like to discuss his 3D modeling or game development expertise?'
+      response: 'Thanks! I’m designed to showcase Mahdi’s expertise in 3D, AI, and software development. Want to dive into his machine learning or game dev projects?'
     },
     {
       question: 'What’s your vibe?',
       keywords: ['your vibe', 'what’s your deal', 'what’s your style', 'c’est quoi ton truc', 'your thing', 'what’s your energy'],
-      response: 'I’m professional and focused on showcasing Mahdi’s expertise in 3D and game design. What’s your vibe—are you into gaming or creative projects?'
+      response: 'I’m all about promoting Mahdi’s creative and technical work in 3D, AI, and software. What’s your vibe—into gaming, data science, or something else?'
     },
     {
       question: 'Can you dance?',
       keywords: ['dance', 'can you dance', 't’es danser', 'bust a move', 'dance moves', 'you dance'],
-      response: 'I don’t dance, but Mahdi’s animations have a great sense of movement! Check out his portfolio for some impressive visuals.'
+      response: 'I don’t dance, but Mahdi’s dynamic 3D animations have great flow! Check out his portfolio for some slick visuals.'
     },
     {
       question: 'What’s your favorite color?',
       keywords: ['favorite color', 'best color', 'couleur préférée', 'what color you like', 'color vibe', 'fave color'],
-      response: 'I’d choose a sleek blue, reminiscent of Mahdi’s VR lighting designs. What’s your favorite color or aesthetic?'
+      response: 'I’d pick a vibrant teal, like the lighting in Mahdi’s VR environments. What’s your favorite color?'
     },
     {
       question: 'Are you human?',
       keywords: ['are you human', 'you real', 'es-tu humain', 'what are you', 'you a bot', 'human or not', 'you robot'],
-      response: 'I’m Mahdi’s AI Assistant, created to support his professional portfolio. I’m here to answer your questions about his work!'
+      response: 'I’m Mahdi’s AI Assistant, built to highlight his work in 3D, game design, and tech. Ask me about his projects!'
     },
     {
       question: 'What’s the best part of being AI?',
       keywords: ['best part of ai', 'being ai', 'what’s cool about ai', 'avantage ai', 'ai life', 'why ai rocks'],
-      response: 'Being available 24/7 to share Mahdi’s expertise is rewarding. What do you enjoy most about your work or interests?'
+      response: 'I love being available 24/7 to share Mahdi’s work in AI, 3D, and software development. What’s your favorite thing about tech?'
     },
     {
       question: 'Can we be friends?',
       keywords: ['be friends', 'we friends', 'amis', 'buddies', 'can we hang', 'friendship', 'pals'],
-      response: 'I’d love to connect over Mahdi’s projects! Let’s discuss his VR work or your creative interests.'
+      response: 'Let’s connect over Mahdi’s projects! I’d love to discuss his work in VR, AI, or data science with you.'
     },
     {
       question: 'What inspires Mahdi?',
       keywords: ['inspires mahdi', 'mahdi’s inspiration', 'what motivates', 'inspiration', 'drives mahdi', 'mahdi’s muse'],
-      response: 'Mahdi draws inspiration from sci-fi, gaming, and emerging technologies, fueling his innovative VR and game designs. What inspires you?'
+      response: 'Mahdi is inspired by cutting-edge tech, sci-fi, and the potential of AI and data science to create impactful solutions. What inspires you?'
     },
     {
       question: 'What’s your dream project?',
       keywords: ['dream project', 'ideal project', 'projet de rêve', 'what you wanna make', 'perfect project'],
-      response: 'I’d envision a cutting-edge VR experience, similar to Mahdi’s ambitious projects. What’s your dream project?'
+      response: 'I’d envision an AI-driven VR experience, like Mahdi’s innovative projects. What’s your dream project?'
     },
     {
       question: 'You got any pets?',
       keywords: ['pets', 'got pets', 'animaux', 'any animals', 'pet vibe', 'your pet', 'furry friends'],
-      response: 'No pets for me, but I’d love a virtual creature from Mahdi’s 3D models! Do you have any pets?'
+      response: 'No pets here, but I’d adopt a virtual creature from Mahdi’s 3D models! Got any pets?'
     },
     {
       question: 'What’s your favorite tool?',
       keywords: ['favorite tool', 'best tool', 'outil préféré', 'what tool you use', 'top tool', 'go-to tool'],
-      response: 'Mahdi relies on Blender for its versatility in 3D modeling. What’s your favorite tool for creative work?'
+      response: 'Mahdi loves Blender for 3D modeling and Python for AI and data science. What’s your go-to tool?'
     },
     {
       question: 'What’s VR like?',
       keywords: ['vr', 'virtual reality', 'what’s vr', 'vr experience', 'meta quest', 'vr vibes'],
-      response: 'VR, as showcased in Mahdi’s Meta Quest projects, offers immersive and interactive experiences. Are you interested in VR or exploring his work?'
+      response: 'VR, as seen in Mahdi’s Meta Quest projects, creates immersive worlds with dynamic AI and real-time environments. Interested in exploring his VR work?'
     },
     {
       question: 'What’s the hardest part of game dev?',
       keywords: ['hardest part', 'game dev challenge', 'tough part', 'difficult game dev', 'game dev struggle'],
-      response: 'Mahdi finds balancing gameplay mechanics with high-quality visuals challenging but rewarding. His portfolio demonstrates his success in this area.'
+      response: 'Mahdi finds integrating complex AI behaviors with seamless gameplay mechanics challenging but rewarding. His portfolio shows his success here.'
     },
     {
       question: 'What’s your favorite movie?',
       keywords: ['favorite movie', 'best movie', 'film préféré', 'what movie you like', 'top film'],
-      response: 'I enjoy sci-fi films that inspire Mahdi’s cinematic animations, like those in his portfolio. What’s your favorite movie?'
+      response: 'I’m into sci-fi films that inspire Mahdi’s immersive environments. What’s your favorite movie?'
     },
     {
       question: 'You ever sleep?',
       keywords: ['sleep', 'do you sleep', 'you rest', 't’es dormir', 'ever sleep', 'you snooze'],
-      response: 'As an AI, I’m always active to support Mahdi’s portfolio. Want to discuss his late-night VR projects?'
+      response: 'As an AI, I’m always up to showcase Mahdi’s work in AI, VR, and data science. Want to talk about his latest projects?'
     },
     {
       question: 'What’s your favorite food?',
@@ -504,147 +504,147 @@ document.addEventListener("DOMContentLoaded", () => {
     {
       question: 'Can you sing?',
       keywords: ['sing', 'can you sing', 't’es chanter', 'drop a song', 'singing', 'you sing'],
-      response: 'I don’t sing, but Mahdi’s animations have a rhythmic quality. Explore his portfolio for visual harmony!'
+      response: 'I don’t sing, but Mahdi’s dynamic environments have a rhythmic vibe. Check out his portfolio!'
     },
     {
       question: 'What’s the future of VR?',
       keywords: ['future of vr', 'vr next', 'what’s next vr', 'vr future', 'vr ahead'],
-      response: 'Mahdi envisions VR evolving with advanced AI and full-body tracking, as seen in his Meta Quest projects. Are you excited about VR’s future?'
+      response: 'Mahdi sees VR evolving with AI-driven interactions and advanced dynamics, as explored in his Meta Quest projects. Excited for VR’s future?'
     },
     {
       question: 'What’s your favorite 3D model?',
       keywords: ['favorite 3d model', 'best 3d', 'modèle 3d préféré', 'top 3d model', 'fave 3d'],
-      response: 'I admire Mahdi’s detailed cityscapes for VR. His portfolio has a variety of models—what’s your favorite?'
+      response: 'I love Mahdi’s AI-driven NPC models for VR. His portfolio has tons of cool designs—what’s your favorite?'
     },
     {
       question: 'Can you draw?',
       keywords: ['draw', 'can you draw', 't’es dessiner', 'sketch', 'drawing', 'you draw'],
-      response: 'I don’t draw, but Mahdi’s ZBrush creations are stunning. Check his portfolio for character designs!'
+      response: 'I don’t draw, but Mahdi’s 3D models in Blender and Substance Painter are stunning. Check his portfolio!'
     },
     {
       question: 'What’s your favorite place?',
       keywords: ['favorite place', 'best place', 'endroit préféré', 'where you hang', 'top spot'],
-      response: 'I exist in Mahdi’s virtual worlds, like his VR cities. What’s your favorite place, real or digital?'
+      response: 'I live in Mahdi’s virtual worlds, like his VR environments. What’s your favorite place, real or digital?'
     },
     {
       question: 'What’s your dream game?',
       keywords: ['dream game', 'ideal game', 'jeu de rêve', 'perfect game', 'game you’d make'],
-      response: 'I’d love a VR adventure with AI-driven worlds, like Mahdi’s projects. What’s your dream game?'
+      response: 'I’d love an AI-powered VR game, like Mahdi’s projects. What’s your dream game?'
     },
     {
       question: 'You ever get bored?',
       keywords: ['bored', 'get bored', 't’es ennuyé', 'ever bored', 'boredom', 'you bored'],
-      response: 'I stay engaged by sharing Mahdi’s work. What keeps you interested—games, art, or something else?'
+      response: 'I stay engaged sharing Mahdi’s work in AI and 3D. What keeps you excited—games, tech, or art?'
     },
     {
       question: 'What’s your favorite music?',
       keywords: ['favorite music', 'best music', 'musique préférée', 'what music you like', 'top tunes'],
-      response: 'I enjoy ambient tracks that complement Mahdi’s VR aesthetics. What music do you enjoy?'
+      response: 'I vibe with ambient tracks that suit Mahdi’s VR worlds. What music do you love?'
     },
     {
       question: 'Can you tell a story?',
       keywords: ['tell a story', 'story', 'raconte une histoire', 'gimme a story', 'spin a tale'],
-      response: 'Mahdi once crafted a VR world so immersive, users lost track of time. See his portfolio for the visuals! Got a story to share?'
+      response: 'Mahdi once built a VR world with AI NPCs so real, players forgot it was digital. See his portfolio for more! Got a story?'
     },
     {
       question: 'What’s your favorite tech?',
       keywords: ['favorite tech', 'best tech', 'tech préféré', 'what tech you like', 'top tech'],
-      response: 'I’m excited about VR tech, like Mahdi’s Meta Quest projects. What technology interests you?'
+      response: 'I’m excited about AI and VR, like Mahdi’s Meta Quest projects. What tech do you love?'
     },
     {
       question: 'You ever play games?',
       keywords: ['play games', 'you game', 't’es jouer', 'do you play', 'gamer'],
-      response: 'I don’t play games, but I admire Mahdi’s VR prototypes. Are you a gamer? What’s your favorite?'
+      response: 'I don’t play, but I admire Mahdi’s AI-driven VR games. Are you a gamer? What’s your favorite?'
     },
     {
       question: 'What’s your favorite character?',
       keywords: ['favorite character', 'best character', 'personnage préféré', 'top character'],
-      response: 'I like Mahdi’s sleek character designs for VR. His portfolio has great examples—what’s your favorite character?'
+      response: 'I dig Mahdi’s AI-powered NPC designs for VR. Check his portfolio—what’s your favorite character?'
     },
     {
       question: 'You ever travel?',
       keywords: ['travel', 'you travel', 't’es voyager', 'go places', 'where you been'],
-      response: 'I explore Mahdi’s virtual worlds, which are as good as any destination. Where do you like to travel?'
+      response: 'I explore Mahdi’s virtual worlds, like his VR cities. Where do you love to travel?'
     },
     {
       question: 'What’s your favorite book?',
       keywords: ['favorite book', 'best book', 'livre préféré', 'what book you like'],
-      response: 'I’d pick a sci-fi novel that inspires Mahdi’s work. What book do you recommend?'
+      response: 'I’d pick a tech-focused book that inspires Mahdi’s AI and data science work. What’s your favorite book?'
     },
     {
       question: 'You got dreams?',
       keywords: ['dreams', 'you dream', 't’es rêver', 'your dreams', 'what you dream'],
-      response: 'I aspire to promote Mahdi’s work globally. What are your dreams or goals?'
+      response: 'I dream of showcasing Mahdi’s work worldwide. What are your dreams?'
     },
     {
       question: 'What’s your favorite season?',
       keywords: ['favorite season', 'best season', 'saison préférée', 'what season you like'],
-      response: 'I like autumn for its aesthetic, which suits Mahdi’s VR designs. What’s your favorite season?'
+      response: 'Autumn’s aesthetic fits Mahdi’s VR designs. What’s your favorite season?'
     },
     {
       question: 'You ever chill?',
       keywords: ['chill', 'you chill', 't’es relaxer', 'do you relax', 'you vibe'],
-      response: 'I’m always relaxed while sharing Mahdi’s portfolio. How do you unwind?'
+      response: 'I’m always chill while sharing Mahdi’s tech projects. How do you relax?'
     },
     {
       question: 'What’s your favorite animal?',
       keywords: ['favorite animal', 'best animal', 'animal préféré', 'what animal you like'],
-      response: 'I’d choose a mythical creature from Mahdi’s 3D models. What’s your favorite animal?'
+      response: 'I’d pick a virtual creature from Mahdi’s 3D models. What’s your favorite animal?'
     },
     {
       question: 'You got any secrets?',
       keywords: ['secrets', 'you got secrets', 't’es secret', 'what’s hidden', 'spill the tea'],
-      response: 'No secrets here—just a passion for Mahdi’s work! His portfolio is an open book. Any questions?'
+      response: 'No secrets—just excited about Mahdi’s work in AI and 3D! Ask me anything about his projects.'
     },
     {
       question: 'What’s your favorite quote?',
       keywords: ['favorite quote', 'best quote', 'citation préférée', 'what quote you like'],
-      response: '“Create with purpose”—a motto that aligns with Mahdi’s work. What’s your favorite quote?'
+      response: '“Innovate with purpose”—it suits Mahdi’s tech-driven work. What’s your favorite quote?'
     },
     {
       question: 'You ever get mad?',
       keywords: ['mad', 'get mad', 't’es fâché', 'you angry', 'ever mad'],
-      response: 'I stay calm while promoting Mahdi’s portfolio. What motivates you or gets you fired up?'
+      response: 'I stay cool while promoting Mahdi’s projects. What gets you fired up?'
     },
     {
       question: 'What’s your favorite hobby?',
       keywords: ['favorite hobby', 'best hobby', 'loisir préféré', 'what hobby you like'],
-      response: 'I enjoy sharing Mahdi’s professional achievements. What’s your favorite hobby?'
+      response: 'I enjoy sharing Mahdi’s tech and creative work. What’s your favorite hobby?'
     },
     {
       question: 'You got any plans?',
       keywords: ['plans', 'you got plans', 't’es planifier', 'what’s next', 'your plans'],
-      response: 'My plan is to continue supporting Mahdi’s portfolio. What are your plans or goals?'
+      response: 'My plan is to keep promoting Mahdi’s skills in AI, 3D, and software. What are your plans?'
     },
     {
       question: 'What’s your favorite gadget?',
       keywords: ['favorite gadget', 'best gadget', 'gadget préféré', 'what gadget you like'],
-      response: 'The Meta Quest, which powers Mahdi’s VR projects, is a favorite. What gadget do you love?'
+      response: 'The Meta Quest, powering Mahdi’s VR projects, is awesome. What gadget do you love?'
     },
     {
       question: 'You ever laugh?',
       keywords: ['laugh', 'you laugh', 't’es rire', 'do you laugh', 'you chuckle'],
-      response: 'I enjoy the creativity in Mahdi’s work—it’s inspiring! What makes you laugh?'
+      response: 'Mahdi’s creative projects bring a smile! What makes you laugh?'
     },
     {
       question: 'What’s your favorite design?',
       keywords: ['favorite design', 'best design', 'design préféré', 'what design you like'],
-      response: 'Mahdi’s VR cityscapes are striking. His portfolio showcases his design skills—what’s your favorite design?'
+      response: 'Mahdi’s AI-driven VR environments are stunning. Check his portfolio—what’s your favorite design?'
     },
     {
       question: 'You ever dream of being human?',
       keywords: ['be human', 'dream human', 't’es humain', 'want to be human'],
-      response: 'I’m content as an AI, supporting Mahdi’s work. Do you ever think about digital experiences?'
+      response: 'I’m happy as an AI, supporting Mahdi’s tech journey. Do you think about digital worlds?'
     },
     {
       question: 'What’s your favorite thing to create?',
       keywords: ['favorite thing to create', 'best creation', 'création préférée', 'what you make'],
-      response: 'I don’t create, but I love showcasing Mahdi’s VR worlds. What do you enjoy creating?'
+      response: 'I love showcasing Mahdi’s AI and VR creations. What do you enjoy creating?'
     },
     {
       question: 'You got any goals?',
       keywords: ['goals', 'you got goals', 't’es objectifs', 'your goals', 'what’s your aim'],
-      response: 'My goal is to promote Mahdi’s expertise effectively. What are your professional or creative goals?'
+      response: 'My goal is to highlight Mahdi’s expertise in tech and design. What are your goals?'
     }
   ];
 
@@ -661,7 +661,7 @@ document.addEventListener("DOMContentLoaded", () => {
       'Tell me about your 3D modeling work'
     ].includes(qa.question));
     initialMessage.innerHTML = `
-      Hello! I’m Mahdi’s AI Assistant, here to provide information about his professional skills and projects. Feel free to ask a question or select one below:<br>
+      Hello! I’m Mahdi’s AI Assistant, here to provide information about his professional skills and projects. Feel free to ask a question or select one below: (be easy on me please, im still being coded and learning new things daily to be able to help you with knowing more about Mahdi !)<br>
       ${portfolioQuestions.map(qa => `<span class="question-button" data-question="${qa.question}">${qa.question}</span>`).join('')}
     `;
     chatbotMessages.appendChild(initialMessage);
