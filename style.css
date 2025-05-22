@@ -133,6 +133,193 @@ button:hover {
   transition: transform 0.3s ease;
 }
 
+/* Admin Panel Styles */
+#admin-panel {
+  display: none;
+  position: fixed;
+  top: 20%;
+  right: 20px;
+  transform: translateY(0);
+  width: 400px;
+  max-width: 90%;
+  height: 400px;
+  max-height: 80vh;
+  background-color: #222222;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  z-index: 2000;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+#admin-panel.active {
+  display: flex;
+}
+
+.admin-panel-header {
+  background-color: #333333;
+  color: white;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'Bodoni72', serif;
+  position: sticky;
+  top: 0;
+  z-index: 2100;
+}
+
+.admin-panel-header h3 {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.admin-panel-close {
+  cursor: pointer;
+  font-size: 1.2rem;
+}
+
+.admin-panel-content {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background-color: #111111;
+  flex: 1;
+}
+
+#edit-portfolio, #view-logs, #close-panel {
+  background-color: #581414;
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+#edit-portfolio:hover, #view-logs:hover, #close-panel:hover {
+  background-color: #813838;
+  transform: scale(1.05);
+}
+
+#portfolio-editor {
+  margin-top: 10px;
+}
+
+#text-selector {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #555555;
+  border-radius: 5px;
+  background-color: #333333;
+  color: white;
+  font-size: 0.9rem;
+}
+
+#text-editor {
+  width: 100%;
+  height: 80px;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #555555;
+  border-radius: 5px;
+  background-color: #333333;
+  color: white;
+  font-size: 0.9rem;
+  resize: none;
+}
+
+#text-editor:focus {
+  outline: none;
+  border-color: #813838;
+}
+
+#save-text {
+  background-color: #581414;
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+#save-text:hover {
+  background-color: #813838;
+  transform: scale(1.05);
+}
+
+#visitor-logs {
+  position: fixed;
+  top: 20%;
+  right: 20px;
+  width: 400px;
+  max-width: 90%;
+  max-height: 300px;
+  background-color: #222222;
+  padding: 10px;
+  border-radius: 5px;
+  overflow-y: auto;
+  font-size: 0.8rem;
+  color: #D3D3D3;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  z-index: 2000;
+}
+
+#visitor-logs div {
+  margin-bottom: 5px;
+}
+
+/* Mobile Admin Panel Styles */
+@media screen and (max-width: 768px) {
+  #admin-panel {
+    width: 90%;
+    height: 360px;
+    max-height: 70vh;
+    right: 10px;
+    top: 15%;
+  }
+
+  .admin-panel-header h3 {
+    font-size: 1rem;
+  }
+
+  .admin-panel-content {
+    padding: 15px;
+  }
+
+  #edit-portfolio, #view-logs, #close-panel {
+    font-size: 0.8rem;
+    padding: 6px 12px;
+  }
+
+  #text-selector, #text-editor {
+    font-size: 0.8rem;
+    padding: 6px;
+  }
+
+  #text-editor {
+    height: 60px;
+  }
+
+  #save-text {
+    font-size: 0.8rem;
+    padding: 6px 12px;
+  }
+
+  #visitor-logs {
+    width: 90%;
+    right: 10px;
+    top: 15%;
+    max-height: 250px;
+    font-size: 0.7rem;
+  }
+}
+
 /* Skills Section */
 #skills.full-page {
   height: 100vh;
@@ -752,6 +939,25 @@ footer {
 
   #hero {
     height: 80vh;
+  }
+
+  /* Admin Panel Mobile Styles */
+  #admin-panel {
+    width: 280px;
+    top: 10px;
+    right: 10px;
+    padding: 15px;
+  }
+
+  #admin-panel h2 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+  }
+
+  #admin-panel button {
+    padding: 8px;
+    font-size: 0.9rem;
+    margin: 8px 0;
   }
 
   /* Skills Section */
