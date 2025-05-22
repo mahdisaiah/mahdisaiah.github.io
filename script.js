@@ -1,174 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
- 
-  // Admin Panel Logic
-  const adminPanel = document.createElement('div');
-  adminPanel.id = 'admin-panel';
-  adminPanel.innerHTML = `
-    <div class="admin-panel-header">
-      <h3>Admin Panel</h3>
-      <i class="fas fa-times admin-panel-close"></i>
-    </div>
-    <div class="admin-panel-content">
-      <button id="edit-portfolio">Edit Portfolio</button>
-      <button id="view-logs">View Logs</button>
-      <button id="close-panel">Close Panel</button>
-      <div id="portfolio-editor" style="display: none;">
-        <select id="text-selector">
-          <option value="">Select text to edit</option>
-        </select>
-        <textarea id="text-editor" placeholder="Edit selected text here..."></textarea>
-        <button id="save-text">Save Changes</button>
-      </div>
-    </div>
-  `;
-  document.body.appendChild(adminPanel);
-
-  const visitorLogs = document.createElement('div');
-  visitorLogs.id = 'visitor-logs';
-  visitorLogs.style.display = 'none';
-  document.body.appendChild(visitorLogs);
-
-  const textElements = [
-    { id: 'hero-title', selector: '#hero h1', value: document.querySelector('#hero h1').textContent },
-    { id: 'hero-subtitle', selector: '#hero p', value: document.querySelector('#hero p').textContent },
-    { id: 'skills-title', selector: '#skills h2', value: document.querySelector('#skills h2').textContent },
-    { id: 'portfolio-title', selector: '#portfolio h2', value: document.querySelector('#portfolio h2').textContent },
-    { id: 'video-title', selector: '#video h2', value: document.querySelector('#video h2').textContent },
-    { id: 'model-viewer-title', selector: '#model-viewer h2', value: document.querySelector('#model-viewer h2').textContent },
-    { id: 'about-title', selector: '#about h2', value: document.querySelector('#about h2').textContent },
-    { id: 'about-text-1', selector: '#about .about-text p:nth-child(1)', value: document.querySelector('#about .about-text p:nth-child(1)').textContent },
-    { id: 'about-text-2', selector: '#about .about-text p:nth-child(2)', value: document.querySelector('#about .about-text p:nth-child(2)').textContent },
-    { id: 'contact-title', selector: '#contact h2', value: document.querySelector('#contact h2').textContent },
-    { id: 'footer-text', selector: 'footer p', value: document.querySelector('footer p').textContent }
-  ];
-
-  const editPortfolioButton = document.getElementById('edit-portfolio');
-  const viewLogsButton = document.getElementById('view-logs');
-  const closePanelButton = document.getElementById('close-panel');
-  const adminPanelClose = document.querySelector('.admin-panel-close');
-  const textSelector = document.getElementById('text-selector');
-  const textEditor = document.getElementById('text-editor');
-  const saveTextButton = document.getElementById('save-text');
-  const portfolioEditor = document.getElementById('portfolio-editor');
-
-  textElements.forEach(element => {
-    const option = document.createElement('option');
-    option.value = element.id;
-    option.textContent = element.id.replace(/-/g, ' ').toUpperCase();
-    textSelector.appendChild(option);
-  });
-
-  textSelector.addEventListener('change', () => {
-    const selectedElement = textElements.find(el => el.id === textSelector.value);
-    if (selectedElement) {
-      textEditor.value = selectedElement.value;
-    } else {
-      textEditor.value = '';
-    }
-  });
-
-  editPortfolioButton.addEventListener('click', () => {
-    portfolioEditor.style.display = portfolioEditor.style.display === 'none' ? 'block' : 'none';
-  });
-
-  saveTextButton.addEventListener('click', async () => {
-    const selectedElement = textElements.find(el => el.id === textSelector.value);
-    if (selectedElement) {
-      const element = document.querySelector(selectedElement.selector);
-      if (element) {
-        element.textContent = textEditor.value;
-        selectedElement.value = textEditor.value;
-
-        // Send updated text to server
-        try {
-          const response = await fetch('https://your-server-endpoint/update-text', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-              'Authorization': 'Bearer your-auth-token' // Replace with actual auth mechanism
-            },
-            body: JSON.stringify({
-              id: selectedElement.id,
-              text: textEditor.value,
-              timestamp: new Date().toISOString()
-            })
-          });
-
-          if (response.ok) {
-            alert('Text updated successfully and synced to server!');
-          } else {
-            alert('Failed to sync text to server. Changes applied locally.');
-          }
-        } catch (error) {
-          alert('Error connecting to server. Changes applied locally.');
-          console.error('Server Error:', error);
-        }
-      }
-    }
-  });
-
-  viewLogsButton.addEventListener('click', () => {
-    visitorLogs.style.display = visitorLogs.style.display === 'none' ? 'block' : 'none';
-    adminPanel.style.display = visitorLogs.style.display === 'block' ? 'none' : 'flex';
-  });
-
-  closePanelButton.addEventListener('click', () => {
-    adminPanel.classList.remove('active');
-    portfolioEditor.style.display = 'none';
-    visitorLogs.style.display = 'none';
-  });
-
-  // Visitor Logging with Enhanced Data
-  const logVisitor = async () => {
-    const timestamp = new Date().toLocaleString('en-US', { timeZone: 'UTC' });
-    const ipAddress = 'N/A'; // Placeholder: Real IP requires server-side logic
-    const userAgent = navigator.userAgent;
-    const screenResolution = `${window.screen.width}x${window.screen.height}`;
-    const language = navigator.language;
-    const logEntry = `Time: ${timestamp}, IP: ${ipAddress}, User-Agent: ${userAgent}, Resolution: ${screenResolution}, Language: ${language}`;
-    const logElement = document.createElement('div');
-    logElement.textContent = logEntry;
-    visitorLogs.appendChild(logElement);
-    visitorLogs.scrollTop = visitorLogs.scrollHeight;
-
-    // Send visitor log to server
-    try {
-      await fetch('https://your-server-endpoint/log-visitor', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': 'Bearer your-auth-token' // Replace with actual auth mechanism
-        },
-        body: JSON.stringify({
-          timestamp,
-          ipAddress,
-          userAgent,
-          screenResolution,
-          language
-        })
-      });
-    } catch (error) {
-      console.error('Error logging visitor to server:', error);
-    }
-  };
-
-  logVisitor(); // Log current visitor
-
-  // Toggle Admin Panel with Ctrl+Shift+A
-  document.addEventListener('keydown', (e) => {
-    if (e.ctrlKey && e.shiftKey && e.key.toUpperCase() === 'A') {
-      adminPanel.classList.toggle('active');
-      portfolioEditor.style.display = 'none';
-      visitorLogs.style.display = 'none';
-    }
-  });
-
-  adminPanelClose.addEventListener('click', () => {
-    adminPanel.classList.remove('active');
-    portfolioEditor.style.display = 'none';
-    visitorLogs.style.display = 'none';
-  });
-
   // Three.js Particle System for Hero Section
   function initHeroCanvas() {
     const canvas = document.getElementById('hero-canvas');
@@ -297,244 +127,160 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
- // Model Controller for <model-viewer>
-const ModelController = (() => {
-  // Reference to the model-viewer element
-  const viewer = document.getElementById('modelViewer');
+  // Model Controller for <model-viewer>
+  const ModelController = (() => {
+    // Reference to the model-viewer element
+    const viewer = document.getElementById('modelViewer');
 
-  // Check if viewer exists to prevent errors
-  if (!viewer) {
-    console.error('Model Viewer element with ID "modelViewer" not found. Ensure the <model-viewer> element is present in the HTML with a valid "src" attribute.');
-    return {
-      toggleRotate: () => console.warn('Model Viewer not initialized.'),
-      toggleAR: () => console.warn('Model Viewer not initialized.'),
-      resetView: () => console.warn('Model Viewer not initialized.'),
-      setExposure: () => console.warn('Model Viewer not initialized.'),
-      setZoom: () => console.warn('Model Viewer not initialized.'),
-      setShadowIntensity: () => console.warn('Model Viewer not initialized.'),
-      setEnvironmentIntensity: () => console.warn('Model Viewer not initialized.'),
-      setOrbit: () => console.warn('Model Viewer not initialized.'),
-      getState: () => ({ error: 'Model Viewer not initialized.' })
+    // Check if viewer exists to prevent errors
+    if (!viewer) {
+      console.error('Model Viewer element with ID "modelViewer" not found.');
+      return {
+        toggleRotate: () => console.warn('Model Viewer not initialized.'),
+        toggleAR: () => console.warn('Model Viewer not initialized.'),
+        resetView: () => console.warn('Model Viewer not initialized.'),
+        setExposure: () => console.warn('Model Viewer not initialized.'),
+        setZoom: () => console.warn('Model Viewer not initialized.'),
+        setShadowIntensity: () => console.warn('Model Viewer not initialized.'),
+        setOrbit: () => console.warn('Model Viewer not initialized.')
+      };
+    }
+
+    // State management with extended properties
+    const state = {
+      isRotating: true,
+      exposure: 1.0,
+      shadowIntensity: 1.0,
+      environmentIntensity: 1.0,
+      fieldOfView: 45, // in degrees
+      orbit: { theta: 0, phi: 75, radius: 'auto' }, // Camera orbit angles
+      animationFrameId: null
     };
-  }
 
-  // State management
-  const state = {
-    isRotating: true,
-    exposure: 1.0,
-    shadowIntensity: 1.0,
-    environmentIntensity: 1.0,
-    fieldOfView: 45,
-    orbit: { theta: 0, phi: 75, radius: 'auto' },
-    animationFrameId: null
-  };
+    // Update state with validation
+    const updateState = (newState) => {
+      Object.assign(state, newState);
+      applyState();
+    };
 
-  // Apply state changes to the viewer and sync to server
-  const applyState = async () => {
-    try {
+    // Apply state changes to the viewer with smooth transitions
+    const applyState = () => {
       viewer.autoRotate = state.isRotating;
       viewer.exposure = state.exposure;
       viewer.shadowIntensity = state.shadowIntensity;
       viewer.environmentImageIntensity = state.environmentIntensity;
       viewer.fieldOfView = `${state.fieldOfView}deg`;
       viewer.cameraOrbit = `${state.orbit.theta}deg ${state.orbit.phi}deg ${state.orbit.radius}`;
-      viewer.cameraTarget = 'auto auto auto';
-
-      // Sync state to server
-      try {
-        const response = await fetch('https://your-server-endpoint/update-model-state', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer your-auth-token' // Replace with actual auth mechanism
-          },
-          body: JSON.stringify({
-            ...state,
-            timestamp: new Date().toISOString()
-          })
-        });
-
-        if (!response.ok) {
-          console.warn('Failed to sync model state to server.');
-        }
-      } catch (error) {
-        console.error('Error syncing model state to server:', error);
-      }
-    } catch (error) {
-      console.error('Error applying state to Model Viewer:', error);
-    }
-  };
-
-  // Update state with validation
-  const updateState = async (newState) => {
-    Object.assign(state, newState);
-    await applyState();
-  };
-
-  // Smooth interpolation for numeric properties
-  const smoothUpdate = async (targetKey, targetValue, duration = 500) => {
-    const startValue = state[targetKey];
-    const startTime = performance.now();
-
-    const animate = async (currentTime) => {
-      const elapsed = currentTime - startTime;
-      const progress = Math.min(elapsed / duration, 1);
-      const easedProgress = 1 - Math.pow(1 - progress, 3); // Ease-out cubic
-      const newValue = startValue + (targetValue - startValue) * easedProgress;
-
-      await updateState({ [targetKey]: newValue });
-
-      if (progress < 1) {
-        state.animationFrameId = requestAnimationFrame(animate);
-      } else {
-        cancelAnimationFrame(state.animationFrameId);
-      }
     };
 
-    cancelAnimationFrame(state.animationFrameId);
-    state.animationFrameId = requestAnimationFrame(animate);
-  };
+    // Smooth interpolation for exposure and shadow intensity
+    const smoothUpdate = (targetKey, targetValue, duration = 500) => {
+      const startValue = state[targetKey];
+      const startTime = performance.now();
 
-  // Initialize viewer
-  const initViewer = () => {
-    try {
-      // Set essential attributes
-      if (!viewer.hasAttribute('src')) {
-        console.warn('No model source specified. Setting default model.');
-        viewer.setAttribute('src', 'path/to/default-model.glb'); // Replace with actual default model
-      }
+      const animate = (currentTime) => {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const easedProgress = 1 - Math.pow(1 - progress, 3); // Ease-out cubic
+        const newValue = startValue + (targetValue - startValue) * easedProgress;
+
+        updateState({ [targetKey]: newValue });
+
+        if (progress < 1) {
+          state.animationFrameId = requestAnimationFrame(animate);
+        } else {
+          cancelAnimationFrame(state.animationFrameId);
+        }
+      };
+
+      cancelAnimationFrame(state.animationFrameId);
+      state.animationFrameId = requestAnimationFrame(animate);
+    };
+
+    // Initialize viewer with default settings
+    const initViewer = () => {
       viewer.setAttribute('ar-modes', 'webxr scene-viewer quick-look');
-      viewer.setAttribute('environment-image', 'neutral');
-      viewer.setAttribute('camera-controls', '');
-      viewer.setAttribute('interaction-prompt', 'auto');
+      viewer.setAttribute('environment-image', 'neutral'); // Neutral HDR environment
+      viewer.setAttribute('shadow-intensity', state.shadowIntensity);
+      viewer.setAttribute('exposure', state.exposure);
       viewer.setAttribute('auto-rotate-delay', '0');
-      viewer.setAttribute('shadow-intensity', state.shadowIntensity.toString());
-      viewer.setAttribute('exposure', state.exposure.toString());
-
-      // Apply initial state
       applyState();
 
-      // Handle model load
-      viewer.addEventListener('load', () => {
-        console.log('3D model loaded successfully.');
-        applyState();
-      });
-
-      // Handle errors
-      viewer.addEventListener('error', (event) => {
-        console.error('Error loading 3D model:', event.detail);
-        alert('Failed to load 3D model. Check the model file path or format.');
-      });
-
-      console.log('Model Viewer initialized.');
-    } catch (error) {
-      console.error('Error initializing Model Viewer:', error);
-    }
-  };
-
-  // Bind UI controls
-  const bindControls = () => {
-    const controls = {
-      toggleRotate: document.getElementById('toggle-rotate'),
-      toggleAR: document.getElementById('toggle-ar'),
-      resetView: document.getElementById('reset-view'),
-      exposureSlider: document.getElementById('exposure-slider'),
-      zoomSlider: document.getElementById('zoom-slider'),
-      shadowSlider: document.getElementById('shadow-slider'),
-      envSlider: document.getElementById('env-slider')
+      // Log initialization
+      console.log('Model Viewer initialized with default settings.');
     };
 
-    if (controls.toggleRotate) {
-      controls.toggleRotate.addEventListener('click', () => {
-        this.toggleRotate();
-        controls.toggleRotate.textContent = state.isRotating ? 'Stop Rotation' : 'Start Rotation';
-      });
-    }
-    if (controls.toggleAR) {
-      controls.toggleAR.addEventListener('click', this.toggleAR);
-    }
-    if (controls.resetView) {
-      controls.resetView.addEventListener('click', this.resetView);
-    }
-    if (controls.exposureSlider) {
-      controls.exposureSlider.addEventListener('input', (e) => this.setExposure(e.target.value));
-    }
-    if (controls.zoomSlider) {
-      controls.zoomSlider.addEventListener('input', (e) => this.setZoom(e.target.value));
-    }
-    if (controls.shadowSlider) {
-      controls.shadowSlider.addEventListener('input', (e) => this.setShadowIntensity(e.target.value));
-    }
-    if (controls.envSlider) {
-      controls.envSlider.addEventListener('input', (e) => this.setEnvironmentIntensity(e.target.value));
-    }
-  };
+    // Initialize immediately if viewer exists
+    initViewer();
 
-  // Initialize and bind
-  initViewer();
-  bindControls();
+    return {
+      // Toggle auto-rotation with smooth start/stop
+      toggleRotate: () => {
+        updateState({ isRotating: !state.isRotating });
+        console.log(`Auto-rotation ${state.isRotating ? 'enabled' : 'disabled'}.`);
+      },
 
-  return {
-    toggleRotate: async () => {
-      await updateState({ isRotating: !state.isRotating });
-      console.log(`Auto-rotation ${state.isRotating ? 'enabled' : 'disabled'}.`);
-    },
-
-    toggleAR: async () => {
-      try {
+      // Toggle AR mode with device compatibility check
+      toggleAR: () => {
         if (viewer.canActivateAR) {
           viewer.activateAR();
           console.log('AR mode activated.');
         } else {
-          alert('AR not supported on this device/browser. Try Android with WebXR or iOS with Quick Look.');
+          alert('AR is not supported on this device or browser. Please try on a compatible device (e.g., Android with WebXR or iOS with Quick Look).');
           console.warn('AR mode not supported.');
         }
-      } catch (error) {
-        console.error('Error activating AR:', error);
-        alert('Failed to activate AR.');
-      }
-    },
+      },
 
-    resetView: async () => {
-      await smoothUpdate('fieldOfView', 45, 500);
-      await updateState({ orbit: { theta: 0, phi: 75, radius: 'auto' } });
-      console.log('View reset.');
-    },
+      // Reset view to default with smooth transition
+      resetView: () => {
+        smoothUpdate('fieldOfView', 45, 500);
+        updateState({
+          orbit: { theta: 0, phi: 75, radius: 'auto' },
+          cameraTarget: 'auto auto auto'
+        });
+        console.log('View reset to default.');
+      },
 
-    setExposure: async (value) => {
-      const exposureValue = Math.max(0.1, Math.min(2.0, parseFloat(value)));
-      await smoothUpdate('exposure', exposureValue);
-      console.log(`Exposure: ${exposureValue}`);
-    },
+      // Set exposure with smooth transition (0.1 to 2.0 range)
+      setExposure: (value) => {
+        const exposureValue = Math.max(0.1, Math.min(2.0, parseFloat(value)));
+        smoothUpdate('exposure', exposureValue);
+        console.log(`Exposure set to: ${exposureValue}`);
+      },
 
-    setZoom: async (value) => {
-      const fovValue = Math.max(10, Math.min(90, parseFloat(value)));
-      await smoothUpdate('fieldOfView', fovValue);
-      console.log(`Field of view: ${fovValue}deg`);
-    },
+      // Set zoom level via field of view (10 to 90 degrees)
+      setZoom: (value) => {
+        const fovValue = Math.max(10, Math.min(90, parseFloat(value)));
+        smoothUpdate('fieldOfView', fovValue);
+        console.log(`Field of view set to: ${fovValue}deg`);
+      },
 
-    setShadowIntensity: async (value) => {
-      const shadowValue = Math.max(0, Math.min(1, parseFloat(value)));
-      await smoothUpdate('shadowIntensity', shadowValue);
-      console.log(`Shadow intensity: ${shadowValue}`);
-    },
+      // Set shadow intensity (0 to 1 range)
+      setShadowIntensity: (value) => {
+        const shadowValue = Math.max(0, Math.min(1, parseFloat(value)));
+        smoothUpdate('shadowIntensity', shadowValue);
+        console.log(`Shadow intensity set to: ${shadowValue}`);
+      },
 
-    setEnvironmentIntensity: async (value) => {
-      const envValue = Math.max(0, Math.min(2, parseFloat(value)));
-      await smoothUpdate('environmentIntensity', envValue);
-      console.log(`Environment intensity: ${envValue}`);
-    },
+      // Set environment map intensity (0 to 2 range)
+      setEnvironmentIntensity: (value) => {
+        const envValue = Math.max(0, Math.min(2, parseFloat(value)));
+        smoothUpdate('environmentIntensity', envValue);
+        console.log(`Environment intensity set to: ${envValue}`);
+      },
 
-    setOrbit: async (theta, phi, radius = 'auto') => {
-      await updateState({
-        orbit: { theta: parseFloat(theta), phi: parseFloat(phi), radius }
-      });
-      console.log(`Orbit: ${theta}deg, ${phi}deg, ${radius}`);
-    },
+      // Set camera orbit angles (theta: azimuth, phi: elevation)
+      setOrbit: (theta, phi, radius = 'auto') => {
+        updateState({
+          orbit: { theta: parseFloat(theta), phi: parseFloat(phi), radius }
+        });
+        console.log(`Camera orbit set to: ${theta}deg, ${phi}deg, ${radius}`);
+      },
 
-    getState: () => ({ ...state })
-  };
-})();
+      // Get current state for debugging or UI sync
+      getState: () => ({ ...state })
+    };
+  })();
 
   // Hamburger Menu Toggle
   const hamburger = document.querySelector('.hamburger');
