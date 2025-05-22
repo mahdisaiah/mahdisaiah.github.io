@@ -150,9 +150,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const state = {
       isRotating: true,
       exposure: 1.0,
-      shadowIntensity: 1.0,
+      shadowIntensity: 5.0,
       environmentIntensity: 1.0,
-      fieldOfView: 45, // in degrees
+      fieldOfView: 35, // in degrees
       orbit: { theta: 0, phi: 75, radius: 'auto' }, // Camera orbit angles
       animationFrameId: null
     };
