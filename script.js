@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Create particle system with custom shader
     const particlesGeometry = new THREE.BufferGeometry();
-    const particlesCount = 3000;
+    const particlesCount = 10000;
     const posArray = new Float32Array(particlesCount * 3);
     const sizes = new Float32Array(particlesCount);
     for (let i = 0; i < particlesCount; i++) {
@@ -47,7 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
     scene.add(particlesMesh);
 
-    camera.position.z = 400;
+    camera.position.z = 100;
 
     // Mouse interaction
     let mouseX = 0, mouseY = 0;
