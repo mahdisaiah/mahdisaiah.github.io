@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SAIAH MAHDI</title>
+  <script defer data-domain="mahdisaiah.github.io" src="https://plausible.io/js/script.js"></script>
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
@@ -125,37 +126,61 @@
   <section id="model-viewer" class="full-page">
     <h2>3D MODEL VIEWER</h2>
     <div class="model-container">
-      <model-viewer
-        id="modelViewer"
-        src="models/your-model.glb"
-        ios-src="models/your-model.usdz"
-        alt="3D Model"
-        auto-rotate
-        camera-controls
-        ar
-        ar-modes="webxr scene-viewer quick-look"
-        ar-scale="auto"
-        shadow-intensity="1"
-        exposure="1"
-        interaction-prompt="when-focused"
-        camera-orbit="0deg 75deg auto"
-        environment-image="neutral"
-        class="model-viewer"
-      ></model-viewer>
+      <div class="model-carousel">
+        <model-viewer
+          id="modelViewer"
+          src="models/your-model.glb"
+          ios-src="models/your-model.usdz"
+          alt="3D Model"
+          auto-rotate
+          camera-controls
+          ar
+          ar-modes="webxr scene-viewer quick-look"
+          ar-scale="auto"
+          shadow-intensity="1"
+          exposure="1"
+          interaction-prompt="when-focused"
+          camera-orbit="0deg 75deg auto"
+          environment-image="neutral"
+          class="model-viewer"
+        ></model-viewer>
+        <model-viewer
+          id="modelViewer2"
+          src="models/new-model.glb"
+          ios-src="models/new-model.usdz"
+          alt="3D Model 2"
+          auto-rotate
+          camera-controls
+          ar
+          ar-modes="webxr scene-viewer quick-look"
+          ar-scale="auto"
+          shadow-intensity="1"
+          exposure="1"
+          interaction-prompt="when-focused"
+          camera-orbit="0deg 75deg auto"
+          environment-image="neutral"
+          class="model-viewer"
+          style="display: none;"
+        ></model-viewer>
+        <button class="arrow-button model-arrow-left">←</button>
+        <button class="arrow-button model-arrow-right">→</button>
+      </div>
       <div class="control-panel">
-        <button onclick="ModelController.toggleRotate()" class="model-btn">Toggle Rotate</button>
-        <button onclick="ModelController.toggleAR()" class="model-btn">AR Mode</button>
-        <button onclick="ModelController.resetView()" class="model-btn">Reset View</button>
-        <input
-          type="range"
-          min="0"
-          max="2"
-          step="0.1"
-          value="1"
-          oninput="ModelController.setExposure(this.value)"
-          class="exposure-slider"
-          title="Exposure"
-        />
+        <button id="toggle-rotate" class="model-btn">Toggle Rotate</button>
+        <button id="toggle-ar" class="model-btn">AR Mode</button>
+        <button id="reset-view" class="model-btn">Reset View</button>
+        <div>
+          <input
+            id="exposure-slider"
+            type="range"
+            min="0"
+            max="2"
+            step="0.1"
+            value="1"
+            class="exposure-slider"
+            title="Exposure"
+          />
+        </div>
       </div>
     </div>
   </section>
