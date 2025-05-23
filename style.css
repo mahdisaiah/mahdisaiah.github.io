@@ -343,11 +343,18 @@ button:hover {
   align-items: center;
 }
 
+.model-carousel {
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
 model-viewer {
   width: 100%;
   height: 60vh;
   background: #222222;
-  border-radius: 10px;
+  border-radius: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
   transition: transform 0.3s ease;
 }
@@ -413,6 +420,32 @@ model-viewer:hover {
 
 .exposure-slider:hover {
   border-color: #777777;
+}
+
+.arrow-button {
+  background-color: #581414;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  cursor: pointer;
+  font-size: 1.5rem;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: background-color 0.3s ease;
+}
+
+.arrow-button:hover {
+  background-color: #813838;
+}
+
+.model-arrow-left {
+  left: 10px;
+}
+
+.model-arrow-right {
+  right: 10px;
 }
 
 /* About Me Section */
