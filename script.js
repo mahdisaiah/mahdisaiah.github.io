@@ -127,64 +127,77 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Model Controller for <model-viewer>
-  const ModelController = (() => {
-    // Reference to the model-viewer element
-    const viewer = document.getElementById('modelViewer');
+  
+   
+// 3D Model Carousel Logic
+  const modelCarousel = document.querySelector(".model-carousel");
+  const modelViewers = document.querySelectorAll(".model-viewer");
+  const modelArrowLeft = document.querySelector(".model-arrow-left");
+  const modelArrowRight = document.querySelector(".model-arrow-right");
 
-    // Check if viewer exists to prevent errors
-    if (!viewer) {
-      console.error('Model Viewer element with ID "modelViewer" not found.');
+  let modelCurrentIndex = 0;
+  let modelAutoPlayInterval;
+  let inactivityTimeout;
+
+  // Update Model Controller to handle multiple models
+  const ModelController = (() => {
+    const viewers = document.querySelectorAll('.model-viewer');
+
+    if (!viewers.length) {
+      console.error('No Model Viewer elements found.');
       return {
         toggleRotate: () => console.warn('Model Viewer not initialized.'),
         toggleAR: () => console.warn('Model Viewer not initialized.'),
         resetView: () => console.warn('Model Viewer not initialized.'),
         setExposure: () => console.warn('Model Viewer not initialized.'),
-        setZoom: () => console.warn('Model Viewer not initialized.'),
-        setShadowIntensity: () => console.warn('Model Viewer not initialized.'),
-        setOrbit: () => console.warn('Model Viewer not initialized.')
+        getState: () => ({ error: 'Model Viewer not initialized.' })
       };
     }
 
-    // State management with extended properties
+    // State management for active viewer
     const state = {
-      isRotating: true,
-      exposure: 1.0,
-      shadowIntensity: 5.0,
-      environmentIntensity: 1.0,
-      fieldOfView: 35, // in degrees
-      orbit: { theta: 0, phi: 75, radius: 'auto' }, // Camera orbit angles
+      isRotating: viewers[0].hasAttribute('auto-rotate'),
+      exposure: parseFloat(viewers[0].getAttribute('exposure') || '1.0'),
+      shadowIntensity: parseFloat(viewers[0].getAttribute('shadow-intensity') || '1.0'),
+      fieldOfView: 45,
+      orbit: { theta: 0, phi: 75, radius: 'auto' },
       animationFrameId: null
     };
 
-    // Update state with validation
-    const updateState = (newState) => {
+    const applyState = async () => {
+      try {
+        const activeViewer = viewers[modelCurrentIndex];
+        if (state.isRotating) {
+          activeViewer.setAttribute('auto-rotate', '');
+        } else {
+          activeViewer.removeAttribute('auto-rotate');
+        }
+        activeViewer.exposure = state.exposure;
+        activeViewer.shadowIntensity = state.shadowIntensity;
+        activeViewer.fieldOfView = `${state.fieldOfView}deg`;
+        activeViewer.cameraOrbit = `${state.orbit.theta}deg ${state.orbit.phi}deg ${state.orbit.radius}`;
+        activeViewer.cameraTarget = 'auto auto auto';
+      } catch (error) {
+        console.error('Error applying state to Model Viewer:', error);
+      }
+    };
+
+    const updateState = async (newState) => {
       Object.assign(state, newState);
-      applyState();
+      await applyState();
     };
 
-    // Apply state changes to the viewer with smooth transitions
-    const applyState = () => {
-      viewer.autoRotate = state.isRotating;
-      viewer.exposure = state.exposure;
-      viewer.shadowIntensity = state.shadowIntensity;
-      viewer.environmentImageIntensity = state.environmentIntensity;
-      viewer.fieldOfView = `${state.fieldOfView}deg`;
-      viewer.cameraOrbit = `${state.orbit.theta}deg ${state.orbit.phi}deg ${state.orbit.radius}`;
-    };
-
-    // Smooth interpolation for exposure and shadow intensity
-    const smoothUpdate = (targetKey, targetValue, duration = 500) => {
+    const smoothUpdate = async (targetKey, targetValue, duration = 500) => {
       const startValue = state[targetKey];
       const startTime = performance.now();
 
-      const animate = (currentTime) => {
+      const animate = async (currentTime) => {
         const elapsed = currentTime - startTime;
         const progress = Math.min(elapsed / duration, 1);
         const easedProgress = 1 - Math.pow(1 - progress, 3); // Ease-out cubic
         const newValue = startValue + (targetValue - startValue) * easedProgress;
 
-        updateState({ [targetKey]: newValue });
+        await updateState({ [targetKey]: newValue });
 
         if (progress < 1) {
           state.animationFrameId = requestAnimationFrame(animate);
@@ -197,90 +210,180 @@ document.addEventListener("DOMContentLoaded", () => {
       state.animationFrameId = requestAnimationFrame(animate);
     };
 
-    // Initialize viewer with default settings
     const initViewer = () => {
-      viewer.setAttribute('ar-modes', 'webxr scene-viewer quick-look');
-      viewer.setAttribute('environment-image', 'neutral'); // Neutral HDR environment
-      viewer.setAttribute('shadow-intensity', state.shadowIntensity);
-      viewer.setAttribute('exposure', state.exposure);
-      viewer.setAttribute('auto-rotate-delay', '0');
-      applyState();
+      viewers.forEach((viewer, index) => {
+        try {
+          if (!viewer.hasAttribute('src')) {
+            console.warn(`No model source specified for viewer ${index}. Setting default model.`);
+            viewer.setAttribute('src', index === 0 ? 'models/your-model.glb' : 'models/new-model.glb');
+          }
 
-      // Log initialization
-      console.log('Model Viewer initialized with default settings.');
+          viewer.setAttribute('ar-modes', 'webxr scene-viewer quick-look');
+          viewer.setAttribute('environment-image', 'neutral');
+          viewer.setAttribute('camera-controls', '');
+          viewer.setAttribute('interaction-prompt', 'when-focused');
+          viewer.setAttribute('auto-rotate-delay', '0');
+
+          viewer.addEventListener('load', () => {
+            console.log(`3D model ${index} loaded successfully.`);
+            if (index === modelCurrentIndex) applyState();
+          });
+
+          viewer.addEventListener('error', (event) => {
+            console.error(`Error loading 3D model ${index}:`, event.detail);
+            alert('Failed to load 3D model. Check the model file path or format.');
+          });
+        } catch (error) {
+          console.error(`Error initializing Model Viewer ${index}:`, error);
+        }
+      });
+      console.log('Model Viewers initialized.');
     };
 
-    // Initialize immediately if viewer exists
-    initViewer();
-
-    return {
-      // Toggle auto-rotation with smooth start/stop
-      toggleRotate: () => {
-        updateState({ isRotating: !state.isRotating });
+    const controller = {
+      toggleRotate: async () => {
+        await updateState({ isRotating: !state.isRotating });
         console.log(`Auto-rotation ${state.isRotating ? 'enabled' : 'disabled'}.`);
-      },
-
-      // Toggle AR mode with device compatibility check
-      toggleAR: () => {
-        if (viewer.canActivateAR) {
-          viewer.activateAR();
-          console.log('AR mode activated.');
-        } else {
-          alert('AR is not supported on this device or browser. Please try on a compatible device (e.g., Android with WebXR or iOS with Quick Look).');
-          console.warn('AR mode not supported.');
+        const toggleRotateBtn = document.getElementById('toggle-rotate');
+        if (toggleRotateBtn) {
+          toggleRotateBtn.textContent = state.isRotating ? 'Stop Rotation' : 'Start Rotation';
         }
       },
 
-      // Reset view to default with smooth transition
-      resetView: () => {
-        smoothUpdate('fieldOfView', 45, 500);
-        updateState({
-          orbit: { theta: 0, phi: 75, radius: 'auto' },
-          cameraTarget: 'auto auto auto'
-        });
-        console.log('View reset to default.');
+      toggleAR: async () => {
+        try {
+          const activeViewer = viewers[modelCurrentIndex];
+          if (activeViewer.canActivateAR) {
+            activeViewer.activateAR();
+            console.log('AR mode activated.');
+          } else {
+            alert('AR not supported on this device/browser. Try Android with WebXR or iOS with Quick Look.');
+            console.warn('AR mode not supported.');
+          }
+        } catch (error) {
+          console.error('Error activating AR:', error);
+          alert('Failed to activate AR.');
+        }
       },
 
-      // Set exposure with smooth transition (0.1 to 2.0 range)
-      setExposure: (value) => {
+      resetView: async () => {
+        await smoothUpdate('fieldOfView', 45, 500);
+        await updateState({ orbit: { theta: 0, phi: 75, radius: 'auto' } });
+        console.log('View reset.');
+      },
+
+      setExposure: async (value) => {
         const exposureValue = Math.max(0.1, Math.min(2.0, parseFloat(value)));
-        smoothUpdate('exposure', exposureValue);
-        console.log(`Exposure set to: ${exposureValue}`);
+        await updateState({ exposure: exposureValue }); // Direct update to prevent flickering
+        console.log(`Exposure: ${exposureValue}`);
       },
 
-      // Set zoom level via field of view (10 to 90 degrees)
-      setZoom: (value) => {
-        const fovValue = Math.max(10, Math.min(90, parseFloat(value)));
-        smoothUpdate('fieldOfView', fovValue);
-        console.log(`Field of view set to: ${fovValue}deg`);
-      },
-
-      // Set shadow intensity (0 to 1 range)
-      setShadowIntensity: (value) => {
-        const shadowValue = Math.max(0, Math.min(1, parseFloat(value)));
-        smoothUpdate('shadowIntensity', shadowValue);
-        console.log(`Shadow intensity set to: ${shadowValue}`);
-      },
-
-      // Set environment map intensity (0 to 2 range)
-      setEnvironmentIntensity: (value) => {
-        const envValue = Math.max(0, Math.min(2, parseFloat(value)));
-        smoothUpdate('environmentIntensity', envValue);
-        console.log(`Environment intensity set to: ${envValue}`);
-      },
-
-      // Set camera orbit angles (theta: azimuth, phi: elevation)
-      setOrbit: (theta, phi, radius = 'auto') => {
-        updateState({
-          orbit: { theta: parseFloat(theta), phi: parseFloat(phi), radius }
-        });
-        console.log(`Camera orbit set to: ${theta}deg, ${phi}deg, ${radius}`);
-      },
-
-      // Get current state for debugging or UI sync
       getState: () => ({ ...state })
     };
+
+    const bindControls = () => {
+      const toggleRotateBtn = document.getElementById('toggle-rotate');
+      const toggleARBtn = document.getElementById('toggle-ar');
+      const resetViewBtn = document.getElementById('reset-view');
+      const exposureSlider = document.getElementById('exposure-slider');
+
+      if (toggleRotateBtn) console.log('Toggle Rotate button found');
+      else console.warn('Toggle Rotate button not found (ID: toggle-rotate)');
+      if (toggleARBtn) console.log('Toggle AR button found');
+      else console.warn('Toggle AR button not found (ID: toggle-ar)');
+      if (resetViewBtn) console.log('Reset View button found');
+      else console.warn('Reset View button not found (ID: reset-view)');
+      if (exposureSlider) console.log('Exposure slider found');
+      else console.warn('Exposure slider not found (ID: exposure-slider)');
+
+      if (toggleRotateBtn) {
+        toggleRotateBtn.addEventListener('click', () => {
+          console.log('Toggle Rotate button clicked');
+          controller.toggleRotate();
+          resetInactivityTimer();
+        });
+      }
+      if (toggleARBtn) {
+        toggleARBtn.addEventListener('click', () => {
+          console.log('Toggle AR button clicked');
+          controller.toggleAR();
+          resetInactivityTimer();
+        });
+      }
+      if (resetViewBtn) {
+        resetViewBtn.addEventListener('click', () => {
+          console.log('Reset View button clicked');
+          controller.resetView();
+          resetInactivityTimer();
+        });
+      }
+      if (exposureSlider) {
+        exposureSlider.addEventListener('input', (e) => {
+          console.log(`Exposure slider changed: ${e.target.value}`);
+          controller.setExposure(e.target.value);
+          resetInactivityTimer();
+        });
+      }
+    };
+
+    initViewer();
+    bindControls();
+
+    return controller;
   })();
+
+  function showModelSlide(index) {
+    modelViewers.forEach((viewer, i) => {
+      viewer.style.display = i === index ? 'block' : 'none';
+    });
+    modelCurrentIndex = index;
+    ModelController.resetView(); // Reset view when switching models
+  }
+
+  function nextModelSlide() {
+    modelCurrentIndex = (modelCurrentIndex + 1) % modelViewers.length;
+    showModelSlide(modelCurrentIndex);
+  }
+
+  function prevModelSlide() {
+    modelCurrentIndex = (modelCurrentIndex - 1 + modelViewers.length) % modelViewers.length;
+    showModelSlide(modelCurrentIndex);
+  }
+
+  function resetInactivityTimer() {
+    clearTimeout(inactivityTimeout);
+    inactivityTimeout = setTimeout(nextModelSlide, 30000); // 30 seconds
+  }
+
+  function startModelAutoPlay() {
+    resetInactivityTimer();
+  }
+
+  function stopModelAutoPlay() {
+    clearTimeout(inactivityTimeout);
+  }
+
+  modelArrowLeft.addEventListener("click", () => {
+    prevModelSlide();
+    stopModelAutoPlay();
+    startModelAutoPlay();
+  });
+
+  modelArrowRight.addEventListener("click", () => {
+    nextModelSlide();
+    stopModelAutoPlay();
+    startModelAutoPlay();
+  });
+
+  modelCarousel.addEventListener("mouseenter", stopModelAutoPlay);
+  modelCarousel.addEventListener("mouseleave", startModelAutoPlay);
+  modelCarousel.addEventListener("mousemove", resetInactivityTimer);
+  modelCarousel.addEventListener("click", resetInactivityTimer);
+
+  showModelSlide(modelCurrentIndex);
+  startModelAutoPlay();
+
+
 
   // Hamburger Menu Toggle
   const hamburger = document.querySelector('.hamburger');
@@ -299,11 +402,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const arrowRight = document.querySelector(".arrow-right");
 
   let currentIndex = 0;
-  let autoPlayInterval;
+  let autoPlayTimeout;
 
   function showSlide(index) {
     const offset = -index * 100;
     carouselImages.style.transform = `translateX(${offset}%)`;
+    currentIndex = index;
   }
 
   function nextSlide() {
@@ -316,12 +420,17 @@ document.addEventListener("DOMContentLoaded", () => {
     showSlide(currentIndex);
   }
 
+  function resetAutoPlayTimer() {
+    clearTimeout(autoPlayTimeout);
+    autoPlayTimeout = setTimeout(nextSlide, 20000); // 20 seconds
+  }
+
   function startAutoPlay() {
-    autoPlayInterval = setInterval(nextSlide, 10000);
+    resetAutoPlayTimer();
   }
 
   function stopAutoPlay() {
-    clearInterval(autoPlayInterval);
+    clearTimeout(autoPlayTimeout);
   }
 
   arrowLeft.addEventListener("click", () => {
@@ -338,6 +447,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   carousel.addEventListener("mouseenter", stopAutoPlay);
   carousel.addEventListener("mouseleave", startAutoPlay);
+  carousel.addEventListener("mousemove", resetAutoPlayTimer);
+  carousel.addEventListener("click", resetAutoPlayTimer);
 
   showSlide(currentIndex);
   startAutoPlay();
@@ -350,11 +461,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const videoArrowRight = document.querySelector(".video-arrow-right");
 
   let videoCurrentIndex = 0;
-  let videoAutoPlayInterval;
+  let videoAutoPlayTimeout;
 
   function showVideoSlide(index) {
     const offset = -index * 100;
     videoCarouselImages.style.transform = `translateX(${offset}%)`;
+    videoCurrentIndex = index;
   }
 
   function nextVideoSlide() {
@@ -363,16 +475,21 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function prevVideoSlide() {
-    videoCurrentIndex = (videoCurrentIndex - 1 + carouselItems.length) % videoCarouselItems.length;
+    videoCurrentIndex = (videoCurrentIndex - 1 + videoCarouselItems.length) % videoCarouselItems.length;
     showVideoSlide(videoCurrentIndex);
   }
 
+  function resetVideoAutoPlayTimer() {
+    clearTimeout(videoAutoPlayTimeout);
+    videoAutoPlayTimeout = setTimeout(nextVideoSlide, 20000); // 20 seconds
+  }
+
   function startVideoAutoPlay() {
-    videoAutoPlayInterval = setInterval(nextVideoSlide, 15000);
+    resetVideoAutoPlayTimer();
   }
 
   function stopVideoAutoPlay() {
-    clearInterval(videoAutoPlayInterval);
+    clearTimeout(videoAutoPlayTimeout);
   }
 
   videoArrowLeft.addEventListener("click", () => {
@@ -389,10 +506,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
   videoCarousel.addEventListener("mouseenter", stopVideoAutoPlay);
   videoCarousel.addEventListener("mouseleave", startVideoAutoPlay);
+  videoCarousel.addEventListener("mousemove", resetVideoAutoPlayTimer);
+  videoCarousel.addEventListener("click", resetVideoAutoPlayTimer);
 
   showVideoSlide(videoCurrentIndex);
   startVideoAutoPlay();
-
   // Contact Form Submission Handling
   const contactForm = document.getElementById("contact-form");
   if (contactForm) {
