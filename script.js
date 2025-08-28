@@ -5,19 +5,29 @@ const $$ = (q, c=document) => Array.from(c.querySelectorAll(q));
 // Year
 $('#year').textContent = new Date().getFullYear();
 
-// Mobile nav
+// Mobile nav + lock background scroll when open
 (() => {
   const burger = $('.hamburger'); const links = $('.nav-links');
   if(!burger || !links) return;
+  const body = document.body;
   burger.addEventListener('click', () => {
     const open = links.classList.toggle('open');
     burger.setAttribute('aria-expanded', String(open));
+    body.classList.toggle('no-scroll', open);
     const [a,b,c] = burger.children;
     a.style.transform = open ? 'translateY(7px) rotate(45deg)' : '';
     b.style.opacity = open ? '0' : '';
     c.style.transform = open ? 'translateY(-7px) rotate(-45deg)' : '';
   });
-  links.addEventListener('click', e => { if (e.target.matches('a')) links.classList.remove('open'); });
+  links.addEventListener('click', e => {
+    if (e.target.matches('a')) {
+      links.classList.remove('open');
+      document.body.classList.remove('no-scroll');
+      const [a,b,c] = burger.children;
+      a.style.transform = ''; b.style.opacity = ''; c.style.transform = '';
+      burger.setAttribute('aria-expanded', 'false');
+    }
+  });
 })();
 
 // Countdown for Connect (Jan 1, 2026)
@@ -38,22 +48,50 @@ $('#year').textContent = new Date().getFullYear();
   tick(); setInterval(tick, 1000);
 })();
 
-// Connect: PNG screenshot rail
+// Connect: PNG screenshot rail + swipe
 (() => {
   const track = $('#connect-track'); if(!track) return;
   const l = $('.device-arrow.left'); const r = $('.device-arrow.right');
-  function step(dir){
+
+  function cardWidth(){
     const card = track.querySelector('img.device-png');
-    if(!card) return;
-    const gap = parseFloat(getComputedStyle(track).columnGap || getComputedStyle(track).gap || '16');
-    const delta = card.getBoundingClientRect().width + gap;
-    track.scrollBy({ left: dir * delta, behavior:'smooth' });
+    if(!card) return 320;
+    const cs = getComputedStyle(track);
+    const gap = parseFloat(cs.columnGap || cs.gap || '16');
+    return card.getBoundingClientRect().width + gap;
   }
-  l.addEventListener('click', ()=>step(-1));
-  r.addEventListener('click', ()=>step(1));
+  function step(dir){ track.scrollBy({ left: dir * cardWidth(), behavior: 'smooth' }); }
+
+  if (l) l.addEventListener('click', ()=>step(-1));
+  if (r) r.addEventListener('click', ()=>step(1));
+
+  // Swipe / drag
+  let startX = 0, scrollStart = 0, isDown = false, lastX = 0;
+  const start = (x) => { isDown = true; startX = x; scrollStart = track.scrollLeft; lastX = x; };
+  const move = (x) => {
+    if(!isDown) return;
+    const dx = x - startX;
+    track.scrollLeft = scrollStart - dx;
+    lastX = x;
+  };
+  const end = () => {
+    if(!isDown) return;
+    const dx = lastX - startX;
+    isDown = false;
+    // Snap to next/prev card if swipe was meaningful
+    if (Math.abs(dx) > 40) step(dx > 0 ? -1 : 1);
+  };
+
+  track.addEventListener('mousedown', (e)=>start(e.clientX));
+  track.addEventListener('mousemove', (e)=>move(e.clientX));
+  window.addEventListener('mouseup', end);
+
+  track.addEventListener('touchstart', (e)=>start(e.touches[0].clientX), { passive:true });
+  track.addEventListener('touchmove', (e)=>move(e.touches[0].clientX), { passive:true });
+  track.addEventListener('touchend', end);
 })();
 
-// Anthropocene: Videos only
+// Empreintes: videos + lightbox
 (() => {
   const main = $('#anthro-main');
   const playMain = $('#play-main');
@@ -142,6 +180,48 @@ $('#year').textContent = new Date().getFullYear();
   if (next) next.addEventListener('click', ()=>go(1));
 
   lb.addEventListener('click', (e)=>{ if(e.target === lb) closeLightbox(); });
+})();
+
+/* 3D Craft slideshow logic (fixed + swipe) */
+(() => {
+  const wrap = $('#craft-slideshow');
+  if(!wrap) return;
+  const slides = $$('img', wrap);
+  const prevBtn = $('#prev-slide', wrap.parentElement || document);
+  const nextBtn = $('#next-slide', wrap.parentElement || document);
+  if (slides.length === 0) return;
+
+  let index = slides.findIndex(s => s.classList.contains('active'));
+  if (index < 0) index = 0;
+
+  function show(i){
+    index = (i + slides.length) % slides.length;
+    slides.forEach((img, k) => img.classList.toggle('active', k === index));
+  }
+
+  if (prevBtn) prevBtn.addEventListener('click', () => show(index - 1));
+  if (nextBtn) nextBtn.addEventListener('click', () => show(index + 1));
+
+  // Auto-advance (respect reduced motion)
+  const auto = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let timer = auto ? setInterval(() => show(index + 1), 5000) : null;
+  wrap.addEventListener('mouseenter', () => { if (timer) clearInterval(timer); });
+  wrap.addEventListener('mouseleave', () => { if (auto) timer = setInterval(() => show(index + 1), 5000); });
+
+  // Swipe gestures
+  let sX = 0, lX = 0, dragging = false;
+  const start = (x) => { dragging = true; sX = x; lX = x; };
+  const move  = (x) => { if (dragging) lX = x; };
+  const end   = () => {
+    if(!dragging) return;
+    const dx = lX - sX;
+    dragging = false;
+    if (Math.abs(dx) > 40) show(index + (dx < 0 ? 1 : -1));
+  };
+
+  wrap.addEventListener('touchstart', e => start(e.touches[0].clientX), { passive:true });
+  wrap.addEventListener('touchmove',  e => move(e.touches[0].clientX),  { passive:true });
+  wrap.addEventListener('touchend', end);
 })();
 
 /* WebGL backgrounds (original + mirrored) */
