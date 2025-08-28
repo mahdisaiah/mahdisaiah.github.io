@@ -44,6 +44,9 @@ body{
 .skip-link{position:absolute;left:-999px}
 .skip-link:focus{position:fixed;left:16px;top:16px;background:#000;color:#fff;padding:10px 14px;border-radius:8px;z-index:9999}
 
+/* Lock scroll when mobile nav open */
+.no-scroll{overflow:hidden}
+
 /* WebGL layers */
 #webgl-bg,
 #webgl-bg-2{
@@ -74,7 +77,7 @@ body{
 .nav{width:100%}
 .nav .nav-links{
   display:flex;gap:18px;align-items:center;list-style:none;margin:0;padding:0;
-  justify-content:center; /* center the links row */
+  justify-content:center;
 }
 .nav a{color:var(--fg);text-decoration:none;font-weight:600;opacity:.9}
 .nav a:hover{opacity:1}
@@ -137,7 +140,6 @@ body{
 .card--padded{padding:36px}
 .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:center}
 .grid-2.gap{align-items:start}
-.align-center{align-items:center}
 
 /* CONNECT */
 .connect-hero{
@@ -166,7 +168,14 @@ body{
 .chips--connect li{border-color:rgba(0,68,85,0.45); background:rgba(0,68,85,0.08); color:#d5ebef}
 
 .release{margin-top:14px}
-.release__row{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+/* Date next to label */
+.release__row{
+  display:flex;
+  align-items:center;
+  justify-content:flex-start;
+  gap:8px;
+  margin-bottom:8px;
+}
 .badge{background:linear-gradient(135deg,#fafbfc,#8b8f96);color:#0b0b0f;border-radius:999px;padding:6px 10px;font-weight:800}
 .badge--connect{background:linear-gradient(135deg,#d7f0f6,#7eb5c1)}
 .countdown{font-variant-numeric:tabular-nums;color:#d5d8e2;margin-bottom:8px}
@@ -175,16 +184,29 @@ body{
 /* Device rail */
 .device-rail{position:relative}
 .device-track{
-  display:flex;gap:16px;overflow:hidden;scroll-behavior:smooth;padding:2px
+  display:flex;
+  gap:16px;
+  overflow:hidden;
+  scroll-behavior:smooth;
+  padding:2px;
+  -webkit-overflow-scrolling: touch;
 }
+.device-track::-webkit-scrollbar{display:none}
 .device-png{
-  width:min(320px,36vw); height:auto; border-radius:18px;
-  border:1px solid rgba(255,255,255,0.08); box-shadow:0 24px 60px rgba(0,0,0,.45);
-  flex:0 0 auto; background:#0f1014;
+  width:min(320px,36vw);
+  height:auto;
+  flex:0 0 auto;
+  display:block;
+
+  /* NO artificial frame, so transparent PNGs show cleanly */
+  background:transparent;
+  border:none;
+  border-radius:0;
+  box-shadow:none;
 }
 .device-arrow{
   position:absolute;top:50%;transform:translateY(-50%);z-index:2;border:0;
-  width:42px;height:42px;border-radius:50%;display:grid;place-items:center;
+  width:44px;height:44px;border-radius:50%;display:grid;place-items:center;
   background:linear-gradient(135deg,#fafbfc,#8b8f96);color:#0b0b0f;font-size:26px;font-weight:800;cursor:pointer;
   box-shadow:0 10px 30px rgba(0,0,0,.35)
 }
@@ -228,22 +250,29 @@ body{
 .lightbox-prev{left:18px}
 .lightbox-next{right:18px}
 
-/* 3D Craft slideshow */
+/* 3D Craft: wider container + taller slideshow (more length) */
+#craft .container{ width:min(1400px, 100%); }
 .slideshow{
   position:relative;
   overflow:hidden;
   border-radius:var(--radius);
-  height:clamp(320px, 60vh, 760px);
+  height:clamp(480px, 72vh, 960px);
   border:1px solid var(--stroke);
   background:#0e0f14;
+  width:100%;
+  margin-inline:auto;
 }
 .slideshow img{
-  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  position:absolute;inset:0;width:100%;height:100%;
+  object-fit:cover; object-position:center;
   opacity:0;transform:scale(1.06);
   transition:opacity .9s ease, transform 12s ease;
 }
 .slideshow img.active{opacity:1;transform:scale(1)}
-.slide-controls{position:absolute;right:12px;bottom:12px;display:flex;gap:8px}
+.slide-controls{
+  position:absolute;right:12px;bottom:12px;display:flex;gap:8px
+}
+.slide-controls .btn{min-width:44px;min-height:44px;}
 
 /* Skills */
 .skills-grid{
@@ -265,6 +294,31 @@ body{
 }
 .tl-dot--bdx{background:var(--bdx)}
 .tl-dot--connect{background:var(--connect)}
+/* Live glow for current item */
+.tl-dot--live{
+  position:relative;
+  background:linear-gradient(180deg, #0aa, #066);
+  box-shadow:0 0 0 0 rgba(0,170,170,0.45);
+  animation:live-ping 2.2s infinite ease-out;
+}
+.tl-dot--live::after{
+  content:"";
+  position:absolute; inset:-6px;
+  border-radius:50%;
+  border:2px solid rgba(0,170,170,0.45);
+  animation:live-ripple 2.2s infinite ease-out;
+}
+@keyframes live-ping{
+  0%{ box-shadow:0 0 0 0 rgba(0,170,170,0.45) }
+  70%{ box-shadow:0 0 0 8px rgba(0,170,170,0) }
+  100%{ box-shadow:0 0 0 0 rgba(0,170,170,0) }
+}
+@keyframes live-ripple{
+  0%{ transform:scale(0.8); opacity:0.9 }
+  70%{ transform:scale(1.6); opacity:0 }
+  100%{ transform:scale(1.6); opacity:0 }
+}
+
 .tl-body{min-width:0}
 .tl-top{display:flex;justify-content:space-between;gap:12px}
 .tl-time{color:var(--muted)}
@@ -285,7 +339,7 @@ body{
 .field textarea{min-height:160px;resize:vertical}
 .actions{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end}
 .actions--center{justify-content:center}
-.contact-form .actions{margin-top:14px;} /* keeps button a bit lower than textarea */
+.contact-form .actions{margin-top:14px;}
 
 /* Footer (no logo) */
 .footer{
@@ -317,16 +371,22 @@ body{
   .connect-hero__inner{grid-template-columns:1fr}
   .device-png{width:min(380px,80vw)}
 }
-@media (max-width: 1040px){
-  .skills-grid{grid-template-columns:repeat(2,1fr)}
-}
 @media (max-width: 900px){
   .video-thumbs{grid-template-columns:repeat(2, 1fr)}
+  /* On small screens, hide arrows & let swipe do the work */
+  .device-arrow{display:none}
+  .device-track{overflow-x:auto}
 }
 @media (max-width: 820px){
   .grid-2{grid-template-columns:1fr}
-  .nav .nav-links{display:none;position:fixed;top:64px;right:16px;left:16px;background:rgba(10,12,18,.98);border:1px solid var(--stroke);border-radius:14px;padding:12px;flex-direction:column;gap:10px}
+  .nav .nav-links{
+    display:none;position:fixed;top:64px;right:16px;left:16px;
+    background:rgba(10,12,18,.98);border:1px solid var(--stroke);
+    border-radius:14px;padding:12px;flex-direction:column;gap:10px
+  }
   .nav .nav-links.open{display:flex}
   .hamburger{display:block}
   .connect-highlights{grid-template-columns:1fr}
+  /* Slightly reduce slideshow height for short phones */
+  .slideshow{height:clamp(380px, 68vh, 820px)}
 }
