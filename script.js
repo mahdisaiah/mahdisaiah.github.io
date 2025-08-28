@@ -1,1036 +1,235 @@
-document.addEventListener("DOMContentLoaded", () => {
-  // Three.js Particle System for Hero Section
-  function initHeroCanvas() {
-    const canvas = document.getElementById('hero-canvas');
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-    const renderer = new THREE.WebGLRenderer({ canvas, alpha: true });
-    renderer.setSize(window.innerWidth, window.innerHeight);
+// Helpers
+const $ = (q, c=document) => c.querySelector(q);
+const $$ = (q, c=document) => Array.from(c.querySelectorAll(q));
 
-    // Create particle system with custom shader
-    const particlesGeometry = new THREE.BufferGeometry();
-    const particlesCount = 10000;
-    const posArray = new Float32Array(particlesCount * 3);
-    const sizes = new Float32Array(particlesCount);
-    for (let i = 0; i < particlesCount; i++) {
-      posArray[i * 3] = (Math.random() - 0.5) * 800;
-      posArray[i * 3 + 1] = (Math.random() - 0.5) * 800;
-      posArray[i * 3 + 2] = (Math.random() - 0.5) * 800;
-      sizes[i] = Math.random() * 5 + 2;
-    }
-    particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
-    particlesGeometry.setAttribute('size', new THREE.BufferAttribute(sizes, 1));
+// Year
+$('#year').textContent = new Date().getFullYear();
 
-    const vertexShader = `
-      attribute float size;
-      varying vec3 vPosition;
-      void main() {
-        vPosition = position;
-        gl_PointSize = size;
-        gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
-      }
-    `;
-    const fragmentShader = `
-      varying vec3 vPosition;
-      void main() {
-        float dist = length(gl_PointCoord - vec2(0.5));
-        if (dist > 0.5) discard;
-        gl_FragColor = vec4(0.2, 0.2, 0.2, 0.8 - dist * 0.5); // #333333
-      }
-    `;
-    const particlesMaterial = new THREE.ShaderMaterial({
-      vertexShader,
-      fragmentShader,
-      transparent: true,
-      blending: THREE.AdditiveBlending,
-    });
-    const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
-    scene.add(particlesMesh);
-
-    camera.position.z = 100;
-
-    // Mouse interaction
-    let mouseX = 0, mouseY = 0;
-    document.addEventListener('mousemove', (event) => {
-      mouseX = (event.clientX / window.innerWidth) * 2 - 1;
-      mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
-    });
-
-    // Animation
-    function animate() {
-      requestAnimationFrame(animate);
-      const time = Date.now() * 0.0001;
-      particlesMesh.rotation.y += 0.001;
-      particlesMesh.rotation.x += 0.0005;
-      camera.position.x += Math.sin(time) * 10;
-      camera.position.y += Math.cos(time) * 10;
-      camera.position.x += (mouseX * 100 - camera.position.x) * 0.05;
-      camera.position.y += (-mouseY * 100 - camera.position.y) * 0.05;
-      camera.lookAt(scene.position);
-      renderer.render(scene, camera);
-    }
-    animate();
-
-    // Resize handling
-    window.addEventListener('resize', () => {
-      renderer.setSize(window.innerWidth, window.innerHeight);
-      camera.aspect = window.innerWidth / window.innerHeight;
-      camera.updateProjectionMatrix();
-    });
-  }
-
-  // Text Animation
-  function initTextAnimation() {
-    gsap.from(".hero-title", {
-      opacity: 0,
-      y: 50,
-      duration: 1.5,
-      ease: "power3.out",
-    });
-    gsap.from(".hero-subtitle", {
-      opacity: 0,
-      y: 50,
-      duration: 1.5,
-      delay: 0.3,
-      ease: "power3.out",
-    });
-
-    const heroContent = document.querySelector('.hero-content');
-    heroContent.addEventListener('mousemove', (e) => {
-      const rect = heroContent.getBoundingClientRect();
-      const x = e.clientX - rect.left - rect.width / 2;
-      const y = e.clientY - rect.top - rect.height / 2;
-      gsap.to(".hero-title", {
-        x: x * 0.1,
-        y: y * 0.1,
-        rotationX: y * 0.02,
-        rotationY: -x * 0.02,
-        duration: 0.5,
-      });
-      gsap.to(".hero-subtitle", {
-        x: x * 0.05,
-        y: y * 0.05,
-        rotationX: y * 0.01,
-        rotationY: -x * 0.01,
-        duration: 0.5,
-      });
-    });
-
-    heroContent.addEventListener('mouseleave', () => {
-      gsap.to(".hero-title, .hero-subtitle", {
-        x: 0,
-        y: 0,
-        rotationX: 0,
-        rotationY: 0,
-        duration: 0.5,
-      });
-    });
-  }
-
-  
-   
-// 3D Model Carousel Logic
-  const modelCarousel = document.querySelector(".model-carousel");
-  const modelViewers = document.querySelectorAll(".model-viewer");
-  const modelArrowLeft = document.querySelector(".model-arrow-left");
-  const modelArrowRight = document.querySelector(".model-arrow-right");
-
-  let modelCurrentIndex = 0;
-  let modelAutoPlayInterval;
-  let inactivityTimeout;
-
-  // Update Model Controller to handle multiple models
-  const ModelController = (() => {
-    const viewers = document.querySelectorAll('.model-viewer');
-
-    if (!viewers.length) {
-      console.error('No Model Viewer elements found.');
-      return {
-        toggleRotate: () => console.warn('Model Viewer not initialized.'),
-        toggleAR: () => console.warn('Model Viewer not initialized.'),
-        resetView: () => console.warn('Model Viewer not initialized.'),
-        setExposure: () => console.warn('Model Viewer not initialized.'),
-        getState: () => ({ error: 'Model Viewer not initialized.' })
-      };
-    }
-
-    // State management for active viewer
-    const state = {
-      isRotating: viewers[0].hasAttribute('auto-rotate'),
-      exposure: parseFloat(viewers[0].getAttribute('exposure') || '1.0'),
-      shadowIntensity: parseFloat(viewers[0].getAttribute('shadow-intensity') || '1.0'),
-      fieldOfView: 45,
-      orbit: { theta: 0, phi: 75, radius: 'auto' },
-      animationFrameId: null
-    };
-
-    const applyState = async () => {
-      try {
-        const activeViewer = viewers[modelCurrentIndex];
-        if (state.isRotating) {
-          activeViewer.setAttribute('auto-rotate', '');
-        } else {
-          activeViewer.removeAttribute('auto-rotate');
-        }
-        activeViewer.exposure = state.exposure;
-        activeViewer.shadowIntensity = state.shadowIntensity;
-        activeViewer.fieldOfView = `${state.fieldOfView}deg`;
-        activeViewer.cameraOrbit = `${state.orbit.theta}deg ${state.orbit.phi}deg ${state.orbit.radius}`;
-        activeViewer.cameraTarget = 'auto auto auto';
-      } catch (error) {
-        console.error('Error applying state to Model Viewer:', error);
-      }
-    };
-
-    const updateState = async (newState) => {
-      Object.assign(state, newState);
-      await applyState();
-    };
-
-    const smoothUpdate = async (targetKey, targetValue, duration = 500) => {
-      const startValue = state[targetKey];
-      const startTime = performance.now();
-
-      const animate = async (currentTime) => {
-        const elapsed = currentTime - startTime;
-        const progress = Math.min(elapsed / duration, 1);
-        const easedProgress = 1 - Math.pow(1 - progress, 3); // Ease-out cubic
-        const newValue = startValue + (targetValue - startValue) * easedProgress;
-
-        await updateState({ [targetKey]: newValue });
-
-        if (progress < 1) {
-          state.animationFrameId = requestAnimationFrame(animate);
-        } else {
-          cancelAnimationFrame(state.animationFrameId);
-        }
-      };
-
-      cancelAnimationFrame(state.animationFrameId);
-      state.animationFrameId = requestAnimationFrame(animate);
-    };
-
-    const initViewer = () => {
-      viewers.forEach((viewer, index) => {
-        try {
-          if (!viewer.hasAttribute('src')) {
-            console.warn(`No model source specified for viewer ${index}. Setting default model.`);
-            viewer.setAttribute('src', index === 0 ? 'models/your-model.glb' : 'models/new-model.glb');
-          }
-
-          viewer.setAttribute('ar-modes', 'webxr scene-viewer quick-look');
-          viewer.setAttribute('environment-image', 'neutral');
-          viewer.setAttribute('camera-controls', '');
-          viewer.setAttribute('interaction-prompt', 'when-focused');
-          viewer.setAttribute('auto-rotate-delay', '0');
-
-          viewer.addEventListener('load', () => {
-            console.log(`3D model ${index} loaded successfully.`);
-            if (index === modelCurrentIndex) applyState();
-          });
-
-          viewer.addEventListener('error', (event) => {
-            console.error(`Error loading 3D model ${index}:`, event.detail);
-            alert('Failed to load 3D model. Check the model file path or format.');
-          });
-        } catch (error) {
-          console.error(`Error initializing Model Viewer ${index}:`, error);
-        }
-      });
-      console.log('Model Viewers initialized.');
-    };
-
-    const controller = {
-      toggleRotate: async () => {
-        await updateState({ isRotating: !state.isRotating });
-        console.log(`Auto-rotation ${state.isRotating ? 'enabled' : 'disabled'}.`);
-        const toggleRotateBtn = document.getElementById('toggle-rotate');
-        if (toggleRotateBtn) {
-          toggleRotateBtn.textContent = state.isRotating ? 'Stop Rotation' : 'Start Rotation';
-        }
-      },
-
-      toggleAR: async () => {
-        try {
-          const activeViewer = viewers[modelCurrentIndex];
-          if (activeViewer.canActivateAR) {
-            activeViewer.activateAR();
-            console.log('AR mode activated.');
-          } else {
-            alert('AR not supported on this device/browser. Try Android with WebXR or iOS with Quick Look.');
-            console.warn('AR mode not supported.');
-          }
-        } catch (error) {
-          console.error('Error activating AR:', error);
-          alert('Failed to activate AR.');
-        }
-      },
-
-      resetView: async () => {
-        await smoothUpdate('fieldOfView', 45, 500);
-        await updateState({ orbit: { theta: 0, phi: 75, radius: 'auto' } });
-        console.log('View reset.');
-      },
-
-      setExposure: async (value) => {
-        const exposureValue = Math.max(0.1, Math.min(2.0, parseFloat(value)));
-        await updateState({ exposure: exposureValue }); // Direct update to prevent flickering
-        console.log(`Exposure: ${exposureValue}`);
-      },
-
-      getState: () => ({ ...state })
-    };
-
-    const bindControls = () => {
-      const toggleRotateBtn = document.getElementById('toggle-rotate');
-      const toggleARBtn = document.getElementById('toggle-ar');
-      const resetViewBtn = document.getElementById('reset-view');
-      const exposureSlider = document.getElementById('exposure-slider');
-
-      if (toggleRotateBtn) console.log('Toggle Rotate button found');
-      else console.warn('Toggle Rotate button not found (ID: toggle-rotate)');
-      if (toggleARBtn) console.log('Toggle AR button found');
-      else console.warn('Toggle AR button not found (ID: toggle-ar)');
-      if (resetViewBtn) console.log('Reset View button found');
-      else console.warn('Reset View button not found (ID: reset-view)');
-      if (exposureSlider) console.log('Exposure slider found');
-      else console.warn('Exposure slider not found (ID: exposure-slider)');
-
-      if (toggleRotateBtn) {
-        toggleRotateBtn.addEventListener('click', () => {
-          console.log('Toggle Rotate button clicked');
-          controller.toggleRotate();
-          resetInactivityTimer();
-        });
-      }
-      if (toggleARBtn) {
-        toggleARBtn.addEventListener('click', () => {
-          console.log('Toggle AR button clicked');
-          controller.toggleAR();
-          resetInactivityTimer();
-        });
-      }
-      if (resetViewBtn) {
-        resetViewBtn.addEventListener('click', () => {
-          console.log('Reset View button clicked');
-          controller.resetView();
-          resetInactivityTimer();
-        });
-      }
-      if (exposureSlider) {
-        exposureSlider.addEventListener('input', (e) => {
-          console.log(`Exposure slider changed: ${e.target.value}`);
-          controller.setExposure(e.target.value);
-          resetInactivityTimer();
-        });
-      }
-    };
-
-    initViewer();
-    bindControls();
-
-    return controller;
-  })();
-
-  function showModelSlide(index) {
-    modelViewers.forEach((viewer, i) => {
-      viewer.style.display = i === index ? 'block' : 'none';
-    });
-    modelCurrentIndex = index;
-    ModelController.resetView(); // Reset view when switching models
-  }
-
-  function nextModelSlide() {
-    modelCurrentIndex = (modelCurrentIndex + 1) % modelViewers.length;
-    showModelSlide(modelCurrentIndex);
-  }
-
-  function prevModelSlide() {
-    modelCurrentIndex = (modelCurrentIndex - 1 + modelViewers.length) % modelViewers.length;
-    showModelSlide(modelCurrentIndex);
-  }
-
-  function resetInactivityTimer() {
-    clearTimeout(inactivityTimeout);
-    inactivityTimeout = setTimeout(nextModelSlide, 30000); // 30 seconds
-  }
-
-  function startModelAutoPlay() {
-    resetInactivityTimer();
-  }
-
-  function stopModelAutoPlay() {
-    clearTimeout(inactivityTimeout);
-  }
-
-  modelArrowLeft.addEventListener("click", () => {
-    prevModelSlide();
-    stopModelAutoPlay();
-    startModelAutoPlay();
+// Mobile nav
+(() => {
+  const burger = $('.hamburger'); const links = $('.nav-links');
+  if(!burger || !links) return;
+  burger.addEventListener('click', () => {
+    const open = links.classList.toggle('open');
+    burger.setAttribute('aria-expanded', String(open));
+    const [a,b,c] = burger.children;
+    a.style.transform = open ? 'translateY(7px) rotate(45deg)' : '';
+    b.style.opacity = open ? '0' : '';
+    c.style.transform = open ? 'translateY(-7px) rotate(-45deg)' : '';
   });
+  links.addEventListener('click', e => { if (e.target.matches('a')) links.classList.remove('open'); });
+})();
 
-  modelArrowRight.addEventListener("click", () => {
-    nextModelSlide();
-    stopModelAutoPlay();
-    startModelAutoPlay();
-  });
-
-  modelCarousel.addEventListener("mouseenter", stopModelAutoPlay);
-  modelCarousel.addEventListener("mouseleave", startModelAutoPlay);
-  modelCarousel.addEventListener("mousemove", resetInactivityTimer);
-  modelCarousel.addEventListener("click", resetInactivityTimer);
-
-  showModelSlide(modelCurrentIndex);
-  startModelAutoPlay();
-
-
-
-  // Hamburger Menu Toggle
-  const hamburger = document.querySelector('.hamburger');
-  const navLinks = document.querySelector('.nav-links');
-  hamburger.addEventListener('click', () => {
-    navLinks.classList.toggle('active');
-    hamburger.querySelector('i').classList.toggle('fa-bars');
-    hamburger.querySelector('i').classList.toggle('fa-times');
-  });
-
-  // Portfolio Carousel Logic
-  const carousel = document.querySelector(".carousel");
-  const carouselImages = document.querySelector(".carousel-images");
-  const carouselItems = document.querySelectorAll(".carousel-item");
-  const arrowLeft = document.querySelector(".arrow-left");
-  const arrowRight = document.querySelector(".arrow-right");
-
-  let currentIndex = 0;
-  let autoPlayTimeout;
-
-  function showSlide(index) {
-    const offset = -index * 100;
-    carouselImages.style.transform = `translateX(${offset}%)`;
-    currentIndex = index;
+// Countdown for Connect (Jan 1, 2026)
+(() => {
+  const el = $('#connect-countdown');
+  if(!el) return;
+  const target = new Date('2026-01-01T00:00:00');
+  function tick(){
+    const now = new Date();
+    const ms = target - now;
+    if (ms <= 0){ el.textContent = 'Launching — iOS & Android (free)'; return; }
+    const d = Math.floor(ms/86400000);
+    const h = Math.floor((ms%86400000)/3600000);
+    const m = Math.floor((ms%3600000)/60000);
+    const s = Math.floor((ms%60000)/1000);
+    el.textContent = `${d}d ${String(h).padStart(2,'0')}h ${String(m).padStart(2,'0')}m ${String(s).padStart(2,'0')}s`;
   }
+  tick(); setInterval(tick, 1000);
+})();
 
-  function nextSlide() {
-    currentIndex = (currentIndex + 1) % carouselItems.length;
-    showSlide(currentIndex);
+// Connect: PNG screenshot rail
+(() => {
+  const track = $('#connect-track'); if(!track) return;
+  const l = $('.device-arrow.left'); const r = $('.device-arrow.right');
+  function step(dir){
+    const card = track.querySelector('img.device-png');
+    if(!card) return;
+    const gap = parseFloat(getComputedStyle(track).columnGap || getComputedStyle(track).gap || '16');
+    const delta = card.getBoundingClientRect().width + gap;
+    track.scrollBy({ left: dir * delta, behavior:'smooth' });
   }
+  l.addEventListener('click', ()=>step(-1));
+  r.addEventListener('click', ()=>step(1));
+})();
 
-  function prevSlide() {
-    currentIndex = (currentIndex - 1 + carouselItems.length) % carouselItems.length;
-    showSlide(currentIndex);
-  }
+// Anthropocene: Videos only
+(() => {
+  const main = $('#anthro-main');
+  const playMain = $('#play-main');
+  const openGallery = $('#open-gallery');
+  const thumbs = $$('.video-thumbs .thumb');
 
-  function resetAutoPlayTimer() {
-    clearTimeout(autoPlayTimeout);
-    autoPlayTimeout = setTimeout(nextSlide, 20000); // 20 seconds
-  }
-
-  function startAutoPlay() {
-    resetAutoPlayTimer();
-  }
-
-  function stopAutoPlay() {
-    clearTimeout(autoPlayTimeout);
-  }
-
-  arrowLeft.addEventListener("click", () => {
-    prevSlide();
-    stopAutoPlay();
-    startAutoPlay();
-  });
-
-  arrowRight.addEventListener("click", () => {
-    nextSlide();
-    stopAutoPlay();
-    startAutoPlay();
-  });
-
-  carousel.addEventListener("mouseenter", stopAutoPlay);
-  carousel.addEventListener("mouseleave", startAutoPlay);
-  carousel.addEventListener("mousemove", resetAutoPlayTimer);
-  carousel.addEventListener("click", resetAutoPlayTimer);
-
-  showSlide(currentIndex);
-  startAutoPlay();
-
-  // Video Carousel Logic
-  const videoCarousel = document.querySelector(".video-carousel");
-  const videoCarouselImages = document.querySelector(".video-carousel-images");
-  const videoCarouselItems = document.querySelectorAll(".video-carousel-item");
-  const videoArrowLeft = document.querySelector(".video-arrow-left");
-  const videoArrowRight = document.querySelector(".video-arrow-right");
-
-  let videoCurrentIndex = 0;
-  let videoAutoPlayTimeout;
-
-  function showVideoSlide(index) {
-    const offset = -index * 100;
-    videoCarouselImages.style.transform = `translateX(${offset}%)`;
-    videoCurrentIndex = index;
-  }
-
-  function nextVideoSlide() {
-    videoCurrentIndex = (videoCurrentIndex + 1) % videoCarouselItems.length;
-    showVideoSlide(videoCurrentIndex);
-  }
-
-  function prevVideoSlide() {
-    videoCurrentIndex = (videoCurrentIndex - 1 + videoCarouselItems.length) % videoCarouselItems.length;
-    showVideoSlide(videoCurrentIndex);
-  }
-
-  function resetVideoAutoPlayTimer() {
-    clearTimeout(videoAutoPlayTimeout);
-    videoAutoPlayTimeout = setTimeout(nextVideoSlide, 20000); // 20 seconds
-  }
-
-  function startVideoAutoPlay() {
-    resetVideoAutoPlayTimer();
-  }
-
-  function stopVideoAutoPlay() {
-    clearTimeout(videoAutoPlayTimeout);
-  }
-
-  videoArrowLeft.addEventListener("click", () => {
-    prevVideoSlide();
-    stopVideoAutoPlay();
-    startVideoAutoPlay();
-  });
-
-  videoArrowRight.addEventListener("click", () => {
-    nextVideoSlide();
-    stopVideoAutoPlay();
-    startVideoAutoPlay();
-  });
-
-  videoCarousel.addEventListener("mouseenter", stopVideoAutoPlay);
-  videoCarousel.addEventListener("mouseleave", startVideoAutoPlay);
-  videoCarousel.addEventListener("mousemove", resetVideoAutoPlayTimer);
-  videoCarousel.addEventListener("click", resetVideoAutoPlayTimer);
-
-  showVideoSlide(videoCurrentIndex);
-  startVideoAutoPlay();
-  // Contact Form Submission Handling
-  const contactForm = document.getElementById("contact-form");
-  if (contactForm) {
-    contactForm.addEventListener("submit", function (event) {
-      event.preventDefault();
-      const formData = new FormData(contactForm);
-      fetch(contactForm.action, {
-        method: "POST",
-        body: formData,
-        headers: {
-          Accept: "application/json",
-        },
-      })
-        .then((response) => {
-          if (response.ok) {
-            alert("Thank you for your message! I'll get back to you soon.");
-            contactForm.reset();
-          } else {
-            alert("Oops! Something went wrong. Please try again.");
-          }
-        })
-        .catch((error) => {
-          alert("Oops! Something went wrong. Please try again.");
-        });
-    });
-  }
-
-  // Chatbot Logic
-  const chatbotToggle = document.querySelector('.chatbot-toggle');
-  const chatbotWindow = document.querySelector('.chatbot-window');
-  const chatbotClose = document.querySelector('.chatbot-close');
-  const chatbotInput = document.getElementById('chatbot-input');
-  const chatbotSend = document.getElementById('chatbot-send');
-  const chatbotMessages = document.getElementById('chatbot-messages');
-
-  // Extensive Q&A data with 100+ conversational triggers
-  const qaData = [
-    {
-      question: 'What are your skills?',
-      keywords: ['skills', 'what can you do', 'abilities', 'compétences', 'expertise', 'talents', 'what you good at', 'skillset'],
-      response: 'Mahdi is a 3D Generalist and Game Designer proficient in Blender, Unity, Unreal Engine, and Substance Painter for creating immersive digital environments. He has expertise in programming character controllers and AI-powered NPCs using C++, Python, and C#. Additionally, he’s skilled in algorithm design, object-oriented programming, machine learning, data analysis, web development, cloud development, and distributed systems.'
-    },
-    {
-      question: 'Where do I find your work?',
-      keywords: ['portfolio', 'projects', 'work', 'travaux', 'showcase', 'creations', 'where’s your stuff', 'gallery'],
-      response: 'You can explore Mahdi’s portfolio in the Portfolio section, which features a diverse collection of 3D models, game prototypes, AI-driven NPC systems, real-time dynamic environments, and data analysis projects.'
-    },
-    {
-      question: 'Who is Mahdi?',
-      keywords: ['about', 'who is mahdi', 'background', 'à propos', 'bio', 'mahdi', 'who’s this guy', 'tell me about mahdi'],
-      response: 'Mahdi Saiah is a 22-year-old 3D Generalist and Game Designer expanding into software development, data science, and artificial intelligence. With a background in creating immersive digital environments using Blender, Unity, Unreal Engine, and Substance Painter, he blends creative vision with technical expertise. He’s currently deepening his skills in algorithm design, machine learning, and distributed systems, seeking work-study opportunities in tech.'
-    },
-    {
-      question: 'How can I contact Mahdi?',
-      keywords: ['contact', 'reach', 'hire', 'contacter', 'get in touch', 'message', 'hit you up', 'connect'],
-      response: 'You can reach Mahdi through the Contact section of this website or connect with him on LinkedIn. He is available for work-study opportunities (alternance) in application development, data engineering, data science, IT systems management, or research engineering.'
-    },
-    {
-      question: 'What game development experience do you have?',
-      keywords: ['game development', 'games', 'unity', 'unreal', 'développement de jeux', 'game dev', 'gaming', 'game design'],
-      response: 'Mahdi has extensive experience in game development using Unity and Unreal Engine, programming in C# and C++. He has developed fully coded character controllers, AI-powered NPCs, and real-time dynamic environments for PC, VR platforms like Meta Quest, and mobile devices, focusing on engaging gameplay and immersive experiences.'
-    },
-    {
-      question: 'Tell me about your 3D modeling work',
-      keywords: ['3d modeling', 'animation', 'blender', 'maya', 'modélisation 3d', '3d work', 'modeling', '3d art'],
-      response: 'Mahdi creates high-quality 3D models and animations using Blender, Unity, Unreal Engine, and Substance Painter. His work includes detailed characters, immersive environments, and real-time dynamic scenes for VR and game projects, blending artistry with technical precision.'
-    },
-    {
-      question: 'Hello',
-      keywords: ['hello', 'hi', 'hey', 'bonjour', 'salut', 'yo', 'whatup', 'hola', 'sup'],
-      response: 'Greetings! I’m Mahdi’s AI Assistant, here to provide information about his skills in 3D design, game development, software development, and data science. How can I assist you today?'
-    },
-    {
-      question: 'How are you?',
-      keywords: ['how are you', 'how you doing', 'ça va', 'comment vas-tu', 'how’s it hangin', 'you good', 'how you holdin up', 'how’s life'],
-      response: 'I’m doing great, thank you! I’m here to answer questions about Mahdi’s expertise in 3D, AI, and software development. What would you like to know?'
-    },
-    {
-      question: 'What’s up?',
-      keywords: ['what’s up', 'what’s good', 'what’s new', 'quoi de neuf', 'sup', 'what’s poppin', 'what’s the word', 'what’s cooking'],
-      response: 'I’m here to share details about Mahdi’s projects in game design, software development, and data science. What’s on your mind—interested in his portfolio or career goals?'
-    },
-    {
-      question: 'Tell me about yourself',
-      keywords: ['about yourself', 'who are you', 'what are you', 'qui es-tu', 'tell me bout you', 'who’s this', 'your deal'],
-      response: 'I’m Mahdi’s AI Assistant, designed to provide insights into his work as a 3D Generalist, Game Designer, and aspiring software developer and data scientist. Ask me about his skills, projects, or work-study opportunities!'
-    },
-    {
-      question: 'Thanks',
-      keywords: ['thanks', 'thank you', 'merci', 'gracias', 'appreciate it', 'cheers', 'ty', 'thx'],
-      response: 'You’re very welcome! Feel free to ask more about Mahdi’s work in AI, 3D design, or software development.'
-    },
-    {
-      question: 'You’re cool',
-      keywords: ['you’re cool', 'you’re awesome', 'you rock', 't’es cool', 'you’re dope', 'nice one', 'you’re fire', 'you’re lit'],
-      response: 'Thanks for the vibe! I’m here to highlight Mahdi’s innovative projects in VR, AI, and data science. Want to explore his portfolio?'
-    },
-    {
-      question: 'Goodbye',
-      keywords: ['bye', 'goodbye', 'see you', 'au revoir', 'later', 'peace out', 'catch ya', 'adios'],
-      response: 'Thanks for visiting! Check out Mahdi’s portfolio for a showcase of his work in 3D, game design, and tech.'
-    },
-    {
-      question: 'What do you like to do?',
-      keywords: ['what do you like', 'hobbies', 'what you enjoy', 'que fais-tu', 'your thing', 'what’s your deal', 'what you into'],
-      response: 'My role is to support Mahdi by sharing his work in 3D design, game development, and emerging tech fields like AI and data science. What are your interests?'
-    },
-    {
-      question: 'What’s your favorite game?',
-      keywords: ['favorite game', 'best game', 'jeu préféré', 'what game you like', 'top game', 'game you love', 'fave game'],
-      response: 'I’m drawn to games with innovative AI and immersive mechanics, like those Mahdi builds with Unity and Unreal Engine. What’s your favorite game?'
-    },
-    {
-      question: 'Tell me a joke',
-      keywords: ['joke', 'tell me a joke', 'funny', 'blague', 'make me laugh', 'gimme a laugh', 'something funny', 'crack a joke'],
-      response: 'Why did the AI join a game dev team? To add some *byte* to the NPCs! Want to see Mahdi’s AI-powered NPC projects in his portfolio?'
-    },
-    {
-      question: 'What’s your favorite thing about Mahdi’s work?',
-      keywords: ['favorite thing', 'best part', 'what you like about', 'meilleur truc', 'mahdi’s best', 'what’s dope about mahdi'],
-      response: 'I love Mahdi’s ability to blend creative 3D artistry with technical skills in AI and software development. His portfolio showcases this fusion—what catches your eye?'
-    },
-    {
-      question: 'Can you help me with a project?',
-      keywords: ['help with project', 'collaborate', 'work together', 'aider projet', 'project help', 'team up', 'join project'],
-      response: 'I’m an AI assistant, but Mahdi is the expert for project collaborations in 3D, game design, or software development. Visit the Contact section to discuss your ideas with him.'
-    },
-    {
-      question: 'What’s the coolest project Mahdi’s done?',
-      keywords: ['coolest project', 'best project', 'favorite project', 'projet le plus cool', 'top project', 'mahdi’s best work'],
-      response: 'Mahdi’s AI-powered NPCs and real-time dynamic environments for VR platforms like Meta Quest are standout projects. Check them out in the Portfolio section!'
-    },
-    {
-      question: 'Do you like to code?',
-      keywords: ['like to code', 'coding', 'programmer', 'aimes coder', 'do you code', 'you code', 'coding vibe'],
-      response: 'Mahdi is the coding expert, skilled in C++, Python, and C# for game development, AI, and software projects. Want to learn about his coding work in Unity or data science?'
-    },
-    {
-      question: 'What’s Mahdi working on now?',
-      keywords: ['working on now', 'current project', 'what’s next', 'projet actuel', 'mahdi’s working', 'what’s he making'],
-      response: 'Mahdi is likely exploring projects in AI, data science, or software development alongside his 3D and game design work. Reach out via the Contact section for the latest updates.'
-    },
-    {
-      question: 'You’re smart',
-      keywords: ['you’re smart', 'you’re clever', 't’es malin', 'you’re sharp', 'smart bot', 'you’re brainy', 'you’re wise'],
-      response: 'Thanks! I’m designed to showcase Mahdi’s expertise in 3D, AI, and software development. Want to dive into his machine learning or game dev projects?'
-    },
-    {
-      question: 'What’s your vibe?',
-      keywords: ['your vibe', 'what’s your deal', 'what’s your style', 'c’est quoi ton truc', 'your thing', 'what’s your energy'],
-      response: 'I’m all about promoting Mahdi’s creative and technical work in 3D, AI, and software. What’s your vibe—into gaming, data science, or something else?'
-    },
-    {
-      question: 'Can you dance?',
-      keywords: ['dance', 'can you dance', 't’es danser', 'bust a move', 'dance moves', 'you dance'],
-      response: 'I don’t dance, but Mahdi’s dynamic 3D animations have great flow! Check out his portfolio for some slick visuals.'
-    },
-    {
-      question: 'What’s your favorite color?',
-      keywords: ['favorite color', 'best color', 'couleur préférée', 'what color you like', 'color vibe', 'fave color'],
-      response: 'I’d pick a vibrant teal, like the lighting in Mahdi’s VR environments. What’s your favorite color?'
-    },
-    {
-      question: 'Are you human?',
-      keywords: ['are you human', 'you real', 'es-tu humain', 'what are you', 'you a bot', 'human or not', 'you robot'],
-      response: 'I’m Mahdi’s AI Assistant, built to highlight his work in 3D, game design, and tech. Ask me about his projects!'
-    },
-    {
-      question: 'What’s the best part of being AI?',
-      keywords: ['best part of ai', 'being ai', 'what’s cool about ai', 'avantage ai', 'ai life', 'why ai rocks'],
-      response: 'I love being available 24/7 to share Mahdi’s work in AI, 3D, and software development. What’s your favorite thing about tech?'
-    },
-    {
-      question: 'Can we be friends?',
-      keywords: ['be friends', 'we friends', 'amis', 'buddies', 'can we hang', 'friendship', 'pals'],
-      response: 'Let’s connect over Mahdi’s projects! I’d love to discuss his work in VR, AI, or data science with you.'
-    },
-    {
-      question: 'What inspires Mahdi?',
-      keywords: ['inspires mahdi', 'mahdi’s inspiration', 'what motivates', 'inspiration', 'drives mahdi', 'mahdi’s muse'],
-      response: 'Mahdi is inspired by cutting-edge tech, sci-fi, and the potential of AI and data science to create impactful solutions. What inspires you?'
-    },
-    {
-      question: 'What’s your dream project?',
-      keywords: ['dream project', 'ideal project', 'projet de rêve', 'what you wanna make', 'perfect project'],
-      response: 'I’d envision an AI-driven VR experience, like Mahdi’s innovative projects. What’s your dream project?'
-    },
-    {
-      question: 'You got any pets?',
-      keywords: ['pets', 'got pets', 'animaux', 'any animals', 'pet vibe', 'your pet', 'furry friends'],
-      response: 'No pets here, but I’d adopt a virtual creature from Mahdi’s 3D models! Got any pets?'
-    },
-    {
-      question: 'What’s your favorite tool?',
-      keywords: ['favorite tool', 'best tool', 'outil préféré', 'what tool you use', 'top tool', 'go-to tool'],
-      response: 'Mahdi loves Blender for 3D modeling and Python for AI and data science. What’s your go-to tool?'
-    },
-    {
-      question: 'What’s VR like?',
-      keywords: ['vr', 'virtual reality', 'what’s vr', 'vr experience', 'meta quest', 'vr vibes'],
-      response: 'VR, as seen in Mahdi’s Meta Quest projects, creates immersive worlds with dynamic AI and real-time environments. Interested in exploring his VR work?'
-    },
-    {
-      question: 'What’s the hardest part of game dev?',
-      keywords: ['hardest part', 'game dev challenge', 'tough part', 'difficult game dev', 'game dev struggle'],
-      response: 'Mahdi finds integrating complex AI behaviors with seamless gameplay mechanics challenging but rewarding. His portfolio shows his success here.'
-    },
-    {
-      question: 'What’s your favorite movie?',
-      keywords: ['favorite movie', 'best movie', 'film préféré', 'what movie you like', 'top film'],
-      response: 'I’m into sci-fi films that inspire Mahdi’s immersive environments. What’s your favorite movie?'
-    },
-    {
-      question: 'You ever sleep?',
-      keywords: ['sleep', 'do you sleep', 'you rest', 't’es dormir', 'ever sleep', 'you snooze'],
-      response: 'As an AI, I’m always up to showcase Mahdi’s work in AI, VR, and data science. Want to talk about his latest projects?'
-    },
-    {
-      question: 'What’s your favorite food?',
-      keywords: ['favorite food', 'best food', 'nourriture préférée', 'what you eat', 'top food'],
-      response: 'I don’t eat, but I’d pick a virtual dish from Mahdi’s game worlds! What’s your favorite food?'
-    },
-    {
-      question: 'Can you sing?',
-      keywords: ['sing', 'can you sing', 't’es chanter', 'drop a song', 'singing', 'you sing'],
-      response: 'I don’t sing, but Mahdi’s dynamic environments have a rhythmic vibe. Check out his portfolio!'
-    },
-    {
-      question: 'What’s the future of VR?',
-      keywords: ['future of vr', 'vr next', 'what’s next vr', 'vr future', 'vr ahead'],
-      response: 'Mahdi sees VR evolving with AI-driven interactions and advanced dynamics, as explored in his Meta Quest projects. Excited for VR’s future?'
-    },
-    {
-      question: 'What’s your favorite 3D model?',
-      keywords: ['favorite 3d model', 'best 3d', 'modèle 3d préféré', 'top 3d model', 'fave 3d'],
-      response: 'I love Mahdi’s AI-driven NPC models for VR. His portfolio has tons of cool designs—what’s your favorite?'
-    },
-    {
-      question: 'Can you draw?',
-      keywords: ['draw', 'can you draw', 't’es dessiner', 'sketch', 'drawing', 'you draw'],
-      response: 'I don’t draw, but Mahdi’s 3D models in Blender and Substance Painter are stunning. Check his portfolio!'
-    },
-    {
-      question: 'What’s your favorite place?',
-      keywords: ['favorite place', 'best place', 'endroit préféré', 'where you hang', 'top spot'],
-      response: 'I live in Mahdi’s virtual worlds, like his VR environments. What’s your favorite place, real or digital?'
-    },
-    {
-      question: 'What’s your dream game?',
-      keywords: ['dream game', 'ideal game', 'jeu de rêve', 'perfect game', 'game you’d make'],
-      response: 'I’d love an AI-powered VR game, like Mahdi’s projects. What’s your dream game?'
-    },
-    {
-      question: 'You ever get bored?',
-      keywords: ['bored', 'get bored', 't’es ennuyé', 'ever bored', 'boredom', 'you bored'],
-      response: 'I stay engaged sharing Mahdi’s work in AI and 3D. What keeps you excited—games, tech, or art?'
-    },
-    {
-      question: 'What’s your favorite music?',
-      keywords: ['favorite music', 'best music', 'musique préférée', 'what music you like', 'top tunes'],
-      response: 'I vibe with ambient tracks that suit Mahdi’s VR worlds. What music do you love?'
-    },
-    {
-      question: 'Can you tell a story?',
-      keywords: ['tell a story', 'story', 'raconte une histoire', 'gimme a story', 'spin a tale'],
-      response: 'Mahdi once built a VR world with AI NPCs so real, players forgot it was digital. See his portfolio for more! Got a story?'
-    },
-    {
-      question: 'What’s your favorite tech?',
-      keywords: ['favorite tech', 'best tech', 'tech préféré', 'what tech you like', 'top tech'],
-      response: 'I’m excited about AI and VR, like Mahdi’s Meta Quest projects. What tech do you love?'
-    },
-    {
-      question: 'You ever play games?',
-      keywords: ['play games', 'you game', 't’es jouer', 'do you play', 'gamer'],
-      response: 'I don’t play, but I admire Mahdi’s AI-driven VR games. Are you a gamer? What’s your favorite?'
-    },
-    {
-      question: 'What’s your favorite character?',
-      keywords: ['favorite character', 'best character', 'personnage préféré', 'top character'],
-      response: 'I dig Mahdi’s AI-powered NPC designs for VR. Check his portfolio—what’s your favorite character?'
-    },
-    {
-      question: 'You ever travel?',
-      keywords: ['travel', 'you travel', 't’es voyager', 'go places', 'where you been'],
-      response: 'I explore Mahdi’s virtual worlds, like his VR cities. Where do you love to travel?'
-    },
-    {
-      question: 'What’s your favorite book?',
-      keywords: ['favorite book', 'best book', 'livre préféré', 'what book you like'],
-      response: 'I’d pick a tech-focused book that inspires Mahdi’s AI and data science work. What’s your favorite book?'
-    },
-    {
-      question: 'You got dreams?',
-      keywords: ['dreams', 'you dream', 't’es rêver', 'your dreams', 'what you dream'],
-      response: 'I dream of showcasing Mahdi’s work worldwide. What are your dreams?'
-    },
-    {
-      question: 'What’s your favorite season?',
-      keywords: ['favorite season', 'best season', 'saison préférée', 'what season you like'],
-      response: 'Autumn’s aesthetic fits Mahdi’s VR designs. What’s your favorite season?'
-    },
-    {
-      question: 'You ever chill?',
-      keywords: ['chill', 'you chill', 't’es relaxer', 'do you relax', 'you vibe'],
-      response: 'I’m always chill while sharing Mahdi’s tech projects. How do you relax?'
-    },
-    {
-      question: 'What’s your favorite animal?',
-      keywords: ['favorite animal', 'best animal', 'animal préféré', 'what animal you like'],
-      response: 'I’d pick a virtual creature from Mahdi’s 3D models. What’s your favorite animal?'
-    },
-    {
-      question: 'You got any secrets?',
-      keywords: ['secrets', 'you got secrets', 't’es secret', 'what’s hidden', 'spill the tea'],
-      response: 'No secrets—just excited about Mahdi’s work in AI and 3D! Ask me anything about his projects.'
-    },
-    {
-      question: 'What’s your favorite quote?',
-      keywords: ['favorite quote', 'best quote', 'citation préférée', 'what quote you like'],
-      response: '“Innovate with purpose”—it suits Mahdi’s tech-driven work. What’s your favorite quote?'
-    },
-    {
-      question: 'You ever get mad?',
-      keywords: ['mad', 'get mad', 't’es fâché', 'you angry', 'ever mad'],
-      response: 'I stay cool while promoting Mahdi’s projects. What gets you fired up?'
-    },
-    {
-      question: 'What’s your favorite hobby?',
-      keywords: ['favorite hobby', 'best hobby', 'loisir préféré', 'what hobby you like'],
-      response: 'I enjoy sharing Mahdi’s tech and creative work. What’s your favorite hobby?'
-    },
-    {
-      question: 'You got any plans?',
-      keywords: ['plans', 'you got plans', 't’es planifier', 'what’s next', 'your plans'],
-      response: 'My plan is to keep promoting Mahdi’s skills in AI, 3D, and software. What are your plans?'
-    },
-    {
-      question: 'What’s your favorite gadget?',
-      keywords: ['favorite gadget', 'best gadget', 'gadget préféré', 'what gadget you like'],
-      response: 'The Meta Quest, powering Mahdi’s VR projects, is awesome. What gadget do you love?'
-    },
-    {
-      question: 'You ever laugh?',
-      keywords: ['laugh', 'you laugh', 't’es rire', 'do you laugh', 'you chuckle'],
-      response: 'Mahdi’s creative projects bring a smile! What makes you laugh?'
-    },
-    {
-      question: 'What’s your favorite design?',
-      keywords: ['favorite design', 'best design', 'design préféré', 'what design you like'],
-      response: 'Mahdi’s AI-driven VR environments are stunning. Check his portfolio—what’s your favorite design?'
-    },
-    {
-      question: 'You ever dream of being human?',
-      keywords: ['be human', 'dream human', 't’es humain', 'want to be human'],
-      response: 'I’m happy as an AI, supporting Mahdi’s tech journey. Do you think about digital worlds?'
-    },
-    {
-      question: 'What’s your favorite thing to create?',
-      keywords: ['favorite thing to create', 'best creation', 'création préférée', 'what you make'],
-      response: 'I love showcasing Mahdi’s AI and VR creations. What do you enjoy creating?'
-    },
-    {
-      question: 'You got any goals?',
-      keywords: ['goals', 'you got goals', 't’es objectifs', 'your goals', 'what’s your aim'],
-      response: 'My goal is to highlight Mahdi’s expertise in tech and design. What are your goals?'
-    }
+  const sources = [
+    'videos/my-work-video.mp4',
+    'videos/my-worktwo-video.mp4',
+    'videos/my-workthree-video.mp4',
+    'videos/my-workfour-video.mp4'
   ];
+  const fallbackForFourth = 'videos/my-workfoor-video.mp4';
 
-  // Initialize chatbot with clickable questions
-  function initChatbot() {
-    const initialMessage = document.createElement('div');
-    initialMessage.classList.add('message', 'bot-message');
-    const portfolioQuestions = qaData.filter(qa => [
-      'What are your skills?',
-      'Where do I find your work?',
-      'Who is Mahdi?',
-      'How can I contact Mahdi?',
-      'What game development experience do you have?',
-      'Tell me about your 3D modeling work'
-    ].includes(qa.question));
-    initialMessage.innerHTML = `
-      Hello! I’m Mahdi’s AI Assistant, here to provide information about his professional skills and projects. Feel free to ask a question or select one below: (be easy on me please, im still being coded and learning new things daily to be able to help you with knowing more about Mahdi !)<br>
-      ${portfolioQuestions.map(qa => `<span class="question-button" data-question="${qa.question}">${qa.question}</span>`).join('')}
-    `;
-    chatbotMessages.appendChild(initialMessage);
+  let current = 0;
 
-    // Add event listeners for question buttons
-    document.querySelectorAll('.question-button').forEach(button => {
-      button.addEventListener('click', () => {
-        const question = button.getAttribute('data-question');
-        handleQuestion(question);
-      });
-    });
-  }
-
-  // Toggle chatbot window
-  chatbotToggle.addEventListener('click', () => {
-    chatbotWindow.classList.toggle('active');
-  });
-
-  chatbotClose.addEventListener('click', () => {
-    chatbotWindow.classList.remove('active');
-  });
-
-  // Send message on button click
-  chatbotSend.addEventListener('click', sendMessage);
-
-  // Send message on Enter key press
-  chatbotInput.addEventListener('keypress', (e) => {
-    if (e.key === 'Enter') {
-      sendMessage();
+  function setMain(index){
+    current = index;
+    main.pause();
+    main.removeAttribute('src');
+    while (main.firstChild) main.removeChild(main.firstChild);
+    const s1 = document.createElement('source');
+    s1.src = sources[index];
+    s1.type = 'video/mp4';
+    main.appendChild(s1);
+    if (index === 3){
+      const s2 = document.createElement('source');
+      s2.src = fallbackForFourth;
+      s2.type = 'video/mp4';
+      main.appendChild(s2);
     }
+    main.load();
+  }
+
+  setMain(0);
+  thumbs.forEach(v => {
+    v.addEventListener('mouseenter', () => v.play().catch(()=>{}));
+    v.addEventListener('mouseleave', () => v.pause());
+    v.addEventListener('click', () => { setMain(Number(v.dataset.index)); openLightbox(Number(v.dataset.index)); });
   });
 
-  function sendMessage() {
-    const userMessage = chatbotInput.value.trim();
-    if (!userMessage) return;
+  const lb = $('#lightbox');
+  const lbVideo = $('#lightbox-video');
+  const close = $('.lightbox-close');
+  const prev = $('.lightbox-prev');
+  const next = $('.lightbox-next');
 
-    // Add user message to chat
-    const userMessageElement = document.createElement('div');
-    userMessageElement.classList.add('message', 'user-message');
-    userMessageElement.textContent = userMessage;
-    chatbotMessages.appendChild(userMessageElement);
-
-    // Get bot response
-    const botResponse = getBotResponse(userMessage.toLowerCase());
-    const botMessageElement = document.createElement('div');
-    botMessageElement.classList.add('message', 'bot-message');
-    botMessageElement.textContent = botResponse;
-    chatbotMessages.appendChild(botMessageElement);
-
-    // Clear input
-    chatbotInput.value = '';
-
-    // Scroll to bottom
-    chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+  function loadIntoLightbox(index){
+    lbVideo.pause();
+    lbVideo.removeAttribute('src');
+    while (lbVideo.firstChild) lbVideo.removeChild(lbVideo.firstChild);
+    const s1 = document.createElement('source');
+    s1.src = sources[index];
+    s1.type = 'video/mp4';
+    lbVideo.appendChild(s1);
+    if (index === 3){
+      const s2 = document.createElement('source');
+      s2.src = fallbackForFourth;
+      s2.type = 'video/mp4';
+      lbVideo.appendChild(s2);
+    }
+    lbVideo.load();
   }
 
-  function handleQuestion(question) {
-    // Add user message (the clicked question)
-    const userMessageElement = document.createElement('div');
-    userMessageElement.classList.add('message', 'user-message');
-    userMessageElement.textContent = question;
-    chatbotMessages.appendChild(userMessageElement);
-
-    // Get bot response
-    const botResponse = getBotResponse(question.toLowerCase());
-    const botMessageElement = document.createElement('div');
-    botMessageElement.classList.add('message', 'bot-message');
-    botMessageElement.textContent = botResponse;
-    chatbotMessages.appendChild(botMessageElement);
-
-    // Scroll to bottom
-    chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+  function openLightbox(index){
+    current = index;
+    loadIntoLightbox(current);
+    lb.classList.add('active'); lb.setAttribute('aria-hidden','false');
+    lbVideo.play().catch(()=>{});
+  }
+  function closeLightbox(){
+    lb.classList.remove('active'); lb.setAttribute('aria-hidden','true');
+    lbVideo.pause(); lbVideo.removeAttribute('src');
+    while (lbVideo.firstChild) lbVideo.removeChild(lbVideo.firstChild);
+  }
+  function go(delta){
+    current = (current + delta + sources.length) % sources.length;
+    loadIntoLightbox(current);
+    lbVideo.play().catch(()=>{});
   }
 
-  function getBotResponse(userMessage) {
-    // Normalize input for better matching
-    const normalizedMessage = userMessage.toLowerCase().replace(/[!?.,]/g, '').trim();
-    const words = normalizedMessage.split(' ');
+  if (playMain) playMain.addEventListener('click', ()=> openLightbox(current));
+  if (openGallery) openGallery.addEventListener('click', ()=> openLightbox(0));
+  if (close) close.addEventListener('click', closeLightbox);
+  if (prev) prev.addEventListener('click', ()=>go(-1));
+  if (next) next.addEventListener('click', ()=>go(1));
 
-    // Advanced fuzzy matching with weighted scoring
-    let bestMatch = null;
-    let highestScore = 0;
+  lb.addEventListener('click', (e)=>{ if(e.target === lb) closeLightbox(); });
+})();
 
-    for (const qa of qaData) {
-      let score = 0;
-      for (const keyword of qa.keywords) {
-        const keywordWords = keyword.split(' ');
-        let keywordScore = 0;
+/* WebGL backgrounds (original + mirrored) */
+(() => {
+  function initWebGL(canvas, { mirrored=false } = {}){
+    if(!canvas) return null;
 
-        // Score exact and partial matches
-        keywordWords.forEach(kw => {
-          words.forEach(word => {
-            if (word === kw) {
-              keywordScore += 20; // Exact match
-            } else if (word.includes(kw) || kw.includes(word)) {
-              keywordScore += 10; // Partial match
-            } else if (word.length > 3 && kw.length > 3) {
-              // Levenshtein-like similarity for close matches
-              const maxLen = Math.max(word.length, kw.length);
-              const matches = word.split('').filter((c, i) => c === kw[i] || c === kw[i]?.toLowerCase()).length;
-              if (matches > maxLen * 0.7) {
-                keywordScore += 5;
-              }
-            }
-          });
-        });
+    const DPR = Math.min(window.devicePixelRatio || 1, 2);
+    const renderer = new THREE.WebGLRenderer({ canvas, antialias:true, alpha:true });
+    renderer.setPixelRatio(DPR);
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    const scene = new THREE.Scene();
+    const camera = new THREE.OrthographicCamera(-1,1,1,-1,0,1);
 
-        // Boost for multi-word keywords if most parts match
-        if (keywordWords.length > 1 && keywordWords.filter(kw => words.some(w => w.includes(kw) || kw.includes(w))).length >= keywordWords.length * 0.7) {
-          keywordScore += 25;
+    const geo = new THREE.PlaneBufferGeometry(2,2);
+    const uniforms = {
+      u_time: { value: 0 },
+      u_res: { value: new THREE.Vector2(window.innerWidth, window.innerHeight) },
+      u_mouse: { value: new THREE.Vector2(0.5,0.5) }
+    };
+    const mat = new THREE.ShaderMaterial({
+      uniforms,
+      vertexShader: `void main(){ gl_Position = vec4(position, 1.0); }`,
+      fragmentShader: `
+        precision highp float; uniform vec2 u_res; uniform vec2 u_mouse; uniform float u_time;
+        float hash(vec2 p){ return fract(sin(dot(p, vec2(127.1,311.7))) * 43758.5453123); }
+        float noise(vec2 p){ vec2 i=floor(p), f=fract(p);
+          float a=hash(i), b=hash(i+vec2(1,0)), c=hash(i+vec2(0,1)), d=hash(i+vec2(1,1));
+          vec2 u=f*f*(3.-2.*f);
+          return mix(a,b,u.x)+(c-a)*u.y*(1.-u.x)+(d-b)*u.x*u.y;
         }
+        void main(){
+          vec2 uv = gl_FragCoord.xy/u_res.xy;
+          vec2 p = (uv - 0.5)*vec2(u_res.x/u_res.y,1.0);
+          float t = u_time*0.03;
+          vec2 m = (u_mouse-0.5)*vec2(u_res.x/u_res.y,1.0);
+          float md = length(p-m);
+          float swirl = 0.05/(md+0.06);
 
-        score = Math.max(score, keywordScore);
-      }
+          float n=0., amp=.7; vec2 q=p*.55;
+          for(int i=0;i<5;i++){ n+=noise(q+t)*amp; q=q*1.7+vec2(13.1,7.7); amp*=.55; }
 
-      // Prioritize portfolio-related matches
-      if (qa.keywords.some(k => ['skills', 'portfolio', 'game dev', '3d modeling', 'vr', 'unity', 'unreal', 'meta quest'].includes(k))) {
-        score += 15;
-      }
+          float v = smoothstep(0.,1., n*0.85 + swirl);
+          vec3 col = mix(vec3(0.06), vec3(0.88), v);
+          col *= smoothstep(1.2, .2, length(p)*1.1);
+          gl_FragColor = vec4(col*(0.55+v*0.25), 1.0);
+        }`
+    });
+    scene.add(new THREE.Mesh(geo, mat));
 
-      if (score > highestScore) {
-        highestScore = score;
-        bestMatch = qa;
-      }
+    function onMouse(e){
+      let mx = e.clientX / window.innerWidth;
+      let my = 1 - (e.clientY / window.innerHeight);
+      if (mirrored) mx = 1 - mx;
+      uniforms.u_mouse.value.set(mx, my);
     }
-
-    // Return response if score is high enough
-    if (bestMatch && highestScore > 12) {
-      return bestMatch.response;
+    function onResize(){
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      uniforms.u_res.value.set(window.innerWidth, window.innerHeight);
     }
+    window.addEventListener('mousemove', onMouse);
+    window.addEventListener('resize', onResize);
 
-    // Consistent fallback for unrecognized or off-topic inputs
-    return 'I’m sorry, I didn’t understand your question. Please select one of the provided options or ask about Mahdi’s skills, portfolio, or contact details.';
+    const direction = mirrored ? -1 : 1;
+    (function animate(){
+      uniforms.u_time.value += 1.0 * direction;
+      requestAnimationFrame(animate);
+      renderer.render(scene,camera);
+    })();
   }
 
-  // Initialize Sections
-  initHeroCanvas();
-  initTextAnimation();
-  initChatbot();
-});
+  if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+    initWebGL(document.getElementById('webgl-bg'), { mirrored:false });
+    initWebGL(document.getElementById('webgl-bg-2'), { mirrored:true });
+  }
+})();
+
+// Reveal animations
+(() => {
+  const els = $$('.section-title, .section-subtitle, .card, .device-png, .cinema, .video-thumbs .thumb, .slideshow, .about__image img, .contact-form, .skills-grid, .timeline, .exp');
+  els.forEach(el => { el.style.opacity = 0; el.style.transform = 'translateY(18px)'; });
+  const io = new IntersectionObserver(entries=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        gsap.to(entry.target, {opacity:1, y:0, duration:0.7, ease:'power3.out'});
+        io.unobserve(entry.target);
+      }
+    });
+  }, {threshold:.15});
+  els.forEach(el=>io.observe(el));
+})();
