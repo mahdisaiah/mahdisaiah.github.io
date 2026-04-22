@@ -56,7 +56,7 @@ const translations = {
 
     'contact.label':'Contact','contact.title':"Construisons quelque chose avec du goût.",
     'contact.lead':"Ouvert aux stages, missions freelance et collaborations en creative tech.",
-    'contact.email':'Email','contact.available':'Disponible pour missions'
+    'contact.email':'Email','contact.cv':'Télécharger CV','contact.available':'Disponible pour missions'
   },
   en: {}
 };
