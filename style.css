@@ -501,7 +501,7 @@ section,.hero{scroll-margin-top:120px}
 
 .contact .display{margin:0 auto 20px}
 .contact-cards{
-  display:grid;grid-template-columns:repeat(3,1fr);gap:0;
+  display:grid;grid-template-columns:repeat(4,1fr);gap:0;
   margin-top:70px;border-top:1px solid var(--line);
 }
 .c-card{
@@ -525,6 +525,13 @@ section,.hero{scroll-margin-top:120px}
   transition:color .3s,transform .35s var(--ease);
 }
 .c-card:hover em{color:#f4ece9;transform:translate(4px,-4px)}
+
+.c-card.cv-card{
+  background:rgba(244,236,233,.018);
+}
+.c-card.cv-card:hover{
+  background:rgba(230,131,144,.06);
+}
 
 .site-footer{
   margin-top:60px;padding-top:28px;border-top:1px solid var(--line);
@@ -576,6 +583,12 @@ section,.hero{scroll-margin-top:120px}
   .portrait img{max-height:560px}
   .thumb-grid{grid-template-columns:repeat(6,1fr)}
   .section{padding:120px 24px}
+}
+
+
+@media(max-width:1080px){
+  .contact-cards{grid-template-columns:repeat(2,1fr)}
+  .contact-cards .c-card:nth-child(2n){border-right:0}
 }
 
 @media(max-width:860px){
