@@ -1,413 +1,465 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Mahdi Saiah — Creative Developer</title>
-  <meta name="theme-color" content="#0b0b0f" />
-  <link rel="icon" href="images/favicon-black.png" type="image/png" />
-  <script defer data-domain="mahdisaiah.github.io" src="https://plausible.io/js/script.js"></script>
-
-  <!-- Inter -->
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800;900&display=swap" rel="stylesheet" />
-
-  <!-- three.js & GSAP -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-
+  <meta name="description" content="Portfolio of Mahdi Saiah — creative developer across mobile, web, games and 3D." />
+  <meta name="theme-color" content="#050505" />
+  <link rel="icon" href="images/logo.png" type="image/png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <a class="skip-link" href="#content">Skip to content</a>
+  <canvas id="shader" aria-hidden="true"></canvas>
 
-  <!-- WebGL backgrounds -->
-  <canvas id="webgl-bg" aria-hidden="true"></canvas>
-  <canvas id="webgl-bg-2" aria-hidden="true"></canvas>
-  <div id="webgl-overlay" aria-hidden="true"></div>
+  <header class="site-header" id="siteHeader">
+    <nav class="site-nav" aria-label="Main navigation">
+      <a class="nav-brand" href="#home" aria-label="Mahdi Saiah home">
+        <span class="brand-mark">MS</span>
+      </a>
 
-  <!-- Topbar (centered, no logo) -->
-  <header class="topbar" role="banner">
-    <div class="container topbar__inner">
-      <nav class="nav" aria-label="Primary">
-        <button class="hamburger" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
-        <ul class="nav-links">
-          <li><a href="#hero">Home</a></li>
-          <li><a href="#connect">Connect</a></li>
-          <li><a href="#Empreintes">Empreintes</a></li>
-          <li><a href="#craft">3D Craft</a></li>
-          <li><a href="#skills">Skills</a></li>
-          <li><a href="#career">Career</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a class="btn btn-ghost" href="#contact">Contact</a></li>
-        </ul>
-      </nav>
+      <div class="nav-links" id="navLinks">
+        <a href="#connect" class="nav-link">Connect</a>
+        <a href="#game" class="nav-link" data-i18n="nav.game">Empreintes</a>
+        <a href="#craft" class="nav-link" data-i18n="nav.craft">3D Craft</a>
+        <a href="#skills" class="nav-link" data-i18n="nav.skills">Skills</a>
+        <a href="#career" class="nav-link" data-i18n="nav.career">Career</a>
+        <a href="#about" class="nav-link" data-i18n="nav.about">About</a>
+      </div>
+
+      <div class="nav-actions">
+        <button class="lang-toggle" id="langToggle" type="button" aria-label="Switch language">
+          <span class="lang-current">EN</span>
+          <span class="lang-slash">/</span>
+          <span class="lang-next">FR</span>
+        </button>
+
+        <a href="#contact" class="nav-contact" data-i18n="nav.contact">Contact</a>
+
+        <button class="nav-menu-btn" id="navMenuBtn" type="button" aria-label="Open menu" aria-expanded="false">
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </nav>
+
+    <div class="mobile-panel" id="mobilePanel" aria-hidden="true">
+      <a href="#connect" class="mobile-link">Connect</a>
+      <a href="#game" class="mobile-link" data-i18n="nav.game">Empreintes</a>
+      <a href="#craft" class="mobile-link" data-i18n="nav.craft">3D Craft</a>
+      <a href="#skills" class="mobile-link" data-i18n="nav.skills">Skills</a>
+      <a href="#career" class="mobile-link" data-i18n="nav.career">Career</a>
+      <a href="#about" class="mobile-link" data-i18n="nav.about">About</a>
+      <a href="#contact" class="mobile-link mobile-contact" data-i18n="nav.contact">Contact</a>
     </div>
   </header>
 
-  <main id="content">
-    <!-- HERO -->
-    <section id="hero" class="section section-hero">
-      <div class="container">
-        <div class="hero__center">
-          <h1 class="hero__name">Mahdi Saiah</h1>
-          <p class="hero__subtitle">Creative Developer — Web • Mobile • Video Games • 3D</p>
-          <div class="cta-row">
-            <a href="#connect" class="btn btn-primary">See “Connect”</a>
-            <a href="#Empreintes" class="btn btn-ghost">Explore “Empreintes”</a>
-          </div>
-        </div>
-        <div class="scroll-indicator" aria-hidden="true"><span>Scroll</span><i></i></div>
+  <main>
+    <!-- ========== HERO ========== -->
+    <section class="hero" id="home">
+      <h1 class="hero-name">
+        <span>Mahdi</span>
+        <em class="serif">Saiah</em>
+      </h1>
+      <p class="tagline" data-i18n="hero.tagline">Creative Developer — Mobile · Web · Games · 3D</p>
+      <div class="hero-actions">
+        <a class="btn solid" href="#connect" data-i18n="hero.cta1">See Connect</a>
+        <a class="btn" href="#game" data-i18n="hero.cta2">Explore Empreintes</a>
       </div>
+
+      <a href="#connect" class="scroll" aria-label="Scroll down">
+        <span data-i18n="hero.scroll">Scroll</span>
+        <i></i>
+      </a>
     </section>
 
-    <!-- CONNECT (original rail) -->
-    <section id="connect" class="section">
-      <div class="container">
-        <header class="section-head section-head--bdx">
-          <h2 class="section-title">Connect — Mais pour de vrai</h2>
-          <p class="section-subtitle">
-            A healthier social media. No manipulative algorithms, no ads. Discover passions, learn through meaningful debates, and share real opinions.
-            Built with <strong>Flutter</strong> (<em>Dart</em>) for iOS & Android.
-          </p>
-        </header>
+    <!-- ========== CONNECT ========== -->
+    <section class="section connect" id="connect">
+      <div class="wrap">
+        <div class="s-head">
+          <span class="s-num">01</span>
+          <span class="s-label" data-i18n="connect.label">Mobile product</span>
+          <span class="s-rule"></span>
+          <span class="s-meta" data-i18n="connect.meta">iOS — May 2026</span>
+        </div>
 
-        <div class="card card--padded connect-hero">
-          <div class="connect-hero__inner">
-            <div class="connect-hero__left">
-              <div class="connect-lockup">
-                <img class="connect-mark" src="images/connect-logo.png" alt="Connect logo" />
-                <img class="connect-wordmark" src="images/connect-text-logo.png" alt="Connect wordmark" />
-              </div>
+        <div class="connect-head">
+          <div class="lockup">
+            <span class="logo-box"><img src="images/logo.png" alt="Connect logo"></span>
+            <img class="wordmark" src="images/textlogo.png" alt="Connect">
+          </div>
 
-              <p class="connect-tagline">
-                Your feed, your rules. Shape what you see with a transparent, user-controlled algorithm.
-              </p>
+          <h2 class="display" data-i18n="connect.title">
+            A social platform built<br>
+            for <em class="serif">real</em> conversation.
+          </h2>
 
-              <ul class="chips chips--connect">
-                <li>Custom feed</li>
-                <li>Debate Center</li>
-                <li>No ads</li>
-                <li>Privacy-first</li>
-              </ul>
+          <div class="connect-copy">
+            <p data-i18n="connect.lead">Connect is a modern social platform where users share posts, moments, and debates around real content from across the internet. It focuses on interaction over consumption — letting people react, discuss, and challenge ideas instead of just scrolling.</p>
+            <p data-i18n="connect.lead2">Built with a clean, immersive design, Connect turns social media into a space for expression, conversation, and meaningful engagement.</p>
+          </div>
 
-              <div class="release release--connect">
-                <div class="release__row">
-                  <strong>Public release</strong>
-                  <span class="badge badge--connect">March 1, 2026</span>
-                </div>
-                <div class="countdown" id="connect-countdown" aria-live="polite">Loading…</div>
-                <div class="store-row">
-                  <button class="btn btn-store" disabled title="Coming soon">App Store</button>
-                  <button class="btn btn-store" disabled title="Coming soon">Google Play</button>
-                </div>
-              </div>
+          <div class="connect-meta">
+            <div class="cm">
+              <span data-i18n="connect.m1.label">Platform</span>
+              <b data-i18n="connect.m1.val">iOS at launch · Android soon</b>
             </div>
-
-            <div class="connect-hero__right">
-              <div class="device-rail">
-                <button class="device-arrow left" aria-label="Previous">‹</button>
-                <div class="device-track" id="connect-track" role="list">
-                  <img class="device-png" src="images/app6-portrait.png" alt="Connect screen 6" role="listitem" />
-                  <img class="device-png" src="images/app2-portrait.png" alt="Connect screen 2" role="listitem" />
-                  <img class="device-png" src="images/debate-portrait.png" alt="Connect screen 4" role="listitem" />
-                </div>
-                <button class="device-arrow right" aria-label="Next">›</button>
-              </div>
+            <div class="cm">
+              <span data-i18n="connect.m2.label">Release</span>
+              <b data-i18n="connect.m2.val">May 31 · 2026</b>
+            </div>
+            <div class="cm">
+              <span data-i18n="connect.m3.label">Countdown</span>
+              <b id="countdown">—</b>
             </div>
           </div>
         </div>
 
-        <div class="connect-highlights">
-          <div class="ch card card--padded">
-            <h3>Debate Center</h3>
-            <p>Host structured conversations with rules that keep discussions respectful and on-topic.</p>
-          </div>
-          <div class="ch card card--padded">
-            <h3>Custom Algorithm</h3>
-            <p>Dial your interests and values. You’re in control of what appears in your feed.</p>
-          </div>
-          <div class="ch card card--padded">
-            <h3>Privacy-first</h3>
-            <p>No manipulative engagement loops. No ads. Just people and ideas that matter.</p>
-          </div>
+        <div class="phone-stage" id="phoneStage">
+          <article class="phone-col left">
+            <div class="phone-frameless"><img src="images/home.png" alt="Connect home feed"></div>
+            <div class="caption"><span>01 · <span data-i18n="connect.cap1">Home</span></span><p data-i18n="connect.phone1.text">A real-time feed where posts, moments and reactions live together.</p></div>
+          </article>
+          <article class="phone-col center">
+            <div class="phone-frameless"><img src="images/debate.png" alt="Connect debate screen"></div>
+            <div class="caption"><span>02 · <span data-i18n="connect.cap2">Debate</span></span><p data-i18n="connect.phone2.text">For/Against arenas — ideas get challenged, not just liked.</p></div>
+          </article>
+          <article class="phone-col right">
+            <div class="phone-frameless"><img src="images/profile.png" alt="Connect profile screen"></div>
+            <div class="caption"><span>03 · <span data-i18n="connect.cap3">Profile</span></span><p data-i18n="connect.phone3.text">Identity built for expression — not just metrics.</p></div>
+          </article>
         </div>
       </div>
     </section>
 
-    <!-- EMPREINTES -->
-    <section id="Empreintes" class="section">
-      <div class="container">
-        <header class="section-head section-head--bdx">
-          <h2 class="section-title">Empreintes — Open-World Indie Game</h2>
-          <p class="section-subtitle">
-            Explore by <strong>car</strong>, <strong>plane</strong>, <strong>helicopter</strong>, or on foot.
-            University/indie project — fully <strong>modeled</strong>, <strong>scripted</strong>, and <strong>designed</strong> to reflect human impact on nature.
-          </p>
-        </header>
+    <!-- ========== EMPREINTES ========== -->
+    <section class="section game" id="game">
+      <div class="wrap">
+        <div class="s-head">
+          <span class="s-num">02</span>
+          <span class="s-label" data-i18n="game.label">Game project</span>
+          <span class="s-rule"></span>
+          <span class="s-meta">Unity · Blender · C#</span>
+        </div>
 
-        <div class="card card--padded">
-          <div class="cinema">
-            <video id="anthro-main" preload="metadata" muted playsinline></video>
-            <div class="cinema-overlay">
-              <button class="btn btn-primary" id="play-main">Play</button>
-              <button class="btn btn-ghost" id="open-gallery">Open Gallery</button>
+        <div class="head-grid">
+          <h2 class="display" data-i18n="game.title">
+            Empreintes — an <em class="serif">open-world</em> experience about human impact.
+          </h2>
+          <p class="lead" data-i18n="game.lead">A university and indie project built around exploration, vehicles and environmental awareness. The player moves through a world shaped by human traces — roads, machines, extraction, ruins and nature fighting back.</p>
+        </div>
+
+        <div class="carousel" id="videoCarousel" data-carousel="video">
+          <div class="carousel-stage">
+            <button class="car-btn prev" type="button" aria-label="Previous">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 6l-6 6 6 6"/></svg>
+            </button>
+
+            <div class="carousel-track" id="videoTrack">
+              <div class="carousel-slide active"><video src="videos/video1.mp4" muted playsinline loop preload="metadata"></video></div>
+              <div class="carousel-slide"><video src="videos/video2.mp4" muted playsinline loop preload="metadata"></video></div>
+              <div class="carousel-slide"><video src="videos/video3.mp4" muted playsinline loop preload="metadata"></video></div>
+              <div class="carousel-slide"><video src="videos/video4.mp4" muted playsinline loop preload="metadata"></video></div>
             </div>
+
+            <button class="car-btn next" type="button" aria-label="Next">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 6l6 6-6 6"/></svg>
+            </button>
           </div>
 
-          <div class="video-thumbs">
-            <video class="thumb" data-index="0" src="videos/my-work-video.mp4" muted playsinline loop></video>
-            <video class="thumb" data-index="1" src="videos/my-worktwo-video.mp4" muted playsinline loop></video>
-            <video class="thumb" data-index="2" src="videos/my-workthree-video.mp4" muted playsinline loop></video>
-            <video class="thumb" data-index="3" src="videos/my-workfour-video.mp4" muted playsinline loop></video>
+          <div class="slide-meta">
+            <div class="sm-left">
+              <span class="sm-index"><em id="videoIndex">01</em> / 04</span>
+              <b id="videoTitle" data-i18n="game.v1">Open-world exploration</b>
+            </div>
+            <div class="sm-dots" id="videoDots" aria-hidden="true"></div>
           </div>
-        </div>
-      </div>
 
-      <div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-label="Media lightbox">
-        <button class="lightbox-close" aria-label="Close">×</button>
-        <button class="lightbox-nav lightbox-prev" aria-label="Previous">‹</button>
-        <button class="lightbox-nav lightbox-next" aria-label="Next">›</button>
-        <div class="lightbox-inner">
-          <video id="lightbox-video" controls playsinline></video>
-        </div>
-      </div>
-    </section>
-
-    <!-- 3D CRAFT -->
-    <section id="craft" class="section">
-      <div class="container">
-        <header class="section-head section-head--bdx">
-          <h2 class="section-title">3D Modeling & Texturing</h2>
-          <p class="section-subtitle">Personal work — models, facades, textures.</p>
-        </header>
-<div class="slideshow card" id="craft-slideshow" aria-label="3D gallery">
-  <img class="active" src="images/project1a.jpg" alt="3D piece 1a">
-  <img src="images/project2a.jpg" alt="3D piece 2a">
-  <img src="images/project3a.jpg" alt="3D piece 3a">
-  <img src="images/project4a.jpg" alt="3D piece 4a">
-  <img src="images/project1.jpg" alt="3D piece 1">
-  <img src="images/project2.jpg" alt="3D piece 2">
-  <img src="images/project3.jpg" alt="3D piece 3">
-  <img src="images/project4.jpg" alt="3D piece 4">
-  <img src="images/project5.jpg" alt="3D piece 5">
-  <img src="images/project6.jpg" alt="3D piece 6">
-  <img src="images/project7.jpg" alt="3D piece 7">
-  <img src="images/project8.jpg" alt="3D piece 8">
-  <img src="images/project9.jpg" alt="3D piece 9">
-  <img src="images/project10.jpg" alt="3D piece 10">
-  <div class="slide-controls">
-    <button class="btn btn-ghost" id="prev-slide" aria-label="Previous">‹</button>
-    <button class="btn btn-ghost" id="next-slide" aria-label="Next">›</button>
-  </div>
-</div>
-      </div>
-    </section>
-
-    <!-- SKILLS -->
-    <section id="skills" class="section">
-      <div class="container">
-        <header class="section-head section-head--bdx">
-          <h2 class="section-title">Skills</h2>
-          <p class="section-subtitle">Creative developer across web, mobile, games, and real-time 3D.</p>
-        </header>
-
-        <div class="skills-grid">
-          <div class="skill card card--padded">
-            <h3>Languages</h3>
-            <ul class="tags"><li>Dart</li><li>TypeScript/JavaScript</li><li>Python</li><li>C#</li><li>C++</li><li>SQL</li></ul>
-          </div>
-          <div class="skill card card--padded">
-            <h3>Frameworks & Tools</h3>
-            <ul class="tags"><li>Flutter</li><li>React</li><li>Node.js</li><li>Three.js/WebGL</li><li>Unity</li><li>Unreal</li></ul>
-          </div>
-          <div class="skill card card--padded">
-            <h3>Data & Infra</h3>
-            <ul class="tags"><li>REST/GraphQL</li><li>MongoDB</li><li>PostgreSQL</li><li>Docker</li><li>GitHub Actions</li><li>Vercel/GitHub Pages</li></ul>
-          </div>
-          <div class="skill card card--padded">
-            <h3>Design & 3D</h3>
-            <ul class="tags"><li>Blender</li><li>Substance 3D Painter</li><li>Houdini (fx)</li><li>Figma</li><li>Shaders</li></ul>
+          <div class="carousel-thumbs" id="videoThumbs">
+            <button class="thumb active" data-index="0" aria-label="Video 1">
+              <video src="videos/video1.mp4" muted playsinline preload="metadata"></video>
+            </button>
+            <button class="thumb" data-index="1" aria-label="Video 2">
+              <video src="videos/video2.mp4" muted playsinline preload="metadata"></video>
+            </button>
+            <button class="thumb" data-index="2" aria-label="Video 3">
+              <video src="videos/video3.mp4" muted playsinline preload="metadata"></video>
+            </button>
+            <button class="thumb" data-index="3" aria-label="Video 4">
+              <video src="videos/video4.mp4" muted playsinline preload="metadata"></video>
+            </button>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- CAREER -->
-    <section id="career" class="section">
-      <div class="container">
-        <header class="section-head section-head--bdx">
-          <h2 class="section-title">Career</h2>
-          <p class="section-subtitle">Education & professional experience.</p>
-        </header>
+    <!-- ========== 3D CRAFT ========== -->
+    <section class="section craft" id="craft">
+      <div class="wrap">
+        <div class="s-head">
+          <span class="s-num">03</span>
+          <span class="s-label" data-i18n="craft.label">3D study</span>
+          <span class="s-rule"></span>
+          <span class="s-meta">Blender</span>
+        </div>
 
-        <div class="grid-2 career-columns">
-          <div class="card card--padded">
-            <h3 class="career-title">Éducation</h3>
-            <ol class="timeline">
+        <div class="head-grid">
+          <h2 class="display" data-i18n="craft.title">
+            3D Craft — modeling,<br>
+            textures & <em class="serif">visual</em> experiments.
+          </h2>
+          <p class="lead" data-i18n="craft.lead">A selection of renders and 3D explorations — architecture, objects, materials, lighting and composition built in Blender.</p>
+        </div>
+
+        <div class="carousel image-carousel" id="imageCarousel" data-carousel="image">
+          <div class="carousel-stage">
+            <button class="car-btn prev" type="button" aria-label="Previous">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 6l-6 6 6 6"/></svg>
+            </button>
+
+            <div class="carousel-track" id="imageTrack">
+              <div class="carousel-slide active"><img src="images/blender1.jpg" alt="3D render 1"></div>
+              <div class="carousel-slide"><img src="images/blender2.jpg" alt="3D render 2"></div>
+              <div class="carousel-slide"><img src="images/blender3.jpg" alt="3D render 3"></div>
+              <div class="carousel-slide"><img src="images/blender4.jpg" alt="3D render 4"></div>
+              <div class="carousel-slide"><img src="images/blender5.jpg" alt="3D render 5"></div>
+              <div class="carousel-slide"><img src="images/blender6.jpg" alt="3D render 6"></div>
+              <div class="carousel-slide"><img src="images/blender7.jpg" alt="3D render 7"></div>
+              <div class="carousel-slide"><img src="images/blender8.jpg" alt="3D render 8"></div>
+              <div class="carousel-slide"><img src="images/blender9.jpg" alt="3D render 9"></div>
+              <div class="carousel-slide"><img src="images/blender10.jpg" alt="3D render 10"></div>
+              <div class="carousel-slide"><img src="images/blender11.jpg" alt="3D render 11"></div>
+              <div class="carousel-slide"><img src="images/blender12.jpg" alt="3D render 12"></div>
+              <div class="carousel-slide"><img src="images/blender13.jpg" alt="3D render 13"></div>
+            </div>
+
+            <button class="car-btn next" type="button" aria-label="Next">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 6l6 6-6 6"/></svg>
+            </button>
+          </div>
+
+          <div class="slide-meta">
+            <div class="sm-left">
+              <span class="sm-index"><em id="craftIndex">01</em> / 13</span>
+              <b data-i18n="craft.piece">Render</b>
+            </div>
+            <div class="sm-dots" id="imageDots" aria-hidden="true"></div>
+          </div>
+
+          <div class="thumb-grid" id="imageThumbs"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SKILLS ========== -->
+    <section class="section skills" id="skills">
+      <div class="wrap">
+        <div class="s-head">
+          <span class="s-num">04</span>
+          <span class="s-label" data-i18n="skills.label">Stack</span>
+          <span class="s-rule"></span>
+        </div>
+
+        <div class="head-grid">
+          <h2 class="display" data-i18n="skills.title">
+            Skills across product,<br>
+            code and <em class="serif">visual</em> systems.
+          </h2>
+          <p class="lead" data-i18n="skills.lead">Four disciplines, one workflow — from a first sketch to a shipped product.</p>
+        </div>
+
+        <ul class="skill-list">
+          <li class="skill-row">
+            <span class="sr-num">01</span>
+            <div class="sr-title">
+              <b data-i18n="skills.mobile.t">Mobile & Web</b>
+              <p data-i18n="skills.mobile.p">From prototype to shipped app — realtime backends and polished interfaces.</p>
+            </div>
+            <div class="sr-tags">
+              <span>Flutter</span><span>Dart</span><span>Supabase</span><span>React</span><span>Three.js</span><span>WebGL</span><span>HTML</span><span>CSS</span>
+            </div>
+          </li>
+          <li class="skill-row">
+            <span class="sr-num">02</span>
+            <div class="sr-title">
+              <b data-i18n="skills.code.t">Languages</b>
+              <p data-i18n="skills.code.p">Typed, scripting or systems — picked for the job.</p>
+            </div>
+            <div class="sr-tags">
+              <span>Dart</span><span>JavaScript</span><span>TypeScript</span><span>Python</span><span>C#</span><span>C++</span><span>SQL</span><span>GLSL</span>
+            </div>
+          </li>
+          <li class="skill-row">
+            <span class="sr-num">03</span>
+            <div class="sr-title">
+              <b data-i18n="skills.games.t">Games & VR</b>
+              <p data-i18n="skills.games.p">Unity-first, around gameplay systems and atmospheric level design.</p>
+            </div>
+            <div class="sr-tags">
+              <span>Unity</span><span>Unreal</span><span>Gameplay systems</span><span>Level design</span><span>VR</span><span>Shaders</span>
+            </div>
+          </li>
+          <li class="skill-row">
+            <span class="sr-num">04</span>
+            <div class="sr-title">
+              <b data-i18n="skills.3d.t">3D & Visual</b>
+              <p data-i18n="skills.3d.p">Blender from concept to final render — materials, lighting and composition.</p>
+            </div>
+            <div class="sr-tags">
+              <span>Blender</span><span>Modeling</span><span>Texturing</span><span>Lighting</span><span>Rendering</span><span>Compositing</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ========== CAREER ========== -->
+    <section class="section career" id="career">
+      <div class="wrap">
+        <div class="s-head">
+          <span class="s-num">05</span>
+          <span class="s-label" data-i18n="career.label">Path</span>
+          <span class="s-rule"></span>
+        </div>
+
+        <div class="head-grid">
+          <h2 class="display" data-i18n="career.title">
+            Career & <em class="serif">education</em>.
+          </h2>
+          <p class="lead" data-i18n="career.lead">Between cinema, visual arts and code — a path designed to cross disciplines.</p>
+        </div>
+
+        <div class="career-grid">
+          <div class="career-col">
+            <h3 class="col-title"><span data-i18n="career.education">Education</span><em>04</em></h3>
+            <ol class="tl">
               <li>
-                <div class="tl-dot tl-dot--bdx"></div>
-                <div class="tl-body">
-                  <div class="tl-top">
-                    <strong>Baccalauréat — Mathématiques</strong>
-                    <span class="tl-time">2021 - 2022</span>
-                  </div>
-                  <p>Lycée Tahar Sfar, Sousse</p>
-                </div>
+                <span class="tl-year">2025 — 26</span>
+                <div><b>Master 1</b><p>Université Gustave Eiffel</p></div>
               </li>
               <li>
-                <div class="tl-dot"></div>
-                <div class="tl-body">
-                  <div class="tl-top">
-                    <strong>Licence — Année 1</strong>
-                    <span class="tl-time">2022 – 2023</span>
-                  </div>
-                  <p>Université Paul-Valéry — Montpellier</p>
-                </div>
+                <span class="tl-year">2024 — 25</span>
+                <div><b>Licence 3</b><p>Université Gustave Eiffel</p></div>
               </li>
               <li>
-                <div class="tl-dot"></div>
-                <div class="tl-body">
-                  <div class="tl-top">
-                    <strong>Licence — Année 2</strong>
-                    <span class="tl-time">2023 – 2024</span>
-                  </div>
-                  <p>Université Paris 8</p>
-                </div>
+                <span class="tl-year">2023 — 24</span>
+                <div><b>Licence 2</b><p>Université Paris 8</p></div>
               </li>
               <li>
-                <div class="tl-dot"></div>
-                <div class="tl-body">
-                  <div class="tl-top">
-                    <strong>Licence — Année 3</strong>
-                    <span class="tl-time">2024 – 2025</span>
-                  </div>
-                  <p>Université Gustave Eiffel</p>
-                </div>
-              </li>
-              <li>
-                <div class="tl-dot tl-dot--connect tl-dot--live" aria-label="Current"></div>
-                <div class="tl-body">
-                  <div class="tl-top">
-                    <strong>Master 1 — Développement Jeux Vidéo</strong>
-                    <span class="tl-time">2025 – 2026</span>
-                  </div>
-                  <p>Université Gustave Eiffel</p>
-                </div>
+                <span class="tl-year">2022 — 23</span>
+                <div><b>Licence 1</b><p>Université Paul-Valéry Montpellier</p></div>
               </li>
             </ol>
           </div>
 
-          <div class="card card--padded">
-            <h3 class="career-title">Expériences professionnelles</h3>
-
-            <div class="exp">
-              <div class="exp-top">
-                <strong>Assistant Développeur front/back — BNP Paribas Real Estate</strong>
-                <span class="exp-time">Avril 2025 – Septembre 2025 (Stage — 6 mois)</span>
-              </div>
-              <ul>
-                <li>Développement d’outils internes en JavaScript & Python pour automatiser des workflows de production.</li>
-                <li>Création d’interfaces utilisateurs pour des applications de visualisation interactive.</li>
-                <li>Intégration d’éléments 3D et optimisation des performances (rendu temps réel web).</li>
-                <li>Collaboration avec des équipes pluridisciplinaires (design, dev, infographie).</li>
-                <li>Documentation technique et structuration du code.</li>
-              </ul>
-            </div>
-
-            <div class="exp">
-              <div class="exp-top">
-                <strong>Développement C# — Atelier Daniela Zuniga</strong>
-                <span class="exp-time">Mars 2024 – Mai 2024 (Stage — 3 mois)</span>
-              </div>
-              <ul>
-                <li>Conception d’un univers 3D à partir de données issues d’un scanner médical.</li>
-                <li>Modélisation précise des structures internes du cerveau.</li>
-                <li>Animation 3D fidèle des éléments anatomiques.</li>
-                <li>Référence au scanner médical pour garantir l’exactitude des modèles.</li>
-              </ul>
-            </div>
+          <div class="career-col">
+            <h3 class="col-title"><span data-i18n="career.experience">Experience</span><em>02</em></h3>
+            <ol class="tl">
+              <li>
+                <span class="tl-year">2025</span>
+                <div><b>Assistant Développeur front / back</b><p>BNP Paribas Real Estate — internal tools, web interfaces and interactive 3D visualization.</p></div>
+              </li>
+              <li>
+                <span class="tl-year">2024</span>
+                <div><b>Développement C# / 3D</b><p>Atelier Daniela Zuniga — 3D universe from medical scanner data and anatomical modeling.</p></div>
+              </li>
+            </ol>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ABOUT -->
-    <section id="about" class="section">
-      <div class="container">
-        <div class="grid-2 card card--padded">
-          <div class="col">
-            <h2 class="section-title">About Me</h2>
-            <p>
-              I build modern websites, Flutter mobile apps, and interactive game systems — and as a passion, I craft 3D models and textures. My work combines clean code, intuitive UX, and strong visual design.
-              I’m fluent in Dart, TypeScript/JavaScript, Python, C#, C++, and SQL, and I work with frameworks and tools like Flutter, React, Node.js, Three.js/WebGL, Unity, and Unreal Engine. On the data and infrastructure side, I use REST/GraphQL, MongoDB, PostgreSQL, Docker, GitHub Actions, and Vercel/GitHub Pages. For design and 3D, I work with Blender, Substance 3D Painter, Houdini (FX), Figma, and custom shaders.
-            </p>
-            <p>
-              <strong>Connect</strong> is my vision for a healthier social platform — one that helps people learn, think, and share, instead of getting lost in endless scrolling.
-            </p>
-            <div class="cta-row">
-              <a class="btn btn-primary" href="#contact">Work with me</a>
-              <a class="btn btn-ghost" href="files/Saiah_Mahdi_CV.pdf" download>Download CV</a>
-            </div>
-          </div>
-          <div class="col about__image">
-            <img src="images/about-image.jpg" alt="Mahdi at work" />
+    <!-- ========== ABOUT ========== -->
+    <section class="section about" id="about">
+      <div class="wrap">
+        <div class="s-head">
+          <span class="s-num">06</span>
+          <span class="s-label" data-i18n="about.label">Profile</span>
+          <span class="s-rule"></span>
+        </div>
+
+        <div class="about-grid">
+          <figure class="portrait">
+            <img src="images/i1.jpg" alt="Mahdi Saiah portrait">
+            <figcaption>Mahdi Saiah · Paris</figcaption>
+          </figure>
+
+          <div class="about-copy">
+            <h2 class="display" data-i18n="about.title">
+              I build polished digital experiences between <em class="serif">code</em>, <em class="serif">design</em> and <em class="serif">3D</em>.
+            </h2>
+            <p class="lead" data-i18n="about.lead">Tunisian-born and Paris-based, I work as a creative developer across mobile apps, interactive websites, games, VR worlds and 3D visuals. My work sits between technical execution and visual direction.</p>
+
+            <dl class="about-facts">
+              <div>
+                <dt data-i18n="about.based">Based in</dt>
+                <dd>Paris, France</dd>
+              </div>
+              <div>
+                <dt data-i18n="about.origin">Origin</dt>
+                <dd>Sousse, Tunisia</dd>
+              </div>
+              <div>
+                <dt data-i18n="about.languages">Languages</dt>
+                <dd>FR · EN · AR</dd>
+              </div>
+              <div>
+                <dt data-i18n="about.statuslabel">Status</dt>
+                <dd><span class="status-dot"></span><span data-i18n="about.status">Open to opportunities</span></dd>
+              </div>
+            </dl>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- CONTACT -->
-    <section id="contact" class="section">
-      <div class="container">
-        <header class="section-head section-head--bdx">
-          <h2 class="section-title">Contact</h2>
-          <p class="section-subtitle">Tell me about your idea. I’ll reply fast.</p>
-        </header>
+    <!-- ========== CONTACT ========== -->
+    <section class="section contact" id="contact">
+      <div class="wrap">
+        <div class="s-head">
+          <span class="s-num">07</span>
+          <span class="s-label" data-i18n="contact.label">Reach out</span>
+          <span class="s-rule"></span>
+        </div>
 
-        <form id="contact-form" class="contact-form card card--padded" action="https://formspree.io/f/xkgopzoo" method="POST">
-          <div class="grid-2 gap">
-            <div class="field">
-              <label for="name">Name</label>
-              <input id="name" type="text" name="name" placeholder="Your name" required />
-            </div>
-            <div class="field">
-              <label for="email">Email</label>
-              <input id="email" type="email" name="email" placeholder="you@example.com" required />
-            </div>
-          </div>
-          <div class="field">
-            <label for="message">Message</label>
-            <textarea id="message" name="message" placeholder="What are we building?" required></textarea>
-          </div>
-          <div class="actions actions--center">
-            <button class="btn btn-primary" type="submit">Send</button>
-            <a class="btn btn-ghost" href="https://www.linkedin.com/in/mahdi-saiah-901a05303/" target="_blank" rel="noopener">LinkedIn</a>
-          </div>
-        </form>
+        <h2 class="display center" data-i18n="contact.title">
+          Let's build something with <em class="serif">taste</em>.
+        </h2>
+        <p class="lead center" data-i18n="contact.lead">Open to internships, freelance work and creative tech collaborations.</p>
+
+        <div class="contact-cards">
+          <a href="mailto:mahdisaiahparis@gmail.com" class="c-card">
+            <span class="c-kind" data-i18n="contact.email">Email</span>
+            <b>mahdisaiahparis@gmail.com</b>
+            <em>→</em>
+          </a>
+          <a href="https://www.linkedin.com/in/mahdi-sa%C3%AFah-901a05303/" target="_blank" rel="noopener" class="c-card">
+            <span class="c-kind">LinkedIn</span>
+            <b>mahdi-saïah</b>
+            <em>↗</em>
+          </a>
+          <a href="https://github.com/mahdisaiah" target="_blank" rel="noopener" class="c-card">
+            <span class="c-kind">GitHub</span>
+            <b>@mahdisaiah</b>
+            <em>↗</em>
+          </a>
+        </div>
+
+        <footer class="site-footer">
+          <span>© <span id="year"></span> Mahdi Saiah</span>
+          <span>Paris · <span data-i18n="contact.available">Available for work</span></span>
+        </footer>
       </div>
     </section>
   </main>
 
-  <!-- Footer (no logo) -->
-  <footer class="footer">
-    <div class="container footer-inner">
-      <nav class="footer-links" aria-label="Footer">
-        <a href="#connect">Connect</a>
-        <a href="#Empreintes">Empreintes</a>
-        <a href="#craft">3D</a>
-        <a href="#skills">Skills</a>
-        <a href="#career">Career</a>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
-      </nav>
-      <div class="footer-copy">
-        <span>© <span id="year"></span> Mahdi Saiah</span>
-        <span class="dot">•</span>
-        <a href="https://github.com/mahdisaiah" target="_blank" rel="noopener">GitHub</a>
-      </div>
-    </div>
-  </footer>
+  <div class="lightbox" id="lightbox">
+    <button id="closeLightbox" aria-label="Close">×</button>
+    <img id="lightboxImg" alt="Expanded work">
+  </div>
 
   <script src="script.js"></script>
 </body>
