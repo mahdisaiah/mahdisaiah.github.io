@@ -9,8 +9,8 @@
   var nodes = document.querySelectorAll('[data-fr]');
 
   var TITLES = {
-    en: 'Mahdi Saiah · Product Designer, Developer, Founder of Connect',
-    fr: 'Mahdi Saiah · Designer Produit, Développeur, Fondateur de Connect'
+    en: 'Mahdi Saiah · Product designer, building Connect',
+    fr: 'Mahdi Saiah · Product designer, je construis Connect'
   };
 
   function apply(lang) {
