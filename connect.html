@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="en" data-title-en="Connect · A social app for real conversation, by Mahdi Saiah" data-title-fr="Connect · Une app sociale pour la vraie conversation, par Mahdi Saiah">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Connect · A social app for real conversation, by Mahdi Saiah</title>
+<meta name="description" content="Connect, a social platform built for real conversation. Stories that fade, debates with a tag agent, adaptive video quizzes, a mood map, offline games, and AI that does the boring work. Designed and built solo on iOS by Mahdi Saiah." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;800;900&family=Space+Grotesk:wght@400;500;600&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- icon sprite -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <g id="i-arrow"><path d="M7 17L17 7M9 7h8v8"/></g>
+    <g id="i-back"><path d="M15 6l-6 6 6 6"/></g>
+    <g id="i-expand"><path d="M8 3H5a2 2 0 00-2 2v3M16 3h3a2 2 0 012 2v3M8 21H5a2 2 0 01-2-2v-3M16 21h3a2 2 0 002-2v-3"/></g>
+    <g id="i-close"><path d="M6 6l12 12M18 6L6 18"/></g>
+    <g id="i-chev-l"><path d="M15 6l-6 6 6 6"/></g>
+    <g id="i-chev-r"><path d="M9 6l6 6-6 6"/></g>
+    <g id="i-apple"><path d="M16.365 1.43c0 1.14-.493 2.27-1.177 3.08-.744.9-1.99 1.57-2.987 1.57-.12 0-.23-.02-.3-.03-.01-.06-.04-.22-.04-.39 0-1.15.572-2.27 1.206-2.98.804-.94 2.142-1.64 3.248-1.68.03.13.04.28.04.43zm4.565 15.71c-.03.07-.463 1.58-1.518 3.12-.945 1.34-1.94 2.71-3.43 2.71-1.517 0-1.9-.88-3.63-.88-1.63 0-2.11.91-3.61.91-1.4 0-2.53-1.19-3.63-2.7-1.39-1.94-2.5-4.96-2.5-7.83 0-4.61 2.99-7.06 5.94-7.06 1.53 0 2.8.99 3.76.99.91 0 2.34-1.05 4.09-1.05.68 0 3.09.06 4.67 2.36-.12.07-2.71 1.58-2.71 4.71 0 3.63 3.23 4.94 3.32 4.98z"/></g>
+  </defs>
+</svg>
+
+<!-- NAV -->
+<header class="nav" id="nav">
+  <a href="index.html#top" class="nav__mark">MS<span>.</span></a>
+  <nav class="nav__links">
+    <a href="index.html#connect">Connect</a>
+    <a href="index.html#work" data-fr="Projets">Work</a>
+    <a href="index.html#toolkit">Toolkit</a>
+    <a href="index.html#about" data-fr="À propos">About</a>
+    <span class="lang-toggle" role="group" aria-label="Language"><button type="button" data-lang="en">EN</button><span class="lsep">/</span><button type="button" data-lang="fr">FR</button></span>
+    <a href="index.html#contact" class="nav__cta">Contact</a>
+  </nav>
+  <button class="nav__burger" id="burger" aria-label="Menu" aria-expanded="false"><span></span></button>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html#connect"><span class="idx">01</span>Connect</a>
+  <a href="index.html#work"><span class="idx">02</span><span data-fr="Projets">Work</span></a>
+  <a href="index.html#toolkit"><span class="idx">03</span>Toolkit</a>
+  <a href="index.html#about"><span class="idx">04</span><span data-fr="À propos">About</span></a>
+  <a href="index.html#contact"><span class="idx">05</span>Contact</a>
+  <span class="lang-toggle mobile-menu__lang" role="group" aria-label="Language"><button type="button" data-lang="en">EN</button><span class="lsep">/</span><button type="button" data-lang="fr">FR</button></span>
+</div>
+
+<main class="proj" id="top">
+
+  <!-- HERO -->
+  <section class="proj-hero connect-hero wrap">
+    <a class="proj-back reveal" href="index.html#connect"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><use href="#i-back"/></svg> <span data-fr="Produit phare">Flagship</span></a>
+    <span class="eyebrow reveal" style="margin-top:clamp(1.6rem,4vh,2.6rem)"><span class="idx">00</span> <span data-fr="Produit phare · iOS">Flagship · iOS</span></span>
+    <h1 class="proj-title serif-brand reveal" style="text-transform:none;font-weight:700">Connect<span class="acc">.</span></h1>
+    <p class="lead proj-lead reveal" data-fr="Une plateforme sociale pensée pour la vraie conversation. Je l'ai designée, développée et publiée seul sur l'App Store. Voici l'app, écran par écran.">A social platform built for real conversation. I designed it, built it, and shipped it to the App Store myself. Here is the app, screen by screen.</p>
+    <div class="proj-meta reveal">
+      <div class="pm"><span data-fr="Plateforme">Platform</span><b data-fr="iOS, Android bientôt">iOS, Android soon</b></div>
+      <div class="pm"><span data-fr="Rôle">Role</span><b data-fr="Design, dev &amp; release, solo">Design, dev &amp; release, solo</b></div>
+      <div class="pm"><span data-fr="Stack">Stack</span><b>Flutter · Supabase</b></div>
+    </div>
+    <a class="appstore reveal" href="https://apps.apple.com/fr/app/connect-for-real/id6782110379?l=en-GB" target="_blank" rel="noopener" aria-label="Download Connect, For Real on the App Store" style="margin-top:2rem">
+      <svg class="appstore__logo" viewBox="0 0 24 24" fill="currentColor" stroke="none" aria-hidden="true"><use href="#i-apple"/></svg>
+      <span class="appstore__txt"><span class="appstore__sub" data-fr="Télécharger dans l'">Download on the</span><span class="appstore__store">App Store</span></span>
+    </a>
+
+    <div class="hero-fan reveal" aria-hidden="false">
+      <div class="phone zoomable"><img src="media/connect/home.jpg" alt="Connect home feed" loading="eager" width="460" height="1000"></div>
+      <div class="phone phone--dark zoomable"><img src="media/connect/tide1.jpg" alt="Connect Tide breathing screen" loading="eager" width="460" height="1000"></div>
+      <div class="phone zoomable"><img src="media/connect/profile.jpg" alt="Connect profile screen" loading="eager" width="460" height="1000"></div>
+    </div>
+  </section>
+
+  <!-- OVERVIEW -->
+  <section class="section section--alt wrap">
+    <div class="proj-sec__head reveal">
+      <span class="eyebrow"><span class="idx">00.1</span> <span data-fr="En bref">The idea</span></span>
+      <h2 data-fr="Interaction,<br>pas consommation">Interaction,<br>not consumption</h2>
+    </div>
+    <div class="memoire-abstract reveal">
+      <p data-fr="Connect est une plateforme sociale moderne où l'on partage des posts, des stories et des débats autour de contenus réels. Elle met l'interaction avant la consommation : réagis, discute, change d'avis, au lieu de juste scroller.">Connect is a modern social platform where people share posts, stories and debates around real content. It puts interaction ahead of consumption: react, discuss, change your mind, instead of just scrolling.</p>
+      <p data-fr="Un design épuré et immersif du début à la fin. J'ai designé chaque écran, mis les mains dans l'app et le backend, et je l'ai publiée moi-même. iOS d'abord, Android juste après.">Clean, immersive design from end to end. I designed every screen, worked hands-on across the app and the backend, and shipped it myself. iOS first, Android next.</p>
+    </div>
+    <div class="pill-row reveal" style="margin-top:2rem">
+      <span class="pill pill--live" data-fr="Live sur iOS">Live on iOS</span>
+      <span class="pill" data-fr="Android bientôt">Android soon</span>
+      <span class="pill" data-fr="Conçu &amp; développé en solo">Designed &amp; built solo</span>
+    </div>
+    <div class="stats reveal" style="margin-top:clamp(2.5rem,6vh,4rem);grid-template-columns:repeat(4,1fr)">
+      <div class="stat"><b>10</b><span data-fr="Domaines produit">Product surfaces</span></div>
+      <div class="stat"><b>2.5k+</b><span data-fr="Strings localisées">Localized strings</span></div>
+      <div class="stat"><b>40+</b><span data-fr="Migrations DB">DB migrations</span></div>
+      <div class="stat"><b>1</b><span data-fr="Designer &amp; ingénieur">Designer &amp; engineer</span></div>
+    </div>
+  </section>
+
+  <!-- 01 STORIES -->
+  <section class="section wrap">
+    <div class="proj-sec__head reveal">
+      <span class="eyebrow"><span class="idx">01</span> Stories</span>
+      <h2 data-fr="Des stories,<br>un feed qui s'efface">Stories, and a<br>feed that fades</h2>
+    </div>
+    <p class="reading feat__lead reveal" data-fr="Un feed en temps réel où posts, stories et réactions vivent ensemble. Les stories disparaissent en vingt-quatre heures, et les réponses restent liées au moment qu'elles concernaient.">A real-time feed where posts, stories and reactions live together. Stories fade in twenty-four hours, and replies stay tied to the moment they were about.</p>
+    <div class="phones phones--3 reveal">
+      <figure class="phone-card"><div class="phone zoomable"><img src="media/connect/home.jpg" alt="Connect home feed" loading="lazy" width="460" height="1000"></div><figcaption class="cap"><span class="n">01 · <b>Home</b></span><p data-fr="Le feed d'accueil, en temps réel.">The home feed, in real time.</p></figcaption></figure>
+      <figure class="phone-card"><div class="phone zoomable"><img src="media/connect/story.jpg" alt="Connect story view" loading="lazy" width="460" height="1000"></div><figcaption class="cap"><span class="n">02 · <b data-fr="Story">Story</b></span><p data-fr="Des stories qui s'effacent en 24 h.">Stories that fade in twenty-four hours.</p></figcaption></figure>
+      <figure class="phone-card"><div class="phone zoomable"><img src="media/connect/profile.jpg" alt="Connect profile screen" loading="lazy" width="460" height="1000"></div><figcaption class="cap"><span class="n">03 · <b data-fr="Profil">Profile</b></span><p data-fr="Une identité pour s'exprimer, pas pour les métriques.">Identity built for expression, not metrics.</p></figcaption></figure>
+    </div>
+  </section>
+
+  <!-- 02 DEBATES -->
+  <section class="section section--alt wrap">
+    <div class="proj-sec__head reveal">
+      <span class="eyebrow"><span class="idx">02</span> <span data-fr="Débats">Debates</span></span>
+      <h2 data-fr="Des débats avec<br>un agent de tags">Debates with a<br>tag agent</h2>
+    </div>
+    <p class="reading feat__lead reveal" data-fr="Trois à cinq slugs de taxonomie écrits sur chaque débat par un petit agent de raisonnement. Un graphe de topics voisins envoie chacun vers les gens que ça intéresse vraiment.">Three to five taxonomy slugs written onto every debate by a small reasoning agent. A sibling-topic graph sends each one to the people who actually care about it.</p>
+    <div class="phones phones--4 reveal">
+      <figure class="phone-card"><div class="phone zoomable"><img src="media/connect/debate1.jpg" alt="Debate centre grid" loading="lazy" width="460" height="1000"></div><figcaption class="cap"><span class="n">01 · <b data-fr="Centre">Center</b></span><p data-fr="Le centre des débats. Chaque sujet ouvert dans une grille.">The debate centre. Every open topic in one grid.</p></figcaption></figure>
+      <figure class="phone-card"><div class="phone zoomable"><img src="media/connect/debate2.jpg" alt="For / Against vote" loading="lazy" width="460" height="1000"></div><figcaption class="cap"><span class="n">02 · <b data-fr="Vote">Vote</b></span><p data-fr="Pour / Contre, voté en direct. Les camps se rééquilibrent chaque heure.">For / Against, voted live. Sides rebalance every hour.</p></figcaption></figure>
+      <figure class="phone-card"><div class="phone zoomable"><img src="media/connect/debate3.jpg" alt="Topic detail" loading="lazy" width="460" height="1000"></div><figcaption class="cap"><span class="n">03 · <b data-fr="Détail">Detail</b></span><p data-fr="Le détail d'un sujet, avec les débats issus des topics voisins.">Topic detail, with debates fanned out from sibling topics.</p></figcaption></figure>
+      <figure class="phone-card"><div class="phone zoomable"><img src="media/connect/debate4.jpg" alt="Thread reactions" loading="lazy" width="460" height="1000"></div><figcaption class="cap"><span class="n">04 · <b data-fr="Fil">Thread</b></span><p data-fr="Les réactions dans le fil. Commentaires ouverts, plafonnés à 280 caractères.">Reactions in the thread. Comments open, capped at 280 characters.</p></figcaption></figure>
+    </div>
+  </section>
+
+  <!-- 03 LEARN -->
+  <section class="section wrap">
+    <div class="proj-sec__head reveal">
+      <span class="eyebrow"><span class="idx">03</span> <span data-fr="Intérêts &amp; apprentissage">Interests &amp; Learn</span></span>
+      <h2 data-fr="Choisis ce qui compte.<br>Apprends en regardant.">Pick what you care about.<br>Learn while you watch.</h2>
+    </div>
+    <p class="reading feat__lead reveal" data-fr="Tu donnes tes centres d'intérêt une fois, depuis une taxonomie partagée. Le feed s'adapte. Puis à la fin de chaque vidéo, un court quiz t'aide à retenir ce que tu viens de voir.">You tell us your interests once, from a shared taxonomy. The feed adapts. Then at the end of every video, a short quiz helps you actually keep what you watched.</p>
+    <div class="phones phones--4 reveal">
+      <figure class="phone-card"><div class="phone zoomable"><img src="media/connect/interests1.jpg" alt="Interests selection" loading="lazy" width="460" height="1000"></div><figcaption class="cap"><span class="n">01 · <b data-fr="Intérêts">Interests</b></span><p data-fr="Choisis tes intérêts. Pas de hashtags à inventer, juste une taxonomie partagée.">Pick your interests. No hashtags to invent, just a shared taxonomy.</p></figcaption></figure>
+      <figure class="phone-card"><div class="phone zoomable"><img src="media/connect/videoembedplayer1.jpg" alt="Embedded video player" loading="lazy" width="460" height="1000"></div><figcaption class="cap"><span class="n">02 · <b data-fr="Lecteur">Player</b></span><p data-fr="Le lecteur vidéo intégré. YouTube, Vimeo ou liens directs.">The embedded video player. YouTube, Vimeo or direct links.</p></figcaption></figure>
+      <figure class="phone-card"><div class="phone zoomable"><img src="media/connect/quiz1.jpg" alt="Quiz prompt" loading="lazy" width="460" height="1000"></div><figcaption class="cap"><span class="n">03 · <b>Quiz</b></span><p data-fr="À la fin de la vidéo, un quiz construit par l'IA. Trois à cinq questions, sans remplissage.">At the end, a quiz built by the AI. Three to five questions, no padding.</p></figcaption></figure>
+      <figure class="phone-card"><div class="phone zoomable"><img src="media/connect/quiz2.jpg" alt="Quiz answer" loading="lazy" width="460" height="1000"></div><figcaption class="cap"><span class="n">04 · <b data-fr="Réponse">Answer</b></span><p data-fr="Des réponses adaptatives. Le quiz suivant ajuste la difficulté.">Adaptive answers. The next quiz adjusts difficulty.</p></figcaption></figure>
+    </div>
+  </section>
+
+  <!-- 04 EXPLORE -->
+  <section class="section section--alt wrap">
+    <div class="proj-sec__head reveal">
+      <span class="eyebrow"><span class="idx">04</span> <span data-fr="Explorer">Explore</span></span>
+      <h2 data-fr="Réponds à une humeur,<br>pas à un profil.">Reply to a mood,<br>not a profile.</h2>
+    </div>
+    <p class="reading feat__lead reveal" data-fr="La carte montre les gens autour de toi avec leur dernière humeur. Un tap et tu réponds à l'humeur directement, sans passer par la danse du profil.">The map shows the people around you with their latest mood signal. One tap and you reply to the mood directly, without going through the profile dance.</p>
+    <div class="phones phones--2 reveal">
+      <figure class="phone-card"><div class="phone zoomable"><img src="media/connect/explore1.jpg" alt="User on the map" loading="lazy" width="460" height="1000"></div><figcaption class="cap"><span class="n">01 · <b data-fr="Carte">Map</b></span><p data-fr="Un utilisateur apparaît sur la carte. Distance approximative, humeur récente.">A user shows up on the map. Rough distance, recent mood.</p></figcaption></figure>
+      <figure class="phone-card"><div class="phone zoomable"><img src="media/connect/explore2.jpg" alt="Replying to a mood" loading="lazy" width="460" height="1000"></div><figcaption class="cap"><span class="n">02 · <b data-fr="Réponse">Reply</b></span><p data-fr="Tu réponds à son humeur. Pas de demande d'ami, pas de DM bloqué. Juste une ligne, ouverte.">You reply to their mood. No friend request, no blocked DM. Just a line, opened.</p></figcaption></figure>
+    </div>
+  </section>
+
+  <!-- 05 CHAT -->
+  <section class="section wrap">
+    <div class="proj-sec__head reveal">
+      <span class="eyebrow"><span class="idx">05</span> <span data-fr="Messagerie">Chat</span></span>
+    </div>
+    <div class="phone-solo">
+      <div class="phone zoomable reveal"><img src="media/connect/chat1.jpg" alt="Connect chat conversation" loading="lazy" width="460" height="1000"></div>
+      <div class="solo-copy reveal">
+        <h3 data-fr="Des conversations, aussi privées qu'elles devraient l'être.">Conversations, as private as they should be.</h3>
+        <p class="reading" data-fr="Texte, messages vocaux et partage de musique depuis ta bibliothèque iTunes. Pas d'accusés de lecture sauf si vous le voulez tous les deux. Pas de statut de présence sauf si tu l'actives. Les médias expirent par défaut après une semaine.">Text, voice messages, and music sharing from your iTunes library. No read receipts unless you both want them. No presence ping unless you turn it on. Media expires by default after a week.</p>
+        <dl class="solo-facts">
+          <div><dt data-fr="Voix">Voice</dt><dd data-fr="Enregistre et scrub la lecture">Record and scrub playback</dd></div>
+          <div><dt data-fr="Musique">Music</dt><dd data-fr="Partage des morceaux de ta bibliothèque">Share tracks from your library</dd></div>
+          <div><dt data-fr="Médias">Media</dt><dd data-fr="Expirent après sept jours">Auto-expire after seven days</dd></div>
+          <div><dt data-fr="Présence">Presence</dt><dd data-fr="Désactivée par défaut, ton choix">Off by default, your choice</dd></div>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <!-- 06 OFFLINE -->
+  <section class="section section--ink wrap">
+    <div class="proj-sec__head reveal">
+      <span class="eyebrow"><span class="idx">06</span> <span data-fr="Hors ligne">Offline</span></span>
+      <h2 data-fr="Quand le réseau lâche,<br>une petite pièce s'ouvre.">When the network drops,<br>a small room opens.</h2>
+    </div>
+    <p class="reading feat__lead reveal" data-fr="Quatre jeux. Pas de compte, pas de serveur, pas de score au-delà de l'écran. Ils tournent quand le reste de l'app ne peut plus.">Four games. No accounts, no servers, no scores beyond what's on the screen. They run when the rest of the app can't.</p>
+    <div class="phones phones--4 reveal">
+      <figure class="phone-card"><div class="phone phone--dark zoomable"><img src="media/connect/net1.jpg" alt="Net puzzle game" loading="lazy" width="460" height="1000"></div><figcaption class="cap"><span class="n">01 · <b>Net.</b></span><p data-fr="Fais tourner les tuiles pour réparer le réseau. Une grille procédurale sans fin.">Rotate to mend the network. An endless procedural grid.</p></figcaption></figure>
+      <figure class="phone-card"><div class="phone phone--dark zoomable"><img src="media/connect/tide1.jpg" alt="Tide breathing pacer" loading="lazy" width="460" height="1000"></div><figcaption class="cap"><span class="n">02 · <b>Tide.</b></span><p data-fr="Respire avec un inconnu. Un pacer de cohérence cardiaque à 6 cycles par minute.">Breathe with a stranger. A clinical-grade resonance pacer at 6 BPM.</p></figcaption></figure>
+      <figure class="phone-card"><div class="phone phone--dark zoomable"><img src="media/connect/spin1.jpg" alt="Spin truth or dare wheel" loading="lazy" width="460" height="1000"></div><figcaption class="cap"><span class="n">03 · <b>Spin.</b></span><p data-fr="Une roue qui crante sous ton pouce. Action ou vérité, de deux à dix sur un téléphone.">A wheel that ratchets under your thumb. Truth or dare, two to ten on one phone.</p></figcaption></figure>
+      <figure class="phone-card"><div class="phone phone--dark zoomable"><img src="media/connect/faker1.jpg" alt="Faker drawing game" loading="lazy" width="460" height="1000"></div><figcaption class="cap"><span class="n">04 · <b>Faker.</b></span><p data-fr="L'un de vous ne sait rien. Jeu d'imposteur en dessin, de quatre à dix sur un téléphone.">One of you knows nothing. Drawing imposter game, four to ten on one phone.</p></figcaption></figure>
+    </div>
+  </section>
+
+  <!-- 07 AI -->
+  <section class="section section--ink wrap">
+    <div class="proj-sec__head reveal">
+      <span class="eyebrow"><span class="idx">07</span> AI</span>
+      <h2 data-fr="L'IA fait<br>le travail ingrat.">AI does the<br>boring work.</h2>
+    </div>
+    <div class="ai-pull reveal">
+      <p class="big" data-fr="<em>L'IA ne fait pas les conversations.</em> Elle nettoie le sol entre elles."><em>AI doesn't make the conversations.</em> It cleans the floor between them.</p>
+      <p class="sub" data-fr="Stack : des agents Groq sur llama-3.3-70b pour le raisonnement, text-embedding-3-small d'OpenAI pour la recherche, des sanitizers maison sur chaque sortie. Tout tourne côté serveur, aucun modèle sur l'appareil.">Stack: Groq agents on llama-3.3-70b for reasoning, OpenAI text-embedding-3-small for retrieval, custom sanitisers on every output. Everything runs server-side, no models on-device.</p>
+    </div>
+    <ul class="ai-list reveal">
+      <li class="ai-row"><div class="ai-key"><span>01</span><b data-fr="Recherche.">Search.</b></div><div class="ai-body"><h4 data-fr="Recherche en langage naturel sur tout le feed.">Natural-language search across the whole feed.</h4><p data-fr="« Les débats de la semaine dernière sur l'urbanisme où quelqu'un a changé d'avis. » La requête tourne sur le même modèle d'embeddings qui classe le feed, donc ce que tu demandes et ce qui remonte partagent un vocabulaire.">"Debates from last week about urban design where someone changed their mind." The query runs on the same embedding model that ranks the home feed, so what you ask for and what gets surfaced share a vocabulary.</p><div class="ai-tags"><span>Embeddings</span><span>Vector store</span><span>Re-rank</span></div></div></li>
+      <li class="ai-row"><div class="ai-key"><span>02</span><b data-fr="Tri des signalements.">Report triage.</b></div><div class="ai-body"><h4 data-fr="Chaque signalement passe d'abord par un agent.">Every report runs through an agent first.</h4><p data-fr="Il tague la gravité (faible / moyen / urgent), catégorise (harcèlement / spam / usurpation / menace), pré-remplit un résumé et route vers le bon relecteur. Le temps d'action tombe de plusieurs jours à moins d'une heure pour les cas urgents.">It tags severity (low / mid / urgent), categorises (harassment / spam / impersonation / threat), pre-fills a summary, and routes to the right reviewer. Time-to-action drops from days to under an hour for urgent cases.</p><div class="ai-tags"><span data-fr="Gravité">Severity</span><span data-fr="Routage">Routing</span><span data-fr="Pré-remplissage">Pre-fill</span><span data-fr="Humain dans la boucle">Human-in-loop</span></div></div></li>
+      <li class="ai-row"><div class="ai-key"><span>03</span><b data-fr="Vérifier.">Verify.</b></div><div class="ai-body"><h4 data-fr="Un petit pipeline de fact-check derrière les affirmations citées.">A small fact-check pipeline behind quoted claims.</h4><p data-fr="Les affirmations qui semblent citées (« selon l'OMS, 75 % des... ») sont recoupées avec une base de connaissances. Le post reçoit une puce sur le côté : vérifié, contesté, ou sans preuve. Le lecteur décide quoi en faire. Aucune suppression automatique.">Statements that look quoted ("according to the WHO, 75% of...") get cross-referenced against a knowledge base. Posts get a small chip on the side: verified, disputed, or no evidence. The reader decides. No auto-removal.</p><div class="ai-tags"><span data-fr="Extraction de claims">Claim extraction</span><span data-fr="Recoupement">Cross-ref</span><span data-fr="Puce de confiance">Confidence chip</span></div></div></li>
+      <li class="ai-row"><div class="ai-key"><span>04</span><b data-fr="Taguer les débats.">Tag the debates.</b></div><div class="ai-body"><h4 data-fr="Trois à cinq slugs de taxonomie sur chaque débat.">Three to five taxonomy slugs on every debate.</h4><p data-fr="Écrits par un agent Groq sur llama-3.3-70b, depuis le même ensemble qui pilote tes intérêts. Un graphe de topics voisins diffuse le post vers les pièces adjacentes. Pas de hashtags, pas à deviner comment nommer ton sujet.">Written by a Groq agent on llama-3.3-70b, from the same set that drives your interests. A sibling-topic graph fans the post out to adjacent rooms. No hashtags, no guessing what to call your topic.</p><div class="ai-tags"><span>llama-3.3-70b</span><span>Taxonomy</span><span data-fr="Graphe voisin">Sibling graph</span></div></div></li>
+      <li class="ai-row"><div class="ai-key"><span>05</span><b data-fr="Quizzer les vidéos.">Quiz the videos.</b></div><div class="ai-body"><h4 data-fr="Des quiz adaptatifs à partir des shorts et des liens partagés.">Adaptive quizzes from shorts and shared links.</h4><p data-fr="Les shorts de chaînes et les liens partagés produisent des quiz de trois à cinq questions. Chaque question passe par un sanitizer strict pour éviter de dériver vers ce que la source n'a pas dit. Le quiz suivant s'ajuste au précédent.">Channel shorts and shared links produce three to five question quizzes. Each question goes through a strict sanitiser to avoid drifting onto things the source didn't say. The next quiz adjusts to how the last one went.</p><div class="ai-tags"><span data-fr="Adaptatif">Adaptive</span><span>Sanitiser</span><span data-fr="3-5 questions">3-5 questions</span></div></div></li>
+      <li class="ai-row"><div class="ai-key"><span>06</span><b data-fr="Apparier les humeurs.">Mood pair.</b></div><div class="ai-body"><h4 data-fr="Sur la carte Explore, les humeurs viennent de tes posts récents.">On the Explore map, mood signals come from your recent posts.</h4><p data-fr="Le matcher pèse les humeurs complémentaires, pas seulement la distance. Résultat : moins d'ouvertures maladroites, plus de conversations qui ont un endroit où aller.">The matcher weighs complementary moods, not just distance. The result is fewer awkward openers and more conversations that have somewhere to go.</p><div class="ai-tags"><span data-fr="Inférence d'humeur">Mood inference</span><span>Matcher</span><span data-fr="Local uniquement">Local only</span></div></div></li>
+    </ul>
+  </section>
+
+  <!-- 08 PRO -->
+  <section class="section wrap">
+    <div class="proj-sec__head reveal">
+      <span class="eyebrow"><span class="idx">08</span> <span data-fr="Tarifs">Pricing</span></span>
+      <h2 data-fr="Connect Pro. La même app,<br>avec plus d'air.">Connect Pro. Same app,<br>with room to move.</h2>
+    </div>
+    <p class="reading feat__lead reveal" data-fr="La pub garde le gratuit gratuit. Pro la coupe et ouvre les parties qui ont besoin d'un peu plus d'espace. Rien d'essentiel ne vit derrière le paywall.">Ads keep the free tier free. Pro turns them off and opens the parts that need a bit more room. Nothing essential lives behind the paywall.</p>
+    <div class="price-grid reveal">
+      <div class="price-col">
+        <div class="price-head"><h3 data-fr="Gratuit">Free</h3><span class="amt">€0</span></div>
+        <ul class="price-list">
+          <li><span class="k" data-fr="Tout">All</span><b data-fr="Stories, débats, Tide, Spotlight">Stories, Debates, Tide, Spotlight</b><p data-fr="Chaque fonction cœur. La pub native, interstitielle et maison soutient le travail.">Every core feature. Native, interstitial and house ads support the work.</p></li>
+          <li><span class="k" data-fr="Tout">All</span><b data-fr="Les quatre jeux hors ligne">The offline four</b><p data-fr="Net, Tide, Spin, Faker. Sur l'appareil, identiques sur les deux offres.">Net, Tide, Spin, Faker. On-device, identical on both tiers.</p></li>
+          <li><span class="k" data-fr="Tout">All</span><b data-fr="Messages &amp; notes vocales">DMs &amp; voice messages</b><p data-fr="Messages directs avec enregistrement et scrub de la voix.">Direct messages with voice record and scrub.</p></li>
+          <li><span class="k" data-fr="Tout">All</span><b data-fr="Quiz vidéo adaptatifs">Adaptive video quizzes</b><p data-fr="Trois à cinq questions, sans remplissage, sans streak.">Three to five questions, no padding, no streaks.</p></li>
+        </ul>
+      </div>
+      <div class="price-col price-col--pro">
+        <div class="price-head"><h3>Pro</h3><span class="amt">€4.99<span style="font-size:.5em;font-weight:500" data-fr="/mois">/mo</span></span></div>
+        <ul class="price-list">
+          <li><span class="k" data-fr="Zéro pub">No ads</span><b data-fr="Rien dans ton feed">Nothing in your feed</b><p data-fr="Pas de native, pas d'interstitiel, pas d'app-open, pas de promo maison.">No native, no interstitial, no app-open ads, no house promos.</p></li>
+          <li><span class="k" data-fr="Plus">More</span><b data-fr="Limites d'upload plus hautes">Higher upload limits</b><p data-fr="Des stories et posts plus lourds. Plus d'espace pour ce que tu crées.">Bigger stories and posts. More room for what you're making.</p></li>
+          <li><span class="k" data-fr="Avant">Early</span><b data-fr="Accès anticipé">Early access</b><p data-fr="Les nouveautés arrivent en bêta sur les comptes Pro d'abord.">New features land in beta on Pro accounts first.</p></li>
+          <li><span class="k" data-fr="Badge">Badge</span><b data-fr="Un petit badge Pro">A small Pro badge</b><p data-fr="Optionnel. Désactivé par défaut.">Optional. Off by default.</p></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- STACK -->
+  <section class="section section--alt wrap">
+    <div class="proj-sec__head reveal">
+      <span class="eyebrow"><span class="idx">08.1</span> <span data-fr="Construit avec">Built with</span></span>
+    </div>
+    <div class="stack reveal">
+      <span class="t">Flutter</span><span class="t">Dart</span><span class="t">Supabase</span>
+      <span class="t">PostgreSQL</span><span class="t">Row Level Security</span><span class="t">Edge Functions</span>
+      <span class="t">Groq · llama-3.3-70b</span><span class="t">OpenAI embeddings</span><span class="t">Firebase Cloud Messaging</span>
+      <span class="t">WebRTC</span><span class="t">Sign in with Apple</span><span class="t">AppLovin MAX</span>
+    </div>
+  </section>
+
+  <!-- NEXT PROJECT -->
+  <section class="section section--ink wrap" style="padding-block:0">
+    <a class="next-proj reveal" href="empreintes.html">
+      <span class="next-proj__kick" data-fr="Projet suivant">Next project</span>
+      <span class="next-proj__title">Empreintes</span>
+      <svg class="next-proj__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><use href="#i-arrow"/></svg>
+    </a>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer section--ink wrap">
+    <span class="m">© 2026 Mahdi Saiah</span>
+    <span class="m" data-fr="Product Designer · Développeur · Fondateur de <a href='index.html#connect'>Connect</a>">Product Designer · Developer · Founder of <a href="index.html#connect">Connect</a></span>
+    <span class="m" data-fr="Conçu &amp; développé à Paris">Designed &amp; built in Paris</span>
+  </footer>
+
+</main>
+
+<!-- immersive lightbox -->
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Screenshot viewer">
+  <button class="lb__btn lb__close" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><use href="#i-close"/></svg></button>
+  <button class="lb__btn lb__prev" aria-label="Previous"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><use href="#i-chev-l"/></svg></button>
+  <img class="lb__img" alt="">
+  <button class="lb__btn lb__next" aria-label="Next"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><use href="#i-chev-r"/></svg></button>
+  <span class="lb__count"></span>
+</div>
+
+<script src="js/main.js"></script>
+<script src="js/project.js"></script>
+<script src="js/i18n.js"></script>
+</body>
+</html>
