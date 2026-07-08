@@ -1,471 +1,456 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Mahdi Saiah — Creative Developer</title>
-  <meta name="description" content="Portfolio of Mahdi Saiah — creative developer across mobile, web, games and 3D." />
-  <meta name="theme-color" content="#050505" />
-  <link rel="icon" href="images/logo.png" type="image/png" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Mahdi Saiah · Product Designer, Developer, Founder of Connect</title>
+<meta name="description" content="Mahdi Saiah is a product designer and developer, and the founder of Connect. He designs, builds, and ships products end to end." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;800;900&family=Space+Grotesk:wght@400;500;600&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <canvas id="shader" aria-hidden="true"></canvas>
 
-  <header class="site-header" id="siteHeader">
-    <nav class="site-nav" aria-label="Main navigation">
-      <a class="nav-brand" href="#home" aria-label="Mahdi Saiah home">
-        <span class="brand-mark">MS</span>
-      </a>
+<!-- icon sprite -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <g id="i-feed"><rect x="3" y="4" width="18" height="4" rx="1"/><rect x="3" y="12" width="11" height="8" rx="1"/><line x1="17" y1="12" x2="21" y2="12"/><line x1="17" y1="16" x2="21" y2="16"/><line x1="17" y1="20" x2="21" y2="20"/></g>
+    <g id="i-debate"><path d="M8 10h8M8 14h5"/><path d="M4 5h16v11H9l-4 4v-4H4z"/></g>
+    <g id="i-reel"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="M3 9h18M8 4l2 5M14 4l2 5"/><path d="M11 12.5v3l3-1.5z"/></g>
+    <g id="i-story"><circle cx="12" cy="12" r="8" stroke-dasharray="3 2.6"/><circle cx="12" cy="12" r="3.4"/></g>
+    <g id="i-chat"><path d="M4 5h16v10H10l-4 4v-4H4z"/><circle cx="9" cy="10" r=".6" fill="currentColor" stroke="none"/><circle cx="12.5" cy="10" r=".6" fill="currentColor" stroke="none"/><circle cx="16" cy="10" r=".6" fill="currentColor" stroke="none"/></g>
+    <g id="i-mood"><circle cx="12" cy="12" r="8"/><path d="M8.5 14a4 4 0 007 0"/><circle cx="9" cy="10" r=".7" fill="currentColor" stroke="none"/><circle cx="15" cy="10" r=".7" fill="currentColor" stroke="none"/></g>
+    <g id="i-bell"><path d="M6 9a6 6 0 0112 0c0 5 2 6 2 6H4s2-1 2-6z"/><path d="M10 19a2 2 0 004 0"/></g>
+    <g id="i-ad"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M8 15l2-6 2 6M8.6 13h2.8"/><path d="M15 15V9h1.6a2 2 0 010 4H15"/></g>
+    <g id="i-space"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 3v3M16 3v3"/><rect x="7" y="12" width="5" height="3" rx=".6"/></g>
+    <g id="i-shield"><path d="M12 3l7 3v5c0 5-3.5 8-7 10-3.5-2-7-5-7-10V6z"/><path d="M9 12l2 2 4-4"/></g>
+    <g id="i-arrow"><path d="M7 17L17 7M9 7h8v8"/></g>
+    <g id="i-mobile"><rect x="7" y="3" width="10" height="18" rx="2"/><line x1="11" y1="18" x2="13" y2="18"/></g>
+    <g id="i-code"><path d="M9 8l-4 4 4 4M15 8l4 4-4 4"/></g>
+    <g id="i-cube"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9z"/><path d="M4 7.5l8 4.5 8-4.5M12 12v9"/></g>
+    <g id="i-mail"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></g>
+    <g id="i-pen"><path d="M4 20l4.5-1L19 8.5a2.1 2.1 0 000-3l-.5-.5a2.1 2.1 0 00-3 0L5 15.5z"/><path d="M13.5 7l3.5 3.5"/></g>
+    <g id="i-tools"><line x1="4" y1="8" x2="20" y2="8"/><line x1="4" y1="16" x2="20" y2="16"/><circle cx="9" cy="8" r="2.2" fill="none"/><circle cx="15" cy="16" r="2.2" fill="none"/></g>
+    <g id="i-apple"><path d="M16.365 1.43c0 1.14-.493 2.27-1.177 3.08-.744.9-1.99 1.57-2.987 1.57-.12 0-.23-.02-.3-.03-.01-.06-.04-.22-.04-.39 0-1.15.572-2.27 1.206-2.98.804-.94 2.142-1.64 3.248-1.68.03.13.04.28.04.43zm4.565 15.71c-.03.07-.463 1.58-1.518 3.12-.945 1.34-1.94 2.71-3.43 2.71-1.517 0-1.9-.88-3.63-.88-1.63 0-2.11.91-3.61.91-1.4 0-2.53-1.19-3.63-2.7-1.39-1.94-2.5-4.96-2.5-7.83 0-4.61 2.99-7.06 5.94-7.06 1.53 0 2.8.99 3.76.99.91 0 2.34-1.05 4.09-1.05.68 0 3.09.06 4.67 2.36-.12.07-2.71 1.58-2.71 4.71 0 3.63 3.23 4.94 3.32 4.98z"/></g>
+  </defs>
+</svg>
 
-      <div class="nav-links" id="navLinks">
-        <a href="#connect" class="nav-link">Connect</a>
-        <a href="#game" class="nav-link" data-i18n="nav.game">Empreintes</a>
-        <a href="#craft" class="nav-link" data-i18n="nav.craft">3D Craft</a>
-        <a href="#skills" class="nav-link" data-i18n="nav.skills">Skills</a>
-        <a href="#career" class="nav-link" data-i18n="nav.career">Career</a>
-        <a href="#about" class="nav-link" data-i18n="nav.about">About</a>
-      </div>
+<!-- NAV -->
+<header class="nav" id="nav">
+  <a href="#top" class="nav__mark">MS<span>.</span></a>
+  <nav class="nav__links">
+    <a href="#connect">Connect</a>
+    <a href="#approach" data-fr="Méthode">Approach</a>
+    <a href="#work" data-fr="Projets">Work</a>
+    <a href="#toolkit">Toolkit</a>
+    <a href="#about" data-fr="À propos">About</a>
+    <span class="lang-toggle" role="group" aria-label="Language"><button type="button" data-lang="en">EN</button><span class="lsep">/</span><button type="button" data-lang="fr">FR</button></span>
+    <a href="#contact" class="nav__cta">Contact</a>
+  </nav>
+  <button class="nav__burger" id="burger" aria-label="Menu" aria-expanded="false"><span></span></button>
+</header>
 
-      <div class="nav-actions">
-        <button class="lang-toggle" id="langToggle" type="button" aria-label="Switch language">
-          <span class="lang-current">EN</span>
-          <span class="lang-slash">/</span>
-          <span class="lang-next">FR</span>
-        </button>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#connect"><span class="idx">01</span>Connect</a>
+  <a href="#approach"><span class="idx">02</span><span data-fr="Méthode">Approach</span></a>
+  <a href="#work"><span class="idx">03</span><span data-fr="Projets">Work</span></a>
+  <a href="#toolkit"><span class="idx">04</span>Toolkit</a>
+  <a href="#about"><span class="idx">05</span><span data-fr="À propos">About</span></a>
+  <a href="#contact"><span class="idx">06</span>Contact</a>
+  <span class="lang-toggle mobile-menu__lang" role="group" aria-label="Language"><button type="button" data-lang="en">EN</button><span class="lsep">/</span><button type="button" data-lang="fr">FR</button></span>
+</div>
 
-        <a href="#contact" class="nav-contact" data-i18n="nav.contact">Contact</a>
+<main id="top">
 
-        <button class="nav-menu-btn" id="navMenuBtn" type="button" aria-label="Open menu" aria-expanded="false">
-          <span></span>
-          <span></span>
-        </button>
-      </div>
-    </nav>
-
-    <div class="mobile-panel" id="mobilePanel" aria-hidden="true">
-      <a href="#connect" class="mobile-link">Connect</a>
-      <a href="#game" class="mobile-link" data-i18n="nav.game">Empreintes</a>
-      <a href="#craft" class="mobile-link" data-i18n="nav.craft">3D Craft</a>
-      <a href="#skills" class="mobile-link" data-i18n="nav.skills">Skills</a>
-      <a href="#career" class="mobile-link" data-i18n="nav.career">Career</a>
-      <a href="#about" class="mobile-link" data-i18n="nav.about">About</a>
-      <a href="#contact" class="mobile-link mobile-contact" data-i18n="nav.contact">Contact</a>
+  <!-- HERO -->
+  <section class="hero wrap" id="hero">
+    <span class="eyebrow hero__eyebrow reveal"><span class="idx">01</span> Portfolio · Paris · 2026</span>
+    <h1 class="display hero__name">
+      <span class="ln reveal">Mahdi</span>
+      <span class="ln reveal">Saiah</span>
+    </h1>
+    <div class="hero__role reveal">
+      <span>Product Designer</span><span class="sep">/</span>
+      <span data-fr="Développeur">Developer</span><span class="sep">/</span>
+      <span data-fr="Fondateur de Connect">Founder of Connect</span>
     </div>
-  </header>
+    <p class="lead hero__sub reveal" data-fr="Je le conçois, je le construis, je le ship. Du premier pixel à l'App Store.">I design it, build it, and ship it. From the first pixel to the App Store.</p>
+    <div class="hero__scroll" aria-hidden="true"><span class="bar"></span> <span data-fr="Défiler">Scroll</span></div>
+  </section>
 
-  <main>
-    <!-- ========== HERO ========== -->
-    <section class="hero" id="home">
-      <h1 class="hero-name">
-        <span>Mahdi</span>
-        <em class="serif">Saiah</em>
-      </h1>
-      <p class="tagline" data-i18n="hero.tagline">Creative Developer — Mobile · Web · Games · 3D</p>
-      <div class="hero-actions">
-        <a class="btn solid" href="#connect" data-i18n="hero.cta1">See Connect</a>
-        <a class="btn" href="#game" data-i18n="hero.cta2">Explore Empreintes</a>
+  <!-- STATEMENT / WHAT I DO -->
+  <section class="section section--ink wrap" id="do">
+    <span class="eyebrow reveal"><span class="idx">02</span> <span data-fr="Ce que je fais">What I do</span></span>
+    <h2 class="statement__big reveal" style="margin-top:1.6rem" data-fr="Je transforme des idées en produits que les gens utilisent vraiment. <span class='accent'>Design, engineering et produit,</span> réunis dans une seule paire de mains.">I turn ideas into products people actually use. <span class="accent">Design, engineering, and product,</span> in one pair of hands.</h2>
+    <div class="roles">
+      <div class="role reveal">
+        <h3><span class="no">/01</span> Product Designer</h3>
+        <p data-fr="Interfaces, design systems, motion, et les petits détails qui rendent un logiciel soigné. Le goût comme discipline, pas comme décoration.">Interfaces, design systems, motion, and the small details that make software feel considered. Taste as a discipline, not decoration.</p>
+      </div>
+      <div class="role reveal">
+        <h3><span class="no">/02</span> <span data-fr="Développeur">Developer</span></h3>
+        <p data-fr="Flutter et Dart côté front, Supabase et Postgres côté back. Je mets les mains dans le code qui arrive sur de vrais téléphones. Live sur iOS, Android juste après.">Flutter and Dart on the front, Supabase and Postgres on the back. I'm hands-on in the codebase that ships to real phones, live on iOS with Android next.</p>
+      </div>
+      <div class="role reveal">
+        <h3><span class="no">/03</span> <span data-fr="Fondateur">Founder</span></h3>
+        <p data-fr="Je gère Connect de bout en bout. Le design, le backend, la pipeline de release, et tout le reste. En solo.">I run Connect end to end. Design decisions, the backend, the release pipeline, and everything in between. Solo.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONNECT -->
+  <section class="section wrap" id="connect">
+    <div class="sec-head">
+      <span class="eyebrow reveal"><span class="idx">03</span> <span data-fr="Produit phare">Flagship</span></span>
+    </div>
+
+    <div class="connect__intro">
+      <div class="reveal">
+        <div class="connect__wordmark serif-brand">Connect<span class="dot">.</span></div>
+        <p class="connect__tag" data-fr="Une app sociale pensée pour la vraie conversation">A social app built for real conversation</p>
+        <div class="pill-row">
+          <span class="pill pill--live" data-fr="Live sur iOS">Live on iOS</span>
+          <span class="pill" data-fr="Android bientôt">Android coming soon</span>
+          <span class="pill" data-fr="Conçu et développé en solo">Designed &amp; built solo</span>
+        </div>
+        <a class="appstore" href="https://apps.apple.com/fr/app/connect-for-real/id6782110379?l=en-GB" target="_blank" rel="noopener" aria-label="Download Connect, For Real on the App Store">
+          <svg class="appstore__logo" viewBox="0 0 24 24" fill="currentColor" stroke="none" aria-hidden="true"><use href="#i-apple"/></svg>
+          <span class="appstore__txt"><span class="appstore__sub" data-fr="Télécharger dans l'">Download on the</span><span class="appstore__store">App Store</span></span>
+        </a>
+      </div>
+      <p class="reading reveal" data-fr="Connect est une plateforme sociale pensée pour l'interaction, pas pour le scroll passif. Un feed d'accueil classé, des arènes de débat où l'on défend vraiment une idée, de la vidéo courte, des stories et une vraie messagerie, le tout dans un design system calme et assumé. J'ai designé chaque écran, mis les mains dans l'app et le backend, et je l'ai publiée moi-même sur l'App Store. Android arrive bientôt.">Connect is a social platform designed around interaction instead of passive scrolling. A ranked home feed, debate arenas where people actually argue an idea, short video, stories, and real messaging, all wrapped in one calm, opinionated design system. I designed every screen, worked hands-on across the app and backend, and shipped it to the App Store myself. Android is on the way.</p>
+    </div>
+
+    <!-- feature grid -->
+    <div class="features reveal">
+      <article class="feature"><span class="feature__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><use href="#i-feed"/></svg></span><h4 data-fr="Feed classé">Ranked Feed</h4><p data-fr="Un feed d'accueil noté sur la pertinence, la fraîcheur, la nouveauté et des signaux appris, avec des slots réservés à la découverte.">A home feed scored on relevance, freshness, novelty, and learned signals, with reserved slots for discovery.</p></article>
+      <article class="feature"><span class="feature__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><use href="#i-debate"/></svg></span><h4 data-fr="Arènes de débat">Debate Arenas</h4><p data-fr="Des débats structurés, taggés automatiquement dans une taxonomie vivante par un agent on-device, et matchés à tes centres d'intérêt.">Structured debates, auto tagged into a living taxonomy by an on-device style agent and matched to your interests.</p></article>
+      <article class="feature"><span class="feature__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><use href="#i-reel"/></svg></span><h4>Reels</h4><p data-fr="Un player de vidéos courtes plein écran qui réordonne sa file avec un ranker par intérêt, diversité et nouveauté.">A fullscreen short video player that reorders its own queue with an interest, diversity, and novelty ranker.</p></article>
+      <article class="feature"><span class="feature__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><use href="#i-story"/></svg></span><h4>Stories</h4><p data-fr="Des stories de 24 h avec une fenêtre de grâce sur le repost, pour qu'une story reste en vie tant que quelqu'un la partage encore.">24 hour stories with a repost grace window, so a story stays alive as long as someone is still sharing it.</p></article>
+      <article class="feature"><span class="feature__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><use href="#i-chat"/></svg></span><h4 data-fr="Messagerie">Messaging</h4><p data-fr="Un chat complet avec un composer repensé : photos, caméra, notes vocales, localisation et documents dans une seule barre nette.">Full chat with a rebuilt composer: photos, camera, voice notes, location, and documents in one clean bar.</p></article>
+      <article class="feature"><span class="feature__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><use href="#i-mood"/></svg></span><h4>Moods</h4><p data-fr="Des moods de statut légers sur Explore, limités à tout le monde ou aux abonnés, appliqués côté serveur pour chaque viewer.">Lightweight status moods on Explore, scoped to everyone or followers and enforced server side per viewer.</p></article>
+      <article class="feature"><span class="feature__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><use href="#i-bell"/></svg></span><h4>Push</h4><p data-fr="De vraies notifications push avec un Push Center pour composer et cibler posts, profils et débats.">Real push notifications with an owner Push Center to compose and target posts, profiles, and debates.</p></article>
+      <article class="feature"><span class="feature__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><use href="#i-space"/></svg></span><h4>My Space</h4><p data-fr="Un planner premium hors ligne avec une timeline de 24 h, une grille mensuelle et des notes inline. Calme et rapide.">A premium offline planner with a 24 hour calendar timeline, a month grid, and inline notes. Calm and fast.</p></article>
+      <article class="feature"><span class="feature__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><use href="#i-shield"/></svg></span><h4 data-fr="Backend blindé">Hardened Backend</h4><p data-fr="Des RPC réservés au owner, des search paths définis et des guards de profil. La sécurité traitée comme une feature, pas un détail.">Owner gated RPCs, definer search paths, and profile guards. Security treated as a feature, not an afterthought.</p></article>
+    </div>
+
+    <!-- craft / design system -->
+    <div class="craft">
+      <div class="craft__lead reveal">
+        <span class="eyebrow"><span class="idx">03.1</span> <span data-fr="Le savoir-faire">The craft</span></span>
+        <h3 class="h-sec" style="font-size:clamp(1.8rem,4.5vw,3.2rem); margin-top:1rem" data-fr="Un vrai design system">A real design system</h3>
+        <p class="reading" style="margin-top:1rem" data-fr="Une seule source de vérité pilote toute l'app : des color tokens sémantiques, une type scale fixe, une grille d'espacement de 4 points, un langage d'icônes et des règles de motion. Rien n'est codé en dur, écran par écran.">One source of truth drives the whole app: semantic color tokens, a fixed type scale, a 4 point spacing grid, one icon language, and motion rules. Nothing is hardcoded per screen.</p>
       </div>
 
-      <a href="#connect" class="scroll" aria-label="Scroll down">
-        <span data-i18n="hero.scroll">Scroll</span>
-        <i></i>
-      </a>
-    </section>
-
-    <!-- ========== CONNECT ========== -->
-    <section class="section connect" id="connect">
-      <div class="wrap">
-        <div class="s-head">
-          <span class="s-num">01</span>
-          <span class="s-label" data-i18n="connect.label">Mobile product</span>
-          <span class="s-rule"></span>
-          <span class="s-meta" data-i18n="connect.meta">iOS — May 2026</span>
-        </div>
-
-        <div class="connect-head">
-          <div class="lockup">
-            <span class="logo-box"><img src="images/logo.png" alt="Connect logo"></span>
-            <img class="wordmark" src="images/textlogo.png" alt="Connect">
-          </div>
-
-          <h2 class="display" data-i18n="connect.title">
-            A social platform built<br>
-            for <em class="serif">real</em> conversation.
-          </h2>
-
-          <div class="connect-copy">
-            <p data-i18n="connect.lead">Connect is a modern social platform where users share posts, moments, and debates around real content from across the internet. It focuses on interaction over consumption — letting people react, discuss, and challenge ideas instead of just scrolling.</p>
-            <p data-i18n="connect.lead2">Built with a clean, immersive design, Connect turns social media into a space for expression, conversation, and meaningful engagement.</p>
-          </div>
-
-          <div class="connect-meta">
-            <div class="cm">
-              <span data-i18n="connect.m1.label">Platform</span>
-              <b data-i18n="connect.m1.val">iOS at launch · Android soon</b>
-            </div>
-            <div class="cm">
-              <span data-i18n="connect.m2.label">Release</span>
-              <b data-i18n="connect.m2.val">May 31 · 2026</b>
-            </div>
-            <div class="cm">
-              <span data-i18n="connect.m3.label">Countdown</span>
-              <b id="countdown">—</b>
-            </div>
-          </div>
-        </div>
-
-        <div class="phone-stage" id="phoneStage">
-          <article class="phone-col left">
-            <div class="phone-frameless"><img src="images/home.png" alt="Connect home feed"></div>
-            <div class="caption"><span>01 · <span data-i18n="connect.cap1">Home</span></span><p data-i18n="connect.phone1.text">A real-time feed where posts, moments and reactions live together.</p></div>
-          </article>
-          <article class="phone-col center">
-            <div class="phone-frameless"><img src="images/debate.png" alt="Connect debate screen"></div>
-            <div class="caption"><span>02 · <span data-i18n="connect.cap2">Debate</span></span><p data-i18n="connect.phone2.text">For/Against arenas — ideas get challenged, not just liked.</p></div>
-          </article>
-          <article class="phone-col right">
-            <div class="phone-frameless"><img src="images/profile.png" alt="Connect profile screen"></div>
-            <div class="caption"><span>03 · <span data-i18n="connect.cap3">Profile</span></span><p data-i18n="connect.phone3.text">Identity built for expression — not just metrics.</p></div>
-          </article>
+      <div class="card c-color reveal">
+        <span class="card__label">Color tokens</span>
+        <h4 data-fr="Encre, gris, et un rouge">Ink, greys, and one red</h4>
+        <div class="swatches">
+          <div class="sw" style="background:#111111;color:#fff"><b>Ink</b><span>#111111</span></div>
+          <div class="sw" style="background:#2A2A2A;color:#fff"><b>Graphite</b><span>#2A2A2A</span></div>
+          <div class="sw" style="background:#888888;color:#fff"><b>Grey</b><span>#888888</span></div>
+          <div class="sw" style="background:#E5E5E5;color:#111"><b>Line</b><span>#E5E5E5</span></div>
+          <div class="sw" style="background:#F7F7F7;color:#111"><b>Surface</b><span>#F7F7F7</span></div>
+          <div class="sw" style="background:#D93025;color:#fff"><b>Danger</b><span>#D93025</span></div>
         </div>
       </div>
-    </section>
 
-    <!-- ========== EMPREINTES ========== -->
-    <section class="section game" id="game">
-      <div class="wrap">
-        <div class="s-head">
-          <span class="s-num">02</span>
-          <span class="s-label" data-i18n="game.label">Game project</span>
-          <span class="s-rule"></span>
-          <span class="s-meta">Unity · Blender · C#</span>
-        </div>
-
-        <div class="head-grid">
-          <h2 class="display" data-i18n="game.title">
-            Empreintes — an <em class="serif">open-world</em> experience about human impact.
-          </h2>
-          <p class="lead" data-i18n="game.lead">A university and indie project built around exploration, vehicles and environmental awareness. The player moves through a world shaped by human traces — roads, machines, extraction, ruins and nature fighting back.</p>
-        </div>
-
-        <div class="carousel" id="videoCarousel" data-carousel="video">
-          <div class="carousel-stage">
-            <button class="car-btn prev" type="button" aria-label="Previous">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 6l-6 6 6 6"/></svg>
-            </button>
-
-            <div class="carousel-track" id="videoTrack">
-              <div class="carousel-slide active"><video src="videos/video1.mp4" muted playsinline loop preload="metadata"></video></div>
-              <div class="carousel-slide"><video src="videos/video2.mp4" muted playsinline loop preload="metadata"></video></div>
-              <div class="carousel-slide"><video src="videos/video3.mp4" muted playsinline loop preload="metadata"></video></div>
-              <div class="carousel-slide"><video src="videos/video4.mp4" muted playsinline loop preload="metadata"></video></div>
-            </div>
-
-            <button class="car-btn next" type="button" aria-label="Next">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 6l6 6-6 6"/></svg>
-            </button>
-          </div>
-
-          <div class="slide-meta">
-            <div class="sm-left">
-              <span class="sm-index"><em id="videoIndex">01</em> / 04</span>
-              <b id="videoTitle" data-i18n="game.v1">Open-world exploration</b>
-            </div>
-            <div class="sm-dots" id="videoDots" aria-hidden="true"></div>
-          </div>
-
-          <div class="carousel-thumbs" id="videoThumbs">
-            <button class="thumb active" data-index="0" aria-label="Video 1">
-              <video src="videos/video1.mp4" muted playsinline preload="metadata"></video>
-            </button>
-            <button class="thumb" data-index="1" aria-label="Video 2">
-              <video src="videos/video2.mp4" muted playsinline preload="metadata"></video>
-            </button>
-            <button class="thumb" data-index="2" aria-label="Video 3">
-              <video src="videos/video3.mp4" muted playsinline preload="metadata"></video>
-            </button>
-            <button class="thumb" data-index="3" aria-label="Video 4">
-              <video src="videos/video4.mp4" muted playsinline preload="metadata"></video>
-            </button>
-          </div>
+      <div class="card c-type reveal">
+        <span class="card__label">Type scale</span>
+        <h4 data-fr="Wordmark Playfair, UI système">Playfair wordmark, system UI</h4>
+        <div class="typescale">
+          <div class="t"><span class="tag">Wordmark</span><span class="big serif-brand">Connect.</span></div>
+          <div class="t"><span class="tag">Title · 22</span><span class="mid" data-fr="Vraie conversation">Real conversation</span></div>
+          <div class="t"><span class="tag">Body · 15</span><span class="bod" data-fr="Pensé pour l'interaction, pas le scroll passif.">Built for interaction, not passive scrolling.</span></div>
+          <div class="t"><span class="tag">Label · 11</span><span class="lab">Semantic tokens</span></div>
         </div>
       </div>
-    </section>
 
-    <!-- ========== 3D CRAFT ========== -->
-    <section class="section craft" id="craft">
-      <div class="wrap">
-        <div class="s-head">
-          <span class="s-num">03</span>
-          <span class="s-label" data-i18n="craft.label">3D study</span>
-          <span class="s-rule"></span>
-          <span class="s-meta">Blender</span>
-        </div>
-
-        <div class="head-grid">
-          <h2 class="display" data-i18n="craft.title">
-            3D Craft — modeling,<br>
-            textures & <em class="serif">visual</em> experiments.
-          </h2>
-          <p class="lead" data-i18n="craft.lead">A selection of renders and 3D explorations — architecture, objects, materials, lighting and composition built in Blender.</p>
-        </div>
-
-        <div class="carousel image-carousel" id="imageCarousel" data-carousel="image">
-          <div class="carousel-stage">
-            <button class="car-btn prev" type="button" aria-label="Previous">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 6l-6 6 6 6"/></svg>
-            </button>
-
-            <div class="carousel-track" id="imageTrack">
-              <div class="carousel-slide active"><img src="images/blender1.jpg" alt="3D render 1"></div>
-              <div class="carousel-slide"><img src="images/blender2.jpg" alt="3D render 2"></div>
-              <div class="carousel-slide"><img src="images/blender3.jpg" alt="3D render 3"></div>
-              <div class="carousel-slide"><img src="images/blender4.jpg" alt="3D render 4"></div>
-              <div class="carousel-slide"><img src="images/blender5.jpg" alt="3D render 5"></div>
-              <div class="carousel-slide"><img src="images/blender6.jpg" alt="3D render 6"></div>
-              <div class="carousel-slide"><img src="images/blender7.jpg" alt="3D render 7"></div>
-              <div class="carousel-slide"><img src="images/blender8.jpg" alt="3D render 8"></div>
-              <div class="carousel-slide"><img src="images/blender9.jpg" alt="3D render 9"></div>
-              <div class="carousel-slide"><img src="images/blender10.jpg" alt="3D render 10"></div>
-              <div class="carousel-slide"><img src="images/blender11.jpg" alt="3D render 11"></div>
-              <div class="carousel-slide"><img src="images/blender12.jpg" alt="3D render 12"></div>
-              <div class="carousel-slide"><img src="images/blender13.jpg" alt="3D render 13"></div>
-            </div>
-
-            <button class="car-btn next" type="button" aria-label="Next">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 6l6 6-6 6"/></svg>
-            </button>
-          </div>
-
-          <div class="slide-meta">
-            <div class="sm-left">
-              <span class="sm-index"><em id="craftIndex">01</em> / 13</span>
-              <b data-i18n="craft.piece">Render</b>
-            </div>
-            <div class="sm-dots" id="imageDots" aria-hidden="true"></div>
-          </div>
-
-          <div class="thumb-grid" id="imageThumbs"></div>
+      <div class="card c-space reveal">
+        <span class="card__label">Spacing · 4pt grid</span>
+        <h4 data-fr="Un seul rythme">One rhythm</h4>
+        <div class="spacescale">
+          <div class="u" style="height:16%"><i>4</i></div>
+          <div class="u" style="height:28%"><i>8</i></div>
+          <div class="u" style="height:44%"><i>12</i></div>
+          <div class="u" style="height:60%"><i>16</i></div>
+          <div class="u" style="height:80%"><i>24</i></div>
+          <div class="u" style="height:100%"><i>40</i></div>
         </div>
       </div>
-    </section>
 
-    <!-- ========== SKILLS ========== -->
-    <section class="section skills" id="skills">
-      <div class="wrap">
-        <div class="s-head">
-          <span class="s-num">04</span>
-          <span class="s-label" data-i18n="skills.label">Stack</span>
-          <span class="s-rule"></span>
+      <div class="card c-icons reveal">
+        <span class="card__label">Icon system</span>
+        <h4 data-fr="Libre de droits, un seul langage">License free, one language</h4>
+        <div class="iconset">
+          <span class="i"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><use href="#i-feed"/></svg></span>
+          <span class="i"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><use href="#i-chat"/></svg></span>
+          <span class="i"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><use href="#i-bell"/></svg></span>
+          <span class="i"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><use href="#i-mood"/></svg></span>
+          <span class="i"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><use href="#i-shield"/></svg></span>
         </div>
+        <p style="font-family:var(--f-mono);font-size:.76rem;color:var(--ink-2)" data-fr="Phosphor et Material uniquement. Aucune image de glyphe embarquée.">Phosphor &amp; Material only. No bundled glyph images.</p>
+      </div>
 
-        <div class="head-grid">
-          <h2 class="display" data-i18n="skills.title">
-            Skills across product,<br>
-            code and <em class="serif">visual</em> systems.
-          </h2>
-          <p class="lead" data-i18n="skills.lead">Four disciplines, one workflow — from a first sketch to a shipped product.</p>
-        </div>
-
-        <ul class="skill-list">
-          <li class="skill-row">
-            <span class="sr-num">01</span>
-            <div class="sr-title">
-              <b data-i18n="skills.mobile.t">Mobile & Web</b>
-              <p data-i18n="skills.mobile.p">From prototype to shipped app — realtime backends and polished interfaces.</p>
-            </div>
-            <div class="sr-tags">
-              <span>Flutter</span><span>Dart</span><span>Supabase</span><span>React</span><span>Three.js</span><span>WebGL</span><span>HTML</span><span>CSS</span>
-            </div>
-          </li>
-          <li class="skill-row">
-            <span class="sr-num">02</span>
-            <div class="sr-title">
-              <b data-i18n="skills.code.t">Languages</b>
-              <p data-i18n="skills.code.p">Typed, scripting or systems — picked for the job.</p>
-            </div>
-            <div class="sr-tags">
-              <span>Dart</span><span>JavaScript</span><span>TypeScript</span><span>Python</span><span>C#</span><span>C++</span><span>SQL</span><span>GLSL</span>
-            </div>
-          </li>
-          <li class="skill-row">
-            <span class="sr-num">03</span>
-            <div class="sr-title">
-              <b data-i18n="skills.games.t">Games & VR</b>
-              <p data-i18n="skills.games.p">Unity-first, around gameplay systems and atmospheric level design.</p>
-            </div>
-            <div class="sr-tags">
-              <span>Unity</span><span>Unreal</span><span>Gameplay systems</span><span>Level design</span><span>VR</span><span>Shaders</span>
-            </div>
-          </li>
-          <li class="skill-row">
-            <span class="sr-num">04</span>
-            <div class="sr-title">
-              <b data-i18n="skills.3d.t">3D & Visual</b>
-              <p data-i18n="skills.3d.p">Blender from concept to final render — materials, lighting and composition.</p>
-            </div>
-            <div class="sr-tags">
-              <span>Blender</span><span>Modeling</span><span>Texturing</span><span>Lighting</span><span>Rendering</span><span>Compositing</span>
-            </div>
-          </li>
+      <div class="card c-motion reveal">
+        <span class="card__label">Motion rules</span>
+        <h4 data-fr="Fluide, jamais brusque">Smooth, never jarring</h4>
+        <ul class="motion-list">
+          <li data-fr="Les surfaces s'ouvrent dans leur forme finale, sans pop-in">Surfaces open in final form, no pop in</li>
+          <li data-fr="Le média fait un crossfade sur un placeholder déjà en place">Media crossfades over a finished placeholder</li>
+          <li data-fr="Des transitions shared element entre les écrans">Shared element flights between screens</li>
+          <li data-fr="Respecte le reduced motion partout">Respects reduced motion everywhere</li>
         </ul>
       </div>
-    </section>
+    </div>
 
-    <!-- ========== CAREER ========== -->
-    <section class="section career" id="career">
-      <div class="wrap">
-        <div class="s-head">
-          <span class="s-num">05</span>
-          <span class="s-label" data-i18n="career.label">Path</span>
-          <span class="s-rule"></span>
-        </div>
-
-        <div class="head-grid">
-          <h2 class="display" data-i18n="career.title">
-            Career & <em class="serif">education</em>.
-          </h2>
-          <p class="lead" data-i18n="career.lead">Between visual arts and code — a path designed to cross disciplines.</p>
-        </div>
-
-        <div class="career-grid">
-          <div class="career-col">
-            <h3 class="col-title"><span data-i18n="career.education">Education</span><em>04</em></h3>
-            <ol class="tl">
-              <li>
-                <span class="tl-year">2025 — 26</span>
-                <div><b>Master 1</b><p>Université Gustave Eiffel</p></div>
-              </li>
-              <li>
-                <span class="tl-year">2024 — 25</span>
-                <div><b>Licence 3</b><p>Université Gustave Eiffel</p></div>
-              </li>
-              <li>
-                <span class="tl-year">2023 — 24</span>
-                <div><b>Licence 2</b><p>Université Paris 8</p></div>
-              </li>
-              <li>
-                <span class="tl-year">2022 — 23</span>
-                <div><b>Licence 1</b><p>Université Paul-Valéry Montpellier</p></div>
-              </li>
-            </ol>
-          </div>
-
-          <div class="career-col">
-            <h3 class="col-title"><span data-i18n="career.experience">Experience</span><em>02</em></h3>
-            <ol class="tl">
-              <li>
-                <span class="tl-year">2025</span>
-                <div><b>Assistant Développeur front / back</b><p>BNP Paribas Real Estate — internal tools, web interfaces and interactive 3D visualization.</p></div>
-              </li>
-              <li>
-                <span class="tl-year">2024</span>
-                <div><b>Développement C# / 3D</b><p>Atelier Daniela Zuniga — 3D universe from medical scanner data and anatomical modeling.</p></div>
-              </li>
-            </ol>
-          </div>
+    <!-- stack + stats -->
+    <div class="connect__foot">
+      <div class="reveal">
+        <div class="stack-label" data-fr="Construit avec">Built with</div>
+        <div class="stack">
+          <span class="t">Flutter</span><span class="t">Dart</span><span class="t">Supabase</span>
+          <span class="t">PostgreSQL</span><span class="t">Row Level Security</span><span class="t">Edge Functions</span>
+          <span class="t">Groq · LLM agents</span><span class="t">Firebase Cloud Messaging</span><span class="t">WebRTC</span>
+          <span class="t">Sign in with Apple</span><span class="t">Google Sign in</span><span class="t">AppLovin MAX</span>
         </div>
       </div>
-    </section>
+      <div class="stats reveal">
+        <div class="stat"><b>iOS</b><span data-fr="Live, Android bientôt">Live now, Android soon</span></div>
+        <div class="stat"><b>2.5k+</b><span data-fr="Strings localisées">Localized strings</span></div>
+        <div class="stat"><b>40+</b><span data-fr="Migrations DB">DB migrations</span></div>
+        <div class="stat"><b>1</b><span data-fr="Designer &amp; ingénieur">Designer &amp; engineer</span></div>
+      </div>
+    </div>
+  </section>
 
-    <!-- ========== ABOUT ========== -->
-    <section class="section about" id="about">
-      <div class="wrap">
-        <div class="s-head">
-          <span class="s-num">06</span>
-          <span class="s-label" data-i18n="about.label">Profile</span>
-          <span class="s-rule"></span>
+  <!-- HOW I WORK -->
+  <section class="section section--alt wrap" id="approach">
+    <div class="sec-head">
+      <span class="eyebrow reveal"><span class="idx">04</span> <span data-fr="Ma méthode">How I work</span></span>
+      <div class="row reveal">
+        <h2 class="h-sec" data-fr="Du design<br>qui ship">Design<br>that ships</h2>
+        <p class="reading" data-fr="Je ne fais pas de handoff. Je fais la recherche, le design, je build et je ship moi-même. L'idée reste intacte, du premier entretien jusqu'à l'App Store.">I don't hand designs off. I research, design, build, and ship them myself, so the idea stays intact from the first interview to the App Store.</p>
+      </div>
+    </div>
+
+    <h3 class="statement__big reveal" style="color:var(--ink); margin-top:1rem" data-fr="Parce que je comprends le code, mes designs ne sont jamais des vœux pieux.">Because I understand the code, my designs are never wishful thinking.</h3>
+    <p class="reading reveal" style="margin-top:1.4rem" data-fr="Je sais ce que le framework sait faire, donc je designe à la limite du faisable au lieu de balancer des maquettes impossibles par-dessus le mur. Le design system vit dans le code, pas seulement dans Figma : zéro drift entre le fichier et le produit. Dans Connect, ça veut dire un spacing 4pt, une palette monochrome, un seul langage d'icônes et 24 composants partagés, pilotés depuis une seule source. Une personne, une source de vérité, pas de taxe de handoff.">I know what the framework can do, so I design at the edge of what's feasible instead of throwing impossible mockups over a wall. The design system lives in the code, not just in Figma, so there's no drift between the file and the product. In Connect that means 4pt spacing, a monochrome palette, one icon language, and 24 shared components, all driven from a single source. One person, one source of truth, no handoff tax.</p>
+
+    <div class="process reveal">
+      <div class="pstep"><span class="pstep__no">01</span><h4>Discovery</h4><p data-fr="Cadrer le problème, l'audience et ce que veut dire « réussi » avant de toucher un pixel.">Frame the problem, the audience, and what "good" means before touching a pixel.</p></div>
+      <div class="pstep"><span class="pstep__no">02</span><h4 data-fr="Recherche">Research</h4><p data-fr="Entretiens utilisateurs, teardowns de concurrents et journey maps pour trouver la vraie friction.">User interviews, competitor teardowns, and journey maps to find the real friction.</p></div>
+      <div class="pstep"><span class="pstep__no">03</span><h4>Define</h4><p data-fr="Transformer les insights en flows, en architecture de l'info et en direction produit claire.">Turn findings into flows, information architecture, and a clear product direction.</p></div>
+      <div class="pstep"><span class="pstep__no">04</span><h4>Design system</h4><p data-fr="Construire tokens et composants dans Figma (components, auto-layout, variables, libraries), puis les répliquer dans le code.">Build tokens and components in Figma (components, auto-layout, variables, libraries), then mirror them in code.</p></div>
+      <div class="pstep"><span class="pstep__no">05</span><h4 data-fr="Prototype & test">Prototype &amp; test</h4><p data-fr="Prototypes interactifs dans Figma, puis tests d'utilisabilité pour tuer les hypothèses tôt.">Interactive Figma prototypes, then usability testing to kill assumptions early.</p></div>
+      <div class="pstep"><span class="pstep__no">06</span><h4 data-fr="Ship & itère">Ship &amp; iterate</h4><p data-fr="Le construire en Flutter, le publier sur le store, observer l'usage réel, affiner.">Build it in Flutter, ship to the store, watch real usage, refine.</p></div>
+    </div>
+
+    <div class="about-grid reveal" style="margin-top:clamp(3rem,7vh,5rem)">
+      <div class="card">
+        <span class="card__label" data-fr="Recherche UX">UX research</span>
+        <h4 data-fr="Trouver la vérité">How I find the truth</h4>
+        <div class="disc__tools" style="margin-top:.3rem">
+          <span class="t" data-fr="Entretiens discovery">Discovery interviews</span>
+          <span class="t" data-fr="Teardowns concurrents">Competitor teardowns</span>
+          <span class="t">Journey mapping</span>
+          <span class="t" data-fr="Tests d'utilisabilité">Usability testing</span>
+          <span class="t">Card sorting</span>
+          <span class="t">Dogfooding</span>
+          <span class="t" data-fr="Itération guidée par la data">Analytics-informed iteration</span>
         </div>
+      </div>
+      <div class="card">
+        <span class="card__label" data-fr="Accessibilité · Connect">Accessibility · Connect</span>
+        <h4 data-fr="Pensée dès le départ">Built in from the start</h4>
+        <ul class="motion-list" style="margin-top:.3rem">
+          <li data-fr="Un toggle Reduce Motion, qui respecte aussi le réglage système">A Reduce Motion toggle, and it respects the OS setting</li>
+          <li data-fr="Retour haptique partout où ça compte">Haptic feedback everywhere it counts</li>
+          <li data-fr="Ordre de focus clavier et autofocus dans les formulaires">Keyboard focus order and autofocus in forms</li>
+          <li data-fr="Tooltips et semantics sur les contrôles en icône">Tooltips and semantics on icon controls</li>
+          <li data-fr="Motion fluide et interruptible, jamais bloquante">Smooth, interruptible motion, never blocking</li>
+        </ul>
+      </div>
+    </div>
+  </section>
 
-        <div class="about-grid">
-          <figure class="portrait">
-            <img src="images/i1.jpg" alt="Mahdi Saiah portrait">
-            <figcaption>Mahdi Saiah · Paris</figcaption>
-          </figure>
+  <!-- WORK -->
+  <section class="section section--ink wrap" id="work">
+    <div class="sec-head">
+      <span class="eyebrow reveal"><span class="idx">05</span> <span data-fr="Projets">Selected work</span></span>
+      <div class="row reveal">
+        <h2 class="h-sec" data-fr="Au-delà<br>de l'app">Beyond<br>the app</h2>
+        <p class="reading" data-fr="Des produits, des mondes et des images. Quelques autres choses que j'ai designées et construites.">Products, worlds, and images. A few other things I have designed and built.</p>
+      </div>
+    </div>
 
-          <div class="about-copy">
-            <h2 class="display" data-i18n="about.title">
-              I build polished digital experiences between <em class="serif">code</em>, <em class="serif">design</em> and <em class="serif">3D</em>.
-            </h2>
-            <p class="lead" data-i18n="about.lead">Tunisian-born and Paris-based, I work as a creative developer across mobile apps, interactive websites, games, VR worlds and 3D visuals. My work sits between technical execution and visual direction.</p>
+    <div class="work-list">
+      <a class="work-row reveal" href="https://mahdisaiah.github.io/archive/" target="_blank" rel="noopener">
+        <span class="work-row__no">01</span>
+        <span class="work-row__mid">
+          <span class="work-row__title">Empreintes</span>
+          <span class="work-row__desc" data-fr="Une expérience open world sur l'impact de l'humain sur l'environnement. Exploration, véhicules et une narration environnementale, faite sous Unity avec des assets Blender et du C#.">An open world experience about human impact on the environment. Exploration, vehicles, and an environmental narrative, built in Unity with Blender assets and C#.</span>
+        </span>
+        <span class="work-row__meta"><span class="t">Unity</span><span class="t">Blender</span><span class="t">C#</span><svg class="work-row__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><use href="#i-arrow"/></svg></span>
+      </a>
 
-            <dl class="about-facts">
-              <div>
-                <dt data-i18n="about.based">Based in</dt>
-                <dd>Paris, France</dd>
-              </div>
-              <div>
-                <dt data-i18n="about.origin">Origin</dt>
-                <dd>Sousse, Tunisia</dd>
-              </div>
-              <div>
-                <dt data-i18n="about.languages">Languages</dt>
-                <dd>FR · EN · AR</dd>
-              </div>
-              <div>
-                <dt data-i18n="about.statuslabel">Status</dt>
-                <dd><span class="status-dot"></span><span data-i18n="about.status">Open to opportunities</span></dd>
-              </div>
-            </dl>
+      <a class="work-row reveal" href="https://mahdisaiah.github.io/archive/" target="_blank" rel="noopener">
+        <span class="work-row__no">02</span>
+        <span class="work-row__mid">
+          <span class="work-row__title">3D Craft</span>
+          <span class="work-row__desc" data-fr="Une étude de modeling, texturing, lighting et composition. Treize rendus entre architecture, objets et matériaux.">A study in modeling, texturing, lighting, and composition. Thirteen renders across architecture, objects, and materials.</span>
+        </span>
+        <span class="work-row__meta"><span class="t">Blender</span><span class="t">Rendering</span><svg class="work-row__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><use href="#i-arrow"/></svg></span>
+      </a>
+
+      <a class="work-row reveal" href="#contact">
+        <span class="work-row__no">03</span>
+        <span class="work-row__mid">
+          <span class="work-row__title">Mémoire 2026</span>
+          <span class="work-row__desc" data-fr="Mon mémoire de recherche de cette année. Le texte complet et les visuels arrivent bientôt ici.">My research thesis from this year. Full write up and visuals coming to this space soon.</span>
+        </span>
+        <span class="work-row__meta"><span class="t" data-fr="Recherche">Research</span><span class="t" data-fr="Bientôt">Soon</span><svg class="work-row__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><use href="#i-arrow"/></svg></span>
+      </a>
+    </div>
+
+    <p class="work-note reveal" data-fr="Plus de rendus, de prototypes et d'études de cas sur l'archive mahdisaiah.github.io/archive">More renders, prototypes, and case studies live on the archive at mahdisaiah.github.io/archive</p>
+
+    <!-- marquee -->
+    <div class="marquee reveal" aria-hidden="true">
+      <div class="marquee__track">
+        <span>Flutter</span><span class="on">Design Systems</span><span>Supabase</span><span>Unity</span><span>Blender</span><span class="on">Three.js</span><span>Dart</span><span>Motion</span>
+        <span>Flutter</span><span class="on">Design Systems</span><span>Supabase</span><span>Unity</span><span>Blender</span><span class="on">Three.js</span><span>Dart</span><span>Motion</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- TOOLKIT -->
+  <section class="section wrap" id="toolkit">
+    <div class="sec-head">
+      <span class="eyebrow reveal"><span class="idx">06</span> Toolkit</span>
+      <div class="row reveal">
+        <h2 class="h-sec" data-fr="Comment je<br>build">How I<br>build</h2>
+        <p class="reading" data-fr="Quatre disciplines, un seul objectif : shipper des choses soignées qui marchent vraiment.">Four disciplines, one goal: ship things that feel considered and actually work.</p>
+      </div>
+    </div>
+
+    <div class="disciplines">
+      <div class="disc reveal">
+        <h4><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><use href="#i-pen"/></svg> UX / UI &amp; Product Design</h4>
+        <div class="disc__tools"><span class="t">Figma</span><span class="t">Design System</span><span class="t">Design Tokens</span><span class="t">Pattern Libraries</span><span class="t">Interactive Prototyping</span><span class="t">Wireframing</span><span class="t">UX Research</span><span class="t">Product Discovery</span><span class="t">Design Thinking</span><span class="t">User Journeys</span><span class="t">User Testing</span><span class="t">Accessibility (WCAG)</span></div>
+      </div>
+      <div class="disc reveal">
+        <h4><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><use href="#i-code"/></svg> Design-to-Code &amp; Front-End</h4>
+        <div class="disc__tools"><span class="t">Flutter / Dart</span><span class="t">React</span><span class="t">HTML / CSS</span><span class="t">JavaScript</span><span class="t">TypeScript</span><span class="t">Three.js</span><span class="t">WebGL</span></div>
+      </div>
+      <div class="disc reveal">
+        <h4><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><use href="#i-tools"/></svg> Methods &amp; Tools</h4>
+        <div class="disc__tools"><span class="t">Agile (Scrum)</span><span class="t">Product / Design / Eng</span><span class="t">Generative AI (Claude, ChatGPT)</span><span class="t">Node.js</span><span class="t">REST / GraphQL</span><span class="t">Firebase</span><span class="t">PostgreSQL</span><span class="t">Docker</span><span class="t">GitHub Actions</span></div>
+      </div>
+      <div class="disc reveal">
+        <h4><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><use href="#i-cube"/></svg> 3D &amp; Immersive</h4>
+        <div class="disc__tools"><span class="t">Unity</span><span class="t">Blender</span><span class="t">Unreal Engine</span><span class="t">Substance 3D</span><span class="t">HLSL Shaders</span><span class="t">C#</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="section section--alt wrap" id="about">
+    <div class="sec-head">
+      <span class="eyebrow reveal"><span class="idx">07</span> <span data-fr="À propos">About</span></span>
+    </div>
+    <h2 class="statement__big reveal" style="color:var(--ink)" data-fr="Un designer qui ship, et qui soigne le build.">A designer who ships, and cares how it's built.</h2>
+    <div class="about-grid">
+
+      <div>
+        <div class="timeline reveal">
+          <div class="tl-head" data-fr="Formation">Education</div>
+          <div class="tl-item">
+            <span class="yr">2026 – 2027</span>
+            <span class="ti" data-fr="Master Design d'interface, multimédia et internet">Master's, Interface, Multimedia &amp; Web Design</span>
+            <span class="pl">Université Sorbonne Paris Nord</span>
+          </div>
+          <div class="tl-item">
+            <span class="yr">2025 – 2026</span>
+            <span class="ti" data-fr="Master 1 Création Numérique et Interfaces">Master 1, Digital Creation &amp; Interfaces</span>
+            <span class="pl">Université Gustave Eiffel</span>
+          </div>
+          <div class="tl-item">
+            <span class="yr">2022 – 2025</span>
+            <span class="ti" data-fr="Licence Études du Virtuel et Médias Numériques">Bachelor's, Virtual Studies &amp; Digital Media</span>
+            <span class="pl">Université Gustave Eiffel</span>
           </div>
         </div>
-      </div>
-    </section>
 
-    <!-- ========== CONTACT ========== -->
-    <section class="section contact" id="contact">
-      <div class="wrap">
-        <div class="s-head">
-          <span class="s-num">07</span>
-          <span class="s-label" data-i18n="contact.label">Reach out</span>
-          <span class="s-rule"></span>
+        <div class="langs reveal">
+          <div class="tl-head" data-fr="Langues">Languages</div>
+          <div class="lang-row"><span class="lang-name" data-fr="Français">French</span><span class="lang-lvl" data-fr="Natif">Native</span></div>
+          <div class="lang-row"><span class="lang-name" data-fr="Anglais">English</span><span class="lang-lvl" data-fr="C1, Courant">C1, Fluent</span></div>
+          <div class="lang-row"><span class="lang-name" data-fr="Espagnol">Spanish</span><span class="lang-lvl" data-fr="B1, Intermédiaire">B1, Intermediate</span></div>
+        </div>
+      </div>
+
+      <div class="reveal">
+        <div class="tl-head" data-fr="Expérience">Experience</div>
+
+        <div class="exp">
+          <div class="exp__top"><span class="exp__co">Connect</span><span class="exp__yr" data-fr="2025 – aujourd'hui · Paris">2025 – now · Paris</span></div>
+          <div class="exp__role" data-fr="Fondateur, designer &amp; ingénieur">Founder, designer &amp; engineer</div>
+          <ul class="exp__list">
+            <li data-fr="Designé et construit l'app et le backend de A à Z, et shippé sur l'App Store.">Designed and built the app and backend end to end, and shipped it to the App Store.</li>
+          </ul>
         </div>
 
-        <h2 class="display center" data-i18n="contact.title">
-          Let's build something with <em class="serif">taste</em>.
-        </h2>
-        <p class="lead center" data-i18n="contact.lead">Open to internships, freelance work and creative tech collaborations.</p>
-
-        <div class="contact-cards">
-          <a href="mailto:mahdisaiahparis@gmail.com" class="c-card">
-            <span class="c-kind" data-i18n="contact.email">Email</span>
-            <b>mahdisaiahparis@gmail.com</b>
-            <em>→</em>
-          </a>
-          <a href="https://www.linkedin.com/in/mahdi-sa%C3%AFah-901a05303/" target="_blank" rel="noopener" class="c-card">
-            <span class="c-kind">LinkedIn</span>
-            <b>mahdi-saïah</b>
-            <em>↗</em>
-          </a>
-          <a href="https://github.com/mahdisaiah" target="_blank" rel="noopener" class="c-card">
-            <span class="c-kind">GitHub</span>
-            <b>@mahdisaiah</b>
-            <em>↗</em>
-          </a>
-          <a href="files/MahdiSaiahCV.pdf" download class="c-card cv-card">
-            <span class="c-kind" data-i18n="contact.cv">Download CV</span>
-            <b>Mahdi Saiah · CV</b>
-            <em>↓</em>
-          </a>
+        <div class="exp">
+          <div class="exp__top"><span class="exp__co">BNP Paribas Real Estate</span><span class="exp__yr">04/2025 – 09/2025 · Paris</span></div>
+          <div class="exp__role" data-fr="Développeur Front-End Junior · Stage">Junior Front-End Developer · Internship</div>
+          <ul class="exp__list">
+            <li data-fr="Conçu et intégré des interfaces web interactives avec les équipes UX et infographie, en mode agile, des maquettes à la mise en production.">Designed and built interactive web interfaces with the UX and design teams, agile, from mockups to production.</li>
+            <li data-fr="Construit des composants d'interface réutilisables et soigné les micro-interactions pour des écrans fluides, cohérents et intuitifs.">Built reusable UI components and refined micro-interactions for fluid, consistent, intuitive screens.</li>
+            <li data-fr="Optimisé la performance de rendu (LOD, compression géométrique, memory profiling) pour préserver une expérience fluide sur des visualisations 3D temps réel (Three.js / WebGL).">Optimized render performance (LOD, geometry compression, memory profiling) to keep real-time 3D visualizations smooth (Three.js / WebGL).</li>
+            <li data-fr="Collaboré au quotidien avec les équipes UX, infographie et back-end, automatisé des workflows de production (JavaScript, Python) et rédigé la documentation technique.">Collaborated daily with the UX, design, and back-end teams, automated production workflows (JavaScript, Python), and wrote the technical documentation.</li>
+          </ul>
         </div>
 
-        <footer class="site-footer">
-          <span>© <span id="year"></span> Mahdi Saiah</span>
-          <span>Paris · <span data-i18n="contact.available">Available for work</span></span>
-        </footer>
+        <div class="exp">
+          <div class="exp__top"><span class="exp__co">Atelier Daniela Zuniga</span><span class="exp__yr">2024</span></div>
+          <div class="exp__role" data-fr="Développeur C# &amp; Modélisateur 3D · Stage">C# Developer &amp; 3D Modeler · Internship</div>
+          <ul class="exp__list">
+            <li data-fr="Reconstruire un modèle 3D de cerveau humain à partir de données IRM médicales sous Unity et Blender.">Rebuilt a 3D model of a human brain from medical MRI data in Unity and Blender.</li>
+            <li data-fr="Développer des fonctionnalités interactives en C# : navigation spatiale et sélection de structures anatomiques.">Built interactive features in C#: spatial navigation and selection of anatomical structures.</li>
+            <li data-fr="Optimiser le pipeline de traitement de données volumétriques pour le rendu temps réel.">Optimized the volumetric data pipeline for real-time rendering.</li>
+          </ul>
+        </div>
+
       </div>
-    </section>
-  </main>
+    </div>
+  </section>
 
-  <div class="lightbox" id="lightbox">
-    <button id="closeLightbox" aria-label="Close">×</button>
-    <img id="lightboxImg" alt="Expanded work">
-  </div>
+  <!-- CONTACT -->
+  <section class="section section--ink wrap" id="contact">
+    <span class="eyebrow reveal"><span class="idx">08</span> Contact</span>
+    <h2 class="contact__big reveal" style="margin-top:1.6rem" data-fr="On build<br>un truc<span class='accent'>.</span>">Let's build<br>something<span class="accent">.</span></h2>
+    <div class="contact__row reveal">
+      <a href="mailto:mahdisaiahparis@gmail.com" class="btn btn--accent"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><use href="#i-mail"/></svg> mahdisaiahparis@gmail.com</a>
+      <div class="contact__links">
+        <a class="tlink" href="https://www.linkedin.com/in/mahdi-saïah" target="_blank" rel="noopener">LinkedIn <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-arrow"/></svg></a>
+        <a class="tlink" href="https://github.com/mahdisaiah" target="_blank" rel="noopener">GitHub <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-arrow"/></svg></a>
+        <a class="tlink" href="https://mahdisaiah.github.io/archive/" target="_blank" rel="noopener">Archive <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-arrow"/></svg></a>
+      </div>
+    </div>
+  </section>
 
-  <script src="script.js"></script>
+  <!-- FOOTER -->
+  <footer class="footer section--ink wrap">
+    <span class="m">© 2026 Mahdi Saiah</span>
+    <span class="m" data-fr="Product Designer · Développeur · Fondateur de <a href='#connect'>Connect</a>">Product Designer · Developer · Founder of <a href="#connect">Connect</a></span>
+    <span class="m" data-fr="Conçu &amp; développé à Paris">Designed &amp; built in Paris</span>
+  </footer>
+
+</main>
+
+<script src="js/main.js"></script>
+<script src="js/i18n.js"></script>
 </body>
 </html>

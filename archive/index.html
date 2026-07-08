@@ -1,0 +1,471 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mahdi Saiah — Creative Developer</title>
+  <meta name="description" content="Portfolio of Mahdi Saiah — creative developer across mobile, web, games and 3D." />
+  <meta name="theme-color" content="#050505" />
+  <link rel="icon" href="images/logo.png" type="image/png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <canvas id="shader" aria-hidden="true"></canvas>
+
+  <header class="site-header" id="siteHeader">
+    <nav class="site-nav" aria-label="Main navigation">
+      <a class="nav-brand" href="#home" aria-label="Mahdi Saiah home">
+        <span class="brand-mark">MS</span>
+      </a>
+
+      <div class="nav-links" id="navLinks">
+        <a href="#connect" class="nav-link">Connect</a>
+        <a href="#game" class="nav-link" data-i18n="nav.game">Empreintes</a>
+        <a href="#craft" class="nav-link" data-i18n="nav.craft">3D Craft</a>
+        <a href="#skills" class="nav-link" data-i18n="nav.skills">Skills</a>
+        <a href="#career" class="nav-link" data-i18n="nav.career">Career</a>
+        <a href="#about" class="nav-link" data-i18n="nav.about">About</a>
+      </div>
+
+      <div class="nav-actions">
+        <button class="lang-toggle" id="langToggle" type="button" aria-label="Switch language">
+          <span class="lang-current">EN</span>
+          <span class="lang-slash">/</span>
+          <span class="lang-next">FR</span>
+        </button>
+
+        <a href="#contact" class="nav-contact" data-i18n="nav.contact">Contact</a>
+
+        <button class="nav-menu-btn" id="navMenuBtn" type="button" aria-label="Open menu" aria-expanded="false">
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </nav>
+
+    <div class="mobile-panel" id="mobilePanel" aria-hidden="true">
+      <a href="#connect" class="mobile-link">Connect</a>
+      <a href="#game" class="mobile-link" data-i18n="nav.game">Empreintes</a>
+      <a href="#craft" class="mobile-link" data-i18n="nav.craft">3D Craft</a>
+      <a href="#skills" class="mobile-link" data-i18n="nav.skills">Skills</a>
+      <a href="#career" class="mobile-link" data-i18n="nav.career">Career</a>
+      <a href="#about" class="mobile-link" data-i18n="nav.about">About</a>
+      <a href="#contact" class="mobile-link mobile-contact" data-i18n="nav.contact">Contact</a>
+    </div>
+  </header>
+
+  <main>
+    <!-- ========== HERO ========== -->
+    <section class="hero" id="home">
+      <h1 class="hero-name">
+        <span>Mahdi</span>
+        <em class="serif">Saiah</em>
+      </h1>
+      <p class="tagline" data-i18n="hero.tagline">Creative Developer — Mobile · Web · Games · 3D</p>
+      <div class="hero-actions">
+        <a class="btn solid" href="#connect" data-i18n="hero.cta1">See Connect</a>
+        <a class="btn" href="#game" data-i18n="hero.cta2">Explore Empreintes</a>
+      </div>
+
+      <a href="#connect" class="scroll" aria-label="Scroll down">
+        <span data-i18n="hero.scroll">Scroll</span>
+        <i></i>
+      </a>
+    </section>
+
+    <!-- ========== CONNECT ========== -->
+    <section class="section connect" id="connect">
+      <div class="wrap">
+        <div class="s-head">
+          <span class="s-num">01</span>
+          <span class="s-label" data-i18n="connect.label">Mobile product</span>
+          <span class="s-rule"></span>
+          <span class="s-meta" data-i18n="connect.meta">iOS — May 2026</span>
+        </div>
+
+        <div class="connect-head">
+          <div class="lockup">
+            <span class="logo-box"><img src="images/logo.png" alt="Connect logo"></span>
+            <img class="wordmark" src="images/textlogo.png" alt="Connect">
+          </div>
+
+          <h2 class="display" data-i18n="connect.title">
+            A social platform built<br>
+            for <em class="serif">real</em> conversation.
+          </h2>
+
+          <div class="connect-copy">
+            <p data-i18n="connect.lead">Connect is a modern social platform where users share posts, moments, and debates around real content from across the internet. It focuses on interaction over consumption — letting people react, discuss, and challenge ideas instead of just scrolling.</p>
+            <p data-i18n="connect.lead2">Built with a clean, immersive design, Connect turns social media into a space for expression, conversation, and meaningful engagement.</p>
+          </div>
+
+          <div class="connect-meta">
+            <div class="cm">
+              <span data-i18n="connect.m1.label">Platform</span>
+              <b data-i18n="connect.m1.val">iOS at launch · Android soon</b>
+            </div>
+            <div class="cm">
+              <span data-i18n="connect.m2.label">Release</span>
+              <b data-i18n="connect.m2.val">May 31 · 2026</b>
+            </div>
+            <div class="cm">
+              <span data-i18n="connect.m3.label">Countdown</span>
+              <b id="countdown">—</b>
+            </div>
+          </div>
+        </div>
+
+        <div class="phone-stage" id="phoneStage">
+          <article class="phone-col left">
+            <div class="phone-frameless"><img src="images/home.png" alt="Connect home feed"></div>
+            <div class="caption"><span>01 · <span data-i18n="connect.cap1">Home</span></span><p data-i18n="connect.phone1.text">A real-time feed where posts, moments and reactions live together.</p></div>
+          </article>
+          <article class="phone-col center">
+            <div class="phone-frameless"><img src="images/debate.png" alt="Connect debate screen"></div>
+            <div class="caption"><span>02 · <span data-i18n="connect.cap2">Debate</span></span><p data-i18n="connect.phone2.text">For/Against arenas — ideas get challenged, not just liked.</p></div>
+          </article>
+          <article class="phone-col right">
+            <div class="phone-frameless"><img src="images/profile.png" alt="Connect profile screen"></div>
+            <div class="caption"><span>03 · <span data-i18n="connect.cap3">Profile</span></span><p data-i18n="connect.phone3.text">Identity built for expression — not just metrics.</p></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== EMPREINTES ========== -->
+    <section class="section game" id="game">
+      <div class="wrap">
+        <div class="s-head">
+          <span class="s-num">02</span>
+          <span class="s-label" data-i18n="game.label">Game project</span>
+          <span class="s-rule"></span>
+          <span class="s-meta">Unity · Blender · C#</span>
+        </div>
+
+        <div class="head-grid">
+          <h2 class="display" data-i18n="game.title">
+            Empreintes — an <em class="serif">open-world</em> experience about human impact.
+          </h2>
+          <p class="lead" data-i18n="game.lead">A university and indie project built around exploration, vehicles and environmental awareness. The player moves through a world shaped by human traces — roads, machines, extraction, ruins and nature fighting back.</p>
+        </div>
+
+        <div class="carousel" id="videoCarousel" data-carousel="video">
+          <div class="carousel-stage">
+            <button class="car-btn prev" type="button" aria-label="Previous">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 6l-6 6 6 6"/></svg>
+            </button>
+
+            <div class="carousel-track" id="videoTrack">
+              <div class="carousel-slide active"><video src="videos/video1.mp4" muted playsinline loop preload="metadata"></video></div>
+              <div class="carousel-slide"><video src="videos/video2.mp4" muted playsinline loop preload="metadata"></video></div>
+              <div class="carousel-slide"><video src="videos/video3.mp4" muted playsinline loop preload="metadata"></video></div>
+              <div class="carousel-slide"><video src="videos/video4.mp4" muted playsinline loop preload="metadata"></video></div>
+            </div>
+
+            <button class="car-btn next" type="button" aria-label="Next">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 6l6 6-6 6"/></svg>
+            </button>
+          </div>
+
+          <div class="slide-meta">
+            <div class="sm-left">
+              <span class="sm-index"><em id="videoIndex">01</em> / 04</span>
+              <b id="videoTitle" data-i18n="game.v1">Open-world exploration</b>
+            </div>
+            <div class="sm-dots" id="videoDots" aria-hidden="true"></div>
+          </div>
+
+          <div class="carousel-thumbs" id="videoThumbs">
+            <button class="thumb active" data-index="0" aria-label="Video 1">
+              <video src="videos/video1.mp4" muted playsinline preload="metadata"></video>
+            </button>
+            <button class="thumb" data-index="1" aria-label="Video 2">
+              <video src="videos/video2.mp4" muted playsinline preload="metadata"></video>
+            </button>
+            <button class="thumb" data-index="2" aria-label="Video 3">
+              <video src="videos/video3.mp4" muted playsinline preload="metadata"></video>
+            </button>
+            <button class="thumb" data-index="3" aria-label="Video 4">
+              <video src="videos/video4.mp4" muted playsinline preload="metadata"></video>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== 3D CRAFT ========== -->
+    <section class="section craft" id="craft">
+      <div class="wrap">
+        <div class="s-head">
+          <span class="s-num">03</span>
+          <span class="s-label" data-i18n="craft.label">3D study</span>
+          <span class="s-rule"></span>
+          <span class="s-meta">Blender</span>
+        </div>
+
+        <div class="head-grid">
+          <h2 class="display" data-i18n="craft.title">
+            3D Craft — modeling,<br>
+            textures & <em class="serif">visual</em> experiments.
+          </h2>
+          <p class="lead" data-i18n="craft.lead">A selection of renders and 3D explorations — architecture, objects, materials, lighting and composition built in Blender.</p>
+        </div>
+
+        <div class="carousel image-carousel" id="imageCarousel" data-carousel="image">
+          <div class="carousel-stage">
+            <button class="car-btn prev" type="button" aria-label="Previous">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 6l-6 6 6 6"/></svg>
+            </button>
+
+            <div class="carousel-track" id="imageTrack">
+              <div class="carousel-slide active"><img src="images/blender1.jpg" alt="3D render 1"></div>
+              <div class="carousel-slide"><img src="images/blender2.jpg" alt="3D render 2"></div>
+              <div class="carousel-slide"><img src="images/blender3.jpg" alt="3D render 3"></div>
+              <div class="carousel-slide"><img src="images/blender4.jpg" alt="3D render 4"></div>
+              <div class="carousel-slide"><img src="images/blender5.jpg" alt="3D render 5"></div>
+              <div class="carousel-slide"><img src="images/blender6.jpg" alt="3D render 6"></div>
+              <div class="carousel-slide"><img src="images/blender7.jpg" alt="3D render 7"></div>
+              <div class="carousel-slide"><img src="images/blender8.jpg" alt="3D render 8"></div>
+              <div class="carousel-slide"><img src="images/blender9.jpg" alt="3D render 9"></div>
+              <div class="carousel-slide"><img src="images/blender10.jpg" alt="3D render 10"></div>
+              <div class="carousel-slide"><img src="images/blender11.jpg" alt="3D render 11"></div>
+              <div class="carousel-slide"><img src="images/blender12.jpg" alt="3D render 12"></div>
+              <div class="carousel-slide"><img src="images/blender13.jpg" alt="3D render 13"></div>
+            </div>
+
+            <button class="car-btn next" type="button" aria-label="Next">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 6l6 6-6 6"/></svg>
+            </button>
+          </div>
+
+          <div class="slide-meta">
+            <div class="sm-left">
+              <span class="sm-index"><em id="craftIndex">01</em> / 13</span>
+              <b data-i18n="craft.piece">Render</b>
+            </div>
+            <div class="sm-dots" id="imageDots" aria-hidden="true"></div>
+          </div>
+
+          <div class="thumb-grid" id="imageThumbs"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SKILLS ========== -->
+    <section class="section skills" id="skills">
+      <div class="wrap">
+        <div class="s-head">
+          <span class="s-num">04</span>
+          <span class="s-label" data-i18n="skills.label">Stack</span>
+          <span class="s-rule"></span>
+        </div>
+
+        <div class="head-grid">
+          <h2 class="display" data-i18n="skills.title">
+            Skills across product,<br>
+            code and <em class="serif">visual</em> systems.
+          </h2>
+          <p class="lead" data-i18n="skills.lead">Four disciplines, one workflow — from a first sketch to a shipped product.</p>
+        </div>
+
+        <ul class="skill-list">
+          <li class="skill-row">
+            <span class="sr-num">01</span>
+            <div class="sr-title">
+              <b data-i18n="skills.mobile.t">Mobile & Web</b>
+              <p data-i18n="skills.mobile.p">From prototype to shipped app — realtime backends and polished interfaces.</p>
+            </div>
+            <div class="sr-tags">
+              <span>Flutter</span><span>Dart</span><span>Supabase</span><span>React</span><span>Three.js</span><span>WebGL</span><span>HTML</span><span>CSS</span>
+            </div>
+          </li>
+          <li class="skill-row">
+            <span class="sr-num">02</span>
+            <div class="sr-title">
+              <b data-i18n="skills.code.t">Languages</b>
+              <p data-i18n="skills.code.p">Typed, scripting or systems — picked for the job.</p>
+            </div>
+            <div class="sr-tags">
+              <span>Dart</span><span>JavaScript</span><span>TypeScript</span><span>Python</span><span>C#</span><span>C++</span><span>SQL</span><span>GLSL</span>
+            </div>
+          </li>
+          <li class="skill-row">
+            <span class="sr-num">03</span>
+            <div class="sr-title">
+              <b data-i18n="skills.games.t">Games & VR</b>
+              <p data-i18n="skills.games.p">Unity-first, around gameplay systems and atmospheric level design.</p>
+            </div>
+            <div class="sr-tags">
+              <span>Unity</span><span>Unreal</span><span>Gameplay systems</span><span>Level design</span><span>VR</span><span>Shaders</span>
+            </div>
+          </li>
+          <li class="skill-row">
+            <span class="sr-num">04</span>
+            <div class="sr-title">
+              <b data-i18n="skills.3d.t">3D & Visual</b>
+              <p data-i18n="skills.3d.p">Blender from concept to final render — materials, lighting and composition.</p>
+            </div>
+            <div class="sr-tags">
+              <span>Blender</span><span>Modeling</span><span>Texturing</span><span>Lighting</span><span>Rendering</span><span>Compositing</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ========== CAREER ========== -->
+    <section class="section career" id="career">
+      <div class="wrap">
+        <div class="s-head">
+          <span class="s-num">05</span>
+          <span class="s-label" data-i18n="career.label">Path</span>
+          <span class="s-rule"></span>
+        </div>
+
+        <div class="head-grid">
+          <h2 class="display" data-i18n="career.title">
+            Career & <em class="serif">education</em>.
+          </h2>
+          <p class="lead" data-i18n="career.lead">Between visual arts and code — a path designed to cross disciplines.</p>
+        </div>
+
+        <div class="career-grid">
+          <div class="career-col">
+            <h3 class="col-title"><span data-i18n="career.education">Education</span><em>04</em></h3>
+            <ol class="tl">
+              <li>
+                <span class="tl-year">2025 — 26</span>
+                <div><b>Master 1</b><p>Université Gustave Eiffel</p></div>
+              </li>
+              <li>
+                <span class="tl-year">2024 — 25</span>
+                <div><b>Licence 3</b><p>Université Gustave Eiffel</p></div>
+              </li>
+              <li>
+                <span class="tl-year">2023 — 24</span>
+                <div><b>Licence 2</b><p>Université Paris 8</p></div>
+              </li>
+              <li>
+                <span class="tl-year">2022 — 23</span>
+                <div><b>Licence 1</b><p>Université Paul-Valéry Montpellier</p></div>
+              </li>
+            </ol>
+          </div>
+
+          <div class="career-col">
+            <h3 class="col-title"><span data-i18n="career.experience">Experience</span><em>02</em></h3>
+            <ol class="tl">
+              <li>
+                <span class="tl-year">2025</span>
+                <div><b>Assistant Développeur front / back</b><p>BNP Paribas Real Estate — internal tools, web interfaces and interactive 3D visualization.</p></div>
+              </li>
+              <li>
+                <span class="tl-year">2024</span>
+                <div><b>Développement C# / 3D</b><p>Atelier Daniela Zuniga — 3D universe from medical scanner data and anatomical modeling.</p></div>
+              </li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== ABOUT ========== -->
+    <section class="section about" id="about">
+      <div class="wrap">
+        <div class="s-head">
+          <span class="s-num">06</span>
+          <span class="s-label" data-i18n="about.label">Profile</span>
+          <span class="s-rule"></span>
+        </div>
+
+        <div class="about-grid">
+          <figure class="portrait">
+            <img src="images/i1.jpg" alt="Mahdi Saiah portrait">
+            <figcaption>Mahdi Saiah · Paris</figcaption>
+          </figure>
+
+          <div class="about-copy">
+            <h2 class="display" data-i18n="about.title">
+              I build polished digital experiences between <em class="serif">code</em>, <em class="serif">design</em> and <em class="serif">3D</em>.
+            </h2>
+            <p class="lead" data-i18n="about.lead">Tunisian-born and Paris-based, I work as a creative developer across mobile apps, interactive websites, games, VR worlds and 3D visuals. My work sits between technical execution and visual direction.</p>
+
+            <dl class="about-facts">
+              <div>
+                <dt data-i18n="about.based">Based in</dt>
+                <dd>Paris, France</dd>
+              </div>
+              <div>
+                <dt data-i18n="about.origin">Origin</dt>
+                <dd>Sousse, Tunisia</dd>
+              </div>
+              <div>
+                <dt data-i18n="about.languages">Languages</dt>
+                <dd>FR · EN · AR</dd>
+              </div>
+              <div>
+                <dt data-i18n="about.statuslabel">Status</dt>
+                <dd><span class="status-dot"></span><span data-i18n="about.status">Open to opportunities</span></dd>
+              </div>
+            </dl>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== CONTACT ========== -->
+    <section class="section contact" id="contact">
+      <div class="wrap">
+        <div class="s-head">
+          <span class="s-num">07</span>
+          <span class="s-label" data-i18n="contact.label">Reach out</span>
+          <span class="s-rule"></span>
+        </div>
+
+        <h2 class="display center" data-i18n="contact.title">
+          Let's build something with <em class="serif">taste</em>.
+        </h2>
+        <p class="lead center" data-i18n="contact.lead">Open to internships, freelance work and creative tech collaborations.</p>
+
+        <div class="contact-cards">
+          <a href="mailto:mahdisaiahparis@gmail.com" class="c-card">
+            <span class="c-kind" data-i18n="contact.email">Email</span>
+            <b>mahdisaiahparis@gmail.com</b>
+            <em>→</em>
+          </a>
+          <a href="https://www.linkedin.com/in/mahdi-sa%C3%AFah-901a05303/" target="_blank" rel="noopener" class="c-card">
+            <span class="c-kind">LinkedIn</span>
+            <b>mahdi-saïah</b>
+            <em>↗</em>
+          </a>
+          <a href="https://github.com/mahdisaiah" target="_blank" rel="noopener" class="c-card">
+            <span class="c-kind">GitHub</span>
+            <b>@mahdisaiah</b>
+            <em>↗</em>
+          </a>
+          <a href="files/MahdiSaiahCV.pdf" download class="c-card cv-card">
+            <span class="c-kind" data-i18n="contact.cv">Download CV</span>
+            <b>Mahdi Saiah · CV</b>
+            <em>↓</em>
+          </a>
+        </div>
+
+        <footer class="site-footer">
+          <span>© <span id="year"></span> Mahdi Saiah</span>
+          <span>Paris · <span data-i18n="contact.available">Available for work</span></span>
+        </footer>
+      </div>
+    </section>
+  </main>
+
+  <div class="lightbox" id="lightbox">
+    <button id="closeLightbox" aria-label="Close">×</button>
+    <img id="lightboxImg" alt="Expanded work">
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
