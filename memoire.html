@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en" data-title-en="Mémoire 2026 · OpenAI's environmental footprint" data-title-fr="Mémoire 2026 · L'empreinte environnementale d'OpenAI">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Mémoire 2026 · OpenAI's environmental footprint · Mahdi Saiah</title>
+<meta name="description" content="Costs and trajectories: OpenAI's environmental footprint, short and long term. A research-creation master's thesis by Mahdi Saiah, paired with Heritage, a VR game set in a data center." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;800;900&family=Space+Grotesk:wght@400;500;600&family=Playfair+Display:ital,wght@0,600;0,700;1,600;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- icon sprite -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <g id="i-arrow"><path d="M7 17L17 7M9 7h8v8"/></g>
+    <g id="i-back"><path d="M15 6l-6 6 6 6"/></g>
+    <g id="i-doc"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 13h6M9 17h6"/></g>
+    <g id="i-vr"><rect x="2" y="7" width="20" height="10" rx="3"/><path d="M8 12h.01M16 12h.01M11 15c.5-1 1.5-1 2 0"/></g>
+  </defs>
+</svg>
+
+<!-- NAV -->
+<header class="nav" id="nav">
+  <a href="index.html#top" class="nav__mark">MS<span>.</span></a>
+  <nav class="nav__links">
+    <a href="index.html#connect">Connect</a>
+    <a href="index.html#work" data-fr="Projets">Work</a>
+    <a href="index.html#toolkit">Toolkit</a>
+    <a href="index.html#about" data-fr="À propos">About</a>
+    <span class="lang-toggle" role="group" aria-label="Language"><button type="button" data-lang="en">EN</button><span class="lsep">/</span><button type="button" data-lang="fr">FR</button></span>
+    <a href="index.html#contact" class="nav__cta">Contact</a>
+  </nav>
+  <button class="nav__burger" id="burger" aria-label="Menu" aria-expanded="false"><span></span></button>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html#connect"><span class="idx">01</span>Connect</a>
+  <a href="index.html#work"><span class="idx">02</span><span data-fr="Projets">Work</span></a>
+  <a href="index.html#toolkit"><span class="idx">03</span>Toolkit</a>
+  <a href="index.html#about"><span class="idx">04</span><span data-fr="À propos">About</span></a>
+  <a href="index.html#contact"><span class="idx">05</span>Contact</a>
+  <span class="lang-toggle mobile-menu__lang" role="group" aria-label="Language"><button type="button" data-lang="en">EN</button><span class="lsep">/</span><button type="button" data-lang="fr">FR</button></span>
+</div>
+
+<main class="proj" id="top">
+
+  <!-- HERO -->
+  <section class="proj-hero wrap">
+    <a class="proj-back reveal" href="index.html#work"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><use href="#i-back"/></svg> <span data-fr="Projets">Selected work</span></a>
+    <span class="eyebrow reveal" style="margin-top:clamp(1.6rem,4vh,2.6rem)"><span class="idx">03</span> <span data-fr="Recherche-création">Research-creation</span></span>
+    <h1 class="proj-title reveal" data-fr="Mémoire">Mémoire</h1>
+    <p class="proj-fulltitle reveal" data-fr="Coûts et trajectoires : l'empreinte environnementale d'OpenAI à court et à long terme">Costs and trajectories: OpenAI's environmental footprint, short and long term</p>
+    <div class="proj-role reveal">
+      <span data-fr="Recherche-création">Research-creation</span><span class="sep">/</span>
+      <span data-fr="Réalité virtuelle">Virtual reality</span><span class="sep">/</span>
+      <span>2026</span>
+    </div>
+    <div class="proj-meta reveal">
+      <div class="pm"><span data-fr="Année">Year</span><b>2025 – 2026</b></div>
+      <div class="pm"><span data-fr="Master">Program</span><b data-fr="Arts Numériques &amp; Cultures Visuelles">Digital Arts &amp; Visual Cultures</b></div>
+      <div class="pm"><span data-fr="Direction">Supervisor</span><b>Florent Di Bartolo</b></div>
+    </div>
+  </section>
+
+  <!-- ABSTRACT -->
+  <section class="section section--alt wrap">
+    <div class="proj-sec__head reveal">
+      <span class="eyebrow"><span class="idx">03.1</span> <span data-fr="Résumé">Abstract</span></span>
+      <h2 data-fr="Ce que ça<br>coûte vraiment">What it<br>really costs</h2>
+    </div>
+    <div class="memoire-abstract reveal">
+      <p data-fr="Ce mémoire porte sur l'empreinte environnementale d'OpenAI. Je sépare deux choses souvent confondues : ce que cette empreinte coûte aujourd'hui et la direction qu'elle prend si la tendance actuelle se poursuit. Le point de départ est un décalage. On présente presque toujours l'intelligence artificielle comme une technologie immatérielle, alors qu'elle repose sur une infrastructure physique bien réelle, qui consomme de l'énergie, de l'eau et des matières premières en quantités importantes, et de plus en plus.">This dissertation looks at the environmental footprint of OpenAI. It separates two things that are often confused: what this footprint costs today, and where it is heading if the current trend continues. The starting point is a gap. Artificial intelligence is almost always presented as an immaterial technology, when in fact it rests on a very real physical infrastructure that consumes large and growing amounts of energy, water and raw materials.</p>
+      <p data-fr="Je m'appuie sur des articles de conférences académiques et des rapports d'institutions pour documenter ces coûts, regroupés sous trois axes : la consommation directe d'énergie et d'eau liée aux modèles de langage, l'extraction minière et les chaînes d'approvisionnement en matériaux critiques, et la croissance de ces impacts sur le long terme, mise en regard des limites planétaires.">I rely on papers from academic conferences and on institutional reports to document these costs, grouped under three axes: the direct consumption of energy and water tied to large language models, the mining and critical-material supply chains behind the infrastructure, and the long-term growth of these impacts, set against planetary boundaries.</p>
+      <p data-fr="C'est aussi une recherche-création. En parallèle du texte, j'ai développé Heritage, un jeu en réalité virtuelle. En m'appuyant sur des artistes comme Joana Moll, Kate Crawford et Vladan Joler, je défends une idée simple : la forme artistique peut faire ressentir ce que la recherche seule ne transmet pas toujours.">It is also a research-creation project. Alongside the text, I built Heritage, a virtual reality game. Drawing on artists like Joana Moll, Kate Crawford and Vladan Joler, I defend one simple idea: artistic form can make us feel what academic research, on its own, does not always manage to convey.</p>
+    </div>
+    <div class="mem-topics reveal">
+      <span class="t" data-fr="Intelligence artificielle">Artificial intelligence</span>
+      <span class="t">OpenAI</span>
+      <span class="t" data-fr="Empreinte environnementale">Environmental footprint</span>
+      <span class="t" data-fr="Data center">Data centers</span>
+      <span class="t" data-fr="Réalité virtuelle">Virtual reality</span>
+      <span class="t" data-fr="Recherche-création">Research-creation</span>
+      <span class="t" data-fr="Sobriété numérique">Digital sobriety</span>
+      <span class="t" data-fr="Limites planétaires">Planetary boundaries</span>
+    </div>
+  </section>
+
+  <!-- STRUCTURE -->
+  <section class="section wrap">
+    <div class="proj-sec__head reveal">
+      <span class="eyebrow"><span class="idx">03.2</span> <span data-fr="Le plan">The structure</span></span>
+      <h2 data-fr="Trois parties">Three parts</h2>
+    </div>
+    <div class="mem-structure reveal">
+      <div class="mem-part">
+        <span class="mem-part__no">Partie I</span>
+        <h4 data-fr="L'IA comme réalité matérielle">AI as a material reality</h4>
+        <p data-fr="Ce que cache l'immatériel : infrastructures, énergie, extraction, et la réalité virtuelle comme espace de sensibilisation.">What the immaterial hides: infrastructure, energy, extraction, and virtual reality as a space for awareness.</p>
+      </div>
+      <div class="mem-part">
+        <span class="mem-part__no">Partie II</span>
+        <h4 data-fr="Ce qu'OpenAI consomme vraiment">What OpenAI really consumes</h4>
+        <p data-fr="L'énergie et l'eau que chaque requête dévore, l'extraction minière derrière l'infrastructure, et des trajectoires qui s'emballent.">The energy and water each query devours, the mining behind the infrastructure, and trajectories that run away.</p>
+      </div>
+      <div class="mem-part">
+        <span class="mem-part__no">Partie III</span>
+        <h4 data-fr="Heritage, habiter l'invisible">Heritage, inhabiting the invisible</h4>
+        <p data-fr="Construire un data center jouable, ce que la mécanique révèle que le texte ne peut pas dire, et les limites du dispositif.">Building a playable data center, what the mechanics reveal that text cannot, and the limits of the piece.</p>
+      </div>
+    </div>
+
+    <div class="heritage-note reveal">
+      <span class="heritage-note__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><use href="#i-vr"/></svg></span>
+      <div>
+        <b data-fr="Heritage, la partie création">Heritage, the creation half</b>
+        <p data-fr="Un jeu VR à la première personne : tu es un technicien dans un data center posé au milieu d'un désert, chargé de maintenir le système pendant qu'une interface te montre, en continu, ce qu'il consomme. Heritage ne cherche pas à démontrer, il cherche à faire vivre une situation.">A first-person VR game: you play a technician inside a data center dropped in the middle of a desert, keeping the system running while an interface shows you, in real time, what it consumes. Heritage does not try to prove a point, it tries to make a situation real.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- READER -->
+  <section class="section section--alt wrap">
+    <div class="proj-sec__head reveal">
+      <span class="eyebrow"><span class="idx">03.3</span> <span data-fr="Le document">The document</span></span>
+      <h2 data-fr="Lire le mémoire">Read the thesis</h2>
+    </div>
+    <div class="reader reveal" id="reader">
+      <div class="reader__bar">
+        <span class="doc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><use href="#i-doc"/></svg> <span data-fr="Mémoire · 41 pages">Thesis · 41 pages</span></span>
+        <span data-fr="Défile pour lire">Scroll to read</span>
+      </div>
+      <div class="reader__scroll" id="readerScroll">
+        <div class="reader__page" data-p="1"><img src="media/memoire/pages/page-01.jpg" alt="Mémoire, page 1" width="910" height="1287" loading="eager" decoding="async"></div>
+        <div class="reader__page" data-p="2"><img src="media/memoire/pages/page-02.jpg" alt="Mémoire, page 2" width="910" height="1287" loading="eager" decoding="async"></div>
+        <div class="reader__page" data-p="3"><img src="media/memoire/pages/page-03.jpg" alt="Mémoire, page 3" width="910" height="1287" loading="lazy" decoding="async"></div>
+        <div class="reader__page" data-p="4"><img src="media/memoire/pages/page-04.jpg" alt="Mémoire, page 4" width="910" height="1287" loading="lazy" decoding="async"></div>
+        <div class="reader__page" data-p="5"><img src="media/memoire/pages/page-05.jpg" alt="Mémoire, page 5" width="910" height="1287" loading="lazy" decoding="async"></div>
+        <div class="reader__page" data-p="6"><img src="media/memoire/pages/page-06.jpg" alt="Mémoire, page 6" width="910" height="1287" loading="lazy" decoding="async"></div>
+        <div class="reader__page" data-p="7"><img src="media/memoire/pages/page-07.jpg" alt="Mémoire, page 7" width="910" height="1287" loading="lazy" decoding="async"></div>
+        <div class="reader__page" data-p="8"><img src="media/memoire/pages/page-08.jpg" alt="Mémoire, page 8" width="910" height="1287" loading="lazy" decoding="async"></div>
+        <div class="reader__page" data-p="9"><img src="media/memoire/pages/page-09.jpg" alt="Mémoire, page 9" width="910" height="1287" loading="lazy" decoding="async"></div>
+        <div class="reader__page" data-p="10"><img src="media/memoire/pages/page-10.jpg" alt="Mémoire, page 10" width="910" height="1287" loading="lazy" decoding="async"></div>
+        <div class="reader__page" data-p="11"><img src="media/memoire/pages/page-11.jpg" alt="Mémoire, page 11" width="910" height="1287" loading="lazy" decoding="async"></div>
+        <div class="reader__page" data-p="12"><img src="media/memoire/pages/page-12.jpg" alt="Mémoire, page 12" width="910" height="1287" loading="lazy" decoding="async"></div>
+        <div class="reader__page" data-p="13"><img src="media/memoire/pages/page-13.jpg" alt="Mémoire, page 13" width="910" height="1287" loading="lazy" decoding="async"></div>
+        <div class="reader__page" data-p="14"><img src="media/memoire/pages/page-14.jpg" alt="Mémoire, page 14" width="910" height="1287" loading="lazy" decoding="async"></div>
+        <div class="reader__page" data-p="15"><img src="media/memoire/pages/page-15.jpg" alt="Mémoire, page 15" width="910" height="1287" loading="lazy" decoding="async"></div>
+        <div class="reader__page" data-p="16"><img src="media/memoire/pages/page-16.jpg" alt="Mémoire, page 16" width="910" height="1287" loading="lazy" decoding="async"></div>
+        <div class="reader__page" data-p="17"><img src="media/memoire/pages/page-17.jpg" alt="Mémoire, page 17" width="910" height="1287" loading="lazy" decoding="async"></div>
+        <div class="reader__page" data-p="18"><img src="media/memoire/pages/page-18.jpg" alt="Mémoire, page 18" width="910" height="1287" loading="lazy" decoding="async"></div>
+        <div class="reader__page" data-p="19"><img src="media/memoire/pages/page-19.jpg" alt="Mémoire, page 19" width="910" height="1287" loading="lazy" decoding="async"></div>
+        <div class="reader__page" data-p="20"><img src="media/memoire/pages/page-20.jpg" alt="Mémoire, page 20" width="910" height="1287" loading="lazy" decoding="async"></div>
+        <div class="reader__page" data-p="21"><img src="media/memoire/pages/page-21.jpg" alt="Mémoire, page 21" width="910" height="1287" loading="lazy" decoding="async"></div>
+        <div class="reader__page" data-p="22"><img src="media/memoire/pages/page-22.jpg" alt="Mémoire, page 22" width="910" height="1287" loading="lazy" decoding="async"></div>
+        <div class="reader__page" data-p="23"><img src="media/memoire/pages/page-23.jpg" alt="Mémoire, page 23" width="910" height="1287" loading="lazy" decoding="async"></div>
+        <div class="reader__page" data-p="24"><img src="media/memoire/pages/page-24.jpg" alt="Mémoire, page 24" width="910" height="1287" loading="lazy" decoding="async"></div>
+        <div class="reader__page" data-p="25"><img src="media/memoire/pages/page-25.jpg" alt="Mémoire, page 25" width="910" height="1287" loading="lazy" decoding="async"></div>
+        <div class="reader__page" data-p="26"><img src="media/memoire/pages/page-26.jpg" alt="Mémoire, page 26" width="910" height="1287" loading="lazy" decoding="async"></div>
+        <div class="reader__page" data-p="27"><img src="media/memoire/pages/page-27.jpg" alt="Mémoire, page 27" width="910" height="1287" loading="lazy" decoding="async"></div>
+        <div class="reader__page" data-p="28"><img src="media/memoire/pages/page-28.jpg" alt="Mémoire, page 28" width="910" height="1287" loading="lazy" decoding="async"></div>
+        <div class="reader__page" data-p="29"><img src="media/memoire/pages/page-29.jpg" alt="Mémoire, page 29" width="910" height="1287" loading="lazy" decoding="async"></div>
+        <div class="reader__page" data-p="30"><img src="media/memoire/pages/page-30.jpg" alt="Mémoire, page 30" width="910" height="1287" loading="lazy" decoding="async"></div>
+        <div class="reader__page" data-p="31"><img src="media/memoire/pages/page-31.jpg" alt="Mémoire, page 31" width="910" height="1287" loading="lazy" decoding="async"></div>
+        <div class="reader__page" data-p="32"><img src="media/memoire/pages/page-32.jpg" alt="Mémoire, page 32" width="910" height="1287" loading="lazy" decoding="async"></div>
+        <div class="reader__page" data-p="33"><img src="media/memoire/pages/page-33.jpg" alt="Mémoire, page 33" width="910" height="1287" loading="lazy" decoding="async"></div>
+        <div class="reader__page" data-p="34"><img src="media/memoire/pages/page-34.jpg" alt="Mémoire, page 34" width="910" height="1287" loading="lazy" decoding="async"></div>
+        <div class="reader__page" data-p="35"><img src="media/memoire/pages/page-35.jpg" alt="Mémoire, page 35" width="910" height="1287" loading="lazy" decoding="async"></div>
+        <div class="reader__page" data-p="36"><img src="media/memoire/pages/page-36.jpg" alt="Mémoire, page 36" width="910" height="1287" loading="lazy" decoding="async"></div>
+        <div class="reader__page" data-p="37"><img src="media/memoire/pages/page-37.jpg" alt="Mémoire, page 37" width="910" height="1287" loading="lazy" decoding="async"></div>
+        <div class="reader__page" data-p="38"><img src="media/memoire/pages/page-38.jpg" alt="Mémoire, page 38" width="910" height="1287" loading="lazy" decoding="async"></div>
+        <div class="reader__page" data-p="39"><img src="media/memoire/pages/page-39.jpg" alt="Mémoire, page 39" width="910" height="1287" loading="lazy" decoding="async"></div>
+        <div class="reader__page" data-p="40"><img src="media/memoire/pages/page-40.jpg" alt="Mémoire, page 40" width="910" height="1287" loading="lazy" decoding="async"></div>
+        <div class="reader__page" data-p="41"><img src="media/memoire/pages/page-41.jpg" alt="Mémoire, page 41" width="910" height="1287" loading="lazy" decoding="async"></div>
+      </div>
+      <span class="reader__ind" id="readerInd">01 / 41</span>
+    </div>
+  </section>
+
+  <!-- NEXT PROJECT -->
+  <section class="section section--ink wrap" style="padding-block:0">
+    <a class="next-proj reveal" href="empreintes.html">
+      <span class="next-proj__kick" data-fr="Projet suivant">Next project</span>
+      <span class="next-proj__title">Empreintes</span>
+      <svg class="next-proj__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><use href="#i-arrow"/></svg>
+    </a>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer section--ink wrap">
+    <span class="m">© 2026 Mahdi Saiah</span>
+    <span class="m" data-fr="Product Designer · Développeur · Fondateur de <a href='index.html#connect'>Connect</a>">Product Designer · Developer · Founder of <a href="index.html#connect">Connect</a></span>
+    <span class="m" data-fr="Conçu &amp; développé à Paris">Designed &amp; built in Paris</span>
+  </footer>
+
+</main>
+
+<script src="js/main.js"></script>
+<script src="js/project.js"></script>
+<script src="js/i18n.js"></script>
+</body>
+</html>

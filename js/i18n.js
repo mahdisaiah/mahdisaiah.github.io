@@ -5,17 +5,20 @@
   'use strict';
 
   var KEY = 'ms_lang';
+  var root = document.documentElement;
   var toggles = document.querySelectorAll('[data-lang]');
   var nodes = document.querySelectorAll('[data-fr]');
 
+  // Per-page titles live on <html data-title-en data-title-fr>; fall back to the
+  // homepage title so older markup keeps working.
   var TITLES = {
-    en: 'Mahdi Saiah · Product designer, building Connect',
-    fr: 'Mahdi Saiah · Product designer, je construis Connect'
+    en: root.getAttribute('data-title-en') || 'Mahdi Saiah · Product designer, building Connect',
+    fr: root.getAttribute('data-title-fr') || 'Mahdi Saiah · Product designer, je construis Connect'
   };
 
   function apply(lang) {
     var isFr = lang === 'fr';
-    document.documentElement.setAttribute('lang', lang);
+    root.setAttribute('lang', lang);
 
     nodes.forEach(function (el) {
       if (el.getAttribute('data-en') === null) {

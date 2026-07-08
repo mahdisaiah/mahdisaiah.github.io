@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en" data-title-en="Empreintes · Open-world game by Mahdi Saiah" data-title-fr="Empreintes · Jeu open world par Mahdi Saiah">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Empreintes · Open-world game by Mahdi Saiah</title>
+<meta name="description" content="Empreintes, an open world experience about human impact on the environment. Exploration, vehicles and environmental narration, built in Unity with Blender and C# by Mahdi Saiah." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;800;900&family=Space+Grotesk:wght@400;500;600&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- icon sprite -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <g id="i-arrow"><path d="M7 17L17 7M9 7h8v8"/></g>
+    <g id="i-back"><path d="M15 6l-6 6 6 6"/></g>
+    <g id="i-sound"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16.5 8.5a5 5 0 010 7M19 6a8 8 0 010 12"/></g>
+  </defs>
+</svg>
+
+<!-- NAV -->
+<header class="nav" id="nav">
+  <a href="index.html#top" class="nav__mark">MS<span>.</span></a>
+  <nav class="nav__links">
+    <a href="index.html#connect">Connect</a>
+    <a href="index.html#work" data-fr="Projets">Work</a>
+    <a href="index.html#toolkit">Toolkit</a>
+    <a href="index.html#about" data-fr="À propos">About</a>
+    <span class="lang-toggle" role="group" aria-label="Language"><button type="button" data-lang="en">EN</button><span class="lsep">/</span><button type="button" data-lang="fr">FR</button></span>
+    <a href="index.html#contact" class="nav__cta">Contact</a>
+  </nav>
+  <button class="nav__burger" id="burger" aria-label="Menu" aria-expanded="false"><span></span></button>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html#connect"><span class="idx">01</span>Connect</a>
+  <a href="index.html#work"><span class="idx">02</span><span data-fr="Projets">Work</span></a>
+  <a href="index.html#toolkit"><span class="idx">03</span>Toolkit</a>
+  <a href="index.html#about"><span class="idx">04</span><span data-fr="À propos">About</span></a>
+  <a href="index.html#contact"><span class="idx">05</span>Contact</a>
+  <span class="lang-toggle mobile-menu__lang" role="group" aria-label="Language"><button type="button" data-lang="en">EN</button><span class="lsep">/</span><button type="button" data-lang="fr">FR</button></span>
+</div>
+
+<main class="proj" id="top">
+
+  <!-- HERO -->
+  <section class="proj-hero wrap">
+    <a class="proj-back reveal" href="index.html#work"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><use href="#i-back"/></svg> <span data-fr="Projets">Selected work</span></a>
+    <span class="eyebrow reveal" style="margin-top:clamp(1.6rem,4vh,2.6rem)"><span class="idx">01</span> <span data-fr="Projet jeu vidéo">Game project</span></span>
+    <h1 class="proj-title reveal">Empreintes</h1>
+    <div class="proj-role reveal">
+      <span>Unity</span><span class="sep">/</span>
+      <span>Blender</span><span class="sep">/</span>
+      <span>C#</span>
+    </div>
+    <p class="lead proj-lead reveal" data-fr="Une expérience open world sur l'impact de l'humain sur l'environnement. Tu traverses un paysage marqué par les traces humaines, routes, machines, extraction et ruines, avec une nature qui reprend lentement ses droits.">An open world experience about human impact on the environment. You move through a landscape shaped by human traces, roads, machines, extraction and ruins, with nature slowly fighting back.</p>
+    <div class="proj-meta reveal">
+      <div class="pm"><span data-fr="Rôle">Role</span><b data-fr="Design &amp; développement">Design &amp; development</b></div>
+      <div class="pm"><span data-fr="Nature">Type</span><b data-fr="Projet universitaire &amp; indé">University &amp; indie</b></div>
+      <div class="pm"><span data-fr="Année">Year</span><b>2024 – 2025</b></div>
+    </div>
+  </section>
+
+  <!-- VIDEO CHAPTERS -->
+  <section class="section section--ink wrap">
+    <div class="proj-sec__head reveal">
+      <span class="eyebrow"><span class="idx">01.1</span> <span data-fr="En mouvement">In motion</span></span>
+      <h2 data-fr="Quatre facettes<br>du monde">Four sides<br>of the world</h2>
+    </div>
+
+    <div class="vfigs">
+      <figure class="vfig reveal">
+        <div class="vfig__head"><span class="vfig__ch">01</span><span class="vfig__title" data-fr="Exploration open world">Open-world exploration</span></div>
+        <div class="vframe" role="button" tabindex="0" aria-label="Play with sound">
+          <video src="media/empreintes/empreintes-1.mp4" muted playsinline loop preload="metadata"></video>
+          <span class="vframe__badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><use href="#i-sound"/></svg> <span data-fr="Cliquer pour le son">Click for sound</span></span>
+        </div>
+        <figcaption class="vfig__cap" data-fr="Exploration libre dans un monde façonné par les traces humaines. Pas de couloirs, tu choisis ton propre chemin à travers lui.">Free roam across a world shaped by human traces. No corridors, you pick your own path through it.</figcaption>
+      </figure>
+
+      <figure class="vfig reveal">
+        <div class="vfig__head"><span class="vfig__ch">02</span><span class="vfig__title" data-fr="Véhicules &amp; déplacement">Vehicles &amp; movement</span></div>
+        <div class="vframe" role="button" tabindex="0" aria-label="Play with sound">
+          <video src="media/empreintes/empreintes-2.mp4" muted playsinline loop preload="metadata"></video>
+          <span class="vframe__badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><use href="#i-sound"/></svg> <span data-fr="Cliquer pour le son">Click for sound</span></span>
+        </div>
+        <figcaption class="vfig__cap" data-fr="Des véhicules conduisibles et un déplacement qui te font parcourir le terrain et le lire de près.">Drivable vehicles and traversal that let you cover ground and read the landscape up close.</figcaption>
+      </figure>
+
+      <figure class="vfig reveal">
+        <div class="vfig__head"><span class="vfig__ch">03</span><span class="vfig__title" data-fr="Design d'environnement">Environment design</span></div>
+        <div class="vframe" role="button" tabindex="0" aria-label="Play with sound">
+          <video src="media/empreintes/empreintes-3.mp4" muted playsinline loop preload="metadata"></video>
+          <span class="vframe__badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><use href="#i-sound"/></svg> <span data-fr="Cliquer pour le son">Click for sound</span></span>
+        </div>
+        <figcaption class="vfig__cap" data-fr="Un design d'environnement pensé pour sembler habité, puis lentement repris par la nature.">Environment design built to feel lived in, then slowly reclaimed by nature.</figcaption>
+      </figure>
+
+      <figure class="vfig reveal">
+        <div class="vfig__head"><span class="vfig__ch">04</span><span class="vfig__title" data-fr="Narration visuelle">Visual storytelling</span></div>
+        <div class="vframe" role="button" tabindex="0" aria-label="Play with sound">
+          <video src="media/empreintes/empreintes-4.mp4" muted playsinline loop preload="metadata"></video>
+          <span class="vframe__badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><use href="#i-sound"/></svg> <span data-fr="Cliquer pour le son">Click for sound</span></span>
+        </div>
+        <figcaption class="vfig__cap" data-fr="Une narration environnementale : c'est le lieu qui raconte l'histoire, pas un HUD.">Environmental storytelling, where the place tells the story instead of a HUD.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- THE IDEA -->
+  <section class="section section--alt wrap">
+    <div class="proj-sec__head reveal">
+      <span class="eyebrow"><span class="idx">01.2</span> <span data-fr="L'intention">The idea</span></span>
+      <h2 data-fr="Le monde<br>comme message">The world<br>as the message</h2>
+    </div>
+    <div class="memoire-abstract reveal">
+      <p data-fr="Empreintes part d'une question simple : à quoi ressemble un lieu une fois que l'humain l'a traversé ? Le joueur explore un monde ouvert marqué par nos passages, routes coupées dans le paysage, machines à l'abandon, sites d'extraction et ruines, pendant que la nature reprend patiemment le terrain.">Empreintes starts from a simple question: what does a place look like once people have moved through it? You explore an open world marked by our passage, roads cut into the landscape, abandoned machines, extraction sites and ruins, while nature patiently takes the ground back.</p>
+      <p data-fr="J'ai travaillé sur le design du monde, les systèmes de gameplay et les véhicules sous Unity, avec des assets modélisés dans Blender et une logique écrite en C#. L'idée n'est pas de sermonner, mais de laisser l'environnement porter le propos.">I worked on the world design, the gameplay systems and the vehicles in Unity, with assets modeled in Blender and logic written in C#. The point is not to lecture, it is to let the environment carry the message.</p>
+    </div>
+    <div class="mem-topics reveal">
+      <span class="t" data-fr="Conception open world">Open-world design</span>
+      <span class="t" data-fr="Systèmes de gameplay">Gameplay systems</span>
+      <span class="t" data-fr="Véhicules">Vehicles</span>
+      <span class="t" data-fr="Level design">Level design</span>
+      <span class="t" data-fr="Modélisation 3D">3D modeling</span>
+      <span class="t" data-fr="Narration environnementale">Environmental narrative</span>
+    </div>
+  </section>
+
+  <!-- NEXT PROJECT -->
+  <section class="section section--ink wrap" style="padding-block:0">
+    <a class="next-proj reveal" href="craft.html">
+      <span class="next-proj__kick" data-fr="Projet suivant">Next project</span>
+      <span class="next-proj__title">3D Craft</span>
+      <svg class="next-proj__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><use href="#i-arrow"/></svg>
+    </a>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer section--ink wrap">
+    <span class="m">© 2026 Mahdi Saiah</span>
+    <span class="m" data-fr="Product Designer · Développeur · Fondateur de <a href='index.html#connect'>Connect</a>">Product Designer · Developer · Founder of <a href="index.html#connect">Connect</a></span>
+    <span class="m" data-fr="Conçu &amp; développé à Paris">Designed &amp; built in Paris</span>
+  </footer>
+
+</main>
+
+<script src="js/main.js"></script>
+<script src="js/project.js"></script>
+<script src="js/i18n.js"></script>
+</body>
+</html>

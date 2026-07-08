@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en" data-title-en="CV · Mahdi Saiah" data-title-fr="CV · Mahdi Saiah">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>CV · Mahdi Saiah</title>
+<meta name="description" content="Curriculum vitae of Mahdi Saiah, product designer and developer, founder of Connect." />
+<meta name="robots" content="noindex" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;800;900&family=Space+Grotesk:wght@400;500;600&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- icon sprite -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <g id="i-arrow"><path d="M7 17L17 7M9 7h8v8"/></g>
+    <g id="i-back"><path d="M15 6l-6 6 6 6"/></g>
+    <g id="i-expand"><path d="M8 3H5a2 2 0 00-2 2v3M16 3h3a2 2 0 012 2v3M8 21H5a2 2 0 01-2-2v-3M16 21h3a2 2 0 002-2v-3"/></g>
+    <g id="i-close"><path d="M6 6l12 12M18 6L6 18"/></g>
+    <g id="i-chev-l"><path d="M15 6l-6 6 6 6"/></g>
+    <g id="i-chev-r"><path d="M9 6l6 6-6 6"/></g>
+  </defs>
+</svg>
+
+<!-- NAV -->
+<header class="nav" id="nav">
+  <a href="index.html#top" class="nav__mark">MS<span>.</span></a>
+  <nav class="nav__links">
+    <a href="index.html#connect">Connect</a>
+    <a href="index.html#work" data-fr="Projets">Work</a>
+    <a href="index.html#toolkit">Toolkit</a>
+    <a href="index.html#about" data-fr="À propos">About</a>
+    <span class="lang-toggle" role="group" aria-label="Language"><button type="button" data-lang="en">EN</button><span class="lsep">/</span><button type="button" data-lang="fr">FR</button></span>
+    <a href="index.html#contact" class="nav__cta">Contact</a>
+  </nav>
+  <button class="nav__burger" id="burger" aria-label="Menu" aria-expanded="false"><span></span></button>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html#connect"><span class="idx">01</span>Connect</a>
+  <a href="index.html#work"><span class="idx">02</span><span data-fr="Projets">Work</span></a>
+  <a href="index.html#toolkit"><span class="idx">03</span>Toolkit</a>
+  <a href="index.html#about"><span class="idx">04</span><span data-fr="À propos">About</span></a>
+  <a href="index.html#contact"><span class="idx">05</span>Contact</a>
+  <span class="lang-toggle mobile-menu__lang" role="group" aria-label="Language"><button type="button" data-lang="en">EN</button><span class="lsep">/</span><button type="button" data-lang="fr">FR</button></span>
+</div>
+
+<main class="proj" id="top">
+
+  <!-- HERO -->
+  <section class="proj-hero wrap">
+    <a class="proj-back reveal" href="index.html#contact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><use href="#i-back"/></svg> <span data-fr="Retour">Back</span></a>
+    <span class="eyebrow reveal" style="margin-top:clamp(1.6rem,4vh,2.6rem)"><span class="idx">CV</span> <span data-fr="Curriculum vitae">Curriculum vitae</span></span>
+    <h1 class="proj-title reveal">CV</h1>
+    <div class="proj-role reveal">
+      <span data-fr="Product Designer">Product Designer</span><span class="sep">/</span>
+      <span data-fr="Développeur">Developer</span><span class="sep">/</span>
+      <span data-fr="Fondateur de Connect">Founder of Connect</span>
+    </div>
+    <p class="lead proj-lead reveal" data-fr="Mon CV à jour, en lecture. Clique dessus pour l'agrandir. Pour une copie, écris-moi.">My up-to-date CV, for reading. Click it to enlarge. For a copy, just email me.</p>
+
+    <figure class="cv-view zoomable reveal" aria-label="Curriculum vitae">
+      <img src="media/cv/cv.jpg" data-full="media/cv/cv.jpg" alt="Curriculum vitae of Mahdi Saiah" width="1241" height="1754">
+    </figure>
+    <p class="cv-note reveal" data-fr="Lecture seule · pour une version PDF, contacte-moi">Read only · for a PDF copy, get in touch</p>
+  </section>
+
+  <!-- NEXT -->
+  <section class="section section--ink wrap" style="padding-block:0">
+    <a class="next-proj reveal" href="index.html#contact">
+      <span class="next-proj__kick" data-fr="Écris-moi">Get in touch</span>
+      <span class="next-proj__title" data-fr="Contact">Contact</span>
+      <svg class="next-proj__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><use href="#i-arrow"/></svg>
+    </a>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer section--ink wrap">
+    <span class="m">© 2026 Mahdi Saiah</span>
+    <span class="m" data-fr="Product Designer · Développeur · Fondateur de <a href='index.html#connect'>Connect</a>">Product Designer · Developer · Founder of <a href="index.html#connect">Connect</a></span>
+    <span class="m" data-fr="Conçu &amp; développé à Paris">Designed &amp; built in Paris</span>
+  </footer>
+
+</main>
+
+<!-- immersive lightbox -->
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="CV viewer">
+  <button class="lb__btn lb__close" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><use href="#i-close"/></svg></button>
+  <button class="lb__btn lb__prev" aria-label="Previous" style="display:none"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><use href="#i-chev-l"/></svg></button>
+  <img class="lb__img" alt="">
+  <button class="lb__btn lb__next" aria-label="Next" style="display:none"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><use href="#i-chev-r"/></svg></button>
+  <span class="lb__count"></span>
+</div>
+
+<script src="js/main.js"></script>
+<script src="js/project.js"></script>
+<script src="js/i18n.js"></script>
+</body>
+</html>
