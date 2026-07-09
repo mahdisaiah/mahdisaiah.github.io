@@ -1,0 +1,506 @@
+<!doctype html>
+<html lang="en" data-title-en="The Lab · Interface craft by Mahdi Saiah" data-title-fr="The Lab · Craft d'interface par Mahdi Saiah">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>The Lab · Interface craft by Mahdi Saiah</title>
+<meta name="description" content="An interactive design-system lab: live theme switching, design tokens, every component and interaction state, a WCAG contrast checker, and accessibility built in. By Mahdi Saiah." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;800;900&family=Space+Grotesk:wght@400;500;600&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/lab.css">
+<link rel="icon" type="image/png" sizes="32x32" href="media/brand/favicon-32.png">
+<link rel="icon" type="image/png" sizes="512x512" href="media/brand/favicon-512.png">
+<link rel="apple-touch-icon" href="media/brand/apple-touch-icon.png">
+</head>
+<body class="lab-body" data-theme="light" data-density="comfortable" data-motion="full">
+
+<!-- icon sprite -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <g id="i-arrow"><path d="M7 17L17 7M9 7h8v8"/></g>
+  <g id="i-back"><path d="M15 6l-6 6 6 6"/></g>
+  <g id="i-check"><path d="M4 12l5 5L20 6"/></g>
+  <g id="i-x"><path d="M6 6l12 12M18 6L6 18"/></g>
+  <g id="i-copy"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 012-2h10"/></g>
+  <g id="i-eye"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></g>
+  <g id="i-eye-off"><path d="M4 4l16 16M9.5 9.6A3 3 0 0014.4 14.5M6.7 6.8C3.8 8.3 2 12 2 12s3.5 7 10 7c1.8 0 3.4-.5 4.8-1.2M9.5 5.2A9.6 9.6 0 0112 5c6.5 0 10 7 10 7a17 17 0 01-2.4 3.3"/></g>
+  <g id="i-chev"><path d="M6 9l6 6 6-6"/></g>
+  <g id="i-search"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></g>
+  <g id="i-plus"><path d="M12 5v14M5 12h14"/></g>
+  <g id="i-sun"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2M12 20v2M4 12H2M22 12h-2M5 5l1.5 1.5M17.5 17.5L19 19M19 5l-1.5 1.5M6.5 17.5L5 19"/></g>
+  <g id="i-moon"><path d="M20 14.5A8 8 0 1110 3.5a6.5 6.5 0 0010 11z"/></g>
+  <g id="i-contrast"><circle cx="12" cy="12" r="9"/><path d="M12 3v18a9 9 0 000-18z" fill="currentColor" stroke="none"/></g>
+  <g id="i-info"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></g>
+  <g id="i-warn"><path d="M12 3l9.5 16.5H2.5L12 3z"/><path d="M12 10v4M12 17h.01"/></g>
+  <g id="i-alert"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></g>
+  <g id="i-bolt"><path d="M13 2L4 14h6l-1 8 9-12h-6z"/></g>
+  <g id="i-key"><path d="M4 20l5-5M9 15a4 4 0 114-4"/><circle cx="16.5" cy="7.5" r="1"/></g>
+</defs></svg>
+
+<!-- NAV -->
+<header class="nav" id="nav">
+  <a href="index.html#top" class="nav__mark" aria-label="Mahdi Saiah, home"><img class="nav__logo" src="media/brand/mark.png" alt="Mahdi Saiah"></a>
+  <nav class="nav__links">
+    <a href="index.html#connect">Connect</a>
+    <a href="index.html#work" data-fr="Projets">Work</a>
+    <a href="lab.html" aria-current="page">Lab</a>
+    <a href="index.html#about" data-fr="À propos">About</a>
+    <span class="lang-toggle" role="group" aria-label="Language"><button type="button" data-lang="en">EN</button><span class="lsep">/</span><button type="button" data-lang="fr">FR</button></span>
+    <a href="index.html#contact" class="nav__cta">Contact</a>
+  </nav>
+  <button class="nav__burger" id="burger" aria-label="Menu" aria-expanded="false"><span></span></button>
+</header>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html#connect"><span class="idx">01</span>Connect</a>
+  <a href="index.html#work"><span class="idx">02</span><span data-fr="Projets">Work</span></a>
+  <a href="lab.html"><span class="idx">03</span>Lab</a>
+  <a href="index.html#about"><span class="idx">04</span><span data-fr="À propos">About</span></a>
+  <a href="index.html#contact"><span class="idx">05</span>Contact</a>
+  <span class="lang-toggle mobile-menu__lang" role="group" aria-label="Language"><button type="button" data-lang="en">EN</button><span class="lsep">/</span><button type="button" data-lang="fr">FR</button></span>
+</div>
+
+<a href="#lab-tokens" class="lb-btn lb-btn--sm sr-only" style="position:fixed;left:1rem;top:1rem;z-index:300" onfocus="this.classList.remove('sr-only')" onblur="this.classList.add('sr-only')">Skip to content</a>
+
+<main class="lab-main" id="labmain">
+
+  <!-- HERO -->
+  <section class="lab-hero">
+    <a class="lab-back" href="index.html#top"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><use href="#i-back"/></svg> <span data-fr="Portfolio">Portfolio</span></a>
+    <p class="lab-kicker" style="margin-top:1.6rem"><b>Lab</b> · <span data-fr="Système de design, vivant">Design system, live</span></p>
+    <h1 class="lab-title">The <span class="it">Lab</span></h1>
+    <p class="lab-sub" data-fr="Un terrain de jeu de design system, pas des captures. Change le thème et tout se re-teinte via des design tokens. Chaque composant, chaque état, l'accessibilité et la couleur, en vrai et interactifs.">A living design system, not screenshots. Flip the theme and everything re-tints through design tokens. Every component, every state, accessibility and color, real and interactive.</p>
+  </section>
+
+  <!-- STICKY CONTROLS -->
+  <div class="lab-controls" role="region" aria-label="Display controls">
+    <div class="lab-controls__group">
+      <span class="lab-controls__cap" data-fr="Thème">Theme</span>
+      <div class="lb-seg" role="radiogroup" aria-label="Theme" id="themeSeg">
+        <span class="lb-seg__thumb" aria-hidden="true"></span>
+        <button type="button" role="radio" aria-checked="true" data-theme="light"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><use href="#i-sun"/></svg> Light</button>
+        <button type="button" role="radio" aria-checked="false" data-theme="dark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><use href="#i-moon"/></svg> Dark</button>
+        <button type="button" role="radio" aria-checked="false" data-theme="contrast"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><use href="#i-contrast"/></svg> <span data-fr="Contraste">Contrast</span></button>
+      </div>
+    </div>
+    <div class="lab-controls__group">
+      <span class="lab-controls__cap" data-fr="Densité">Density</span>
+      <div class="lb-seg" role="radiogroup" aria-label="Density" id="densitySeg">
+        <span class="lb-seg__thumb" aria-hidden="true"></span>
+        <button type="button" role="radio" aria-checked="true" data-density="comfortable" data-fr="Confort">Comfort</button>
+        <button type="button" role="radio" aria-checked="false" data-density="compact" data-fr="Compact">Compact</button>
+      </div>
+    </div>
+    <div class="lab-controls__group">
+      <label class="lb-switch"><input type="checkbox" id="motionToggle" checked><span class="lb-switch__track"></span> <span data-fr="Animations">Motion</span></label>
+    </div>
+  </div>
+
+  <!-- 01 TOKENS -->
+  <section class="lab-sec" id="lab-tokens" style="border-top:none">
+    <div class="lab-sec__head">
+      <span class="lab-sec__n">01 · <b data-fr="Tokens">Tokens</b></span>
+      <h2 data-fr="Une seule source de vérité">One source of truth</h2>
+      <p class="lab-sec__lead" data-fr="Couleur, type, espace, rayon, élévation et mouvement, définis comme des variables CSS. Le sélecteur de thème ne fait que les échanger. Clique une couleur pour copier sa valeur.">Color, type, spacing, radius, elevation and motion, defined as CSS variables. The theme switcher just swaps them. Click any color to copy its value.</p>
+    </div>
+
+    <div class="lab-stack">
+      <div class="lab-panel">
+        <span class="lab-panel__label" data-fr="Couleurs · sémantiques">Color · semantic tokens</span>
+        <div class="swatches-grid" id="swatchGrid"></div>
+      </div>
+
+      <div class="lab-2col">
+        <div class="lab-panel">
+          <span class="lab-panel__label" data-fr="Échelle typographique">Type scale</span>
+          <div class="typerows">
+            <div class="typerow"><span class="spec">Display / 900</span><span class="samp ts-display">Aa Type</span></div>
+            <div class="typerow"><span class="spec">Title / 800</span><span class="samp ts-title">Real craft</span></div>
+            <div class="typerow"><span class="spec">Serif / italic</span><span class="samp ts-serif">considered</span></div>
+            <div class="typerow"><span class="spec">Body / 400 · 16</span><span class="samp ts-body">The quick brown fox jumps.</span></div>
+            <div class="typerow"><span class="spec">Label / mono</span><span class="samp ts-label">Semantic token</span></div>
+          </div>
+        </div>
+        <div class="lab-panel">
+          <span class="lab-panel__label" data-fr="Espace · grille 4pt">Spacing · 4pt grid</span>
+          <div class="spacebars">
+            <div class="spacebar"><i style="height:14px"></i>4</div>
+            <div class="spacebar"><i style="height:26px"></i>8</div>
+            <div class="spacebar"><i style="height:40px"></i>12</div>
+            <div class="spacebar"><i style="height:54px"></i>16</div>
+            <div class="spacebar"><i style="height:78px"></i>24</div>
+            <div class="spacebar"><i style="height:104px"></i>32</div>
+          </div>
+          <span class="lab-panel__label" style="margin-top:1.6rem" data-fr="Rayon">Radius</span>
+          <div class="radchips">
+            <div class="radchip"><i style="border-radius:7px"></i>sm · 7</div>
+            <div class="radchip"><i style="border-radius:12px"></i>md · 12</div>
+            <div class="radchip"><i style="border-radius:18px"></i>lg · 18</div>
+            <div class="radchip"><i style="border-radius:999px"></i>pill</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="lab-2col">
+        <div class="lab-panel">
+          <span class="lab-panel__label" data-fr="Élévation">Elevation</span>
+          <div class="elevrow">
+            <div class="elevcard" style="box-shadow:var(--lb-shadow-1)">e1</div>
+            <div class="elevcard" style="box-shadow:var(--lb-shadow-2)">e2</div>
+            <div class="elevcard" style="box-shadow:var(--lb-shadow-3)">e3</div>
+          </div>
+        </div>
+        <div class="lab-panel">
+          <span class="lab-panel__label" data-fr="Mouvement · courbes">Motion · easing</span>
+          <div class="motion-grid" id="motionGrid"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 BUTTONS -->
+  <section class="lab-sec">
+    <div class="lab-sec__head">
+      <span class="lab-sec__n">02 · <b data-fr="Boutons">Buttons</b></span>
+      <h2 data-fr="Variantes et états">Variants and states</h2>
+      <p class="lab-sec__lead" data-fr="Cinq variantes, trois tailles, et chaque état géré : repos, survol, focus clavier, pressé, désactivé et chargement.">Five variants, three sizes, and every state handled: rest, hover, keyboard focus, pressed, disabled and loading.</p>
+    </div>
+    <div class="lab-stack">
+      <div class="lab-panel">
+        <span class="lab-panel__label" data-fr="Variantes">Variants</span>
+        <div class="btn-row">
+          <button class="lb-btn"><span class="lb-btn__label">Primary</span><span class="lb-btn__spin"></span></button>
+          <button class="lb-btn lb-btn--secondary"><span class="lb-btn__label" data-fr="Secondaire">Secondary</span></button>
+          <button class="lb-btn lb-btn--ghost"><span class="lb-btn__label">Ghost</span></button>
+          <button class="lb-btn lb-btn--danger"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><use href="#i-x"/></svg><span class="lb-btn__label" data-fr="Supprimer">Delete</span></button>
+          <button class="lb-btn lb-btn--success"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><use href="#i-check"/></svg><span class="lb-btn__label" data-fr="Valider">Confirm</span></button>
+          <button class="lb-btn lb-btn--icon" aria-label="Add"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><use href="#i-plus"/></svg></button>
+        </div>
+      </div>
+
+      <div class="lab-2col">
+        <div class="lab-panel">
+          <span class="lab-panel__label" data-fr="États">States</span>
+          <div class="btn-state-grid">
+            <span class="lab-rowlabel">Default</span><span><button class="lb-btn lb-btn--sm"><span class="lb-btn__label">Button</span></button></span>
+            <span class="lab-rowlabel">Focus</span><span><button class="lb-btn lb-btn--sm" style="outline:3px solid var(--lb-focus);outline-offset:2px"><span class="lb-btn__label">Button</span></button> <span class="lb-help" style="display:inline" data-fr="anneau clavier">keyboard ring</span></span>
+            <span class="lab-rowlabel">Disabled</span><span><button class="lb-btn lb-btn--sm" disabled><span class="lb-btn__label">Button</span></button></span>
+            <span class="lab-rowlabel">Loading</span><span><button class="lb-btn lb-btn--sm" data-loading-demo><span class="lb-btn__label" data-fr="Cliquer">Click me</span><span class="lb-btn__spin"></span></button></span>
+          </div>
+        </div>
+        <div class="lab-panel">
+          <span class="lab-panel__label" data-fr="Tailles">Sizes</span>
+          <div class="btn-row" style="align-items:baseline">
+            <button class="lb-btn lb-btn--sm"><span class="lb-btn__label">Small</span></button>
+            <button class="lb-btn"><span class="lb-btn__label">Medium</span></button>
+            <button class="lb-btn lb-btn--lg"><span class="lb-btn__label">Large</span></button>
+          </div>
+          <p class="lb-help" style="margin-top:1rem" data-fr="Le bouton « Cliquer » enchaîne repos → chargement → succès, puis se réarme.">The "Click me" button runs rest → loading → success, then re-arms itself.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 FORMS -->
+  <section class="lab-sec">
+    <div class="lab-sec__head">
+      <span class="lab-sec__n">03 · <b data-fr="Formulaires">Forms</b></span>
+      <h2 data-fr="Saisie et validation">Input and validation</h2>
+      <p class="lab-sec__lead" data-fr="Labels visibles, texte d'aide persistant, validation au blur, messages d'erreur près du champ et annoncés aux lecteurs d'écran.">Visible labels, persistent helper text, validation on blur, error messages next to the field and announced to screen readers.</p>
+    </div>
+    <form class="lab-panel" id="labForm" novalidate>
+      <div class="form-grid">
+        <div class="lb-field" data-field="email">
+          <label for="f-email">Email <span class="req" aria-hidden="true">*</span></label>
+          <div class="lb-field__box"><input class="lb-input" id="f-email" type="email" inputmode="email" autocomplete="email" placeholder="you@studio.com" required aria-describedby="f-email-help"></div>
+          <span class="lb-help" id="f-email-help" aria-live="polite" data-fr="On ne le partage jamais.">We never share it.</span>
+        </div>
+
+        <div class="lb-field" data-field="pw">
+          <label for="f-pw">Password</label>
+          <div class="lb-field__box">
+            <input class="lb-input has-icon-r" id="f-pw" type="password" autocomplete="new-password" placeholder="••••••••">
+            <button type="button" class="lb-field__iconbtn" id="pwToggle" aria-label="Show password" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><use href="#i-eye"/></svg></button>
+          </div>
+          <span class="lb-help" data-fr="8 caractères minimum.">Minimum 8 characters.</span>
+        </div>
+
+        <div class="lb-field is-success" data-field="ok">
+          <label for="f-ok" data-fr="Nom d'utilisateur">Username</label>
+          <div class="lb-field__box"><input class="lb-input" id="f-ok" type="text" value="mahdi" aria-describedby="f-ok-help"></div>
+          <span class="lb-help" id="f-ok-help"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-check"/></svg> <span data-fr="Disponible">Available</span></span>
+        </div>
+
+        <div class="lb-field" data-field="sel">
+          <label for="f-sel" data-fr="Rôle">Role</label>
+          <div class="lb-select-wrap">
+            <select class="lb-select" id="f-sel">
+              <option data-fr="Product designer">Product designer</option>
+              <option data-fr="Développeur">Developer</option>
+              <option data-fr="Les deux">Both</option>
+            </select>
+            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><use href="#i-chev"/></svg>
+          </div>
+          <span class="lb-help">&nbsp;</span>
+        </div>
+
+        <div class="lb-field" data-field="dis">
+          <label for="f-dis" data-fr="Désactivé">Disabled</label>
+          <div class="lb-field__box"><input class="lb-input" id="f-dis" type="text" value="Read-only value" disabled></div>
+          <span class="lb-help" data-fr="État non modifiable.">Non-editable state.</span>
+        </div>
+
+        <div class="lb-field" data-field="ta">
+          <label for="f-ta" data-fr="Message">Message</label>
+          <div class="lb-field__box"><textarea class="lb-textarea" id="f-ta" maxlength="140" placeholder="Say hello…"></textarea></div>
+          <span class="lb-counter"><span id="taCount">0</span>/140</span>
+        </div>
+      </div>
+
+      <div class="lab-2col" style="margin-top:1.6rem">
+        <div>
+          <span class="lab-panel__label" data-fr="Sélection">Selection</span>
+          <div class="lb-choice">
+            <label class="lb-check"><input type="checkbox" checked><span class="lb-check__box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><use href="#i-check"/></svg></span> <span data-fr="J'accepte les conditions">I accept the terms</span></label>
+            <label class="lb-check"><input type="checkbox"><span class="lb-check__box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><use href="#i-check"/></svg></span> <span data-fr="M'envoyer des nouvelles">Send me updates</span></label>
+            <label class="lb-check"><input type="checkbox" disabled><span class="lb-check__box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><use href="#i-check"/></svg></span> <span data-fr="Option désactivée">Disabled option</span></label>
+          </div>
+          <div class="lb-choice" role="radiogroup" aria-label="Plan" style="margin-top:1.1rem">
+            <label class="lb-check lb-check--radio"><input type="radio" name="plan" checked><span class="lb-check__box"></span> <span>Free</span></label>
+            <label class="lb-check lb-check--radio"><input type="radio" name="plan"><span class="lb-check__box"></span> <span>Pro</span></label>
+          </div>
+        </div>
+        <div>
+          <span class="lab-panel__label" data-fr="Contrôles">Controls</span>
+          <div style="display:flex;flex-direction:column;gap:1.2rem">
+            <label class="lb-switch"><input type="checkbox" checked><span class="lb-switch__track"></span> <span data-fr="Notifications activées">Notifications on</span></label>
+            <div class="lb-seg" role="radiogroup" aria-label="View" id="viewSeg" style="align-self:flex-start">
+              <span class="lb-seg__thumb" aria-hidden="true"></span>
+              <button type="button" role="radio" aria-checked="true">Grid</button>
+              <button type="button" role="radio" aria-checked="false" data-fr="Liste">List</button>
+              <button type="button" role="radio" aria-checked="false" data-fr="Carte">Map</button>
+            </div>
+            <div class="lb-slider">
+              <div style="display:flex;justify-content:space-between"><span class="lab-rowlabel" data-fr="Rayon">Radius</span><span class="lb-range-val"><span id="rangeVal">12</span>px</span></div>
+              <input class="lb-range" id="labRange" type="range" min="0" max="40" value="12" aria-label="Radius">
+            </div>
+            <div class="lb-search lb-field__box" id="searchWrap">
+              <svg class="mag" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><use href="#i-search"/></svg>
+              <input class="lb-input has-icon-r" id="searchInput" type="search" placeholder="Search…" aria-label="Search">
+              <button type="button" class="lb-field__iconbtn clr" id="searchClear" aria-label="Clear search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><use href="#i-x"/></svg></button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="btn-row" style="margin-top:1.8rem">
+        <button class="lb-btn" type="submit"><span class="lb-btn__label" data-fr="Envoyer">Submit</span><span class="lb-btn__spin"></span></button>
+        <button class="lb-btn lb-btn--ghost" type="reset"><span class="lb-btn__label" data-fr="Réinitialiser">Reset</span></button>
+        <span class="lb-help" id="formStatus" role="status" aria-live="polite"></span>
+      </div>
+    </form>
+  </section>
+
+  <!-- 04 OVERLAYS -->
+  <section class="lab-sec">
+    <div class="lab-sec__head">
+      <span class="lab-sec__n">04 · <b data-fr="Composants">Components</b></span>
+      <h2 data-fr="Feedback et overlays">Feedback and overlays</h2>
+      <p class="lab-sec__lead" data-fr="Onglets au clavier, accordéon animé en hauteur, modale avec piège de focus, toasts polis, tooltip, progression, squelette, chips et badges.">Keyboard tabs, height-animated accordion, a modal with a focus trap, polite toasts, tooltip, progress, skeleton, chips and badges.</p>
+    </div>
+
+    <div class="lab-stack">
+      <div class="lab-2col">
+        <div class="lab-panel">
+          <span class="lab-panel__label">Tabs</span>
+          <div class="lb-tabs" id="labTabs">
+            <div class="lb-tabs__list" role="tablist" aria-label="Sections">
+              <span class="lb-tabs__ink" aria-hidden="true"></span>
+              <button class="lb-tab" role="tab" id="tab-1" aria-selected="true" aria-controls="tp-1" data-fr="Aperçu">Overview</button>
+              <button class="lb-tab" role="tab" id="tab-2" aria-selected="false" aria-controls="tp-2" tabindex="-1" data-fr="Détails">Details</button>
+              <button class="lb-tab" role="tab" id="tab-3" aria-selected="false" aria-controls="tp-3" tabindex="-1">API</button>
+            </div>
+            <div class="lb-tabpanel" role="tabpanel" id="tp-1" aria-labelledby="tab-1" tabindex="0"><p class="lab-sec__lead" style="margin:0" data-fr="Utilise les flèches gauche/droite pour naviguer entre les onglets. Le focus suit et l'indicateur glisse.">Use the left and right arrow keys to move between tabs. Focus follows and the indicator slides.</p></div>
+            <div class="lb-tabpanel" role="tabpanel" id="tp-2" aria-labelledby="tab-2" tabindex="0" hidden><p class="lab-sec__lead" style="margin:0" data-fr="Roving tabindex, aria-selected et continuité spatiale de l'indicateur.">Roving tabindex, aria-selected, and a spatially continuous indicator.</p></div>
+            <div class="lb-tabpanel" role="tabpanel" id="tp-3" aria-labelledby="tab-3" tabindex="0" hidden><p class="lab-sec__lead" style="margin:0">Each panel is a labelled region, reachable by keyboard.</p></div>
+          </div>
+        </div>
+
+        <div class="lab-panel">
+          <span class="lab-panel__label">Accordion</span>
+          <div class="lb-acc" id="labAcc">
+            <div class="lb-acc__item">
+              <button class="lb-acc__btn" aria-expanded="true"><span data-fr="C'est accessible ?">Is it accessible?</span><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><use href="#i-plus"/></svg></button>
+              <div class="lb-acc__panel"><div class="lb-acc__inner" data-fr="Oui. aria-expanded, focus au clavier, et la hauteur s'anime au lieu de sauter.">Yes. aria-expanded, keyboard focus, and the height animates instead of snapping.</div></div>
+            </div>
+            <div class="lb-acc__item">
+              <button class="lb-acc__btn" aria-expanded="false"><span data-fr="Respecte le reduced-motion ?">Respects reduced motion?</span><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><use href="#i-plus"/></svg></button>
+              <div class="lb-acc__panel"><div class="lb-acc__inner" data-fr="Oui. Coupe l'interrupteur Motion en haut, ou active la préférence système, et les transitions disparaissent.">Yes. Flip the Motion switch up top, or set the system preference, and transitions drop away.</div></div>
+            </div>
+            <div class="lb-acc__item">
+              <button class="lb-acc__btn" aria-expanded="false"><span data-fr="Un seul ouvert ?">One open at a time?</span><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><use href="#i-plus"/></svg></button>
+              <div class="lb-acc__panel"><div class="lb-acc__inner">Each item is independent here, but the pattern supports single-open just as easily.</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="lab-2col">
+        <div class="lab-panel">
+          <span class="lab-panel__label" data-fr="Déclencheurs">Triggers</span>
+          <div class="btn-row">
+            <button class="lb-btn lb-btn--secondary" id="openModal"><span class="lb-btn__label" data-fr="Ouvrir la modale">Open modal</span></button>
+            <span class="lb-tip"><button class="lb-btn lb-btn--ghost" aria-describedby="tipA"><span class="lb-btn__label">Hover me</span></button><span class="lb-tip__bubble" role="tooltip" id="tipA" data-fr="Marche au survol et au focus">Works on hover and focus</span></span>
+          </div>
+          <div class="btn-row" style="margin-top:.9rem">
+            <button class="lb-btn lb-btn--sm lb-btn--secondary" data-toast="success"><span class="lb-btn__label">Success toast</span></button>
+            <button class="lb-btn lb-btn--sm lb-btn--secondary" data-toast="danger"><span class="lb-btn__label">Error + undo</span></button>
+            <button class="lb-btn lb-btn--sm lb-btn--secondary" data-toast="info"><span class="lb-btn__label">Info toast</span></button>
+          </div>
+        </div>
+        <div class="lab-panel">
+          <span class="lab-panel__label" data-fr="Statut">Status</span>
+          <div style="display:flex;flex-direction:column;gap:1rem">
+            <div class="lb-prog"><i id="progBar" style="width:66%"></i></div>
+            <div class="lb-prog lb-prog--indet"><i></i></div>
+            <div style="display:flex;gap:.7rem"><div class="lb-skel" style="width:44px;height:44px;border-radius:50%"></div><div style="flex:1;display:flex;flex-direction:column;gap:.5rem;justify-content:center"><div class="lb-skel" style="height:12px;width:70%"></div><div class="lb-skel" style="height:12px;width:45%"></div></div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="lab-panel">
+        <span class="lab-panel__label" data-fr="Badges, chips, avatars">Badges, chips, avatars</span>
+        <div class="chip-row" style="margin-bottom:1rem">
+          <span class="lb-badge lb-badge--success"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><use href="#i-check"/></svg> Success</span>
+          <span class="lb-badge lb-badge--warning"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-warn"/></svg> Warning</span>
+          <span class="lb-badge lb-badge--danger"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-alert"/></svg> Error</span>
+          <span class="lb-badge lb-badge--info"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-info"/></svg> Info</span>
+          <span class="lb-badge lb-badge--neutral">Neutral</span>
+        </div>
+        <div style="display:flex;gap:1.4rem;flex-wrap:wrap;align-items:center">
+          <div class="chip-row" id="chipRow">
+            <span class="lb-chip">Design <button aria-label="Remove Design"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-x"/></svg></button></span>
+            <span class="lb-chip">Motion <button aria-label="Remove Motion"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-x"/></svg></button></span>
+            <span class="lb-chip">Tokens <button aria-label="Remove Tokens"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-x"/></svg></button></span>
+            <span class="lb-chip">A11y <button aria-label="Remove A11y"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-x"/></svg></button></span>
+          </div>
+          <div class="avatars"><span class="av">MS</span><span class="av">JD</span><span class="av">KC</span><span class="av">+6</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 05 ACCESSIBILITY -->
+  <section class="lab-sec">
+    <div class="lab-sec__head">
+      <span class="lab-sec__n">05 · <b data-fr="Accessibilité">Accessibility</b></span>
+      <h2 data-fr="Pensée dès le token">Built in at the token</h2>
+      <p class="lab-sec__lead" data-fr="Un vérificateur de contraste WCAG en direct, des cibles tactiles d'au moins 44px, un focus clavier visible et le respect du reduced-motion.">A live WCAG contrast checker, touch targets of at least 44px, visible keyboard focus, and reduced-motion respect.</p>
+    </div>
+    <div class="lab-stack">
+      <div class="lab-panel">
+        <span class="lab-panel__label" data-fr="Vérificateur de contraste · WCAG">Contrast checker · WCAG</span>
+        <div class="cc">
+          <div class="cc__inputs">
+            <div class="cc__pick"><label for="ccFg" data-fr="Texte">Text</label><input type="color" id="ccFg" value="#0F0F0F"><input type="text" class="lb-input" id="ccFgHex" value="#0F0F0F" aria-label="Text hex"></div>
+            <div class="cc__pick"><label for="ccBg" data-fr="Fond">Back</label><input type="color" id="ccBg" value="#F5F4F2"><input type="text" class="lb-input" id="ccBgHex" value="#F5F4F2" aria-label="Background hex"></div>
+            <button class="lb-btn lb-btn--sm lb-btn--secondary" id="ccUseTheme" style="align-self:flex-start"><span class="lb-btn__label" data-fr="Prendre le thème">Use theme colors</span></button>
+          </div>
+          <div>
+            <div class="cc__preview" id="ccPreview">
+              <span class="big">Aa</span>
+              <span class="small" data-fr="Le vif-argent zébrant Djibouti.">Sphinx of black quartz, judge my vow.</span>
+            </div>
+            <div class="cc__ratio"><b id="ccRatio">17.4</b><span>: 1<br>ratio</span></div>
+            <div class="cc__badges" id="ccBadges"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="lab-2col">
+        <div class="lab-panel">
+          <span class="lab-panel__label" data-fr="Cibles tactiles">Touch targets</span>
+          <div class="tt-row">
+            <div class="tt tt--ok"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><use href="#i-check"/></svg></i>44 × 44 · ok</div>
+            <div class="tt tt--bad"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><use href="#i-x"/></svg></i>26 · too small</div>
+            <p class="lb-help" style="max-width:26ch" data-fr="Sous 44px, on manque la cible au doigt. Tous les contrôles ici tiennent le minimum.">Below 44px, fingers miss. Every control here meets the minimum.</p>
+          </div>
+        </div>
+        <div class="lab-panel">
+          <span class="lab-panel__label" data-fr="Clavier">Keyboard</span>
+          <ul class="kbd-list">
+            <li><kbd>Tab</kbd> <span data-fr="parcourir dans l'ordre visuel">move in visual order</span></li>
+            <li><kbd>←</kbd><kbd>→</kbd> <span data-fr="changer d'onglet / segment">switch tabs and segments</span></li>
+            <li><kbd>Enter</kbd><kbd>Space</kbd> <span data-fr="activer">activate</span></li>
+            <li><kbd>Esc</kbd> <span data-fr="fermer la modale">close the modal</span></li>
+          </ul>
+          <div class="focus-demo" style="margin-top:1.1rem">
+            <span class="lab-rowlabel" data-fr="Essaie :">Try:</span>
+            <button class="lb-btn lb-btn--sm lb-btn--secondary"><span class="lb-btn__label">One</span></button>
+            <button class="lb-btn lb-btn--sm lb-btn--secondary"><span class="lb-btn__label">Two</span></button>
+            <button class="lb-btn lb-btn--sm lb-btn--secondary"><span class="lb-btn__label">Three</span></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 06 VARIANTS MATRIX -->
+  <section class="lab-sec">
+    <div class="lab-sec__head">
+      <span class="lab-sec__n">06 · <b data-fr="Matrice">Matrix</b></span>
+      <h2 data-fr="Variantes × états">Variants × states</h2>
+      <p class="lab-sec__lead" data-fr="La façon dont un design system se documente : chaque variante contre chaque état, dans une seule planche.">The way a design system documents itself: every variant against every state, on one board.</p>
+    </div>
+    <div class="lab-panel matrix">
+      <table>
+        <thead><tr><th></th><th>Default</th><th>Hover</th><th>Focus</th><th>Disabled</th></tr></thead>
+        <tbody>
+          <tr><th>Primary</th>
+            <td><button class="lb-btn lb-btn--sm"><span class="lb-btn__label">Label</span></button></td>
+            <td><button class="lb-btn lb-btn--sm" style="box-shadow:var(--lb-shadow-2)"><span class="lb-btn__label">Label</span></button></td>
+            <td><button class="lb-btn lb-btn--sm" style="outline:3px solid var(--lb-focus);outline-offset:2px"><span class="lb-btn__label">Label</span></button></td>
+            <td><button class="lb-btn lb-btn--sm" disabled><span class="lb-btn__label">Label</span></button></td></tr>
+          <tr><th>Secondary</th>
+            <td><button class="lb-btn lb-btn--sm lb-btn--secondary"><span class="lb-btn__label">Label</span></button></td>
+            <td><button class="lb-btn lb-btn--sm lb-btn--secondary" style="background:var(--lb-surface-2)"><span class="lb-btn__label">Label</span></button></td>
+            <td><button class="lb-btn lb-btn--sm lb-btn--secondary" style="outline:3px solid var(--lb-focus);outline-offset:2px"><span class="lb-btn__label">Label</span></button></td>
+            <td><button class="lb-btn lb-btn--sm lb-btn--secondary" disabled><span class="lb-btn__label">Label</span></button></td></tr>
+          <tr><th>Danger</th>
+            <td><button class="lb-btn lb-btn--sm lb-btn--danger"><span class="lb-btn__label">Label</span></button></td>
+            <td><button class="lb-btn lb-btn--sm lb-btn--danger" style="box-shadow:var(--lb-shadow-2)"><span class="lb-btn__label">Label</span></button></td>
+            <td><button class="lb-btn lb-btn--sm lb-btn--danger" style="outline:3px solid var(--lb-focus);outline-offset:2px"><span class="lb-btn__label">Label</span></button></td>
+            <td><button class="lb-btn lb-btn--sm lb-btn--danger" disabled><span class="lb-btn__label">Label</span></button></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <footer class="lab-foot">
+    <span>© 2026 Mahdi Saiah</span>
+    <span data-fr="Tokens, composants et accessibilité, à la main">Tokens, components and accessibility, by hand</span>
+    <a class="lab-back" href="index.html#contact" data-fr="On travaille ensemble ?">Let's work together</a>
+  </footer>
+</main>
+
+<!-- MODAL -->
+<div class="lb-modal" id="labModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-describedby="modalBody">
+  <div class="lb-modal__scrim" data-close></div>
+  <div class="lb-modal__card" role="document">
+    <h3 class="lb-modal__title" id="modalTitle" data-fr="Supprimer ce projet ?">Delete this project?</h3>
+    <p class="lb-modal__body" id="modalBody" data-fr="Cette action est définitive. Le focus est piégé dans cette fenêtre, Échap la ferme, et le focus revient au bouton d'origine.">This action is permanent. Focus is trapped in this dialog, Escape closes it, and focus returns to the button that opened it.</p>
+    <div class="lb-modal__actions">
+      <button class="lb-btn lb-btn--ghost" data-close><span class="lb-btn__label" data-fr="Annuler">Cancel</span></button>
+      <button class="lb-btn lb-btn--danger" id="modalConfirm"><span class="lb-btn__label" data-fr="Supprimer">Delete</span></button>
+    </div>
+  </div>
+</div>
+
+<!-- TOASTS -->
+<div class="lb-toasts" id="toasts" aria-live="polite" aria-atomic="false"></div>
+
+<script src="js/main.js"></script>
+<script src="js/lab.js"></script>
+<script src="js/i18n.js"></script>
+</body>
+</html>
