@@ -134,7 +134,7 @@ body.menu-open .nav{ transform:none }
 .nav__mark span{ color:var(--accent) }
 .nav__logo{ height:28px; width:auto; display:block; transition:height .35s var(--ease) }
 .nav.scrolled .nav__logo{ height:23px }
-.nav__links{ display:flex; align-items:center; gap:2rem }
+.nav__links{ display:flex; align-items:center; gap:clamp(1.05rem,1.7vw,2rem) }
 .nav__links a{ font-family:var(--f-mono); font-size:.82rem; letter-spacing:.06em; text-transform:uppercase; color:var(--ink-2); transition:color .2s }
 .nav__links a:hover{ color:var(--ink) }
 .nav__cta{ padding:.6rem 1.1rem; border:1.5px solid var(--ink); border-radius:999px; color:var(--ink)!important }

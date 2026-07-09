@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en" data-title-en="The Forge · Generative design studio by Mahdi Saiah" data-title-fr="The Forge · Studio de design génératif par Mahdi Saiah">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>The Forge · Generative design studio by Mahdi Saiah</title>
+<meta name="description" content="A drag-and-drop design studio with a generative engine that builds accessible design systems, components and layouts in your browser, free. Then exports real code. By Mahdi Saiah." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;700;800;900&family=Space+Grotesk:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Inter:wght@400;500;600;700&family=Fraunces:ital,wght@0,500;0,600;0,900;1,500&family=Sora:wght@400;600;700;800&family=DM+Sans:wght@400;500;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/lab.css">
+<link rel="stylesheet" href="css/studio.css?v=2">
+<link rel="icon" type="image/png" sizes="32x32" href="media/brand/favicon-32.png">
+<link rel="icon" type="image/png" sizes="512x512" href="media/brand/favicon-512.png">
+<link rel="apple-touch-icon" href="media/brand/apple-touch-icon.png">
+</head>
+<body class="lab-body st-body" data-theme="light" data-density="comfortable" data-motion="full">
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <g id="i-back"><path d="M15 6l-6 6 6 6"/></g>
+  <g id="i-spark"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/><path d="M18 15l.7 2 2 .7-2 .7-.7 2-.7-2-2-.7 2-.7z"/></g>
+  <g id="i-wand"><path d="M15 4V2M15 22v-2M8 9l-4-4M20 9l-4-4M4 15l-1 1M6 6l12 12"/><path d="M11 9l4 4"/></g>
+  <g id="i-dice"><rect x="4" y="4" width="16" height="16" rx="3"/><circle cx="9" cy="9" r="1.1" fill="currentColor" stroke="none"/><circle cx="15" cy="15" r="1.1" fill="currentColor" stroke="none"/><circle cx="15" cy="9" r="1.1" fill="currentColor" stroke="none"/><circle cx="9" cy="15" r="1.1" fill="currentColor" stroke="none"/></g>
+  <g id="i-code"><path d="M9 8l-4 4 4 4M15 8l4 4-4 4"/></g>
+  <g id="i-reset"><path d="M4 4v6h6M20 20v-6h-6"/><path d="M20 10a8 8 0 00-14.3-3.3L4 8M4 14a8 8 0 0014.3 3.3L20 16"/></g>
+  <g id="i-x"><path d="M6 6l12 12M18 6L6 18"/></g>
+  <g id="i-copy"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 012-2h10"/></g>
+  <g id="i-check"><path d="M4 12l5 5L20 6"/></g>
+  <g id="i-trash"><path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13"/></g>
+  <g id="i-up"><path d="M12 19V5M5 12l7-7 7 7"/></g>
+  <g id="i-down"><path d="M12 5v14M5 12l7 7 7-7"/></g>
+  <g id="i-dup"><rect x="8" y="8" width="12" height="12" rx="2"/><rect x="4" y="4" width="12" height="12" rx="2" fill="var(--lb-accent)"/></g>
+  <g id="i-grip"><circle cx="9" cy="6" r="1.3" fill="currentColor" stroke="none"/><circle cx="15" cy="6" r="1.3" fill="currentColor" stroke="none"/><circle cx="9" cy="12" r="1.3" fill="currentColor" stroke="none"/><circle cx="15" cy="12" r="1.3" fill="currentColor" stroke="none"/><circle cx="9" cy="18" r="1.3" fill="currentColor" stroke="none"/><circle cx="15" cy="18" r="1.3" fill="currentColor" stroke="none"/></g>
+  <g id="i-phone"><rect x="7" y="3" width="10" height="18" rx="2"/><line x1="11" y1="18" x2="13" y2="18"/></g>
+  <g id="i-web"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 9h18"/></g>
+  <g id="i-sun"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2M12 20v2M4 12H2M22 12h-2M5 5l1.5 1.5M17.5 17.5L19 19M19 5l-1.5 1.5M6.5 17.5L5 19"/></g>
+  <g id="i-moon"><path d="M20 14.5A8 8 0 1110 3.5a6.5 6.5 0 0010 11z"/></g>
+  <g id="i-img"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.5"/><path d="M21 16l-5-5L5 20"/></g>
+  <g id="i-type"><path d="M4 6h16M12 6v14M8 20h8"/></g>
+  <g id="i-para"><path d="M5 6h14M5 10h14M5 14h10M5 18h7"/></g>
+  <g id="i-btn"><rect x="3" y="8" width="18" height="8" rx="4"/></g>
+  <g id="i-field"><rect x="3" y="8" width="18" height="8" rx="2"/><path d="M6 12h4"/></g>
+  <g id="i-tag"><path d="M3 12l7-7h8v8l-7 7z"/><circle cx="14.5" cy="9.5" r="1.1" fill="currentColor" stroke="none"/></g>
+  <g id="i-card"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 9h18"/></g>
+  <g id="i-toggle"><rect x="2" y="7" width="20" height="10" rx="5"/><circle cx="16" cy="12" r="3" fill="currentColor" stroke="none"/></g>
+  <g id="i-seg"><rect x="3" y="8" width="18" height="8" rx="4"/><path d="M9 8v8M15 8v8"/></g>
+  <g id="i-avatar"><circle cx="9" cy="9" r="3"/><circle cx="15" cy="9" r="3"/><path d="M4 19a5 5 0 0110 0M14 16a5 5 0 016 3"/></g>
+  <g id="i-stat"><path d="M5 20V10M12 20V4M19 20v-7"/></g>
+  <g id="i-line"><path d="M4 12h16"/></g>
+  <g id="i-zap"><path d="M13 2L4 14h6l-1 8 9-12h-6z"/></g>
+  <g id="i-shield"><path d="M12 3l7 3v5c0 5-3.5 8-7 10-3.5-2-7-5-7-10V6z"/><path d="M9 12l2 2 4-4"/></g>
+  <g id="i-heart"><path d="M12 20s-7-4.5-9.5-9A4.5 4.5 0 0112 5a4.5 4.5 0 019.5 6c-2.5 4.5-9.5 9-9.5 9z"/></g>
+  <g id="i-globe"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></g>
+  <g id="i-lock"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 018 0v3"/></g>
+  <g id="i-bell"><path d="M6 9a6 6 0 0112 0c0 5 2 6 2 6H4s2-1 2-6z"/><path d="M10 19a2 2 0 004 0"/></g>
+</defs></svg>
+
+<div class="st-app">
+  <!-- TOOLBAR -->
+  <header class="st-bar">
+    <span class="st-bar__brand"><img src="media/brand/mark.png" alt=""> The <span class="it">Forge</span></span>
+    <a class="lab-back" href="index.html#top" style="font-family:var(--f-mono);font-size:.74rem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><use href="#i-back"/></svg> Portfolio</a>
+
+    <div class="st-prompt">
+      <svg class="sparkle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><use href="#i-spark"/></svg>
+      <input id="stPrompt" type="text" placeholder="Describe a vibe… e.g. calm fintech, bold playful, editorial serif" aria-label="Design prompt" enterkeyhint="go">
+    </div>
+    <div class="st-vibes" role="group" aria-label="Vibe">
+      <button class="st-vibe" data-vibe="calm">Calm</button>
+      <button class="st-vibe" data-vibe="bold">Bold</button>
+      <button class="st-vibe" data-vibe="playful">Playful</button>
+      <button class="st-vibe" data-vibe="editorial">Editorial</button>
+      <button class="st-vibe" data-vibe="techno">Techno</button>
+    </div>
+
+    <span class="st-bar__spacer"></span>
+    <span class="st-seed" title="Design seed"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" width="14" height="14"><use href="#i-dice"/></svg><span id="stSeed">—</span></span>
+    <button class="lb-btn lb-btn--sm lb-btn--secondary" id="stChrome" aria-label="Toggle studio theme"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><use href="#i-moon"/></svg></button>
+    <button class="lb-btn lb-btn--sm lb-btn--secondary" id="stAuto"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><use href="#i-wand"/></svg><span class="lb-btn__label">Auto-build</span></button>
+    <button class="lb-btn lb-btn--sm" id="stGen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><use href="#i-spark"/></svg><span class="lb-btn__label">Generate</span></button>
+    <button class="lb-btn lb-btn--sm lb-btn--secondary" id="stExport"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><use href="#i-code"/></svg><span class="lb-btn__label">Export</span></button>
+  </header>
+
+  <!-- WORKSPACE -->
+  <div class="st-work">
+    <!-- LEFT: palette -->
+    <aside class="st-rail st-rail--left" aria-label="Components">
+      <div>
+        <span class="st-rail__h">Content</span>
+        <div class="st-pal">
+          <button class="st-pal__item" draggable="true" data-type="eyebrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><use href="#i-line"/></svg>Eyebrow</button>
+          <button class="st-pal__item" draggable="true" data-type="heading"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><use href="#i-type"/></svg>Heading</button>
+          <button class="st-pal__item" draggable="true" data-type="text"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><use href="#i-para"/></svg>Text</button>
+          <button class="st-pal__item" draggable="true" data-type="image"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><use href="#i-img"/></svg>Image</button>
+          <button class="st-pal__item" draggable="true" data-type="divider"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><use href="#i-line"/></svg>Divider</button>
+        </div>
+      </div>
+      <div>
+        <span class="st-rail__h">Actions</span>
+        <div class="st-pal">
+          <button class="st-pal__item" draggable="true" data-type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><use href="#i-btn"/></svg>Button</button>
+          <button class="st-pal__item" draggable="true" data-type="input"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><use href="#i-field"/></svg>Input</button>
+          <button class="st-pal__item" draggable="true" data-type="toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><use href="#i-toggle"/></svg>Toggle</button>
+          <button class="st-pal__item" draggable="true" data-type="segmented"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><use href="#i-seg"/></svg>Segmented</button>
+        </div>
+      </div>
+      <div>
+        <span class="st-rail__h">Display</span>
+        <div class="st-pal">
+          <button class="st-pal__item" draggable="true" data-type="card"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><use href="#i-card"/></svg>Card</button>
+          <button class="st-pal__item" draggable="true" data-type="feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><use href="#i-spark"/></svg>Feature</button>
+          <button class="st-pal__item" draggable="true" data-type="stat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><use href="#i-stat"/></svg>Stat</button>
+          <button class="st-pal__item" draggable="true" data-type="statrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><use href="#i-stat"/></svg>Stat row</button>
+          <button class="st-pal__item" draggable="true" data-type="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><use href="#i-tag"/></svg>Badges</button>
+          <button class="st-pal__item" draggable="true" data-type="chiprow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><use href="#i-tag"/></svg>Chips</button>
+          <button class="st-pal__item" draggable="true" data-type="avatar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><use href="#i-avatar"/></svg>Avatars</button>
+        </div>
+      </div>
+      <p class="st-meta" style="margin-top:auto">Drag onto the canvas, or click to add. Then hit <b>Generate</b> to re-skin everything with a fresh, accessible design system.</p>
+    </aside>
+
+    <!-- CENTER: canvas -->
+    <section class="st-canvas" id="stCanvas" aria-label="Canvas">
+      <div class="st-canvas__tools">
+        <div class="lb-select-wrap st-devsel">
+          <svg class="lead" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><use href="#i-phone"/></svg>
+          <select class="lb-select" id="stDevice" aria-label="Device preset">
+            <optgroup label="Phone">
+              <option value="phone-app">Phone · app · 390</option>
+              <option value="phone-web">Phone · web · 390</option>
+            </optgroup>
+            <optgroup label="Tablet">
+              <option value="tablet-app">Tablet · app · 834</option>
+              <option value="tablet-web">Tablet · web · 834</option>
+            </optgroup>
+            <optgroup label="Laptop">
+              <option value="laptop-app">Laptop · app · 1280</option>
+              <option value="laptop-web" selected>Laptop · web · 1280</option>
+            </optgroup>
+            <optgroup label="Desktop">
+              <option value="desktop-web">Desktop · web · 1512</option>
+            </optgroup>
+          </select>
+          <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><use href="#i-chev"/></svg>
+        </div>
+        <span class="st-zoom" id="stZoom" title="Zoom to fit">100%</span>
+      </div>
+
+      <div class="st-scaler" id="stScaler">
+        <div class="st-frame st-frame--browser" id="stFrame">
+          <div class="st-frame__bar" id="stFrameBar"></div>
+          <div class="st-screen empty" id="stScreen">
+            <svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" style="color:var(--lb-faint)"><use href="#i-spark"/></svg>
+            <span class="big">Start forging</span>
+            <span style="max-width:36ch;font-size:.9rem">Drag components in, or press <b>Auto-build</b> for a full screen, then <b>Generate</b> to theme it.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RIGHT: inspector -->
+    <aside class="st-rail st-rail--right" aria-label="Inspector">
+      <div>
+        <span class="st-rail__h">Selection</span>
+        <div id="stInspector"><p class="st-insp__empty">Select a component on the canvas to edit its content and variant.</p></div>
+      </div>
+      <div>
+        <span class="st-rail__h">Design system</span>
+        <div id="stTokens">
+          <div class="st-tokgrid" id="stPalette"></div>
+          <p class="st-meta" id="stFonts" style="margin-top:.8rem"></p>
+          <div class="st-slider"><div class="lb"><span>Radius</span><span id="stRadOut">12px</span></div><input class="lb-range" id="stRad" type="range" min="0" max="28" value="12" aria-label="Radius"></div>
+          <div class="st-slider"><div class="lb"><span>Density</span><span id="stDenOut">Comfort</span></div><input class="lb-range" id="stDen" type="range" min="0" max="1" step="1" value="0" aria-label="Density"></div>
+          <div class="st-slider"><div class="lb"><span>Depth</span><span id="stDepOut">Soft</span></div><input class="lb-range" id="stDep" type="range" min="0" max="2" step="1" value="1" aria-label="Shadow depth"></div>
+          <div class="st-slider"><div class="lb"><span>Icon size</span><span id="stIcoOut">18px</span></div><input class="lb-range" id="stIco" type="range" min="12" max="30" value="18" aria-label="Icon size"></div>
+          <div class="st-slider"><div class="lb"><span>Text size</span><span id="stTxtOut">100%</span></div><input class="lb-range" id="stTxt" type="range" min="86" max="122" value="100" aria-label="Text size"></div>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <!-- mobile palette strip -->
+  <div class="st-palbar" id="stPalbar" aria-hidden="true"></div>
+</div>
+
+<!-- EXPORT SHEET -->
+<div class="st-sheet" id="stSheet" role="dialog" aria-modal="true" aria-label="Export code">
+  <div class="st-sheet__card">
+    <div class="st-sheet__head">
+      <h3>Export</h3>
+      <div style="display:flex;gap:.5rem">
+        <button class="lb-btn lb-btn--sm" id="stCopy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><use href="#i-copy"/></svg><span class="lb-btn__label">Copy</span></button>
+        <button class="lb-btn lb-btn--sm lb-btn--ghost" id="stSheetClose" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><use href="#i-x"/></svg></button>
+      </div>
+    </div>
+    <div class="st-sheet__tabs lb-seg" role="radiogroup" aria-label="Export format" id="stExportTabs">
+      <span class="lb-seg__thumb" aria-hidden="true"></span>
+      <button type="button" role="radio" aria-checked="true" data-fmt="html">HTML + CSS</button>
+      <button type="button" role="radio" aria-checked="false" data-fmt="tokens">Tokens (CSS)</button>
+      <button type="button" role="radio" aria-checked="false" data-fmt="json">Tokens (JSON)</button>
+    </div>
+    <div class="st-sheet__body">
+      <pre class="st-code" id="stCodeHtml"></pre>
+      <pre class="st-code" id="stCodeTokens" hidden></pre>
+      <pre class="st-code" id="stCodeJson" hidden></pre>
+    </div>
+  </div>
+</div>
+
+<div class="lb-toasts" id="toasts" aria-live="polite"></div>
+
+<script src="js/studio.js?v=2"></script>
+</body>
+</html>
