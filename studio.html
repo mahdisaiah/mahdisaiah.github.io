@@ -10,7 +10,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;700;800;900&family=Space+Grotesk:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Inter:wght@400;500;600;700&family=Fraunces:ital,wght@0,500;0,600;0,900;1,500&family=Sora:wght@400;600;700;800&family=DM+Sans:wght@400;500;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/lab.css">
-<link rel="stylesheet" href="css/studio.css?v=2">
+<link rel="stylesheet" href="css/studio.css?v=3">
 <link rel="icon" type="image/png" sizes="32x32" href="media/brand/favicon-32.png">
 <link rel="icon" type="image/png" sizes="512x512" href="media/brand/favicon-512.png">
 <link rel="apple-touch-icon" href="media/brand/apple-touch-icon.png">
@@ -145,6 +145,11 @@
           <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><use href="#i-chev"/></svg>
         </div>
         <span class="st-zoom" id="stZoom" title="Zoom to fit">100%</span>
+        <div class="lb-seg" role="radiogroup" aria-label="Layout mode" id="stLayout">
+          <span class="lb-seg__thumb" aria-hidden="true"></span>
+          <button type="button" role="radio" aria-checked="true" data-layout="flow" title="Stacked, responsive">Flow</button>
+          <button type="button" role="radio" aria-checked="false" data-layout="free" title="Place anywhere">Free</button>
+        </div>
       </div>
 
       <div class="st-scaler" id="stScaler">
@@ -210,6 +215,6 @@
 
 <div class="lb-toasts" id="toasts" aria-live="polite"></div>
 
-<script src="js/studio.js?v=2"></script>
+<script src="js/studio.js?v=3"></script>
 </body>
 </html>

@@ -99,6 +99,19 @@
 .st-node:hover{ outline-color:color-mix(in srgb,var(--lb-focus) 40%,transparent) }
 .st-node.selected{ outline-color:var(--lb-focus) }
 .st-node.dragging{ opacity:.35 }
+
+/* ---- free (absolute) canvas ---- */
+.st-screen--free{ padding:0 !important; position:relative; overflow:hidden; align-items:stretch !important;
+  background-image:radial-gradient(circle at 1px 1px, color-mix(in srgb,var(--lb-text) 12%, transparent) 1px, transparent 0); background-size:16px 16px; }
+.st-screen--free > .st-node{ position:absolute; max-width:none !important; margin:0 !important }
+.st-screen--free .st-node__grip, .st-screen--free .st-node[data-act]{ }
+.st-node.moving{ z-index:120; cursor:grabbing; outline-color:var(--lb-focus) }
+.st-node__resize{ position:absolute; right:-7px; bottom:-7px; width:16px; height:16px; border-radius:4px;
+  background:var(--lb-focus); border:2px solid var(--lb-bg); box-shadow:0 1px 4px rgba(0,0,0,.3);
+  cursor:nwse-resize; display:none; z-index:8; touch-action:none }
+.st-screen--free .st-node.selected .st-node__resize{ display:block }
+.st-node__dims{ position:absolute; left:0; bottom:-22px; font-family:var(--f-mono); font-size:.62rem; color:var(--lb-on-accent); background:var(--lb-accent); padding:.1rem .35rem; border-radius:4px; white-space:nowrap; display:none; z-index:8 }
+.st-node.moving .st-node__dims, .st-node.rezing .st-node__dims{ display:block }
 .st-node__bar{ position:absolute; top:-14px; right:6px; display:none; gap:2px; z-index:6; background:var(--lb-accent); border-radius:999px; padding:3px }
 .st-node.selected .st-node__bar, .st-node:hover .st-node__bar{ display:inline-flex }
 .st-node__bar button{ appearance:none; border:none; background:none; cursor:pointer; width:24px; height:24px; border-radius:50%; color:var(--lb-on-accent); display:inline-flex; align-items:center; justify-content:center }
@@ -150,6 +163,12 @@
 .st-field label{ font-family:var(--f-mono); font-size:.68rem; letter-spacing:.1em; text-transform:uppercase; color:var(--lb-muted) }
 .st-field input, .st-field select, .st-field textarea{ height:38px; border:1px solid var(--lb-border-strong); background:var(--lb-inset); border-radius:9px; padding:0 .7rem; color:var(--lb-text); font:inherit; font-size:.88rem }
 .st-field textarea{ height:auto; min-height:64px; padding:.5rem .7rem; resize:vertical }
+.st-possize{ display:grid; grid-template-columns:1fr 1fr; gap:.5rem; margin-bottom:1rem }
+.st-pf{ display:flex; align-items:center; gap:.4rem; border:1px solid var(--lb-border-strong); border-radius:9px; padding:0 .3rem 0 .6rem; background:var(--lb-inset) }
+.st-pf span{ font-family:var(--f-mono); font-size:.68rem; color:var(--lb-faint); width:12px; flex:none }
+.st-pf input{ width:100%; height:34px; border:none; background:none; color:var(--lb-text); font:inherit; font-size:.82rem; -moz-appearance:textfield }
+.st-pf input:focus{ outline:none }
+.st-pf input::-webkit-outer-spin-button, .st-pf input::-webkit-inner-spin-button{ -webkit-appearance:none; margin:0 }
 .st-tokgrid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(52px,1fr)); gap:.4rem }
 .st-tok{ border-radius:8px; overflow:hidden; border:1px solid var(--lb-border); cursor:pointer }
 .st-tok i{ display:block; height:34px } .st-tok span{ display:block; font-family:var(--f-mono); font-size:.54rem; padding:.2rem .3rem; color:var(--lb-muted); text-align:center; background:var(--lb-inset) }
