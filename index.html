@@ -1,480 +1,420 @@
 <!doctype html>
-<html lang="en" data-title-en="Mahdi Saiah · Product designer, building Connect" data-title-fr="Mahdi Saiah · Product designer, je construis Connect">
+<html lang="en" data-title-en="Mahdi Saiah · Product Designer & Product Owner" data-title-fr="Mahdi Saiah · Product Designer & Product Owner">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Mahdi Saiah · Product designer, building Connect</title>
-<meta name="description" content="Mahdi Saiah is a product designer and maker, and the founder of Connect. He designs, builds, and ships products end to end, from the first pixel to the App Store." />
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;800;900&family=Space+Grotesk:wght@400;500;600&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mahdi Saiah · Product Designer & Product Owner</title>
+<meta name="description" content="Mahdi Saiah, Product Designer and Product Owner in Paris. He designed and launched Connect, a social app live on the App Store, from user research to Apple's approval.">
+<meta name="theme-color" content="#F3F3F2" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0A0A0A" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Mahdi Saiah · Product Designer & Product Owner">
+<meta property="og:description" content="I designed and launched Connect on my own, a social app live on the App Store.">
+<meta property="og:url" content="https://mahdisaiah.github.io/">
+<meta property="og:image" content="https://mahdisaiah.github.io/media/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="icon" type="image/png" sizes="32x32" href="media/brand/favicon-32.png">
 <link rel="icon" type="image/png" sizes="512x512" href="media/brand/favicon-512.png">
 <link rel="apple-touch-icon" href="media/brand/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/site.css">
 </head>
 <body>
 
-<!-- icon sprite -->
-<svg width="0" height="0" style="position:absolute" aria-hidden="true">
-  <defs>
-    <g id="i-feed"><rect x="3" y="4" width="18" height="4" rx="1"/><rect x="3" y="12" width="11" height="8" rx="1"/><line x1="17" y1="12" x2="21" y2="12"/><line x1="17" y1="16" x2="21" y2="16"/><line x1="17" y1="20" x2="21" y2="20"/></g>
-    <g id="i-debate"><path d="M8 10h8M8 14h5"/><path d="M4 5h16v11H9l-4 4v-4H4z"/></g>
-    <g id="i-reel"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="M3 9h18M8 4l2 5M14 4l2 5"/><path d="M11 12.5v3l3-1.5z"/></g>
-    <g id="i-story"><circle cx="12" cy="12" r="8" stroke-dasharray="3 2.6"/><circle cx="12" cy="12" r="3.4"/></g>
-    <g id="i-chat"><path d="M4 5h16v10H10l-4 4v-4H4z"/><circle cx="9" cy="10" r=".6" fill="currentColor" stroke="none"/><circle cx="12.5" cy="10" r=".6" fill="currentColor" stroke="none"/><circle cx="16" cy="10" r=".6" fill="currentColor" stroke="none"/></g>
-    <g id="i-mood"><circle cx="12" cy="12" r="8"/><path d="M8.5 14a4 4 0 007 0"/><circle cx="9" cy="10" r=".7" fill="currentColor" stroke="none"/><circle cx="15" cy="10" r=".7" fill="currentColor" stroke="none"/></g>
-    <g id="i-bell"><path d="M6 9a6 6 0 0112 0c0 5 2 6 2 6H4s2-1 2-6z"/><path d="M10 19a2 2 0 004 0"/></g>
-    <g id="i-ad"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M8 15l2-6 2 6M8.6 13h2.8"/><path d="M15 15V9h1.6a2 2 0 010 4H15"/></g>
-    <g id="i-space"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 3v3M16 3v3"/><rect x="7" y="12" width="5" height="3" rx=".6"/></g>
-    <g id="i-shield"><path d="M12 3l7 3v5c0 5-3.5 8-7 10-3.5-2-7-5-7-10V6z"/><path d="M9 12l2 2 4-4"/></g>
-    <g id="i-arrow"><path d="M7 17L17 7M9 7h8v8"/></g>
-    <g id="i-mobile"><rect x="7" y="3" width="10" height="18" rx="2"/><line x1="11" y1="18" x2="13" y2="18"/></g>
-    <g id="i-code"><path d="M9 8l-4 4 4 4M15 8l4 4-4 4"/></g>
-    <g id="i-cube"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9z"/><path d="M4 7.5l8 4.5 8-4.5M12 12v9"/></g>
-    <g id="i-mail"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></g>
-    <g id="i-pen"><path d="M4 20l4.5-1L19 8.5a2.1 2.1 0 000-3l-.5-.5a2.1 2.1 0 00-3 0L5 15.5z"/><path d="M13.5 7l3.5 3.5"/></g>
-    <g id="i-tools"><line x1="4" y1="8" x2="20" y2="8"/><line x1="4" y1="16" x2="20" y2="16"/><circle cx="9" cy="8" r="2.2" fill="none"/><circle cx="15" cy="16" r="2.2" fill="none"/></g>
-    <g id="i-apple"><path d="M16.365 1.43c0 1.14-.493 2.27-1.177 3.08-.744.9-1.99 1.57-2.987 1.57-.12 0-.23-.02-.3-.03-.01-.06-.04-.22-.04-.39 0-1.15.572-2.27 1.206-2.98.804-.94 2.142-1.64 3.248-1.68.03.13.04.28.04.43zm4.565 15.71c-.03.07-.463 1.58-1.518 3.12-.945 1.34-1.94 2.71-3.43 2.71-1.517 0-1.9-.88-3.63-.88-1.63 0-2.11.91-3.61.91-1.4 0-2.53-1.19-3.63-2.7-1.39-1.94-2.5-4.96-2.5-7.83 0-4.61 2.99-7.06 5.94-7.06 1.53 0 2.8.99 3.76.99.91 0 2.34-1.05 4.09-1.05.68 0 3.09.06 4.67 2.36-.12.07-2.71 1.58-2.71 4.71 0 3.63 3.23 4.94 3.32 4.98z"/></g>
-  </defs>
-</svg>
-
-<!-- NAV -->
 <header class="nav" id="nav">
-  <a href="#top" class="nav__mark" aria-label="Mahdi Saiah, home"><img class="nav__logo" src="media/brand/mark.png" alt="Mahdi Saiah"></a>
-  <nav class="nav__links">
-    <a href="#connect">Connect</a>
-    <a href="#approach" data-fr="Méthode">Approach</a>
-    <a href="#work" data-fr="Projets">Work</a>
-    <a href="#toolkit">Toolkit</a>
-    <a href="lab.html">Lab</a>
-    <a href="studio.html">Forge</a>
-    <a href="#about" data-fr="À propos">About</a>
-    <span class="lang-toggle" role="group" aria-label="Language"><button type="button" data-lang="en">EN</button><span class="lsep">/</span><button type="button" data-lang="fr">FR</button></span>
-    <a href="#contact" class="nav__cta">Contact</a>
-  </nav>
-  <button class="nav__burger" id="burger" aria-label="Menu" aria-expanded="false"><span></span></button>
+  <div class="nav__bar">
+    <a class="brand" href="#top" aria-label="Mahdi Saiah, back to top"><img src="media/brand/mark.png" alt="" width="24" height="24"><span>Mahdi Saiah</span></a>
+    <nav class="nav__links" aria-label="Sections">
+      <a href="#connect">Connect</a>
+      <a href="#experience" data-fr="Expérience">Experience</a>
+      <a href="#work" data-fr="Projets">Work</a>
+      <a href="#about" data-fr="À propos">About</a>
+    </nav>
+    <div class="seg" id="lang" role="group" aria-label="Language">
+      <span class="seg__pill"></span>
+      <button type="button" data-lang="en" aria-pressed="true">EN</button>
+      <button type="button" data-lang="fr" aria-pressed="false">FR</button>
+    </div>
+    <a class="btn btn--ink btn--sm" href="#contact" data-fr="Me contacter">Get in touch</a>
+  </div>
 </header>
-
-<div class="mobile-menu" id="mobileMenu">
-  <a href="#connect"><span class="idx">01</span>Connect</a>
-  <a href="#approach"><span class="idx">02</span><span data-fr="Méthode">Approach</span></a>
-  <a href="#work"><span class="idx">03</span><span data-fr="Projets">Work</span></a>
-  <a href="#toolkit"><span class="idx">04</span>Toolkit</a>
-  <a href="lab.html"><span class="idx">05</span>Lab</a>
-  <a href="studio.html"><span class="idx">06</span>Forge</a>
-  <a href="#about"><span class="idx">07</span><span data-fr="À propos">About</span></a>
-  <a href="#contact"><span class="idx">08</span>Contact</a>
-  <span class="lang-toggle mobile-menu__lang" role="group" aria-label="Language"><button type="button" data-lang="en">EN</button><span class="lsep">/</span><button type="button" data-lang="fr">FR</button></span>
-</div>
 
 <main id="top">
 
-  <!-- HERO -->
-  <section class="hero wrap" id="hero">
-    <span class="eyebrow hero__eyebrow reveal"><span class="idx">01</span> Portfolio · Paris · 2026</span>
-    <h1 class="display hero__name">
-      <span class="ln reveal">Mahdi</span>
-      <span class="ln reveal">Saiah</span>
-    </h1>
-    <div class="hero__role reveal">
-      <span>Product Designer</span><span class="sep">/</span>
-      <span data-fr="Développeur">Developer</span><span class="sep">/</span>
-      <span data-fr="Fondateur de Connect">Founder of Connect</span>
+<!-- ============ HERO ============ -->
+<section class="hero wrap">
+  <div class="hero__grid">
+    <div class="hero__copy" data-reveal>
+      <p class="label">Product Designer &amp; Product Owner · Paris</p>
+      <h1 class="display" data-fr="Je conçois des produits <em>jusqu'à l'App Store.</em>">I design products <em>all the way to the App Store.</em></h1>
+      <p class="lead" data-fr="Je suis Mahdi Saiah. J'ai conçu et lancé seul Connect, une app sociale disponible sur l'App Store, des premiers entretiens utilisateurs jusqu'à la validation par Apple.">I'm Mahdi Saiah. I designed and launched Connect on my own, a social app now live on the App Store, from the first user interviews to Apple's approval.</p>
+      <div class="hero__cta">
+        <a class="btn btn--ink" href="#connect"><span data-fr="Voir l'étude de cas">See the case study</span><svg class="i"><use href="media/icons.svg#arrow-down"/></svg></a>
+        <a class="btn" href="cv/Mahdi_Saiah_CV_EN.pdf" data-fr-href="cv/Mahdi_Saiah_CV_FR.pdf" target="_blank" rel="noopener"><svg class="i"><use href="media/icons.svg#download"/></svg><span data-fr="Mon CV">My CV</span></a>
+      </div>
+      <p class="avail"><span class="avail__dot" aria-hidden="true"></span><span data-fr="Je cherche une alternance de 12 mois, disponible dès maintenant">Looking for a 12-month apprenticeship, available now</span></p>
     </div>
-    <p class="lead hero__sub reveal" data-fr="Je le conçois, je le construis, je le ship. Du premier pixel à l'App Store.">I design it, build it, and ship it. From the first pixel to the App Store.</p>
-    <div class="hero__scroll" aria-hidden="true"><span class="bar"></span> <span data-fr="Défiler">Scroll</span></div>
-  </section>
+    <div class="hero__stage" data-reveal>
+      <div class="dev" data-tilt><div class="dev__screen">
+        <video src="media/connect/hero-feed.mp4" poster="media/connect/feed.webp" muted loop playsinline autoplay preload="auto" aria-label="The Connect feed"></video>
+      </div><i class="dev__glare"></i></div>
+      <div class="float float--a"><svg class="i"><use href="media/icons.svg#apple-logo"/></svg><span><b data-fr="En ligne sur l'App Store">Live on the App Store</b><small>Connect, For Real</small></span></div>
+      <div class="float float--b"><svg class="i"><use href="media/icons.svg#seal-check"/></svg><span><b data-fr="Conçue en solo">Designed solo</b><small data-fr="De la recherche au lancement">From research to release</small></span></div>
+    </div>
+  </div>
+</section>
 
-  <!-- STATEMENT / WHAT I DO -->
-  <section class="section section--ink wrap" id="do">
-    <span class="eyebrow reveal"><span class="idx">02</span> <span data-fr="Ce que je fais">What I do</span></span>
-    <h2 class="statement__big reveal" style="margin-top:1.6rem" data-fr="Je transforme des idées en produits que les gens utilisent vraiment. <span class='accent'>Design, engineering et produit,</span> réunis dans une seule paire de mains.">I turn ideas into products people actually use. <span class="accent">Design, engineering, and product,</span> in one pair of hands.</h2>
-    <div class="roles">
-      <div class="role reveal">
-        <h3><span class="no">/01</span> Product Designer</h3>
-        <p data-fr="Interfaces, design systems, motion, et les petits détails qui rendent un logiciel soigné. Le goût comme discipline, pas comme décoration.">Interfaces, design systems, motion, and the small details that make software feel considered. Taste as a discipline, not decoration.</p>
-      </div>
-      <div class="role reveal">
-        <h3><span class="no">/02</span> <span data-fr="Développeur">Developer</span></h3>
-        <p data-fr="Flutter et Dart côté front, Supabase et Postgres côté back. Je mets les mains dans le code qui arrive sur de vrais téléphones. Live sur iOS, Android juste après.">Flutter and Dart on the front, Supabase and Postgres on the back. I'm hands-on in the codebase that ships to real phones, live on iOS with Android next.</p>
-      </div>
-      <div class="role reveal">
-        <h3><span class="no">/03</span> <span data-fr="Fondateur">Founder</span></h3>
-        <p data-fr="Je gère Connect de bout en bout. Le design, le backend, la pipeline de release, et tout le reste. En solo.">I run Connect end to end. Design decisions, the backend, the release pipeline, and everything in between. Solo.</p>
+<div class="wrap">
+  <div class="facts" data-reveal>
+    <div class="fact"><span class="fact__n">1 app</span><p data-fr="conçue et lancée seul, en ligne sur l'App Store">designed and launched solo, live on the App Store</p></div>
+    <div class="fact"><span class="fact__n" data-fr="6 mois">6 months</span><p data-fr="dans une équipe produit chez BNP Paribas Real Estate">in a product team at BNP Paribas Real Estate</p></div>
+    <div class="fact"><span class="fact__n" data-fr="3 langues">3 languages</span><p data-fr="français natif, anglais C1, espagnol B2">French native, English C1, Spanish B2</p></div>
+    <div class="fact"><span class="fact__n">4 + 1</span><p data-fr="jours en entreprise et à l'école, prêt à commencer">days at work and at school, ready to start</p></div>
+  </div>
+</div>
+
+<!-- ============ CONNECT CASE STUDY ============ -->
+<section class="sec wrap" id="connect">
+  <div class="case__top">
+    <div data-reveal>
+      <p class="label" data-fr="Étude de cas · depuis 2025">Case study · 2025 to today</p>
+      <h2 class="display case__title" style="margin-top:18px">Connect, <em>For Real.</em></h2>
+      <p class="lead" style="margin-top:22px;max-width:44ch" data-fr="Une app sociale où chaque vidéo apprend quelque chose. On la regarde, on lit le résumé, on fait un petit quiz, puis on en parle avec ses amis.">A social app where every video teaches you something. Watch it, read the summary, take a quick quiz, then talk about it with your friends.</p>
+      <div class="case__links">
+        <a class="badge" href="https://apps.apple.com/fr/app/connect-for-real/id6782110379" target="_blank" rel="noopener"><img data-badge src="media/connect/appstore-black-en-us.svg" alt="Download on the App Store" width="150" height="50"></a>
+        <a class="link" href="https://getconnectapp.github.io" target="_blank" rel="noopener"><span data-fr="Voir le site de Connect">Visit the Connect website</span><svg class="i i--ne"><use href="media/icons.svg#arrow-right"/></svg></a>
       </div>
     </div>
-  </section>
+    <dl class="case__meta" data-reveal>
+      <div><dt class="label" data-fr="Rôle">Role</dt><dd data-fr="Fondateur, Product Designer et Product Owner">Founder, Product Designer &amp; Product Owner</dd></div>
+      <div><dt class="label" data-fr="Équipe">Team</dt><dd data-fr="Moi, avec des outils d'IA sous ma direction">Just me, with AI tools under my direction</dd></div>
+      <div><dt class="label" data-fr="Périmètre">Scope</dt><dd data-fr="Recherche, UX, UI, produit, lancement">Research, UX, UI, product, launch</dd></div>
+      <div><dt class="label" data-fr="Statut">Status</dt><dd data-fr="En ligne sur iOS, en français et en anglais">Live on iOS, in English and French</dd></div>
+    </dl>
+  </div>
 
-  <!-- CONNECT -->
-  <section class="section wrap" id="connect">
-    <div class="sec-head">
-      <span class="eyebrow reveal"><span class="idx">03</span> <span data-fr="Produit phare">Flagship</span></span>
-    </div>
+  <div class="case__sum">
+    <article class="sum" data-reveal><p class="label" data-fr="Le problème">The problem</p><h3 data-fr="On scrolle une heure et on ne garde rien.">You scroll for an hour and keep nothing.</h3><p data-fr="Les réseaux sociaux sont faits pour retenir l'attention. Le temps passé compte plus que ce qu'on en retire.">Social feeds are built to hold attention. Time spent matters more than what people actually get out of it.</p></article>
+    <article class="sum" data-reveal><p class="label" data-fr="Mon rôle">My role</p><h3 data-fr="Tout, de la recherche à la mise en ligne.">Everything, from research to release.</h3><p data-fr="J'ai décidé quoi construire, conçu chaque écran, écrit les specs et testé chaque version avant sa sortie.">I decided what to build, designed every screen, wrote the specs and tested every build before it went out.</p></article>
+    <article class="sum" data-reveal><p class="label" data-fr="Le résultat">The result</p><h3 data-fr="Une vraie app, validée par Apple.">A real app, approved by Apple.</h3><p data-fr="Connect a passé la review de l'App Store et elle est en ligne, façonnée par les retours de proches et de premiers utilisateurs.">Connect passed App Store review and is live, shaped by feedback from friends and early users.</p></article>
+  </div>
 
-    <div class="connect__intro">
-      <div class="reveal">
-        <div class="connect__wordmark serif-brand">Connect<span class="dot">.</span></div>
-        <p class="connect__tag" data-fr="Une app sociale pensée pour la vraie conversation">A social app built for real conversation</p>
-        <div class="pill-row">
-          <span class="pill pill--live" data-fr="Live sur iOS">Live on iOS</span>
-          <span class="pill" data-fr="Android bientôt">Android coming soon</span>
-          <span class="pill" data-fr="Conçu et développé en solo">Designed &amp; built solo</span>
+  <!-- sticky story: the phone stays, the chapters scroll -->
+  <div class="story" id="story">
+    <div class="chapters">
+
+      <article class="chap" data-key="hero">
+        <p class="label chap__no">01 · <span data-fr="Le pari">The bet</span></p>
+        <h3 data-fr="Et si scroller laissait quelque chose ?">What if scrolling left you with something?</h3>
+        <p data-fr="La plupart des apps sociales sont conçues pour qu'on y reste. Je voulais qu'une autre question guide chaque décision : est-ce que ça vaut le temps de la personne ?">Most social apps are designed to keep you there. I wanted a different question behind every decision: is this worth the person's time?</p>
+      </article>
+
+      <article class="chap" data-key="feed">
+        <p class="label chap__no">02 · <span data-fr="Recherche">Research</span></p>
+        <h3 data-fr="Commencer par les gens, pas par les écrans.">Start with people, not screens.</h3>
+        <p data-fr="Avant de dessiner quoi que ce soit, j'ai parlé avec des gens de leur façon d'utiliser les réseaux sociaux et de ce qu'ils regrettent. J'en ai tiré trois personas, un benchmark des apps qu'ils utilisent déjà, et les parcours que j'ai prototypés dans Figma.">Before drawing anything, I talked to people about how they use social apps and what they regret about it. That gave me three personas, a benchmark of the apps they already use, and the user flows I prototyped in Figma.</p>
+        <div class="rail" aria-label="Research process">
+          <span data-fr="Entretiens">Interviews</span><span>Benchmark</span><span data-fr="3 personas">3 personas</span><span data-fr="Parcours">User flows</span><span data-fr="Prototypes Figma">Figma prototypes</span><span data-fr="Tests">Tests</span>
         </div>
-        <a class="appstore" href="https://apps.apple.com/fr/app/connect-for-real/id6782110379?l=en-GB" target="_blank" rel="noopener" aria-label="Download Connect, For Real on the App Store">
-          <svg class="appstore__logo" viewBox="0 0 24 24" fill="currentColor" stroke="none" aria-hidden="true"><use href="#i-apple"/></svg>
-          <span class="appstore__txt"><span class="appstore__sub" data-fr="Télécharger dans l'">Download on the</span><span class="appstore__store">App Store</span></span>
-        </a>
-      </div>
-      <p class="reading reveal" data-fr="Connect est une plateforme sociale pensée pour l'interaction, pas pour le scroll passif. Un feed d'accueil classé, des arènes de débat où l'on défend vraiment une idée, de la vidéo courte, des stories et une vraie messagerie, le tout dans un design system calme et assumé. J'ai designé chaque écran, mis les mains dans l'app et le backend, et je l'ai publiée moi-même sur l'App Store. Android arrive bientôt.">Connect is a social platform designed around interaction instead of passive scrolling. A ranked home feed, debate arenas where people actually argue an idea, short video, stories, and real messaging, all wrapped in one calm, opinionated design system. I designed every screen, worked hands-on across the app and backend, and shipped it to the App Store myself. Android is on the way.</p>
-    </div>
+        <p data-fr="J'ai testé ces prototypes avec des proches et des premiers utilisateurs, et j'ai retravaillé le produit après chaque série de retours.">I tested those prototypes with friends and early users and reworked the product after each round of feedback.</p>
+      </article>
 
-    <!-- feature grid -->
-    <div class="features reveal">
-      <article class="feature"><span class="feature__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><use href="#i-feed"/></svg></span><h4 data-fr="Feed classé">Ranked Feed</h4><p data-fr="Un feed d'accueil noté sur la pertinence, la fraîcheur, la nouveauté et des signaux appris, avec des slots réservés à la découverte.">A home feed scored on relevance, freshness, novelty, and learned signals, with reserved slots for discovery.</p></article>
-      <article class="feature"><span class="feature__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><use href="#i-debate"/></svg></span><h4 data-fr="Arènes de débat">Debate Arenas</h4><p data-fr="Des débats structurés, taggés automatiquement dans une taxonomie vivante par un agent on-device, et matchés à tes centres d'intérêt.">Structured debates, auto tagged into a living taxonomy by an on-device style agent and matched to your interests.</p></article>
-      <article class="feature"><span class="feature__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><use href="#i-reel"/></svg></span><h4>Reels</h4><p data-fr="Un player de vidéos courtes plein écran qui réordonne sa file avec un ranker par intérêt, diversité et nouveauté.">A fullscreen short video player that reorders its own queue with an interest, diversity, and novelty ranker.</p></article>
-      <article class="feature"><span class="feature__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><use href="#i-story"/></svg></span><h4>Stories</h4><p data-fr="Des stories de 24 h avec une fenêtre de grâce sur le repost, pour qu'une story reste en vie tant que quelqu'un la partage encore.">24 hour stories with a repost grace window, so a story stays alive as long as someone is still sharing it.</p></article>
-      <article class="feature"><span class="feature__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><use href="#i-chat"/></svg></span><h4 data-fr="Messagerie">Messaging</h4><p data-fr="Un chat complet avec un composer repensé : photos, caméra, notes vocales, localisation et documents dans une seule barre nette.">Full chat with a rebuilt composer: photos, camera, voice notes, location, and documents in one clean bar.</p></article>
-      <article class="feature"><span class="feature__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><use href="#i-mood"/></svg></span><h4>Moods</h4><p data-fr="Des moods de statut légers sur Explore, limités à tout le monde ou aux abonnés, appliqués côté serveur pour chaque viewer.">Lightweight status moods on Explore, scoped to everyone or followers and enforced server side per viewer.</p></article>
-      <article class="feature"><span class="feature__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><use href="#i-bell"/></svg></span><h4>Push</h4><p data-fr="De vraies notifications push avec un Push Center pour composer et cibler posts, profils et débats.">Real push notifications with an owner Push Center to compose and target posts, profiles, and debates.</p></article>
-      <article class="feature"><span class="feature__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><use href="#i-space"/></svg></span><h4>My Space</h4><p data-fr="Un planner premium hors ligne avec une timeline de 24 h, une grille mensuelle et des notes inline. Calme et rapide.">A premium offline planner with a 24 hour calendar timeline, a month grid, and inline notes. Calm and fast.</p></article>
-      <article class="feature"><span class="feature__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><use href="#i-shield"/></svg></span><h4 data-fr="Backend blindé">Hardened Backend</h4><p data-fr="Des RPC réservés au owner, des search paths définis et des guards de profil. La sécurité traitée comme une feature, pas un détail.">Owner gated RPCs, definer search paths, and profile guards. Security treated as a feature, not an afterthought.</p></article>
-    </div>
-
-    <!-- craft / design system -->
-    <div class="craft">
-      <div class="craft__lead reveal">
-        <span class="eyebrow"><span class="idx">03.1</span> <span data-fr="Le savoir-faire">The craft</span></span>
-        <h3 class="h-sec" style="font-size:clamp(1.8rem,4.5vw,3.2rem); margin-top:1rem" data-fr="Un vrai design system">A real design system</h3>
-        <p class="reading" style="margin-top:1rem" data-fr="Une seule source de vérité pilote toute l'app : des color tokens sémantiques, une type scale fixe, une grille d'espacement de 4 points, un langage d'icônes et des règles de motion. Rien n'est codé en dur, écran par écran.">One source of truth drives the whole app: semantic color tokens, a fixed type scale, a 4 point spacing grid, one icon language, and motion rules. Nothing is hardcoded per screen.</p>
-      </div>
-
-      <div class="card c-color reveal">
-        <span class="card__label">Color tokens</span>
-        <h4 data-fr="Encre, gris, et un rouge">Ink, greys, and one red</h4>
-        <div class="swatches">
-          <div class="sw" style="background:#111111;color:#fff"><b>Ink</b><span>#111111</span></div>
-          <div class="sw" style="background:#2A2A2A;color:#fff"><b>Graphite</b><span>#2A2A2A</span></div>
-          <div class="sw" style="background:#888888;color:#fff"><b>Grey</b><span>#888888</span></div>
-          <div class="sw" style="background:#E5E5E5;color:#111"><b>Line</b><span>#E5E5E5</span></div>
-          <div class="sw" style="background:#F7F7F7;color:#111"><b>Surface</b><span>#F7F7F7</span></div>
-          <div class="sw" style="background:#D93025;color:#fff"><b>Danger</b><span>#D93025</span></div>
-        </div>
-      </div>
-
-      <div class="card c-type reveal">
-        <span class="card__label">Type scale</span>
-        <h4 data-fr="Wordmark Playfair, UI système">Playfair wordmark, system UI</h4>
-        <div class="typescale">
-          <div class="t"><span class="tag">Wordmark</span><span class="big serif-brand">Connect.</span></div>
-          <div class="t"><span class="tag">Title · 22</span><span class="mid" data-fr="Vraie conversation">Real conversation</span></div>
-          <div class="t"><span class="tag">Body · 15</span><span class="bod" data-fr="Pensé pour l'interaction, pas le scroll passif.">Built for interaction, not passive scrolling.</span></div>
-          <div class="t"><span class="tag">Label · 11</span><span class="lab">Semantic tokens</span></div>
-        </div>
-      </div>
-
-      <div class="card c-space reveal">
-        <span class="card__label">Spacing · 4pt grid</span>
-        <h4 data-fr="Un seul rythme">One rhythm</h4>
-        <div class="spacescale">
-          <div class="u" style="height:16%"><i>4</i></div>
-          <div class="u" style="height:28%"><i>8</i></div>
-          <div class="u" style="height:44%"><i>12</i></div>
-          <div class="u" style="height:60%"><i>16</i></div>
-          <div class="u" style="height:80%"><i>24</i></div>
-          <div class="u" style="height:100%"><i>40</i></div>
-        </div>
-      </div>
-
-      <div class="card c-icons reveal">
-        <span class="card__label">Icon system</span>
-        <h4 data-fr="Libre de droits, un seul langage">License free, one language</h4>
-        <div class="iconset">
-          <span class="i"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><use href="#i-feed"/></svg></span>
-          <span class="i"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><use href="#i-chat"/></svg></span>
-          <span class="i"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><use href="#i-bell"/></svg></span>
-          <span class="i"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><use href="#i-mood"/></svg></span>
-          <span class="i"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><use href="#i-shield"/></svg></span>
-        </div>
-        <p style="font-family:var(--f-mono);font-size:.76rem;color:var(--ink-2)" data-fr="Phosphor et Material uniquement. Aucune image de glyphe embarquée.">Phosphor &amp; Material only. No bundled glyph images.</p>
-      </div>
-
-      <div class="card c-motion reveal">
-        <span class="card__label">Motion rules</span>
-        <h4 data-fr="Fluide, jamais brusque">Smooth, never jarring</h4>
-        <ul class="motion-list">
-          <li data-fr="Les surfaces s'ouvrent dans leur forme finale, sans pop-in">Surfaces open in final form, no pop in</li>
-          <li data-fr="Le média fait un crossfade sur un placeholder déjà en place">Media crossfades over a finished placeholder</li>
-          <li data-fr="Des transitions shared element entre les écrans">Shared element flights between screens</li>
-          <li data-fr="Respecte le reduced motion partout">Respects reduced motion everywhere</li>
+      <article class="chap" data-key="feed">
+        <p class="label chap__no">03 · Activation</p>
+        <h3 data-fr="Un bon feed dès la première minute.">A good feed from the very first minute.</h3>
+        <p data-fr="Un feed vide, c'est là que les nouveaux partent. Alors l'inscription se termine par le choix de ses centres d'intérêt, et le premier écran est déjà personnalisé.">An empty feed is where new users leave. So sign-up ends with picking your interests, and the first screen you land on is already personalised.</p>
+        <ul class="ticks">
+          <li data-fr="Inscription, centres d'intérêt, feed : trois étapes et on y est.">Sign up, pick interests, land on your feed. Three steps.</li>
+          <li data-fr="Un assistant en haut du feed pour poser une question tout de suite.">An assistant at the top of the feed, so you can ask something right away.</li>
         </ul>
-      </div>
+        <div class="dev chap__dev"><div class="dev__screen"><img src="media/connect/feed.webp" alt="The Connect home feed" loading="lazy"></div></div>
+      </article>
+
+      <article class="chap" data-key="short" data-tabs>
+        <p class="label chap__no">04 · <span data-fr="Apprendre">Learning</span></p>
+        <h3 data-fr="Chaque vidéo devient quelque chose qu'on garde.">Every video becomes something you keep.</h3>
+        <p data-fr="C'est le cœur de Connect. Sur chaque vidéo, on peut ouvrir un résumé avec les moments clés (un tap pour y sauter), un petit quiz, ou un chat pour lui poser des questions.">This is the heart of Connect. On any video you can open a summary with key moments you tap to jump to, a short quiz, or a chat to ask it anything.</p>
+        <div class="seg" role="group" aria-label="Screens" style="--n:4">
+          <span class="seg__pill"></span>
+          <button type="button" data-show="short" aria-pressed="true" data-fr="Vidéo">Video</button>
+          <button type="button" data-show="summary" aria-pressed="false" data-fr="Résumé">Summary</button>
+          <button type="button" data-show="quiz" aria-pressed="false">Quiz</button>
+          <button type="button" data-show="askvideo" aria-pressed="false" data-fr="Demander">Ask</button>
+        </div>
+        <p class="muted" style="font-size:.95rem" data-fr="Détail de design : la feuille laisse la vidéo visible derrière elle, on ne perd jamais le fil.">Design detail: the sheet keeps the video visible behind it, so you never lose your place.</p>
+        <div class="dev chap__dev"><div class="dev__screen">
+          <img data-key="short" class="on" src="media/connect/short.webp" alt="A short video playing" loading="lazy">
+          <img data-key="summary" src="media/connect/summary.webp" alt="The video summary with key moments" loading="lazy">
+          <img data-key="quiz" src="media/connect/quiz.webp" alt="A quiz about the video" loading="lazy">
+          <img data-key="askvideo" src="media/connect/askvideo.webp" alt="Asking the video a question" loading="lazy">
+        </div></div>
+      </article>
+
+      <article class="chap" data-key="askconnect">
+        <p class="label chap__no">05 · Ask Connect</p>
+        <h3 data-fr="Des réponses qu'on peut vérifier.">Answers you can check.</h3>
+        <p data-fr="Ask Connect répond simplement et montre ses sources. Pour une question de droit, il cite le texte officiel sur Légifrance, la réponse ne repose pas seulement sur la parole de l'IA.">Ask Connect answers in plain words and shows its sources. For a legal question it quotes the official French law text, so the answer doesn't rest on the AI's word alone.</p>
+        <div class="dev chap__dev"><div class="dev__screen"><img src="media/connect/askconnect-answer.webp" alt="Ask Connect answering with sources" loading="lazy"></div></div>
+      </article>
+
+      <article class="chap" data-key="debate">
+        <p class="label chap__no">06 · <span data-fr="Débats">Debates</span></p>
+        <h3 data-fr="Choisir un camp, puis en parler.">Take a side, then talk.</h3>
+        <p data-fr="Chaque débat, c'est une question claire et deux camps. Son choix s'affiche à l'encre, le résultat juste à côté, et la vraie discussion se passe dans les réponses.">Each debate is one clear question with two sides. Your pick shows in ink with the result right beside it, and the real discussion happens in the replies.</p>
+        <div class="dev chap__dev"><div class="dev__screen"><img src="media/connect/debate-vote.webp" alt="Voting in a debate" loading="lazy"></div></div>
+      </article>
+
+      <article class="chap" data-key="chat">
+        <p class="label chap__no">07 · Messages</p>
+        <h3 data-fr="On apprend mieux avec ses amis.">Learning is better with friends.</h3>
+        <p data-fr="Une vidéo ou une réponse se partage en un tap dans une conversation. Elle arrive sous forme de carte propre, que l'ami ouvre sur place, et la discussion continue, à l'écrit ou en note vocale.">Share a video or an answer into a chat in one tap. It arrives as a clean card your friend opens right there, and the conversation keeps going, typed or as a voice note.</p>
+        <div class="dev chap__dev"><div class="dev__screen"><img src="media/connect/chat-answer.webp" alt="A shared answer inside a chat" loading="lazy"></div></div>
+      </article>
+
     </div>
 
-    <!-- stack + stats -->
-    <div class="connect__foot">
-      <div class="reveal">
-        <div class="stack-label" data-fr="Construit avec">Built with</div>
-        <div class="stack">
-          <span class="t">Flutter</span><span class="t">Dart</span><span class="t">Supabase</span>
-          <span class="t">PostgreSQL</span><span class="t">Row Level Security</span><span class="t">Edge Functions</span>
-          <span class="t">Groq · LLM agents</span><span class="t">Firebase Cloud Messaging</span><span class="t">WebRTC</span>
-          <span class="t">Sign in with Apple</span><span class="t">Google Sign in</span><span class="t">AppLovin MAX</span>
+    <div class="stage" aria-hidden="true">
+      <div class="dev" id="stageDev" data-tilt><div class="dev__screen">
+        <video data-key="hero" class="on" src="media/connect/hero-feed.mp4" poster="media/connect/feed.webp" muted loop playsinline preload="metadata"></video>
+        <img data-key="feed" src="media/connect/feed.webp" alt="">
+        <img data-key="short" src="media/connect/short.webp" alt="">
+        <img data-key="summary" src="media/connect/summary.webp" alt="">
+        <img data-key="quiz" src="media/connect/quiz.webp" alt="">
+        <img data-key="askvideo" src="media/connect/askvideo.webp" alt="">
+        <img data-key="askconnect" src="media/connect/askconnect-answer.webp" alt="">
+        <img data-key="debate" src="media/connect/debate-vote.webp" alt="">
+        <img data-key="chat" src="media/connect/chat-answer.webp" alt="">
+      </div><i class="dev__glare"></i></div>
+    </div>
+  </div>
+
+  <!-- design system -->
+  <div class="head" id="system" style="margin-top:clamp(72px,10vw,130px)" data-reveal>
+    <p class="label">Design system</p>
+    <h3 class="display" style="font-size:var(--t-h3)" data-fr="Un seul système derrière chaque écran.">One system behind every screen.</h3>
+    <p class="muted" data-fr="Couleurs, typo, espacements et arrondis sont des tokens, et chaque composant est construit avec. C'est aussi pour ça que le mode sombre marche partout d'un coup : rien n'est codé en dur.">Colour, type, spacing and radius are tokens, and every component is built from them. That's also why dark mode works everywhere at once: nothing is hardcoded.</p>
+  </div>
+
+  <div class="ds">
+    <div class="panel" data-reveal>
+      <div class="tok">
+        <h4 class="label" data-fr="Couleurs · clair / sombre">Colour · light / dark</h4>
+        <div class="sw">
+          <div><i style="--l:#000000;--d:#F5F5F7"></i><b>ink</b><span>#000000 · #F5F5F7</span></div>
+          <div><i style="--l:#2A2A2A;--d:#E2E2E6"></i><b>ink 2</b><span>#2A2A2A · #E2E2E6</span></div>
+          <div><i style="--l:#8A8A8A;--d:#9A9AA0"></i><b>muted</b><span>#8A8A8A · #9A9AA0</span></div>
+          <div><i style="--l:#B3B3B3;--d:#6A6A70"></i><b>faint</b><span>#B3B3B3 · #6A6A70</span></div>
+          <div><i style="--l:#FFFFFF;--d:#1B1B1D"></i><b>card</b><span>#FFFFFF · #1B1B1D</span></div>
+          <div><i style="--l:#F5F5F5;--d:#28282B"></i><b>fill</b><span>#F5F5F5 · #28282B</span></div>
+          <div><i style="--l:#111111;--d:#F5F5F7"></i><b>inverse</b><span>#111111 · #F5F5F7</span></div>
+          <div><i style="--l:#D93025;--d:#FF6B61"></i><b>danger</b><span>#D93025 · #FF6B61</span></div>
         </div>
       </div>
-      <div class="stats reveal">
-        <div class="stat"><b>iOS</b><span data-fr="Live, Android bientôt">Live now, Android soon</span></div>
-        <div class="stat"><b>2.5k+</b><span data-fr="Strings localisées">Localized strings</span></div>
-        <div class="stat"><b>40+</b><span data-fr="Migrations DB">DB migrations</span></div>
-        <div class="stat"><b>1</b><span data-fr="Designer &amp; ingénieur">Designer &amp; engineer</span></div>
-      </div>
-    </div>
-
-    <a class="flagship-cta reveal" href="connect.html">
-      <span>
-        <span class="flagship-cta__t" data-fr="Voir l'app en entier, écran par écran">See the whole app, screen by screen</span>
-        <span class="flagship-cta__sub" data-fr="Stories, débats, apprentissage, explore, chat, jeux hors ligne, IA et Pro">Stories, debates, learn, explore, chat, offline games, AI and Pro</span>
-      </span>
-      <svg class="flagship-cta__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><use href="#i-arrow"/></svg>
-    </a>
-  </section>
-
-  <!-- HOW I WORK -->
-  <section class="section section--alt wrap" id="approach">
-    <div class="sec-head">
-      <span class="eyebrow reveal"><span class="idx">04</span> <span data-fr="Ma méthode">How I work</span></span>
-      <div class="row reveal">
-        <h2 class="h-sec" data-fr="Du design<br>qui ship">Design<br>that ships</h2>
-        <p class="reading" data-fr="Je ne fais pas de handoff. Je fais la recherche, le design, je build et je ship moi-même. L'idée reste intacte, du premier entretien jusqu'à l'App Store.">I don't hand designs off. I research, design, build, and ship them myself, so the idea stays intact from the first interview to the App Store.</p>
-      </div>
-    </div>
-
-    <h3 class="statement__big reveal" style="color:var(--ink); margin-top:1rem" data-fr="Parce que je comprends le code, mes designs ne sont jamais des vœux pieux.">Because I understand the code, my designs are never wishful thinking.</h3>
-    <p class="reading reveal" style="margin-top:1.4rem" data-fr="Je sais ce que le framework sait faire, donc je designe à la limite du faisable au lieu de balancer des maquettes impossibles par-dessus le mur. Le design system vit dans le code, pas seulement dans Figma : zéro drift entre le fichier et le produit. Dans Connect, ça veut dire un spacing 4pt, une palette monochrome, un seul langage d'icônes et 24 composants partagés, pilotés depuis une seule source. Une personne, une source de vérité, pas de taxe de handoff.">I know what the framework can do, so I design at the edge of what's feasible instead of throwing impossible mockups over a wall. The design system lives in the code, not just in Figma, so there's no drift between the file and the product. In Connect that means 4pt spacing, a monochrome palette, one icon language, and 24 shared components, all driven from a single source. One person, one source of truth, no handoff tax.</p>
-
-    <div class="process reveal">
-      <div class="pstep"><span class="pstep__no">01</span><h4>Discovery</h4><p data-fr="Cadrer le problème, l'audience et ce que veut dire « réussi » avant de toucher un pixel.">Frame the problem, the audience, and what "good" means before touching a pixel.</p></div>
-      <div class="pstep"><span class="pstep__no">02</span><h4 data-fr="Recherche">Research</h4><p data-fr="Entretiens utilisateurs, teardowns de concurrents et journey maps pour trouver la vraie friction.">User interviews, competitor teardowns, and journey maps to find the real friction.</p></div>
-      <div class="pstep"><span class="pstep__no">03</span><h4>Define</h4><p data-fr="Transformer les insights en flows, en architecture de l'info et en direction produit claire.">Turn findings into flows, information architecture, and a clear product direction.</p></div>
-      <div class="pstep"><span class="pstep__no">04</span><h4>Design system</h4><p data-fr="Construire tokens et composants dans Figma (components, auto-layout, variables, libraries), puis les répliquer dans le code.">Build tokens and components in Figma (components, auto-layout, variables, libraries), then mirror them in code.</p></div>
-      <div class="pstep"><span class="pstep__no">05</span><h4 data-fr="Prototype & test">Prototype &amp; test</h4><p data-fr="Prototypes interactifs dans Figma, puis tests d'utilisabilité pour tuer les hypothèses tôt.">Interactive Figma prototypes, then usability testing to kill assumptions early.</p></div>
-      <div class="pstep"><span class="pstep__no">06</span><h4 data-fr="Ship & itère">Ship &amp; iterate</h4><p data-fr="Le construire en Flutter, le publier sur le store, observer l'usage réel, affiner.">Build it in Flutter, ship to the store, watch real usage, refine.</p></div>
-    </div>
-
-    <div class="about-grid reveal" style="margin-top:clamp(3rem,7vh,5rem)">
-      <div class="card">
-        <span class="card__label" data-fr="Recherche UX">UX research</span>
-        <h4 data-fr="Trouver la vérité">How I find the truth</h4>
-        <div class="disc__tools" style="margin-top:.3rem">
-          <span class="t" data-fr="Entretiens discovery">Discovery interviews</span>
-          <span class="t" data-fr="Teardowns concurrents">Competitor teardowns</span>
-          <span class="t">Journey mapping</span>
-          <span class="t" data-fr="Tests d'utilisabilité">Usability testing</span>
-          <span class="t">Card sorting</span>
-          <span class="t">Dogfooding</span>
-          <span class="t" data-fr="Itération guidée par la data">Analytics-informed iteration</span>
+      <div class="tok">
+        <h4 class="label" data-fr="Espacements">Spacing</h4>
+        <div class="space">
+          <div><i style="--s:4px"></i><span>4</span></div><div><i style="--s:8px"></i><span>8</span></div><div><i style="--s:12px"></i><span>12</span></div>
+          <div><i style="--s:16px"></i><span>16</span></div><div><i style="--s:24px"></i><span>24</span></div><div><i style="--s:40px"></i><span>40</span></div>
         </div>
       </div>
-      <div class="card">
-        <span class="card__label" data-fr="Accessibilité · Connect">Accessibility · Connect</span>
-        <h4 data-fr="Pensée dès le départ">Built in from the start</h4>
-        <ul class="motion-list" style="margin-top:.3rem">
-          <li data-fr="Un toggle Reduce Motion, qui respecte aussi le réglage système">A Reduce Motion toggle, and it respects the OS setting</li>
-          <li data-fr="Retour haptique partout où ça compte">Haptic feedback everywhere it counts</li>
-          <li data-fr="Ordre de focus clavier et autofocus dans les formulaires">Keyboard focus order and autofocus in forms</li>
-          <li data-fr="Tooltips et semantics sur les contrôles en icône">Tooltips and semantics on icon controls</li>
-          <li data-fr="Motion fluide et interruptible, jamais bloquante">Smooth, interruptible motion, never blocking</li>
+      <div class="tok">
+        <h4 class="label" data-fr="Forme">Shape</h4>
+        <div class="shape">
+          <div class="shape__card">r 24 · 1.2px</div>
+          <p data-fr="Une seule forme de carte partout : 24 d'arrondi et un filet de 1,2 px. Posts, débats, cartes partagées en message.">One card shape everywhere: a 24 radius and a 1.2 px hairline. Posts, debates, cards shared in chat.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel live cc" id="live" data-mode="light" data-reveal>
+      <div class="live__top">
+        <h4 class="label" data-fr="Composant en direct">Live component</h4>
+        <div class="seg" role="group" aria-label="Theme">
+          <span class="seg__pill"></span>
+          <button type="button" data-mode="light" aria-pressed="true" data-fr="Clair">Light</button>
+          <button type="button" data-mode="dark" aria-pressed="false" data-fr="Sombre">Dark</button>
+        </div>
+      </div>
+      <div class="live__stage">
+        <div class="dcard" id="dcard">
+          <div class="dcard__who"><span class="dcard__av">C</span><span><b>Connect_Law</b><small data-fr="Fait par l'IA · 96 réponses">Made by AI · 96 replies</small></span></div>
+          <p class="dcard__q" data-fr="Faut-il enseigner le droit dès le lycée ?">Should law be taught in high school?</p>
+          <div class="dcard__vote">
+            <button type="button" class="vote" style="--p:.87"><small data-fr="Pour">For</small><b>87%</b><i></i></button>
+            <button type="button" class="vote" style="--p:.13"><small data-fr="Contre">Against</small><b>13%</b><i></i></button>
+          </div>
+          <p class="dcard__hint" data-fr="Touchez un camp pour voter">Tap a side to vote</p>
+        </div>
+      </div>
+      <p class="note" data-fr="Ce débat est du HTML, peint uniquement avec les vraies valeurs de l'app. Changez de thème : seuls les tokens bougent.">This debate card is plain HTML painted only with the app's real values. Switch the theme: only the tokens change.</p>
+    </div>
+  </div>
+
+  <!-- shipping -->
+  <div class="ship">
+    <div class="ship__copy" data-reveal>
+      <p class="label" data-fr="Livrer">Shipping</p>
+      <h3 data-fr="D'un fichier vide à l'App Store.">From a blank file to the App Store.</h3>
+      <p data-fr="En tant que Product Owner, je tenais la roadmap et le backlog, j'écrivais les specs et je décidais de ce qui entrait dans chaque version. J'ai construit l'app avec des outils d'IA générative sous ma direction, et j'ai testé chaque build sur un vrai iPhone avant sa sortie.">As product owner I kept the roadmap and the backlog, wrote the specs and decided what made each release. I built the app with generative AI tools under my direction, and tested every build on a real iPhone before it went out.</p>
+      <div class="case__links" style="margin-top:6px">
+        <a class="badge" href="https://apps.apple.com/fr/app/connect-for-real/id6782110379" target="_blank" rel="noopener"><img data-badge src="media/connect/appstore-black-en-us.svg" alt="Download on the App Store" width="150" height="50"></a>
+        <a class="link" href="https://getconnectapp.github.io" target="_blank" rel="noopener">getconnectapp.github.io<svg class="i i--ne"><use href="media/icons.svg#arrow-right"/></svg></a>
+      </div>
+    </div>
+    <ol class="steps" data-reveal>
+      <li><b data-fr="Recherche">Research</b><span data-fr="Entretiens, benchmark, trois personas">Interviews, benchmark, three personas</span></li>
+      <li><b>Design</b><span data-fr="Parcours, wireframes, prototypes Figma, design system">Flows, wireframes, Figma prototypes, design system</span></li>
+      <li><b data-fr="Construction">Build</b><span data-fr="Avec des outils d'IA, à partir de mes specs et de mon backlog">With AI tools, from my specs and my backlog</span></li>
+      <li><b data-fr="Recette">Test</b><span data-fr="Chaque build sur un vrai téléphone, avec des proches et des premiers utilisateurs">Every build on a real phone, with friends and early users</span></li>
+      <li><b data-fr="Review Apple">Apple review</b><span data-fr="Validée par la review de l'App Store">Approved by App Store review</span></li>
+      <li class="is-live"><b data-fr="En ligne">Live</b><span data-fr="Sur l'App Store, avec des mises à jour régulières">On the App Store, with regular updates</span></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ============ EXPERIENCE ============ -->
+<section class="sec wrap" id="experience" style="padding-top:0">
+  <div class="head" data-reveal>
+    <p class="label" data-fr="Expérience">Experience</p>
+    <h2 class="display" data-fr="En équipe, <em>avant Connect.</em>">In a team, <em>before Connect.</em></h2>
+  </div>
+  <div class="jobs">
+    <article class="job" data-reveal>
+      <div class="job__co">
+        <h3>BNP Paribas Real Estate</h3>
+        <p data-fr="UX/UI Designer · stage de 6 mois<br>Avr. à sept. 2025 · Paris">UX/UI Designer · 6-month internship<br>Apr to Sep 2025 · Paris</p>
+      </div>
+      <div class="job__body">
+        <p data-fr="J'ai rejoint l'équipe produit de WIRED, un outil immersif de visualisation 3D de données immobilières, aujourd'hui disponible sur le web.">I joined the product team of WIRED, an immersive 3D tool for visualising real estate data, now available on the web.</p>
+        <ul class="ticks">
+          <li data-fr="Faire évoluer l'interface au quotidien dans Figma : composants, écrans et nouvelles fonctionnalités, avec les designers et le produit.">Evolved the interface every day in Figma: components, screens and new features, with designers and product.</li>
+          <li data-fr="Amener des idées produit du wireframe au prototype, en lien direct avec les équipes design et tech.">Took product ideas from wireframe to prototype, working directly with the design and tech teams.</li>
+          <li data-fr="Concevoir les interfaces de visualisations 3D interactives pour de grands clients, dont des entreprises de la défense.">Designed the interfaces of interactive 3D visualisations for major clients, including defence companies.</li>
         </ul>
+        <div class="tags"><span>Figma</span><span data-fr="Composants">Components</span><span data-fr="Prototypage">Prototyping</span><span data-fr="Data viz 3D">3D data viz</span><span data-fr="Équipe produit">Product team</span></div>
       </div>
-    </div>
-  </section>
-
-  <!-- WORK -->
-  <section class="section section--ink wrap" id="work">
-    <div class="sec-head">
-      <span class="eyebrow reveal"><span class="idx">05</span> <span data-fr="Projets">Selected work</span></span>
-      <div class="row reveal">
-        <h2 class="h-sec" data-fr="Au-delà<br>de l'app">Beyond<br>the app</h2>
-        <p class="reading" data-fr="Des produits, des mondes et des images. Quelques autres choses que j'ai designées et construites.">Products, worlds, and images. A few other things I have designed and built.</p>
+    </article>
+    <article class="job" data-reveal>
+      <div class="job__co">
+        <h3>Atelier Daniela Zuniga</h3>
+        <p data-fr="Designer 3D · stage<br>Juin à août 2024 · Paris">3D Designer · internship<br>Jun to Aug 2024 · Paris</p>
       </div>
-    </div>
-
-    <div class="work-list">
-      <a class="work-row reveal" href="empreintes.html">
-        <span class="work-row__no">01</span>
-        <span class="work-row__mid">
-          <span class="work-row__title">Empreintes</span>
-          <span class="work-row__desc" data-fr="Une expérience open world sur l'impact de l'humain sur l'environnement. Exploration, véhicules et une narration environnementale, faite sous Unity avec des assets Blender et du C#.">An open world experience about human impact on the environment. Exploration, vehicles, and an environmental narrative, built in Unity with Blender assets and C#.</span>
-        </span>
-        <span class="work-row__meta"><span class="t">Unity</span><span class="t">Blender</span><span class="t">C#</span><svg class="work-row__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><use href="#i-arrow"/></svg></span>
-      </a>
-
-      <a class="work-row reveal" href="craft.html">
-        <span class="work-row__no">02</span>
-        <span class="work-row__mid">
-          <span class="work-row__title">3D Craft</span>
-          <span class="work-row__desc" data-fr="Une étude de modeling, texturing, lighting et composition. Treize rendus entre architecture, objets et matériaux.">A study in modeling, texturing, lighting, and composition. Thirteen renders across architecture, objects, and materials.</span>
-        </span>
-        <span class="work-row__meta"><span class="t">Blender</span><span class="t">Rendering</span><svg class="work-row__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><use href="#i-arrow"/></svg></span>
-      </a>
-
-      <a class="work-row reveal" href="memoire.html">
-        <span class="work-row__no">03</span>
-        <span class="work-row__mid">
-          <span class="work-row__title" data-fr="Mémoire">Mémoire 2026</span>
-          <span class="work-row__desc" data-fr="Mon mémoire de recherche de cette année, sur le design d'interface et l'expérience numérique. Résumé et texte complet sur sa page.">My research thesis from this year, on interface design and digital experience. Abstract and full text on its page.</span>
-        </span>
-        <span class="work-row__meta"><span class="t" data-fr="Recherche">Research</span><span class="t">2026</span><svg class="work-row__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><use href="#i-arrow"/></svg></span>
-      </a>
-    </div>
-
-    <p class="work-note reveal" data-fr="Plus de rendus, de prototypes et d'études de cas sur l'archive mahdisaiah.github.io/archive">More renders, prototypes, and case studies live on the archive at mahdisaiah.github.io/archive</p>
-
-    <!-- marquee -->
-    <div class="marquee reveal" aria-hidden="true">
-      <div class="marquee__track">
-        <span>Flutter</span><span class="on">Design Systems</span><span>Supabase</span><span>Unity</span><span>Blender</span><span class="on">Three.js</span><span>Dart</span><span>Motion</span>
-        <span>Flutter</span><span class="on">Design Systems</span><span>Supabase</span><span>Unity</span><span>Blender</span><span class="on">Three.js</span><span>Dart</span><span>Motion</span>
+      <div class="job__body">
+        <p data-fr="J'ai reconstruit un cerveau humain en 3D à partir de données IRM, des scans jusqu'au modèle anatomique complet.">I rebuilt a human brain in 3D from MRI data, from the raw scans to a complete anatomical model.</p>
+        <ul class="ticks">
+          <li data-fr="Modélisation du cerveau dans Blender à partir des coupes IRM.">Modelled the brain in Blender from the MRI slices.</li>
+          <li data-fr="Préparation des données IRM et développement d'une visualisation interactive en temps réel dans Unity (C#).">Prepared the MRI data and built an interactive real-time visualisation in Unity (C#).</li>
+        </ul>
+        <div class="tags"><span>Blender</span><span>Unity</span><span>C#</span><span data-fr="Imagerie médicale">Medical imaging</span></div>
       </div>
-    </div>
-  </section>
+    </article>
+  </div>
+</section>
 
-  <!-- TOOLKIT -->
-  <section class="section wrap" id="toolkit">
-    <div class="sec-head">
-      <span class="eyebrow reveal"><span class="idx">06</span> Toolkit</span>
-      <div class="row reveal">
-        <h2 class="h-sec" data-fr="Comment je<br>build">How I<br>build</h2>
-        <p class="reading" data-fr="Quatre disciplines, un seul objectif : shipper des choses soignées qui marchent vraiment.">Four disciplines, one goal: ship things that feel considered and actually work.</p>
+<!-- ============ MORE WORK ============ -->
+<section class="sec wrap" id="work" style="padding-top:0">
+  <div class="head" data-reveal>
+    <p class="label" data-fr="Autres projets">More work</p>
+    <h2 class="display" data-fr="Recherche, jeu <em>et 3D.</em>">Research, games <em>and 3D.</em></h2>
+  </div>
+  <div class="works">
+    <a class="work" href="memoire.html" data-reveal>
+      <div class="work__media work__media--paper"><img src="media/memoire/cover.jpg" alt="Thesis cover" loading="lazy"></div>
+      <div class="work__body">
+        <p class="label" data-fr="Mémoire · 2025-26">Thesis · 2025-26</p>
+        <h3 data-fr="Ce que coûte vraiment l'IA">What AI really costs</h3>
+        <p data-fr="Mon mémoire de Master 1 sur l'empreinte environnementale d'OpenAI, aujourd'hui et demain.">My Master 1 thesis on OpenAI's environmental footprint, today and where it is heading.</p>
+        <span class="work__go"><span data-fr="Lire">Read it</span><svg class="i"><use href="media/icons.svg#arrow-right"/></svg></span>
       </div>
-    </div>
-
-    <div class="disciplines">
-      <div class="disc reveal">
-        <h4><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><use href="#i-pen"/></svg> UX / UI &amp; Product Design</h4>
-        <div class="disc__tools"><span class="t">Figma</span><span class="t">Design System</span><span class="t">Design Tokens</span><span class="t">Pattern Libraries</span><span class="t">Interactive Prototyping</span><span class="t">Wireframing</span><span class="t">UX Research</span><span class="t">Product Discovery</span><span class="t">Design Thinking</span><span class="t">User Journeys</span><span class="t">User Testing</span><span class="t">Accessibility (WCAG)</span></div>
-      </div>
-      <div class="disc reveal">
-        <h4><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><use href="#i-code"/></svg> Design-to-Code &amp; Front-End</h4>
-        <div class="disc__tools"><span class="t">Flutter / Dart</span><span class="t">React</span><span class="t">HTML / CSS</span><span class="t">JavaScript</span><span class="t">TypeScript</span><span class="t">Three.js</span><span class="t">WebGL</span></div>
-      </div>
-      <div class="disc reveal">
-        <h4><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><use href="#i-tools"/></svg> Methods &amp; Tools</h4>
-        <div class="disc__tools"><span class="t">Agile (Scrum)</span><span class="t">Product / Design / Eng</span><span class="t">Generative AI (Claude, ChatGPT)</span><span class="t">Node.js</span><span class="t">REST / GraphQL</span><span class="t">Firebase</span><span class="t">PostgreSQL</span><span class="t">Docker</span><span class="t">GitHub Actions</span></div>
-      </div>
-      <div class="disc reveal">
-        <h4><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><use href="#i-cube"/></svg> 3D &amp; Immersive</h4>
-        <div class="disc__tools"><span class="t">Unity</span><span class="t">Blender</span><span class="t">Unreal Engine</span><span class="t">Substance 3D</span><span class="t">HLSL Shaders</span><span class="t">C#</span></div>
-      </div>
-    </div>
-
-    <a class="flagship-cta reveal" href="lab.html">
-      <span>
-        <span class="flagship-cta__t" data-fr="Entrer dans le Lab, un design system vivant">Step into the Lab, a living design system</span>
-        <span class="flagship-cta__sub" data-fr="Thème en direct, tokens, chaque composant et état, contraste WCAG, accessibilité">Live theming, tokens, every component and state, WCAG contrast, accessibility</span>
-      </span>
-      <svg class="flagship-cta__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><use href="#i-arrow"/></svg>
     </a>
-  </section>
-
-  <!-- ABOUT -->
-  <section class="section section--alt wrap" id="about">
-    <div class="sec-head">
-      <span class="eyebrow reveal"><span class="idx">07</span> <span data-fr="À propos">About</span></span>
-    </div>
-    <h2 class="statement__big reveal" style="color:var(--ink)" data-fr="Un designer qui ship, et qui soigne le build.">A designer who ships, and cares how it's built.</h2>
-    <div class="about-grid">
-
-      <div>
-        <div class="timeline reveal">
-          <div class="tl-head" data-fr="Formation">Education</div>
-          <div class="tl-item">
-            <span class="yr">2026 – 2027</span>
-            <span class="ti" data-fr="Master Design d'interface, multimédia et internet">Master's, Interface, Multimedia &amp; Web Design</span>
-            <span class="pl">Université Sorbonne Paris Nord</span>
-          </div>
-          <div class="tl-item">
-            <span class="yr">2025 – 2026</span>
-            <span class="ti" data-fr="Master 1 Création Numérique et Interfaces">Master 1, Digital Creation &amp; Interfaces</span>
-            <span class="pl">Université Gustave Eiffel</span>
-          </div>
-          <div class="tl-item">
-            <span class="yr">2022 – 2025</span>
-            <span class="ti" data-fr="Licence Études du Virtuel et Médias Numériques">Bachelor's, Virtual Studies &amp; Digital Media</span>
-            <span class="pl">Université Gustave Eiffel</span>
-          </div>
-        </div>
-
-        <div class="langs reveal">
-          <div class="tl-head" data-fr="Langues">Languages</div>
-          <div class="lang-row"><span class="lang-name" data-fr="Français">French</span><span class="lang-lvl" data-fr="Natif">Native</span></div>
-          <div class="lang-row"><span class="lang-name" data-fr="Anglais">English</span><span class="lang-lvl" data-fr="C1, Courant">C1, Fluent</span></div>
-          <div class="lang-row"><span class="lang-name" data-fr="Espagnol">Spanish</span><span class="lang-lvl" data-fr="B1, Intermédiaire">B1, Intermediate</span></div>
-        </div>
+    <a class="work" href="empreintes.html" data-reveal>
+      <div class="work__media"><video src="media/empreintes/clip-1.mp4" poster="media/empreintes/clip-1.jpg" muted loop playsinline preload="none" data-inview aria-label="Empreintes gameplay"></video></div>
+      <div class="work__body">
+        <p class="label" data-fr="Jeu · Unity · C#">Game · Unity · C#</p>
+        <h3>Empreintes</h3>
+        <p data-fr="Un jeu où l'on conduit, vole et pilote, pendant que le CO₂ émis s'affiche en temps réel.">A game where you drive and fly while the CO₂ you emit adds up on screen in real time.</p>
+        <span class="work__go"><span data-fr="Voir le projet">See the project</span><svg class="i"><use href="media/icons.svg#arrow-right"/></svg></span>
       </div>
+    </a>
+    <a class="work" href="craft.html" data-reveal>
+      <div class="work__media"><img src="media/craft/render-01.jpg" alt="Blender render of a Parisian facade at dusk" loading="lazy"></div>
+      <div class="work__body">
+        <p class="label">Blender · 3D</p>
+        <h3 data-fr="Rendus 3D">3D renders</h3>
+        <p data-fr="Treize images faites dans Blender : façades parisiennes, intérieurs, lumière et atmosphère.">Thirteen images made in Blender: Parisian facades, interiors, light and atmosphere.</p>
+        <span class="work__go"><span data-fr="Voir la galerie">See the gallery</span><svg class="i"><use href="media/icons.svg#arrow-right"/></svg></span>
+      </div>
+    </a>
+  </div>
+</section>
 
-      <div class="reveal">
-        <div class="tl-head" data-fr="Expérience">Experience</div>
+<!-- ============ ABOUT ============ -->
+<section class="sec wrap" id="about" style="padding-top:0">
+  <div class="about">
+    <figure class="portrait" style="margin:0" data-reveal><img src="media/portrait.jpg" alt="Portrait of Mahdi Saiah" width="700" height="900" loading="lazy"></figure>
+    <div class="about__copy" data-reveal>
+      <p class="label" data-fr="À propos">About</p>
+      <h2 class="display" data-fr="Bonjour, <em>moi c'est Mahdi.</em>">Hi, <em>I'm Mahdi.</em></h2>
+      <p data-fr="Je suis Product Designer et je me dirige vers le métier de Product Owner, à Paris. Ce qui me plaît, c'est de porter un produit de bout en bout : comprendre les gens pour qui on le fait, décider quoi construire, et vérifier que ce qui sort est à la hauteur.">I'm a product designer moving into product ownership, based in Paris. What I love is carrying a product end to end: understanding the people it's for, deciding what to build, and making sure what ships lives up to it.</p>
+      <p data-fr="J'entre en Master 2 UX Design &amp; Product Owner à Digital Campus Paris et je cherche une alternance de 12 mois, 4 jours en entreprise et 1 jour à l'école.">I'm starting a Master 2 in UX Design &amp; Product Owner at Digital Campus Paris, and I'm looking for a 12-month apprenticeship: 4 days at work, 1 day at school.</p>
 
-        <div class="exp">
-          <div class="exp__top"><span class="exp__co">Connect</span><span class="exp__yr" data-fr="2025 – aujourd'hui · Paris">2025 – now · Paris</span></div>
-          <div class="exp__role" data-fr="Fondateur, designer &amp; ingénieur">Founder, designer &amp; engineer</div>
-          <ul class="exp__list">
-            <li data-fr="Designé et construit l'app et le backend de A à Z, et shippé sur l'App Store.">Designed and built the app and backend end to end, and shipped it to the App Store.</li>
+      <div class="grid2">
+        <div class="block">
+          <h4 class="label" data-fr="Compétences">Skills</h4>
+          <ul>
+            <li><b>Product</b><span data-fr="Product ownership, roadmap, priorisation, user stories, specs, recette, Agile">Product ownership, roadmap, prioritisation, user stories, specs, QA, Agile</span></li>
+            <li><b data-fr="Recherche UX">UX research</b><span data-fr="Entretiens, tests utilisateurs, personas, parcours, benchmark">Interviews, user testing, personas, user flows, benchmarking</span></li>
+            <li><b data-fr="Design UI">UI design</b><span data-fr="Figma, design system, design tokens, wireframes, prototypage, accessibilité WCAG">Figma, design system, design tokens, wireframes, prototyping, WCAG accessibility</span></li>
+            <li><b data-fr="IA">AI</b><span data-fr="Outils d'IA générative (Claude) pour prototyper, écrire des specs et construire un produit">Generative AI tools (Claude) to prototype, write specs and build a product</span></li>
+            <li><b data-fr="Outils">Tools</b><span>Figma, Blender, Unity (C#), GitHub, Office 365</span></li>
           </ul>
         </div>
-
-        <div class="exp">
-          <div class="exp__top"><span class="exp__co">BNP Paribas Real Estate</span><span class="exp__yr">04/2025 – 09/2025 · Paris</span></div>
-          <div class="exp__role" data-fr="Développeur Front-End Junior · Stage">Junior Front-End Developer · Internship</div>
-          <ul class="exp__list">
-            <li data-fr="Conçu et intégré des interfaces web interactives avec les équipes UX et infographie, en mode agile, des maquettes à la mise en production.">Designed and built interactive web interfaces with the UX and design teams, agile, from mockups to production.</li>
-            <li data-fr="Construit des composants d'interface réutilisables et soigné les micro-interactions pour des écrans fluides, cohérents et intuitifs.">Built reusable UI components and refined micro-interactions for fluid, consistent, intuitive screens.</li>
-            <li data-fr="Optimisé la performance de rendu (LOD, compression géométrique, memory profiling) pour préserver une expérience fluide sur des visualisations 3D temps réel (Three.js / WebGL).">Optimized render performance (LOD, geometry compression, memory profiling) to keep real-time 3D visualizations smooth (Three.js / WebGL).</li>
-            <li data-fr="Collaboré au quotidien avec les équipes UX, infographie et back-end, automatisé des workflows de production (JavaScript, Python) et rédigé la documentation technique.">Collaborated daily with the UX, design, and back-end teams, automated production workflows (JavaScript, Python), and wrote the technical documentation.</li>
-          </ul>
+        <div>
+          <div class="block">
+            <h4 class="label" data-fr="Formation">Education</h4>
+            <ul>
+              <li><b>Master 2 UX Design &amp; Product Owner</b><span data-fr="Digital Campus Paris · en alternance · 2026-27">Digital Campus Paris · apprenticeship track · 2026-27</span></li>
+              <li><b data-fr="Master 1 Création Numérique et Interfaces">Master 1 Digital Creation &amp; Interfaces</b><span>Université Gustave Eiffel · 2025-26</span></li>
+              <li><b data-fr="Licence Études du Virtuel et Médias Numériques">BA Virtual Studies &amp; Digital Media</b><span>Université Gustave Eiffel · 2022-25</span></li>
+            </ul>
+          </div>
+          <div class="block">
+            <h4 class="label" data-fr="Langues">Languages</h4>
+            <div class="langs"><span><b data-fr="Français">French</b><span data-fr="natif">native</span></span><span><b data-fr="Anglais">English</b>C1</span><span><b data-fr="Espagnol">Spanish</b>B2</span></div>
+          </div>
         </div>
-
-        <div class="exp">
-          <div class="exp__top"><span class="exp__co">Atelier Daniela Zuniga</span><span class="exp__yr">2024</span></div>
-          <div class="exp__role" data-fr="Développeur C# &amp; Modélisateur 3D · Stage">C# Developer &amp; 3D Modeler · Internship</div>
-          <ul class="exp__list">
-            <li data-fr="Reconstruire un modèle 3D de cerveau humain à partir de données IRM médicales sous Unity et Blender.">Rebuilt a 3D model of a human brain from medical MRI data in Unity and Blender.</li>
-            <li data-fr="Développer des fonctionnalités interactives en C# : navigation spatiale et sélection de structures anatomiques.">Built interactive features in C#: spatial navigation and selection of anatomical structures.</li>
-            <li data-fr="Optimiser le pipeline de traitement de données volumétriques pour le rendu temps réel.">Optimized the volumetric data pipeline for real-time rendering.</li>
-          </ul>
-        </div>
-
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- CONTACT -->
-  <section class="section section--ink wrap" id="contact">
-    <span class="eyebrow reveal"><span class="idx">08</span> Contact</span>
-    <h2 class="contact__big reveal" style="margin-top:1.6rem" data-fr="On build<br>un truc<span class='accent'>.</span>">Let's build<br>something<span class="accent">.</span></h2>
-    <div class="contact__row reveal">
-      <a href="mailto:mahdisaiahparis@gmail.com" class="btn btn--accent"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><use href="#i-mail"/></svg> mahdisaiahparis@gmail.com</a>
-      <div class="contact__links">
-        <a class="tlink" href="cv.html">CV <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-arrow"/></svg></a>
-        <a class="tlink" href="https://www.linkedin.com/in/mahdi-saïah" target="_blank" rel="noopener">LinkedIn <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-arrow"/></svg></a>
-        <a class="tlink" href="https://github.com/mahdisaiah" target="_blank" rel="noopener">GitHub <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-arrow"/></svg></a>
-        <a class="tlink" href="https://mahdisaiah.github.io/archive/" target="_blank" rel="noopener">Archive <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#i-arrow"/></svg></a>
-      </div>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer class="footer section--ink wrap">
-    <span class="m">© 2026 Mahdi Saiah</span>
-    <span class="m" data-fr="Product Designer · Développeur · Fondateur de <a href='#connect'>Connect</a>">Product Designer · Developer · Founder of <a href="#connect">Connect</a></span>
-    <span class="m" data-fr="Conçu &amp; développé à Paris">Designed &amp; built in Paris</span>
-  </footer>
+<!-- ============ CONTACT ============ -->
+<section class="sec wrap contact" id="contact" style="padding-top:0">
+  <p class="label" data-reveal>Contact</p>
+  <h2 class="display" data-reveal data-fr="Construisons quelque chose <em>qui vaut le coup.</em>">Let's build something <em>worth using.</em></h2>
+  <p class="lead" data-reveal data-fr="Si votre équipe cherche quelqu'un capable d'aller de la recherche utilisateur jusqu'au produit en ligne, parlons-en.">If your team needs someone who can go from user research all the way to a shipped product, I'd love to talk.</p>
+  <div class="mail" id="mail" data-reveal>
+    <a href="mailto:mahdisaiahparis@gmail.com">mahdisaiahparis@gmail.com</a>
+    <button type="button" id="copyMail" aria-label="Copy email address" data-fr-label="Copier l'adresse e-mail"><svg class="i i--copy"><use href="media/icons.svg#copy"/></svg><svg class="i i--check"><use href="media/icons.svg#check"/></svg></button>
+  </div>
+  <div class="contact__row" data-reveal>
+    <a class="btn btn--ink" href="mailto:mahdisaiahparis@gmail.com"><svg class="i"><use href="media/icons.svg#envelope"/></svg><span data-fr="M'écrire">Email me</span></a>
+    <a class="btn" href="https://www.linkedin.com/in/mahdi-sa%C3%AFah-901a05303/" target="_blank" rel="noopener"><svg class="i"><use href="media/icons.svg#linkedin"/></svg>LinkedIn</a>
+    <a class="btn" href="cv/Mahdi_Saiah_CV_EN.pdf" data-fr-href="cv/Mahdi_Saiah_CV_FR.pdf" target="_blank" rel="noopener"><svg class="i"><use href="media/icons.svg#download"/></svg><span data-fr="Mon CV">My CV</span></a>
+  </div>
+</section>
 
 </main>
 
-<script src="js/main.js"></script>
-<script src="js/i18n.js"></script>
+<footer class="foot">
+  <div class="wrap">
+    <span>© 2026 Mahdi Saiah · <span data-fr="Les écrans de Connect montrent des profils fictifs.">Connect screens show fictional profiles.</span></span>
+    <nav><a href="https://getconnectapp.github.io" target="_blank" rel="noopener">Connect</a><a href="https://www.linkedin.com/in/mahdi-sa%C3%AFah-901a05303/" target="_blank" rel="noopener">LinkedIn</a><a href="#top" data-fr="Haut de page">Back to top</a></nav>
+  </div>
+</footer>
+
+<script src="js/site.js"></script>
 </body>
 </html>

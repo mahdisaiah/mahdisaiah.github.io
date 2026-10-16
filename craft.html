@@ -1,172 +1,95 @@
 <!doctype html>
-<html lang="en" data-title-en="3D Craft · Blender renders by Mahdi Saiah" data-title-fr="3D Craft · Rendus Blender par Mahdi Saiah">
+<html lang="en" data-title-en="3D renders · Mahdi Saiah" data-title-fr="Rendus 3D · Mahdi Saiah">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>3D Craft · Blender renders by Mahdi Saiah</title>
-<meta name="description" content="3D Craft, a study in modeling, texturing, lighting and composition. Thirteen Blender renders across architecture, interiors, objects and atmosphere by Mahdi Saiah." />
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;800;900&family=Space+Grotesk:wght@400;500;600&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>3D renders · Mahdi Saiah</title>
+<meta name="description" content="Thirteen Blender renders by Mahdi Saiah.">
+<meta name="theme-color" content="#F3F3F2" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0A0A0A" media="(prefers-color-scheme: dark)">
 <link rel="icon" type="image/png" sizes="32x32" href="media/brand/favicon-32.png">
 <link rel="icon" type="image/png" sizes="512x512" href="media/brand/favicon-512.png">
 <link rel="apple-touch-icon" href="media/brand/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/site.css">
 </head>
 <body>
 
-<!-- icon sprite -->
-<svg width="0" height="0" style="position:absolute" aria-hidden="true">
-  <defs>
-    <g id="i-arrow"><path d="M7 17L17 7M9 7h8v8"/></g>
-    <g id="i-back"><path d="M15 6l-6 6 6 6"/></g>
-    <g id="i-expand"><path d="M8 3H5a2 2 0 00-2 2v3M16 3h3a2 2 0 012 2v3M8 21H5a2 2 0 01-2-2v-3M16 21h3a2 2 0 002-2v-3"/></g>
-    <g id="i-close"><path d="M6 6l12 12M18 6L6 18"/></g>
-    <g id="i-chev-l"><path d="M15 6l-6 6 6 6"/></g>
-    <g id="i-chev-r"><path d="M9 6l6 6-6 6"/></g>
-    <g id="i-orbit"><path d="M12 5a7 7 0 017 7M12 19a7 7 0 01-7-7"/><path d="M17 10l2 2 2-2M7 14l-2-2-2 2"/><circle cx="12" cy="12" r="2.5"/></g>
-  </defs>
-</svg>
-
-<!-- NAV -->
 <header class="nav" id="nav">
-  <a href="index.html#top" class="nav__mark" aria-label="Mahdi Saiah, home"><img class="nav__logo" src="media/brand/mark.png" alt="Mahdi Saiah"></a>
-  <nav class="nav__links">
-    <a href="index.html#connect">Connect</a>
-    <a href="index.html#work" data-fr="Projets">Work</a>
-    <a href="index.html#toolkit">Toolkit</a>
-    <a href="lab.html">Lab</a>
-    <a href="studio.html">Forge</a>
-    <a href="index.html#about" data-fr="À propos">About</a>
-    <span class="lang-toggle" role="group" aria-label="Language"><button type="button" data-lang="en">EN</button><span class="lsep">/</span><button type="button" data-lang="fr">FR</button></span>
-    <a href="index.html#contact" class="nav__cta">Contact</a>
-  </nav>
-  <button class="nav__burger" id="burger" aria-label="Menu" aria-expanded="false"><span></span></button>
+  <div class="nav__bar">
+    <a class="brand" href="index.html" aria-label="Mahdi Saiah, home"><img src="media/brand/mark.png" alt="" width="24" height="24"><span>Mahdi Saiah</span></a>
+    <nav class="nav__links" aria-label="Sections">
+      <a href="index.html#connect">Connect</a>
+      <a href="index.html#experience" data-fr="Expérience">Experience</a>
+      <a href="index.html#work" data-fr="Projets">Work</a>
+      <a href="index.html#about" data-fr="À propos">About</a>
+    </nav>
+    <div class="seg" id="lang" role="group" aria-label="Language">
+      <span class="seg__pill"></span>
+      <button type="button" data-lang="en" aria-pressed="true">EN</button>
+      <button type="button" data-lang="fr" aria-pressed="false">FR</button>
+    </div>
+    <a class="btn btn--ink btn--sm" href="index.html#contact" data-fr="Me contacter">Get in touch</a>
+  </div>
 </header>
 
-<div class="mobile-menu" id="mobileMenu">
-  <a href="index.html#connect"><span class="idx">01</span>Connect</a>
-  <a href="index.html#work"><span class="idx">02</span><span data-fr="Projets">Work</span></a>
-  <a href="index.html#toolkit"><span class="idx">03</span>Toolkit</a>
-  <a href="lab.html"><span class="idx">04</span>Lab</a>
-  <a href="studio.html"><span class="idx">05</span>Forge</a>
-  <a href="index.html#about"><span class="idx">06</span><span data-fr="À propos">About</span></a>
-  <a href="index.html#contact"><span class="idx">07</span>Contact</a>
-  <span class="lang-toggle mobile-menu__lang" role="group" aria-label="Language"><button type="button" data-lang="en">EN</button><span class="lsep">/</span><button type="button" data-lang="fr">FR</button></span>
-</div>
+<main id="top">
+<section class="wrap p-hero">
+  <a class="back" href="index.html#work"><svg class="i"><use href="media/icons.svg#arrow-right"/></svg><span data-fr="Tous les projets">All work</span></a>
+  <p class="label">Blender · 3D</p>
+  <h1 class="display" data-fr="Rendus 3D">3D renders</h1>
+  <p class="lead" data-fr="Treize images faites dans Blender, du premier volume à l'image finale : façades parisiennes, intérieurs, objets et atmosphères.">Thirteen images made in Blender, from the first block-out to the final frame: Parisian facades, interiors, objects and atmosphere.</p>
+  <dl class="p-meta">
+    <div><dt class="label" data-fr="Outil">Tool</dt><dd>Blender</dd></div>
+    <div><dt class="label" data-fr="Focus">Focus</dt><dd data-fr="Modélisation, matières, lumière">Modelling, materials, light</dd></div>
+    <div><dt class="label" data-fr="Images">Pieces</dt><dd>13</dd></div>
+  </dl>
+</section>
 
-<main class="proj" id="top">
+<section class="wrap" style="padding-bottom:clamp(56px,8vw,96px)">
+  <div class="gallery">
+    <button type="button" class="shot shot--wide" data-lb data-reveal><img src="media/craft/render-01.jpg" alt="Parisian facade at dusk" loading="lazy"></button>
+    <button type="button" class="shot" data-lb data-reveal><img src="media/craft/render-02.jpg" alt="Haussmann building from below" loading="lazy"></button>
+    <button type="button" class="shot" data-lb data-reveal><img src="media/craft/render-03.jpg" alt="Ornate entrance door" loading="lazy"></button>
+    <button type="button" class="shot" data-lb data-reveal><img src="media/craft/render-04.jpg" alt="Rooftop with a dormer window" loading="lazy"></button>
+    <button type="button" class="shot" data-lb data-reveal><img src="media/craft/render-05.jpg" alt="Foggy street with a lamp post" loading="lazy"></button>
+    <button type="button" class="shot shot--half" data-lb data-reveal><img src="media/craft/render-06.jpg" alt="Night street with a glowing sign" loading="lazy"></button>
+    <button type="button" class="shot shot--half" data-lb data-reveal><img src="media/craft/render-07.jpg" alt="Meeting room" loading="lazy"></button>
+    <button type="button" class="shot shot--full" data-lb data-reveal><img src="media/craft/render-08.jpg" alt="Red neon corridor" loading="lazy"></button>
+    <button type="button" class="shot" data-lb data-reveal><img src="media/craft/render-09.jpg" alt="Dining table under a spotlight" loading="lazy"></button>
+    <button type="button" class="shot" data-lb data-reveal><img src="media/craft/render-10.jpg" alt="Sculpted head" loading="lazy"></button>
+    <button type="button" class="shot" data-lb data-reveal><img src="media/craft/render-11.jpg" alt="Office towers at night" loading="lazy"></button>
+    <button type="button" class="shot shot--wide" data-lb data-reveal><img src="media/craft/render-12.jpg" alt="Sculpted face" loading="lazy"></button>
+    <button type="button" class="shot" data-lb data-reveal><img src="media/craft/render-13.jpg" alt="Bedroom with string lights" loading="lazy"></button>
+  </div>
+  <p class="muted" style="margin-top:18px;font-size:.92rem" data-fr="Cliquez sur une image pour l'ouvrir en grand.">Click any image to see it full screen.</p>
+</section>
 
-  <!-- HERO -->
-  <section class="proj-hero wrap">
-    <a class="proj-back reveal" href="index.html#work"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><use href="#i-back"/></svg> <span data-fr="Projets">Selected work</span></a>
-    <span class="eyebrow reveal" style="margin-top:clamp(1.6rem,4vh,2.6rem)"><span class="idx">02</span> <span data-fr="Étude 3D">3D study</span></span>
-    <h1 class="proj-title reveal">3D Craft</h1>
-    <div class="proj-role reveal">
-      <span>Blender</span><span class="sep">/</span>
-      <span data-fr="Rendu">Rendering</span><span class="sep">/</span>
-      <span data-fr="Lookdev">Look dev</span>
+<section class="wrap p-sec" style="padding-top:0">
+  <div class="p-two">
+    <h2 data-reveal data-fr="Ce que la 3D m'apprend sur l'interface.">What 3D taught me about interfaces.</h2>
+    <div class="body" data-reveal>
+      <p data-fr="Chaque image commence par un simple bloc, puis se construit couche par couche : une modélisation propre, des matières physiques, une lumière pensée comme sur un plateau, et un cadrage qui raconte quelque chose.">Every image starts as a simple block-out, then gets built up layer by layer: clean modelling, physical materials, lighting treated like a film set, and a frame that says something.</p>
+      <p data-fr="C'est le même travail qu'à l'écran : la hiérarchie, la lumière qui guide l'œil, ce qu'on décide de ne pas montrer. C'est aussi ce qui m'a servi chez BNP Paribas Real Estate pour concevoir des interfaces de visualisation 3D.">It's the same work as on a screen: hierarchy, light that guides the eye, what you choose not to show. It's also what helped me design 3D visualisation interfaces at BNP Paribas Real Estate.</p>
+      <div class="chips"><span data-fr="Modélisation">Modelling</span><span data-fr="Texturing">Texturing</span><span data-fr="Éclairage">Lighting</span><span data-fr="Composition">Composition</span><span data-fr="Rendu">Rendering</span></div>
     </div>
-    <p class="lead proj-lead reveal" data-fr="Une étude de modélisation, texturing, lumière et composition. Treize rendus entre architecture, intérieurs, objets et atmosphère, réalisés sous Blender.">A study in modeling, texturing, lighting and composition. Thirteen renders across architecture, interiors, objects and atmosphere, all built in Blender.</p>
-    <div class="proj-meta reveal">
-      <div class="pm"><span data-fr="Outil">Tool</span><b>Blender</b></div>
-      <div class="pm"><span data-fr="Sujets">Focus</span><b data-fr="Matériaux · Lumière">Materials &amp; light</b></div>
-      <div class="pm"><span data-fr="Pièces">Pieces</span><b>13</b></div>
-    </div>
-  </section>
+  </div>
+</section>
 
-  <!-- GALLERY -->
-  <section class="section wrap" style="padding-top:0">
-    <p class="work-note reveal" style="color:var(--ink-3);margin-bottom:clamp(1.6rem,4vh,2.4rem)" data-fr="Clique une image pour l'ouvrir en plein écran. Flèches pour naviguer.">Click any image to open it full screen. Use the arrows to move through the set.</p>
-    <div class="gallery reveal">
-      <div class="shot shot--feature"><img src="media/craft/render-13.jpg" alt="Stylized isometric bedroom lit by warm string lights" loading="lazy"><span class="shot__zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><use href="#i-expand"/></svg></span></div>
-      <div class="shot shot--wide"><img src="media/craft/render-05.jpg" alt="Foggy street at dusk with a glowing lamppost" loading="lazy"><span class="shot__zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><use href="#i-expand"/></svg></span></div>
-      <div class="shot shot--narrow"><img src="media/craft/render-01.jpg" alt="Haussmann-style Paris facade in raking light" loading="lazy"><span class="shot__zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><use href="#i-expand"/></svg></span></div>
-      <div class="shot"><img src="media/craft/render-07.jpg" alt="Rendered meeting room interior with a wall screen" loading="lazy"><span class="shot__zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><use href="#i-expand"/></svg></span></div>
-      <div class="shot"><img src="media/craft/render-09.jpg" alt="3D render, study nine" loading="lazy"><span class="shot__zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><use href="#i-expand"/></svg></span></div>
-      <div class="shot shot--wide"><img src="media/craft/render-02.jpg" alt="3D render, study two" loading="lazy"><span class="shot__zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><use href="#i-expand"/></svg></span></div>
-      <div class="shot shot--narrow"><img src="media/craft/render-03.jpg" alt="3D render, study three" loading="lazy"><span class="shot__zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><use href="#i-expand"/></svg></span></div>
-      <div class="shot"><img src="media/craft/render-04.jpg" alt="3D render, study four" loading="lazy"><span class="shot__zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><use href="#i-expand"/></svg></span></div>
-      <div class="shot"><img src="media/craft/render-06.jpg" alt="3D render, study six" loading="lazy"><span class="shot__zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><use href="#i-expand"/></svg></span></div>
-      <div class="shot shot--wide"><img src="media/craft/render-08.jpg" alt="3D render, study eight" loading="lazy"><span class="shot__zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><use href="#i-expand"/></svg></span></div>
-      <div class="shot shot--narrow"><img src="media/craft/render-10.jpg" alt="3D render, study ten" loading="lazy"><span class="shot__zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><use href="#i-expand"/></svg></span></div>
-      <div class="shot"><img src="media/craft/render-11.jpg" alt="3D render, study eleven" loading="lazy"><span class="shot__zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><use href="#i-expand"/></svg></span></div>
-      <div class="shot"><img src="media/craft/render-12.jpg" alt="3D render, study twelve" loading="lazy"><span class="shot__zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><use href="#i-expand"/></svg></span></div>
-    </div>
-  </section>
-
-  <!-- INTERACTIVE MODEL -->
-  <section class="section wrap" style="padding-top:0">
-    <div class="proj-sec__head reveal">
-      <span class="eyebrow"><span class="idx">02.1</span> <span data-fr="Modèle temps réel">Real-time model</span></span>
-      <h2 data-fr="Pas qu'un rendu,<br>un vrai modèle">Not just a render,<br>a real model</h2>
-    </div>
-    <p class="reading reveal" style="margin-bottom:0" data-fr="Une Jeep Compass 2021 modélisée et texturée sous Blender, exportée en glTF. Fais-la tourner : carrosserie, chrome, vitres et pneus sont de vrais matériaux, pas une image plate.">A Jeep Compass 2021 modeled and textured in Blender, exported to glTF. Spin it around: the body, chrome, glass and tyres are real materials, not a flat image.</p>
-    <div class="model3d reveal" id="jeep3d">
-      <model-viewer
-        src="media/models/jeep-compass.glb"
-        alt="Jeep Compass 2021, modeled and textured in Blender"
-        camera-controls touch-action="pan-y"
-        auto-rotate auto-rotate-delay="600" rotation-per-second="16deg"
-        interaction-prompt="none"
-        shadow-intensity="0.9" shadow-softness="1"
-        exposure="1.05" environment-image="neutral"
-        camera-orbit="40deg 80deg 105%" min-camera-orbit="auto 55deg auto" max-camera-orbit="auto 95deg auto"
-        loading="lazy" reveal="auto"></model-viewer>
-      <span class="model3d__tag">glTF · Blender</span>
-      <span class="model3d__hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><use href="#i-orbit"/></svg> <span data-fr="Glisse pour tourner">Drag to orbit</span></span>
-    </div>
-  </section>
-
-  <!-- PROCESS -->
-  <section class="section section--alt wrap">
-    <div class="proj-sec__head reveal">
-      <span class="eyebrow"><span class="idx">02.2</span> <span data-fr="Le process">The process</span></span>
-      <h2 data-fr="Du bloc gris<br>au rendu final">From grey box<br>to final frame</h2>
-    </div>
-    <div class="memoire-abstract reveal">
-      <p data-fr="Chaque image part d'un blocking simple, puis se construit couche par couche : modélisation propre, matériaux physiques, éclairage pensé comme une scène, et un cadrage qui raconte quelque chose. J'utilise Blender de bout en bout, du premier cube au compositing final.">Every image starts as a simple block-out, then gets built up layer by layer: clean modeling, physical materials, lighting treated like a set, and a frame that says something. I use Blender end to end, from the first cube to final compositing.</p>
-    </div>
-    <div class="mem-topics reveal">
-      <span class="t" data-fr="Modélisation">Modeling</span>
-      <span class="t">Texturing</span>
-      <span class="t" data-fr="Éclairage">Lighting</span>
-      <span class="t" data-fr="Composition">Composition</span>
-      <span class="t">Rendering</span>
-      <span class="t">Compositing</span>
-    </div>
-  </section>
-
-  <!-- NEXT PROJECT -->
-  <section class="section section--ink wrap" style="padding-block:0">
-    <a class="next-proj reveal" href="memoire.html">
-      <span class="next-proj__kick" data-fr="Projet suivant">Next project</span>
-      <span class="next-proj__title" data-fr="Mémoire">Mémoire 2026</span>
-      <svg class="next-proj__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><use href="#i-arrow"/></svg>
-    </a>
-  </section>
-
-  <!-- FOOTER -->
-  <footer class="footer section--ink wrap">
-    <span class="m">© 2026 Mahdi Saiah</span>
-    <span class="m" data-fr="Product Designer · Développeur · Fondateur de <a href='index.html#connect'>Connect</a>">Product Designer · Developer · Founder of <a href="index.html#connect">Connect</a></span>
-    <span class="m" data-fr="Conçu &amp; développé à Paris">Designed &amp; built in Paris</span>
-  </footer>
-
+<section class="wrap" style="padding-bottom:clamp(72px,10vw,120px)">
+  <a class="next" href="memoire.html"><span><span class="label" data-fr="Projet suivant">Next</span><br><b data-fr="Ce que coûte vraiment l'IA">What AI really costs</b></span><svg class="i"><use href="media/icons.svg#arrow-right"/></svg></a>
+</section>
 </main>
 
-<!-- immersive lightbox -->
-<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Image viewer">
-  <button class="lb__btn lb__close" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><use href="#i-close"/></svg></button>
-  <button class="lb__btn lb__prev" aria-label="Previous"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><use href="#i-chev-l"/></svg></button>
-  <img class="lb__img" alt="">
-  <button class="lb__btn lb__next" aria-label="Next"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><use href="#i-chev-r"/></svg></button>
-  <span class="lb__count"></span>
-</div>
+<footer class="foot" style="margin-top:0">
+  <div class="wrap">
+    <span>© 2026 Mahdi Saiah</span>
+    <nav><a href="index.html" data-fr="Accueil">Home</a><a href="https://www.linkedin.com/in/mahdi-sa%C3%AFah-901a05303/" target="_blank" rel="noopener">LinkedIn</a><a href="mailto:mahdisaiahparis@gmail.com">Email</a></nav>
+  </div>
+</footer>
 
-<script type="module" src="https://cdn.jsdelivr.net/npm/@google/model-viewer@3.5.0/dist/model-viewer.min.js"></script>
-<script src="js/main.js"></script>
-<script src="js/project.js"></script>
-<script src="js/i18n.js"></script>
+<script src="js/site.js"></script>
 </body>
 </html>
