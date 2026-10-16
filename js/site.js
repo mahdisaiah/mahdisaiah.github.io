@@ -29,10 +29,26 @@
   var KEY = 'ms_lang';
   var titles = { en: root.getAttribute('data-title-en') || document.title, fr: root.getAttribute('data-title-fr') || document.title };
 
+  /* ---------- theme: follows the phone until the visitor flips the switch ---------- */
+  var THEME_KEY = 'ms_theme';
+  function isDark() { var t = root.getAttribute('data-theme'); return t ? t === 'dark' : darkMq.matches; }
+  function paintTheme() {
+    var dark = isDark(), fr = root.getAttribute('lang') === 'fr';
+    var btn = document.getElementById('theme');
+    if (btn) {
+      btn.innerHTML = '<svg class="i"><use href="media/icons.svg#' + (dark ? 'sun' : 'moon') + '"/></svg>';
+      btn.setAttribute('aria-label', dark ? (fr ? 'Passer en mode clair' : 'Switch to light mode') : (fr ? 'Passer en mode sombre' : 'Switch to dark mode'));
+      btn.setAttribute('aria-pressed', dark ? 'true' : 'false');
+    }
+    var meta = document.querySelector('meta[name="theme-color"]:not([media])');
+    if (meta) meta.setAttribute('content', dark ? '#0A0A0A' : '#F3F3F2');
+    badges();
+  }
+
   function badges() {
     var fr = root.getAttribute('lang') === 'fr';
     document.querySelectorAll('[data-badge]').forEach(function (img) {
-      img.src = 'media/connect/appstore-' + (darkMq.matches ? 'white' : 'black') + '-' + (fr ? 'fr-fr' : 'en-us') + '.svg';
+      img.src = 'media/connect/appstore-' + (isDark() ? 'white' : 'black') + '-' + (fr ? 'fr-fr' : 'en-us') + '.svg';
       img.alt = fr ? "Télécharger dans l'App Store" : 'Download on the App Store';
     });
   }
@@ -55,7 +71,7 @@
     document.title = titles[fr ? 'fr' : 'en'];
     var seg = document.getElementById('lang');
     if (seg) press(seg, seg.querySelector('[data-lang="' + lang + '"]'));
-    badges();
+    paintTheme();
     try { localStorage.setItem(KEY, lang); } catch (e) {}
   }
 
@@ -67,7 +83,14 @@
   document.querySelectorAll('#lang button').forEach(function (b) {
     b.addEventListener('click', function () { apply(b.getAttribute('data-lang')); });
   });
-  if (darkMq.addEventListener) darkMq.addEventListener('change', badges);
+  if (darkMq.addEventListener) darkMq.addEventListener('change', paintTheme);
+  var themeBtn = document.getElementById('theme');
+  if (themeBtn) themeBtn.addEventListener('click', function () {
+    var next = isDark() ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    try { localStorage.setItem(THEME_KEY, next); } catch (e) {}
+    paintTheme();
+  });
 
   /* ---------- nav: hides while reading down, comes back on the way up ---------- */
   var nav = document.getElementById('nav');
