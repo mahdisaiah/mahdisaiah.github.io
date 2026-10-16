@@ -142,23 +142,6 @@
     });
   });
 
-  /* ---------- live component: theme through tokens + a real vote ---------- */
-  var live = document.getElementById('live');
-  if (live) {
-    var themeSeg = live.querySelector('.seg');
-    themeSeg.querySelectorAll('button').forEach(function (b) {
-      b.addEventListener('click', function () { press(themeSeg, b); live.setAttribute('data-mode', b.getAttribute('data-mode')); });
-    });
-    if (darkMq.matches) press(themeSeg, themeSeg.querySelector('[data-mode="dark"]')), live.setAttribute('data-mode', 'dark');
-    var card = document.getElementById('dcard');
-    card.querySelectorAll('.vote').forEach(function (v) {
-      v.addEventListener('click', function () {
-        card.querySelectorAll('.vote').forEach(function (o) { o.classList.toggle('is-mine', o === v); });
-        card.classList.add('is-voted');
-      });
-    });
-  }
-
   /* ---------- copy email ---------- */
   var copy = document.getElementById('copyMail');
   if (copy) copy.addEventListener('click', function () {
